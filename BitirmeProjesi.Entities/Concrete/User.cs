@@ -1,0 +1,17 @@
+﻿using BitirmeProjesi.Shared.Entities.Abstract;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace BitirmeProjesi.Entities.Concrete
+{
+    public class User : EntityBase, IEntity
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public byte[] PasswordHash { get; set; }
+        public string UserName { get; set; }
+        public string Picture { get; set; }
+    }
+}

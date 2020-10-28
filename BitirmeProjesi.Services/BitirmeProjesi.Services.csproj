@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BitirmeProjesi.Data\BitirmeProjesi.Data.csproj" />
+    <ProjectReference Include="..\BitirmeProjesi.Entities\BitirmeProjesi.Entities.csproj" />
+    <ProjectReference Include="..\BitirmeProjesi.Shared\BitirmeProjesi.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
