@@ -18,6 +18,7 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
             builder.Property(c => c.Subject).IsRequired();
             builder.Property(c => c.Title).IsRequired();
             builder.Property(c => c.Title).HasMaxLength(100);
+            builder.Property(c => c.Subject).HasMaxLength(500);
 
 
 

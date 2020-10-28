@@ -6,9 +6,9 @@ using System.Text;
 
 namespace BitirmeProjesi.Entities.Dtos
 {
-    public class CategoryListDto:DtoGetBase
+    public class BookListDto:DtoGetBase
     {
-        public IList<Category> Categories { get; set; }
-     
+        public IList<Book> Books { get; set; }
+       
     }
 }

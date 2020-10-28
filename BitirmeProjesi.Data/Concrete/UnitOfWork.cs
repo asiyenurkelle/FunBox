@@ -15,6 +15,7 @@ namespace BitirmeProjesi.Data.Concrete
         private EfSerieRepository _serieRepository;
         private EfBookRepository _bookRepository;
         private EfCategoryRepository _categoryRepository;
+        private EfCommentRepository _commentRepository;
       
         private EfUserRepository _userRepository;
        
@@ -29,7 +30,7 @@ namespace BitirmeProjesi.Data.Concrete
         public IBookRepository Books => _bookRepository ?? new EfBookRepository(_bitirmeProjesiContext);
 
         public ICategoryRepository Categories => _categoryRepository ?? new EfCategoryRepository(_bitirmeProjesiContext);
-
+        public ICommentRepository Comments => _commentRepository ?? new EfCommentRepository(_bitirmeProjesiContext);
       
 
         public IUserRepository Users => _userRepository ?? new EfUserRepository(_bitirmeProjesiContext);

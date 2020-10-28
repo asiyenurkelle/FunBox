@@ -1,4 +1,5 @@
 ﻿using BitirmeProjesi.Entities.Concrete;
+using BitirmeProjesi.Entities.Dtos;
 using BitirmeProjesi.Shared.Utilities.Results.Abstract;
 using System;
 using System.Collections.Generic;
@@ -9,8 +10,8 @@ namespace BitirmeProjesi.Services.Abstract
 {
     public interface IMovieService
     {
-        Task<IDataResult<Movie>> Get(int movieId);
-        Task<IDataResult<IList<Book>>> GetAll();
-        Task<IResult> Delete(int movieId);
+        Task<IDataResult<MovieDto>> Get(int movieId);
+        Task<IDataResult<MovieListDto>> GetAll();
+        
     }
 }
