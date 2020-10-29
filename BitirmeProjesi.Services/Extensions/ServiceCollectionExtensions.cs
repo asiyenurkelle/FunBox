@@ -17,7 +17,7 @@ namespace BitirmeProjesi.Services.Extensions
             serviceCollection.AddDbContext<BitirmeProjesiContext>();
             serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
             serviceCollection.AddScoped<ICategoryService, CategoryManager>();
-            serviceCollection.AddScoped<IBookService, BookManager>();
+            serviceCollection.AddScoped<ISerieService, SerieManager>();
             serviceCollection.AddScoped<IMovieService, MovieManager>();
             serviceCollection.AddScoped<IBookService, BookManager>();
             serviceCollection.AddScoped<ICommentService, CommentManager>();

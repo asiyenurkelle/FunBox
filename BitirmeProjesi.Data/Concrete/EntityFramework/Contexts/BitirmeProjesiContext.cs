@@ -20,7 +20,7 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(connectionString: @"Server = . ; Database = BitirmeProjesi; Trusted_Connection = True;  MultipleActiveResultSets = True;");
+            optionsBuilder.UseSqlServer("Server = . ; Database = BitirmeProjesi; integrated security=true");
 
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

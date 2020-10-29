@@ -14,7 +14,7 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
         {
             builder.HasKey(c => c.Id);
             builder.Property(c => c.Id).ValueGeneratedOnAdd();
-            builder.Property(c => c.Id).IsRequired();
+            //builder.Property(c => c.Id).IsRequired();
             builder.Property(c => c.Subject).IsRequired();
             builder.Property(c => c.Title).IsRequired();
             builder.Property(c => c.Title).HasMaxLength(100);
@@ -25,10 +25,18 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
 
             builder.HasOne<Movie>(c => c.Movie).WithMany(m => m.Comments).HasForeignKey(c => c.MovieId);
             builder.HasOne<Serie>(c => c.Serie).WithMany(s => s.Comments).HasForeignKey(c => c.SerieId);
-            builder.HasOne<Book>(c => c.Book).WithMany(b => b.Comments).HasForeignKey(c => c.BookId);
+           // builder.HasOne<Book>(c => c.Book).WithMany(b => b.Comments).HasForeignKey(c => c.BookId);
             builder.ToTable("Comments");
 
-
+            builder.HasData(new Comment
+            {
+                Id = 1,
+                Subject = "Bu film diğer filmlere nazaran oyuncular daha iyiydi,film akıcıydı.",
+                Title = "Film oyuncuları hakkında",
+                MovieId = 2,
+                
+            }
+            );
         }
     }
 }

@@ -13,15 +13,16 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
         {
             builder.HasKey(b => b.Id);
             builder.Property(b => b.Id).ValueGeneratedOnAdd();
-            builder.Property(b => b.Id).IsRequired();
+            //builder.Property(b => b.Id).IsRequired();
             builder.Property(b => b.Title).HasMaxLength(100);
             builder.Property(b => b.Title).IsRequired();
             builder.Property(b => b.Subject).IsRequired();
             builder.Property(b => b.ThumbNail).IsRequired();
-            builder.Property(b => b.Subject).HasColumnName("NVARCHAR(MAX)");
+            //builder.Property(b => b.Subject).HasColumnName("NVARCHAR(MAX)");
             builder.Property(b => b.Page).IsRequired();
             builder.Property(b => b.Production).IsRequired();
             builder.HasOne<Category>(b => b.Category).WithMany(c => c.Books).HasForeignKey(b => b.CategoryId);
+            
             
             builder.ToTable("Books");
             //İLK DEĞER ATAMALARI

@@ -18,9 +18,4 @@
     <ProjectReference Include="..\BitirmeProjesi.Shared\BitirmeProjesi.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Concrete\Migrations\" />
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
 </Project>

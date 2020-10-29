@@ -13,3 +13,4 @@ C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Services\bin\Debug\netc
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Services\bin\Debug\netcoreapp3.1\BitirmeProjesi.Entities.pdb
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Services\bin\Debug\netcoreapp3.1\BitirmeProjesi.Shared.pdb
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Services\obj\Debug\netcoreapp3.1\BitirmeProjesi.Services.csproj.CopyComplete
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Services\obj\Debug\netcoreapp3.1\BitirmeProjesi.Services.csproj.CoreCompileInputs.cache

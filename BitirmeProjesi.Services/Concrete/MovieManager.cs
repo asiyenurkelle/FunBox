@@ -1,4 +1,5 @@
-﻿using BitirmeProjesi.Data.Concrete;
+﻿using BitirmeProjesi.Data.Abstract;
+using BitirmeProjesi.Data.Concrete;
 using BitirmeProjesi.Entities.Concrete;
 using BitirmeProjesi.Entities.Dtos;
 using BitirmeProjesi.Services.Abstract;
@@ -14,8 +15,8 @@ namespace BitirmeProjesi.Services.Concrete
 {
     public class MovieManager : IMovieService
     {
-        private readonly UnitOfWork _unitOfWork;
-        public MovieManager(UnitOfWork unitOfWork)
+        private readonly IUnitOfWork _unitOfWork;
+        public MovieManager(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
@@ -40,7 +41,7 @@ namespace BitirmeProjesi.Services.Concrete
             {
                 return new DataResult<MovieListDto>(ResultStatus.Success, new MovieListDto
                 {
-                   Movies=movies,
+                    Movies=movies,
                     ResultStatus = ResultStatus.Success
                 });
             }

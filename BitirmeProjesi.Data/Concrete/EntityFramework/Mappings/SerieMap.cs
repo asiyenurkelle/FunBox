@@ -13,7 +13,7 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
         {
             builder.HasKey(s => s.Id);
             builder.Property(s => s.Id).ValueGeneratedOnAdd();
-            builder.Property(s => s.Id).IsRequired();
+           // builder.Property(s => s.Id).IsRequired();
             builder.Property(s => s.Title).HasMaxLength(100);
             builder.Property(s => s.Title).IsRequired();
             builder.Property(s => s.ThumbNail).IsRequired();

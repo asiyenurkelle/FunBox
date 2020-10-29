@@ -2,6 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using BitirmeProjesi.Data.Abstract;
+using BitirmeProjesi.Data.Concrete;
+using BitirmeProjesi.Data.Concrete.EntityFramework.Contexts;
+using BitirmeProjesi.Services.Abstract;
+using BitirmeProjesi.Services.AutoMapper.Profiles;
+using BitirmeProjesi.Services.Concrete;
 using BitirmeProjesi.Services.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,8 +31,12 @@ namespace BitirmeProjesi.MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddAutoMapper(typeof(CommentProfile));
             services.LoadMyServices();
+           
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,10 +67,11 @@ namespace BitirmeProjesi.MVC
                     pattern: "Admin/{controller=Home}/{action=Index}/{id?}"
 
                     );
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}"
-                    );
+                //endpoints.MapControllerRoute(
+                //    name: "default",
+                //    pattern: "{controller=Home}/{action=Index}/{id?}"
+                //    );
+                endpoints.MapDefaultControllerRoute();
             });
         }
     }

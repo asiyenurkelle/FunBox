@@ -15,7 +15,7 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
             builder.HasKey(m => m.Id);
             //ıdentity alanı 1 er artan alan.
             builder.Property(m => m.Id).ValueGeneratedOnAdd();
-            builder.Property(m => m.Id).IsRequired();
+           // builder.Property(m => m.Id).IsRequired();
             builder.Property(m => m.Title).HasMaxLength(100);
             builder.Property(m => m.Title).IsRequired();
             builder.Property(m => m.Subject).IsRequired();

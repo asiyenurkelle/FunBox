@@ -38,7 +38,6 @@ namespace BitirmeProjesi.Data.Migrations
 
                     b.Property<string>("Subject")
                         .IsRequired()
-                        .HasColumnName("NVARCHAR(MAX)")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ThumbNail")
@@ -222,7 +221,8 @@ namespace BitirmeProjesi.Data.Migrations
 
                     b.Property<string>("Subject")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -240,6 +240,18 @@ namespace BitirmeProjesi.Data.Migrations
                     b.HasIndex("SerieId");
 
                     b.ToTable("Comments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BookId = 0,
+                            CategoryId = 0,
+                            MovieId = 2,
+                            SerieId = 0,
+                            Subject = "Bu film diğer filmlere nazaran oyuncular daha iyiydi,film akıcıydı.",
+                            Title = "Film oyuncuları hakkında"
+                        });
                 });
 
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.Movie", b =>
