@@ -10,7 +10,8 @@
 
     <title>@ViewBag.Title-Admin Panel </title>
 
-    @await Html.PartialAsync("_LayoutCssPartial"); 
+    @await Html.PartialAsync("_LayoutCssPartial");
+   
 
 </head>
 
@@ -18,151 +19,30 @@
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+       
         <div class="container">
             <a class="navbar-brand" href="#"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             @await Html.PartialAsync("_LayoutNavBarPartial")
+         
         </div>
     </nav>
+   
+        <footer class="py-5 bg-dark">
+            <div class="container">
 
+                @RenderBody()
+            </div>
+
+            <!-- /.container -->
+        </footer>
+   
 
     <!-- Page Content -->
-    <div class="container">
-
-        <div class="row">
-
-           @await Html.PartialAsync("_LayoutListGroupPartial")
-            <!-- /.col-lg-3 -->
-
-            <div class="col-lg-9">
-
-                <div class="row">
-
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card h-100">
-                           <img class="card-img-top" src="~/img/deruntergang.jpg" alt="">
-                            <div class="card-body">
-                                <h4 class="card-title">
-                                    <a asp-area="Admin" asp-controller="Home" asp-action="Index">Der Untergang</a>
-                                </h4>
-                                
-                                <p class="card-text">
-                                    Bruno Ganz, who lost Hitler this year, plays the movie that tells about the last times of Hitler.
-                                    Bruno Ganz lived officially. The film was written by 5 people who lived in those days. It describes the last days of Hitler in the bunker with his staff. The German nation is collapsing fast but Hitler denies it.
-                                </p>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card h-100">
-                            <img class="card-img-top" src="~/img/shutterısland.jpg" alt="">
-                            <div class="card-body">
-                                <h4 class="card-title">
-                                    <a asp-area="Admin" asp-controller="Home" asp-action="Index">Shutter Island</a>
-                                </h4>
-                                
-                                <p class="card-text">In the film that took place in 1954, they closed the mentally ill people who committed severe punishments in the USA to an island. It is impossible to escape from the island due to its high security and swimming from the island is impossible from the cliffs. In this masterpiece film, two police officers named Teddy Daniels and Chuck Aule travel to Shutter Island to investigate the disappearance of a mental patient nam></p>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card h-100">
-                           <img class="card-img-top" src="~/img/vforvendetta.jpg" alt="">
-                            <div class="card-body">
-                                <h4 class="card-title">
-                                    <a asp-area="Admin" asp-controller="Home" asp-action="Index">V For Vendetta</a>
-                                </h4>
-                                
-                                <p class="card-text">The V character in our lead role is wearing the mask of Guy Fawkes, who is considered the greatest traitor in England. In the film, V, one of the subjects of a medical experiment in which an artificial hormone was tested, was persecuted in camps that would destroy all Muslim, Jewish and Pakistani minorities of the fascist government in England, and stayed in a single-cell room for a long time. The revolt of the survivor V to overthrow this fascist dictatorship represents freedom.</p>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card h-100">
-                            <img class="card-img-top" src="~/img/abeautifulmind.jpg" alt="">
-                            <div class="card-body">
-                                <h4 class="card-title">
-                                    <a asp-area="Admin" asp-controller="Home" asp-action="Index">A Beautiful Mind</a>
-                                </h4>
-                                
-                                <p class="card-text">The film, which tells the life story of the famous Nobel Prize-winning mathematician John Nash, takes 135 minutes. John Nash, who is considered a mathematical genius who proposes and proves an incredible theory, begins to show schizophrenic symptoms. Mixing fantasy and reality, John Nash makes his way to the line of madness.</p>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card h-100">
-                         <img class="card-img-top" src="~/img/thewolfofwallstreet.jpg" alt="">
-                            <div class="card-body">
-                                <h4 class="card-title">
-                                    <a asp-area="Admin" asp-controller="Home" asp-action="Index">The Wolf of Wall Street</a>
-                                </h4>
-                                
-                                <p class="card-text">Jordan Belfort was neither born into a wealthy family nor did he have rich friends. Jordan Belfort, a 24-year-old young and ambitious man, establishes a company to trade on his dream Wall Street and earns incredible money by selling worthless shares to people. Jordan Belfort, who is very cunning and very persuasive, is a complete devious.</p>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card h-100">
-                          <img class="card-img-top" src="~/img/heat.jpg" alt="">
-                            <div class="card-body">
-                                <h4 class="card-title">
-                                    <a asp-area="Admin" asp-controller="Home" asp-action="Index">Heat</a>
-                                </h4>
-                                
-                                <p class="card-text">The villain Neil McCauley (Robert De Niro) is a very smart thief. Vincent Hanna (Al Pacino) is an avid obsessive detective and goes after Neil McCauley. The film is a complete masterpiece with its shooting technique, scenes and music. With the meeting of the heaviest brothers of two Hollywood, it smells of charisma.</p>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /.row -->
-
-            </div>
-            <!-- /.col-lg-9 -->
-
-        </div>
-        <!-- /.row -->
-
-
-    </div>
-
-
     <!-- /.container -->
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
-        <div class="container">
-            @RenderBody()
-        </div>
-
-        <!-- /.container -->
-    </footer>
-    
-
     <!-- Bootstrap core JavaScript -->
     @await Html.PartialAsync("_LayoutJsPartial");
     @await RenderSectionAsync("Scripts", false);
