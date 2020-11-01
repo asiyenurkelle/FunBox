@@ -13,17 +13,14 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
         {
             builder.HasKey(s => s.Id);
             builder.Property(s => s.Id).ValueGeneratedOnAdd();
-           // builder.Property(s => s.Id).IsRequired();
-            builder.Property(s => s.Title).HasMaxLength(100);
-            builder.Property(s => s.Title).IsRequired();
+            builder.Property(s => s.Title).HasMaxLength(100).IsRequired();
+            builder.Property(s => s.Subject).HasColumnType("NVARCHAR(MAX)").IsRequired();
             builder.Property(s => s.ThumbNail).IsRequired();
-            builder.Property(s => s.Subject).IsRequired();
-            builder.Property(s => s.Subject).HasColumnType("NVARCHAR(MAX)");
             builder.Property(s => s.Production).IsRequired();
             builder.Property(s => s.Time).IsRequired();
             builder.Property(s => s.Scenarist).IsRequired();
 
-            builder.HasOne<Category>(s => s.Category).WithMany(c => c.Series).HasForeignKey(s => s.CategoryId);
+            builder.HasOne<Category>(s => s.Category).WithMany(c => c.Series).HasForeignKey(s => s.CategoryId).OnDelete(DeleteBehavior.Restrict);
             builder.ToTable("Series");
 
             builder.HasData(new Serie

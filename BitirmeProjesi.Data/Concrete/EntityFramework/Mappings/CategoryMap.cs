@@ -13,9 +13,7 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
         {
             builder.HasKey(c => c.Id);
             builder.Property(c=>c.Id).ValueGeneratedOnAdd();
-            builder.Property(c => c.Id).IsRequired();
-            builder.Property(c => c.Name).IsRequired();
-            builder.Property(c => c.Name).HasMaxLength(70);
+            builder.Property(c => c.Name).HasMaxLength(70).IsRequired();
             builder.ToTable("Categories");
 
 

@@ -23,31 +23,7 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">
-                           HOME
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"> MOOD TEST</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">ACTIVITIES</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">FRIENDS ACTIVITIES</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">PROFILE</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">LOGIN</a>
-                    </li>
-                </ul>
-            </div>
+            @await Html.PartialAsync("_LayoutNavBarPartial")
         </div>
     </nav>
 
@@ -57,31 +33,19 @@
 
         <div class="row">
 
-            <div class="col-lg-3">
-
-                <h1 class="my-4">Welcome</h1>
-                <div class="list-group">
-                    <a href="#" class="list-group-item">MUSIC</a>
-                    <a href="#" class="list-group-item">MOVIES</a>
-                    <a href="#" class="list-group-item">BOOKS</a>
-                </div>
-
-            </div>
+           @await Html.PartialAsync("_LayoutListGroupPartial")
             <!-- /.col-lg-3 -->
 
             <div class="col-lg-9">
 
-                
-
                 <div class="row">
-
 
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
-                            <a href="#"><img class="card-img-top" src="~/img/deruntergang.jpg" alt=""></a>
+                           <img class="card-img-top" src="~/img/deruntergang.jpg" alt="">
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <a href="#">Der Untergang</a>
+                                    <a asp-area="Admin" asp-controller="Home" asp-action="Index">Der Untergang</a>
                                 </h4>
                                 
                                 <p class="card-text">
@@ -97,10 +61,10 @@
 
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
-                            <a href="#"><img class="card-img-top" src="~/img/shutterısland.jpg" alt=""></a>
+                            <img class="card-img-top" src="~/img/shutterısland.jpg" alt="">
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <a href="#">Shutter Island</a>
+                                    <a asp-area="Admin" asp-controller="Home" asp-action="Index">Shutter Island</a>
                                 </h4>
                                 
                                 <p class="card-text">In the film that took place in 1954, they closed the mentally ill people who committed severe punishments in the USA to an island. It is impossible to escape from the island due to its high security and swimming from the island is impossible from the cliffs. In this masterpiece film, two police officers named Teddy Daniels and Chuck Aule travel to Shutter Island to investigate the disappearance of a mental patient nam></p>
@@ -113,10 +77,10 @@
 
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
-                            <a href="#"><img class="card-img-top" src="~/img/vforvendetta.jpg" alt=""></a>
+                           <img class="card-img-top" src="~/img/vforvendetta.jpg" alt="">
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <a href="#">V For Vendetta</a>
+                                    <a asp-area="Admin" asp-controller="Home" asp-action="Index">V For Vendetta</a>
                                 </h4>
                                 
                                 <p class="card-text">The V character in our lead role is wearing the mask of Guy Fawkes, who is considered the greatest traitor in England. In the film, V, one of the subjects of a medical experiment in which an artificial hormone was tested, was persecuted in camps that would destroy all Muslim, Jewish and Pakistani minorities of the fascist government in England, and stayed in a single-cell room for a long time. The revolt of the survivor V to overthrow this fascist dictatorship represents freedom.</p>
@@ -129,10 +93,10 @@
 
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
-                            <a href="#"><img class="card-img-top" src="~/img/abeautifulmind.jpg" alt=""></a>
+                            <img class="card-img-top" src="~/img/abeautifulmind.jpg" alt="">
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <a href="#">A Beautiful Mind</a>
+                                    <a asp-area="Admin" asp-controller="Home" asp-action="Index">A Beautiful Mind</a>
                                 </h4>
                                 
                                 <p class="card-text">The film, which tells the life story of the famous Nobel Prize-winning mathematician John Nash, takes 135 minutes. John Nash, who is considered a mathematical genius who proposes and proves an incredible theory, begins to show schizophrenic symptoms. Mixing fantasy and reality, John Nash makes his way to the line of madness.</p>
@@ -145,10 +109,10 @@
 
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
-                            <a href="#"><img class="card-img-top" src="~/img/thewolfofwallstreet.jpg" alt=""></a>
+                         <img class="card-img-top" src="~/img/thewolfofwallstreet.jpg" alt="">
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <a href="#">The Wolf of Wall Street</a>
+                                    <a asp-area="Admin" asp-controller="Home" asp-action="Index">The Wolf of Wall Street</a>
                                 </h4>
                                 
                                 <p class="card-text">Jordan Belfort was neither born into a wealthy family nor did he have rich friends. Jordan Belfort, a 24-year-old young and ambitious man, establishes a company to trade on his dream Wall Street and earns incredible money by selling worthless shares to people. Jordan Belfort, who is very cunning and very persuasive, is a complete devious.</p>
@@ -161,10 +125,10 @@
 
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
-                            <a href="#"><img class="card-img-top" src="~/img/heat.jpg" alt=""></a>
+                          <img class="card-img-top" src="~/img/heat.jpg" alt="">
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <a href="#">Heat</a>
+                                    <a asp-area="Admin" asp-controller="Home" asp-action="Index">Heat</a>
                                 </h4>
                                 
                                 <p class="card-text">The villain Neil McCauley (Robert De Niro) is a very smart thief. Vincent Hanna (Al Pacino) is an avid obsessive detective and goes after Neil McCauley. The film is a complete masterpiece with its shooting technique, scenes and music. With the meeting of the heaviest brothers of two Hollywood, it smells of charisma.</p>

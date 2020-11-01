@@ -45,7 +45,7 @@ namespace BitirmeProjesi.Data.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(maxLength: 100, nullable: false),
-                    Subject = table.Column<string>(nullable: false),
+                    NVARCHARMAX = table.Column<string>(name: "NVARCHAR(MAX)", nullable: false),
                     ThumbNail = table.Column<string>(nullable: false),
                     CategoryId = table.Column<int>(nullable: false),
                     Page = table.Column<int>(nullable: false),
@@ -60,7 +60,7 @@ namespace BitirmeProjesi.Data.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -70,7 +70,7 @@ namespace BitirmeProjesi.Data.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(maxLength: 100, nullable: false),
-                    NVARCHARMAX = table.Column<string>(name: "NVARCHAR(MAX)", nullable: false),
+                    Subject = table.Column<string>(type: "NVARCHAR(MAX)", nullable: false),
                     ThumbNail = table.Column<string>(nullable: false),
                     CategoryId = table.Column<int>(nullable: false),
                     Time = table.Column<int>(nullable: false),
@@ -85,7 +85,7 @@ namespace BitirmeProjesi.Data.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -110,7 +110,7 @@ namespace BitirmeProjesi.Data.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -134,25 +134,25 @@ namespace BitirmeProjesi.Data.Migrations
                         column: x => x.BookId,
                         principalTable: "Books",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Comments_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Comments_Movies_MovieId",
                         column: x => x.MovieId,
                         principalTable: "Movies",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Comments_Series_SerieId",
                         column: x => x.SerieId,
                         principalTable: "Series",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
@@ -182,7 +182,7 @@ namespace BitirmeProjesi.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Books",
-                columns: new[] { "Id", "CategoryId", "Page", "Production", "Subject", "ThumbNail", "Title", "Writer" },
+                columns: new[] { "Id", "CategoryId", "Page", "Production", "NVARCHAR(MAX)", "ThumbNail", "Title", "Writer" },
                 values: new object[,]
                 {
                     { 1, 1, 192, "Yabancı", "Her birinin gizledikleri ve korktukları sırları olan on kişi, Zenci Adası’ndaki ıssız bir malikâneye davet edilirler. Ancak malikâneye giden grubu bir sürpriz beklemektedir, ev sahibi ortalarda yoktur. Geçmişlerindeki karanlık sırlardan başka hiçbir şeyleri olmayan bu insanlar adada mahsur kalmışlardır. Konuklar bir süre sonra gizledikleri sırları birbirlerine anlatırlar. Ve teker teker ölmeye başlarlar.", "default.jpg", "On Küçük Zenci", "Agatha Christie" },
@@ -194,7 +194,7 @@ namespace BitirmeProjesi.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Movies",
-                columns: new[] { "Id", "CategoryId", "Production", "Scenarist", "NVARCHAR(MAX)", "ThumbNail", "Time", "Title" },
+                columns: new[] { "Id", "CategoryId", "Production", "Scenarist", "Subject", "ThumbNail", "Time", "Title" },
                 values: new object[,]
                 {
                     { 2, 1, "Yabancı", "Mario Puzo", "Baba, 40’lar ve 50’lerin Amerika’sında, bir İtalyan mafya ailesinin destansı öyküsünü konu alıyor. Don Corleone’nin kızı Connie’nin düğününde, ailenin en küçük oğlu ve bir savaş gazisi olan Michael babasıyla barışır. Bir suikast girişimi, Don’u artık işleri yönetemeyecek duruma düşürünce, ailenin başına Michael ve ağabeyi Sonny geçer.", "default.jpg", 178, "The Godfather" },
@@ -215,11 +215,6 @@ namespace BitirmeProjesi.Data.Migrations
                     { 2, 11, "Yabancı", "Andrew Baldwin", "11 yaşında feci şekilde katledilen bir çocuğun cesedi parkta bulunur. Etraftaki görgü tanıkları ve cesedin üzerindeki bulgular, şehirde yaşayan saygın bir iş adamını işaret etmektedir. Bu kişi ise koçluk ve  İngilizce öğretmenliği yapan, aynı zamanda iyi bir eş ve kız babası olan Terry Maitland’dır.", "default.jpg", 60, "The Outsider" },
                     { 5, 13, "Yabancı", "Matt Duffer", " Winona Ryder, David Harbour, Cara Buono'yu başrollerinde buluşturan dizide, kaybolan genç çocuk ve onu bulmaya çalışan ailenin yaşadıkları anlatılmaktadır.", "default.jpg", 56, "Stranger Things" }
                 });
-
-            migrationBuilder.InsertData(
-                table: "Comments",
-                columns: new[] { "Id", "BookId", "CategoryId", "MovieId", "SerieId", "Subject", "Title" },
-                values: new object[] { 1, 0, 0, 2, 0, "Bu film diğer filmlere nazaran oyuncular daha iyiydi,film akıcıydı.", "Film oyuncuları hakkında" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Books_CategoryId",
@@ -255,12 +250,6 @@ namespace BitirmeProjesi.Data.Migrations
                 name: "IX_Series_CategoryId",
                 table: "Series",
                 column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_Email",
-                table: "Users",
-                column: "Email",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_UserName",

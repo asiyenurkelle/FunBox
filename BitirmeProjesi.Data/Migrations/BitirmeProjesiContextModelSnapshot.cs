@@ -38,6 +38,7 @@ namespace BitirmeProjesi.Data.Migrations
 
                     b.Property<string>("Subject")
                         .IsRequired()
+                        .HasColumnName("NVARCHAR(MAX)")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ThumbNail")
@@ -240,18 +241,6 @@ namespace BitirmeProjesi.Data.Migrations
                     b.HasIndex("SerieId");
 
                     b.ToTable("Comments");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BookId = 0,
-                            CategoryId = 0,
-                            MovieId = 2,
-                            SerieId = 0,
-                            Subject = "Bu film diğer filmlere nazaran oyuncular daha iyiydi,film akıcıydı.",
-                            Title = "Film oyuncuları hakkında"
-                        });
                 });
 
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.Movie", b =>
@@ -274,8 +263,7 @@ namespace BitirmeProjesi.Data.Migrations
 
                     b.Property<string>("Subject")
                         .IsRequired()
-                        .HasColumnName("NVARCHAR(MAX)")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR(MAX)");
 
                     b.Property<string>("ThumbNail")
                         .IsRequired()
@@ -489,9 +477,6 @@ namespace BitirmeProjesi.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Email")
-                        .IsUnique();
-
                     b.HasIndex("UserName")
                         .IsUnique();
 
@@ -515,7 +500,7 @@ namespace BitirmeProjesi.Data.Migrations
                     b.HasOne("BitirmeProjesi.Entities.Concrete.Category", "Category")
                         .WithMany("Books")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -524,7 +509,7 @@ namespace BitirmeProjesi.Data.Migrations
                     b.HasOne("BitirmeProjesi.Entities.Concrete.Book", "Book")
                         .WithMany("Comments")
                         .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("BitirmeProjesi.Entities.Concrete.Category", "Category")
@@ -536,13 +521,13 @@ namespace BitirmeProjesi.Data.Migrations
                     b.HasOne("BitirmeProjesi.Entities.Concrete.Movie", "Movie")
                         .WithMany("Comments")
                         .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("BitirmeProjesi.Entities.Concrete.Serie", "Serie")
                         .WithMany("Comments")
                         .HasForeignKey("SerieId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -551,7 +536,7 @@ namespace BitirmeProjesi.Data.Migrations
                     b.HasOne("BitirmeProjesi.Entities.Concrete.Category", "Category")
                         .WithMany("Movies")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -560,7 +545,7 @@ namespace BitirmeProjesi.Data.Migrations
                     b.HasOne("BitirmeProjesi.Entities.Concrete.Category", "Category")
                         .WithMany("Series")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

@@ -11,23 +11,18 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
     {
         public void Configure(EntityTypeBuilder<Movie> builder)
         {
-            //primary key alanını belirliyoruz.
+            
             builder.HasKey(m => m.Id);
-            //ıdentity alanı 1 er artan alan.
             builder.Property(m => m.Id).ValueGeneratedOnAdd();
-           // builder.Property(m => m.Id).IsRequired();
-            builder.Property(m => m.Title).HasMaxLength(100);
-            builder.Property(m => m.Title).IsRequired();
-            builder.Property(m => m.Subject).IsRequired();
+            builder.Property(m => m.Title).HasMaxLength(100).IsRequired();
+          
             builder.Property(m => m.ThumbNail).IsRequired();
-            builder.Property(m => m.Subject).HasColumnName("NVARCHAR(MAX)");
+            builder.Property(m => m.Subject).HasColumnType("NVARCHAR(MAX)").IsRequired();
             builder.Property(m => m.Production).IsRequired();
             builder.Property(m => m.Scenarist).IsRequired();
             builder.Property(m => m.Time).IsRequired();
-            //konu alanının nvarchar tipinde ve max olmasını sagladım.
-            builder.HasOne<Category>(m => m.Category).WithMany(c => c.Movies).HasForeignKey(m => m.CategoryId);
-            //bir kategorinin birden fazla filmi  olmasını sağladım.
-            //movie'nin foreign key'i categoryıd olsun dedim.
+
+            builder.HasOne<Category>(m => m.Category).WithMany(c => c.Movies).HasForeignKey(m => m.CategoryId).OnDelete(DeleteBehavior.Restrict);
             
             builder.ToTable("Movies");
 

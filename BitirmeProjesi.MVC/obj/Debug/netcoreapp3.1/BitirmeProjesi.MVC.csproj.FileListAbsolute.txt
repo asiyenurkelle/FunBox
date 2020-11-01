@@ -390,3 +390,7 @@ C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\bin\Debug\netcoreap
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp3.1\BitirmeProjesi.MVC.csproj.CoreCompileInputs.cache
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp3.1\BitirmeProjesi.MVC.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp3.1\BitirmeProjesi.MVC.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Shared\_LayoutListGroupPartial.cshtml.g.cs
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Shared\_LayoutNavBarPartial.cshtml.g.cs
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\MoodTest\Index.cshtml.g.cs
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\bin\Debug\netcoreapp3.1\libman.json
