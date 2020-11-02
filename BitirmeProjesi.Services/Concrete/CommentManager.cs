@@ -25,7 +25,8 @@ namespace BitirmeProjesi.Services.Concrete
         public async Task<IResult> Add(CommentAddDto commentAddDto)
         {
             var comment = _mapper.Map<Comment>(commentAddDto);
-            await _unitOfWork.Comments.AddAsync(comment).ContinueWith(t => _unitOfWork.SaveAsync());
+            await _unitOfWork.Comments.AddAsync(comment);
+            await _unitOfWork.SaveAsync();
             //USERID EKLENCEK BUNUN İÇİNDE USER İSLEMLERİNİ EKLE.KİMİN YORUM YAPTIGINI GÖRMEK İÇİN.
             return new Result(ResultStatus.Success, $"{commentAddDto.Title} başlıklı yorum başarıyla eklendi.");
         }
@@ -36,7 +37,8 @@ namespace BitirmeProjesi.Services.Concrete
             if (result)
             {
                 var comment = await _unitOfWork.Comments.GetAsync(c => c.Id == commentId);
-                await _unitOfWork.Comments.DeleteAsync(comment).ContinueWith(t => _unitOfWork.SaveAsync());
+                await _unitOfWork.Comments.DeleteAsync(comment);
+                await _unitOfWork.SaveAsync();
                 return new Result(ResultStatus.Success, $"{comment.Title} başlıklı yorum başarıyla silinmiştir.");
             }
             return new Result(ResultStatus.Error, "Böyle bir yorum bulunamadı");

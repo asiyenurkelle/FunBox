@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BitirmeProjesi.Services.Abstract;
+using BitirmeProjesi.Shared.Utilities.Results.Complex_Types;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BitirmeProjesi.MVC.Areas.Anasayfa.Controllers
@@ -9,9 +11,16 @@ namespace BitirmeProjesi.MVC.Areas.Anasayfa.Controllers
     [Area("Admin")]
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly IBookSerieMovieService _bookSerieMovieService;
+        public HomeController(IBookSerieMovieService bookSerieMovieService)
         {
-            return View();
+            _bookSerieMovieService = bookSerieMovieService;
+        }
+        public async Task<IActionResult> Index()
+        {
+            var result = await _bookSerieMovieService.GetAll();
+            return View(result.Data);
+            
         }
     }
 }

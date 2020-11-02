@@ -20,6 +20,7 @@ namespace BitirmeProjesi.Services.Extensions
             serviceCollection.AddScoped<ISerieService, SerieManager>();
             serviceCollection.AddScoped<IMovieService, MovieManager>();
             serviceCollection.AddScoped<IBookService, BookManager>();
+            serviceCollection.AddScoped<IBookSerieMovieService, BookSerieMovieManager>();
             serviceCollection.AddScoped<ICommentService, CommentManager>();
             return serviceCollection;
         }

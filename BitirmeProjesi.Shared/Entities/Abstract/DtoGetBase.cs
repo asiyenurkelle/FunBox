@@ -10,5 +10,6 @@ namespace BitirmeProjesi.Shared.Entities.Abstract
     {
         //bütün dto larınget işlemlerini burdan yöneticez.
         public virtual ResultStatus ResultStatus { get; set; }
+        public virtual string Message { get; set; }
     }
 }

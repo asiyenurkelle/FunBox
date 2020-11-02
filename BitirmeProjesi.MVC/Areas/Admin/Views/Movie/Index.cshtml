@@ -1,0 +1,52 @@
+﻿@model BitirmeProjesi.Entities.Dtos.MovieListDto
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.ResultStatus == BitirmeProjesi.Shared.Utilities.Results.Complex_Types.ResultStatus.Success)
+{
+    <div class="container">
+
+        <div class="row">
+
+            @await Html.PartialAsync("_LayoutListGroupPartial")
+            <!-- /.col-lg-3 -->
+
+            <div class="col-lg-9">
+
+                <div class="row">
+
+                    @foreach (var movie in Model.Movies)
+                    {
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card h-100">
+                                <img class="card-img-top" src="~/img/@movie.ThumbNail" alt="">
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <a asp-area="Admin" asp-controller="Home" asp-action="Index">@movie.Title</a>
+                                    </h4>
+
+                                    <p class="card-text">
+                                        @movie.Subject
+                                    </p>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.col-lg-9 -->
+
+        </div>
+        <!-- /.row -->
+
+
+    </div>
+}
