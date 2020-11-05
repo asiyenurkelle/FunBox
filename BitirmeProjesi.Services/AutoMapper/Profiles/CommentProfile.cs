@@ -12,6 +12,7 @@ namespace BitirmeProjesi.Services.AutoMapper.Profiles
         public CommentProfile()
         {
             CreateMap<CommentAddDto, Comment>();
+            
         }
     }
 }

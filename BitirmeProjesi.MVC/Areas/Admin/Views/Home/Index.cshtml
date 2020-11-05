@@ -4,9 +4,10 @@
 }
 @if (Model.ResultStatus == BitirmeProjesi.Shared.Utilities.Results.Complex_Types.ResultStatus.Success)
 {
+    <div  id="modalPlaceHolder" aria-hidden="true"></div>
     <div class="container">
 
-        <div class="row">
+        <div class="row" id="HomePage">
 
             @await Html.PartialAsync("_LayoutListGroupPartial")
             <!-- /.col-lg-3 -->
@@ -14,25 +15,24 @@
             <div class="col-lg-9">
                 
                 <div class="row">
+                
 
                     @foreach (var book in Model.Books)
                     {
-                        <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="col-lg-4 col-md-6 mb-4"> 
 
                             <div class="card h-100">
                                 <img class="card-img-top" src="~/img/@book.ThumbNail" alt="">
                                 <div class="card-body">
                                     <h4 class="card-title">
-                                        <a asp-area="Admin" asp-controller="Home" asp-action="Index">@book.Title</a>
+                                        <a asp-area="Admin" asp-controller="Book" asp-action="Index">@book.Title</a>
                                     </h4>
 
                                     <p class="card-text">
                                         @book.Subject
                                     </p>
                                 </div>
-                                <div class="card-footer">
-                                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                </div>
+                                
                             </div>
                         </div>
                     }
@@ -44,16 +44,14 @@
                                 <img class="card-img-top" src="~/img/@serie.ThumbNail" alt="">
                                 <div class="card-body">
                                     <h4 class="card-title">
-                                        <a asp-area="Admin" asp-controller="Home" asp-action="Index">@serie.Title</a>
+                                        <a asp-area="Admin" asp-controller="Serie" asp-action="Index">@serie.Title</a>
                                     </h4>
 
                                     <p class="card-text">
                                         @serie.Subject
                                     </p>
                                 </div>
-                                <div class="card-footer">
-                                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                </div>
+                                
                             </div>
                         </div>
                     }
@@ -64,17 +62,16 @@
                             <div class="card h-100">
                                 <img class="card-img-top" src="~/img/@movie.ThumbNail" alt="">
                                 <div class="card-body">
-                                    <h4 class="card-title">
-                                        <a asp-area="Admin" asp-controller="Home" asp-action="Index">@movie.Title</a>
+                                    <h4 class="card-title ">
+
+                                        <a asp-area="Admin" asp-controller="Movie" asp-action="Index">@movie.Title</a>
                                     </h4>
 
                                     <p class="card-text">
                                         @movie.Subject
                                     </p>
                                 </div>
-                                <div class="card-footer">
-                                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                </div>
+                                
                             </div>
                         </div>
                     }
@@ -91,5 +88,8 @@
 
 
     </div>
+}
+@section Scripts {
+    <script></script>
 }
 

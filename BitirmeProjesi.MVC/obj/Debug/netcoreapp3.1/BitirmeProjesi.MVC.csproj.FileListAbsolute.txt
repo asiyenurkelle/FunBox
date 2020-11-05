@@ -397,3 +397,4 @@ C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\bin\Debug\netcoreap
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Movie\Index.cshtml.g.cs
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Serie\Index.cshtml.g.cs
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Book\Index.cshtml.g.cs
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Comment\_CommentAddPartial.cshtml.g.cs

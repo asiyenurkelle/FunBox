@@ -31,7 +31,11 @@
                                     </p>
                                 </div>
                                 <div class="card-footer">
-                                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                                    <button type="button" class="btn btn-primary" id="DetailsMovies">Details</button>
+                                    <button type="button" class="btn btn-primary" id="AddListMovies">Add List</button>
+                                </div>
+                                <div class="card-footer" id="placeHolderMovies">
+
                                 </div>
                             </div>
                         </div>
@@ -49,4 +53,18 @@
 
 
     </div>
+}
+@section Scripts{
+    <script>
+         $(function () {
+            const url = '@Url.Action("Add","Comment")';
+            const placeHolderMovies = $('#placeHolderMovies');
+            $('#DetailsMovies').click(function () {
+                $.get(url).done(function (data) {
+                    placeHolderMovies.html(data);
+                    placeHolderMovies.find(".modal").modal('show');
+                })
+            });
+        })
+    </script>
 }

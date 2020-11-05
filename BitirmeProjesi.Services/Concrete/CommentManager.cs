@@ -22,13 +22,18 @@ namespace BitirmeProjesi.Services.Concrete
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<IResult> Add(CommentAddDto commentAddDto)
+        public async Task<IDataResult<CommentDto>> Add(CommentAddDto commentAddDto)
         {
             var comment = _mapper.Map<Comment>(commentAddDto);
-            await _unitOfWork.Comments.AddAsync(comment);
+            var addedComment = await _unitOfWork.Comments.AddAsync(comment);
             await _unitOfWork.SaveAsync();
             //USERID EKLENCEK BUNUN İÇİNDE USER İSLEMLERİNİ EKLE.KİMİN YORUM YAPTIGINI GÖRMEK İÇİN.
-            return new Result(ResultStatus.Success, $"{commentAddDto.Title} başlıklı yorum başarıyla eklendi.");
+            return new DataResult<CommentDto>(ResultStatus.Success, $"{commentAddDto.Title} başlıklı yorum başarıyla eklendi.", new CommentDto
+            {
+                Comment = addedComment,
+                ResultStatus = ResultStatus.Success,
+                Message = $"{commentAddDto.Title} başlıklı yorum başarıyla eklendi."
+            });
         }
 
         public async Task<IResult> Delete(int commentId)
@@ -44,26 +49,43 @@ namespace BitirmeProjesi.Services.Concrete
             return new Result(ResultStatus.Error, "Böyle bir yorum bulunamadı");
         }
 
-        public async Task<IDataResult<Comment>> Get(int commentId)
+        public async Task<IDataResult<CommentDto>> Get(int commentId)
         {
-           var comment= await _unitOfWork.Comments.GetAsync(c => c.Id == commentId);
+            var comment = await _unitOfWork.Comments.GetAsync(c => c.Id == commentId);
             if (comment != null)
             {
-                return new DataResult<Comment>(ResultStatus.Success, comment);
+                return new DataResult<CommentDto>(ResultStatus.Success, new CommentDto
+                {
+                    Comment = comment,
+                    ResultStatus = ResultStatus.Success
+                });
             }
-            return new DataResult<Comment>(ResultStatus.Error, "Böyle bir yorum bulunamadı", null);
+            return new DataResult<CommentDto>(ResultStatus.Error, "Böyle bir yorum bulunamadı", new CommentDto
+            {
+                Comment=null,
+                ResultStatus=ResultStatus.Error,
+                Message="Böyle bir yorum bulunamadı."
+            });
         }
 
-        public async Task<IDataResult<IList<Comment>>> GetAll()
+        public async Task<IDataResult<CommentListDto>> GetAll()
         {
             var comments = await _unitOfWork.Comments.GetAllAsync();
-            if(comments.Count> -1)
+            if (comments.Count > -1)
             {
-                return new DataResult<IList<Comment>>(ResultStatus.Success, comments);
+                return new DataResult<CommentListDto>(ResultStatus.Success, new CommentListDto
+                {
+                    Comments = comments,
+                    ResultStatus = ResultStatus.Success
+                });
             }
-            return new DataResult<IList<Comment>>(ResultStatus.Error, "Hiçbir yorum bulunamadı.",null);
+            return new DataResult<CommentListDto>(ResultStatus.Error, "Yorumlar bulunamadı.", new CommentListDto
+            {
+                Comments = null,
+                ResultStatus = ResultStatus.Error,
+                Message = "Yorumlar bulunamadı."
+            });
         }
 
-        
     }
 }
