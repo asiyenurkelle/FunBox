@@ -56,15 +56,35 @@
 }
 @section Scripts{
     <script>
-         $(function () {
+        $(function () {
             const url = '@Url.Action("Add","Comment")';
             const placeHolderMovies = $('#placeHolderMovies');
             $('#DetailsMovies').click(function () {
                 $.get(url).done(function (data) {
                     placeHolderMovies.html(data);
                     placeHolderMovies.find(".modal").modal('show');
-                })
+                });
+                placeHolderMovies.on('click',
+                    '#btnSave',
+                    function (event) {
+                        event.preventDefault();
+                        const form = $('#form-comment-add');
+                        const actionUrl = form.attr('action');
+                        const dataToSend = form.serialize();
+                        $.form(actionUrl, dataToSend).done(function (data) {
+                            const commentAddAjaxModel = jQuery.parseJSON(data);
+                            const newFormBody = $('.modal-body', commentAddAjaxModel.CommentAddPartial);
+                            placeHolderMovies.find('.modal-body').replaceWith(newFormBody);
+                            const isValid = newFormBody.find('[name="IsValid"]').val() === 'True';
+                            if (isValid) {
+                                placeHolderMovies.find('.modal').modal('hide');
+
+
+                                //53-16.DK
+                            }
+                        });
+                    });
             });
-        })
+        });
     </script>
 }

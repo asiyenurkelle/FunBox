@@ -1,0 +1,12 @@
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Entities\obj\Debug\netcoreapp5.0\BitirmeProjesi.Entities.csprojAssemblyReference.cache
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Entities\obj\Debug\netcoreapp5.0\BitirmeProjesi.Entities.AssemblyInfoInputs.cache
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Entities\obj\Debug\netcoreapp5.0\BitirmeProjesi.Entities.AssemblyInfo.cs
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Entities\obj\Debug\netcoreapp5.0\BitirmeProjesi.Entities.csproj.CoreCompileInputs.cache
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Entities\bin\Debug\netcoreapp5.0\BitirmeProjesi.Entities.deps.json
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Entities\bin\Debug\netcoreapp5.0\BitirmeProjesi.Entities.dll
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Entities\bin\Debug\netcoreapp5.0\BitirmeProjesi.Entities.pdb
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Entities\bin\Debug\netcoreapp5.0\BitirmeProjesi.Shared.dll
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Entities\bin\Debug\netcoreapp5.0\BitirmeProjesi.Shared.pdb
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Entities\obj\Debug\netcoreapp5.0\BitirmeProjesi.Entities.csproj.CopyComplete
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Entities\obj\Debug\netcoreapp5.0\BitirmeProjesi.Entities.dll
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Entities\obj\Debug\netcoreapp5.0\BitirmeProjesi.Entities.pdb
