@@ -23,7 +23,7 @@
                                 <img class="card-img-top" src="~/img/@movie.ThumbNail" alt="">
                                 <div class="card-body">
                                     <h4 class="card-title">
-                                        <a asp-area="Admin" asp-controller="Home" asp-action="Index">@movie.Title</a>
+                                        <a asp-area="Admin" asp-controller="Movie" asp-action="Index">@movie.Title</a>
                                     </h4>
 
                                     <p class="card-text">
@@ -64,6 +64,7 @@
                     placeHolderMovies.html(data);
                     placeHolderMovies.find(".modal").modal('show');
                 });
+           
                 placeHolderMovies.on('click',
                     '#btnSave',
                     function (event) {
@@ -71,13 +72,24 @@
                         const form = $('#form-comment-add');
                         const actionUrl = form.attr('action');
                         const dataToSend = form.serialize();
-                        $.form(actionUrl, dataToSend).done(function (data) {
+                        $.post(actionUrl, dataToSend).done(function (data) {
+                            console.log(data);
                             const commentAddAjaxModel = jQuery.parseJSON(data);
+                            console.log(commentAddAjaxModel);
                             const newFormBody = $('.modal-body', commentAddAjaxModel.CommentAddPartial);
                             placeHolderMovies.find('.modal-body').replaceWith(newFormBody);
                             const isValid = newFormBody.find('[name="IsValid"]').val() === 'True';
                             if (isValid) {
                                 placeHolderMovies.find('.modal').modal('hide');
+                                const newTableRow = `
+                                     <div class="card-footer" >
+                                       ${commentAddAjaxModel.CommentDto.Subject}
+                                </div>`;
+
+                                const newTableRowObject = $(newTableRow);
+                                newTableRowObject.hide();
+                                $('#placeHolderMovies').append(newTableRowObject);
+                                newTableRowObject.fadeIn(3500);
 
 
                                 //53-16.DK

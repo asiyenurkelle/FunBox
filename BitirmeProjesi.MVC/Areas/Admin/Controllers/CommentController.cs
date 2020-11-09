@@ -8,6 +8,7 @@ using BitirmeProjesi.MVC.Areas.Admin.Models;
 using BitirmeProjesi.Services.Abstract;
 using BitirmeProjesi.Shared.Utilities.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using BitirmeProjesi.Shared.Utilities.Results.Complex_Types;
 
 namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 {
@@ -34,11 +35,11 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var result = await _commentService.Add(commentAddDto);
-                if (result.ResultStatus == Shared.Utilities.Results.Complex_Types.ResultStatus.Success)
+                if (result.ResultStatus == ResultStatus.Success)
                 {
                     var commentAddAjaxModel = JsonSerializer.Serialize(new CommentAddAjaxViewModel
                     {
-                        commentDto = result.Data,
+                       CommentDto = result.Data,
                         CommentAddPartial = await this.RenderViewToStringAsync("_CommentAddPartial", commentAddDto)
                     });
                     return Json(commentAddAjaxModel);

@@ -10,6 +10,6 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Models
     {
         public CommentAddDto  CommentAddDto { get; set; }
         public string CommentAddPartial  { get; set; }
-        public CommentDto commentDto { get; set; }
+        public CommentDto CommentDto { get; set; }
     }
 }
