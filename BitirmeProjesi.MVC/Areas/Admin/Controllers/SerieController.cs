@@ -15,10 +15,17 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         {
             _serieService = serieService;
         }
-        public async Task< IActionResult> Index()
+        public async Task<IActionResult> Index()
         {
             var result = await _serieService.GetAll();
             return View(result.Data);
         }
+        [HttpGet("/Serie/Details/{Id}")]
+        public async Task<IActionResult> Details(int Id)
+        {
+            var result = await _serieService.Get(Id);
+            return View(result.Data);
+        }
+        
     }
 }

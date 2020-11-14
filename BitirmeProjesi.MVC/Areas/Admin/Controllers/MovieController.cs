@@ -20,6 +20,12 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             var result = await _movieService.GetAll();
             return View(result.Data);
         }
-
+        
+        [HttpGet("Admin/Movie/Details/{Id}")]
+        public async Task<IActionResult> Details(int Id)
+        {
+            var result = await _movieService.Get(Id);
+            return View(result.Data);
+        }
     }
 }

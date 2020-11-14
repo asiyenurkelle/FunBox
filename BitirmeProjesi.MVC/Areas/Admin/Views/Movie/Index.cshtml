@@ -23,17 +23,17 @@
                                 <img class="card-img-top" src="~/img/@movie.ThumbNail" alt="">
                                 <div class="card-body">
                                     <h4 class="card-title">
-                                        <a asp-area="Admin" asp-controller="Movie" asp-action="Index">@movie.Title</a>
+                                        <a asp-area="Admin" asp-controller="Movie" asp-action="Details" asp-route-id="@movie.Id">@movie.Title</a>
                                     </h4>
 
                                     <p class="card-text">
                                         @movie.Subject
                                     </p>
                                 </div>
-                                @*<div class="card-footer">
-                                    <button onclick="/Admin/Book">details</button>
-
-                                </div>*@
+                                <div class="card-footer">
+                                    <a type="button" class="btn btn-primary" id="DetailsBooks" asp-area="Admin" asp-controller="Movie" asp-action="Details" asp-route-id="@movie.Id">Details</a>
+                                    <a type="button" class="btn btn-primary" id="AddListBooks">Add List</a>
+                                </div>
                                 <div class="card-footer" id="placeHolderMovies">
 
                                 </div>
