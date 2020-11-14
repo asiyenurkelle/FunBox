@@ -20,10 +20,10 @@
                     {
                         <div class="col-lg-4 col-md-6 mb-4">
                             <div class="card h-100">
-                                <img class="card-img-top" src="~/img/@book.ThumbNail" alt="">
+                                <img class="card-img-top text-center" src="~/img/@book.ThumbNail" alt="">
                                 <div class="card-body">
                                     <h4 class="card-title">
-                                        <a asp-area="Admin" asp-controller="Book"  asp-action="Details" asp-route-id="@book.Id">@book.Title</a>
+                                        <a asp-area="Admin" asp-controller="Book"  asp-action="Details" asp-route-id="@book.Id" class="text-info text-center">@book.Title</a>
                                     </h4>
 
                                     <p class="card-text">
@@ -31,8 +31,8 @@
                                     </p>
                                 </div>
                                 <div class="card-footer">
-                                    <a type="button" class="btn btn-primary" id="DetailsBooks" asp-area="Admin" asp-controller="Book" asp-action="Details" asp-route-id="@book.Id" >Details</a>
-                                    <a type="button" class="btn btn-primary" id="AddListBooks">Add List</a>
+                                    <a type="button" class="btn btn-info" id="DetailsBooks" asp-area="Admin" asp-controller="Book" asp-action="Details" asp-route-id="@book.Id" >Details</a>
+                                    <a type="button" class="btn btn-info" id="AddListBooks">Add List</a>
                                 </div>
                                 <div class="card-footer" id="placeHolderBooks">
 

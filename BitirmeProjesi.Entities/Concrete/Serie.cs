@@ -11,7 +11,7 @@ namespace BitirmeProjesi.Entities.Concrete
         public string Subject { get; set; }
         public string ThumbNail { get; set; }
         public int CategoryId { get; set; }
-        public int Time { get; set; }
+        public string Time { get; set; }
         public string Scenarist { get; set; }
         public string Production { get; set; }
         public Category Category { get; set; }

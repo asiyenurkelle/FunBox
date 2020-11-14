@@ -23,7 +23,7 @@
                                 <img class="card-img-top" src="~/img/@serie.ThumbNail" alt="">
                                 <div class="card-body">
                                     <h4 class="card-title">
-                                        <a asp-area="Admin" asp-controller="Serie" asp-action="Details" asp-route-id="@serie.Id">@serie.Title</a>
+                                        <a asp-area="Admin" asp-controller="Serie" asp-action="Details" asp-route-id="@serie.Id" class="text-info">@serie.Title</a>
                                     </h4>
 
                                     <p class="card-text">
@@ -31,8 +31,8 @@
                                     </p>
                                 </div>
                                 <div class="card-footer">
-                                    <a type="button" class="btn btn-primary" id="DetailsSeries" asp-area="Admin" asp-controller="Serie" asp-action="Details" asp-route-id="@serie.Id">Details</a>
-                                    <a type="button" class="btn btn-primary" id="AddListSeries">Add List</a>
+                                    <a type="button" class="btn btn-info" id="DetailsSeries" asp-area="Admin" asp-controller="Serie" asp-action="Details" asp-route-id="@serie.Id">Details</a>
+                                    <a type="button" class="btn btn-info" id="AddListSeries">Add List</a>
                                 </div>
                                 <div class="card-footer" id="placeHolderSeries">
 
