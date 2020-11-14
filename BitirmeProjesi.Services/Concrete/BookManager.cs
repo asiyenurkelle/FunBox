@@ -21,7 +21,7 @@ namespace BitirmeProjesi.Services.Concrete
         }
         public async Task<IDataResult<BookDto>> Get(int bookId)
         {
-            var book = await _unitOfWork.Books.GetAsync(b => b.Id == bookId, b => b.Category);
+            var book = await _unitOfWork.Books.GetAsync(b => b.Id == bookId);
             if (book != null)
             {
                 return new DataResult<BookDto>(ResultStatus.Success, new BookDto

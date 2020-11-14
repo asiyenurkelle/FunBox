@@ -23,7 +23,7 @@
                                 <img class="card-img-top" src="~/img/@book.ThumbNail" alt="">
                                 <div class="card-body">
                                     <h4 class="card-title">
-                                        <a asp-area="Admin" asp-controller="Home" asp-action="Index">@book.Title</a>
+                                        <a asp-area="Admin" asp-controller="Book"  asp-action="Details" asp-route-id="@book.Id">@book.Title</a>
                                     </h4>
 
                                     <p class="card-text">
@@ -31,8 +31,8 @@
                                     </p>
                                 </div>
                                 <div class="card-footer">
-                                    <button type="button" class="btn btn-primary" id="DetailsBooks">Details</button>
-                                    <button type="button" class="btn btn-primary" id="AddListBooks">Add List</button>
+                                    <a type="button" class="btn btn-primary" id="DetailsBooks" asp-area="Admin" asp-controller="Book" asp-action="Details" asp-route-id="@book.Id" >Details</a>
+                                    <a type="button" class="btn btn-primary" id="AddListBooks">Add List</a>
                                 </div>
                                 <div class="card-footer" id="placeHolderBooks">
 
@@ -54,7 +54,7 @@
 
     </div>
 }
-@section Scripts{
+@*@section Scripts{
     <script>
         $(function () {
             const url = '@Url.Action("Add","Comment")';
@@ -67,4 +67,4 @@
             });
         })
     </script>
- }
+ }*@

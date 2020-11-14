@@ -30,10 +30,10 @@
                                         @movie.Subject
                                     </p>
                                 </div>
-                                <div class="card-footer">
-                                    <button type="button" class="btn btn-primary" id="DetailsMovies">Details</button>
-                                    <button type="button" class="btn btn-primary" id="AddListMovies">Add List</button>
-                                </div>
+                                @*<div class="card-footer">
+                                    <button onclick="/Admin/Book">details</button>
+
+                                </div>*@
                                 <div class="card-footer" id="placeHolderMovies">
 
                                 </div>
@@ -54,49 +54,49 @@
 
     </div>
 }
-@section Scripts{
-    <script>
-        $(function () {
-            const url = '@Url.Action("Add","Comment")';
-            const placeHolderMovies = $('#placeHolderMovies');
-            $('#DetailsMovies').click(function () {
-                $.get(url).done(function (data) {
-                    placeHolderMovies.html(data);
-                    placeHolderMovies.find(".modal").modal('show');
-                });
-           
-                placeHolderMovies.on('click',
-                    '#btnSave',
-                    function (event) {
-                        event.preventDefault();
-                        const form = $('#form-comment-add');
-                        const actionUrl = form.attr('action');
-                        const dataToSend = form.serialize();
-                        $.post(actionUrl, dataToSend).done(function (data) {
-                            console.log(data);
-                            const commentAddAjaxModel = jQuery.parseJSON(data);
-                            console.log(commentAddAjaxModel);
-                            const newFormBody = $('.modal-body', commentAddAjaxModel.CommentAddPartial);
-                            placeHolderMovies.find('.modal-body').replaceWith(newFormBody);
-                            const isValid = newFormBody.find('[name="IsValid"]').val() === 'True';
-                            if (isValid) {
-                                placeHolderMovies.find('.modal').modal('hide');
-                                const newTableRow = `
-                                     <div class="card-footer" >
-                                       ${commentAddAjaxModel.CommentDto.Subject}
-                                </div>`;
-
-                                const newTableRowObject = $(newTableRow);
-                                newTableRowObject.hide();
-                                $('#placeHolderMovies').append(newTableRowObject);
-                                newTableRowObject.fadeIn(3500);
-
-
-                                //53-16.DK
-                            }
-                        });
+@*@section Scripts{
+        <script>
+            $(function () {
+                const url = '@Url.Action("Add","Comment")';
+                const placeHolderMovies = $('#placeHolderMovies');
+                $('#DetailsMovies').click(function () {
+                    $.get(url).done(function (data) {
+                        placeHolderMovies.html(data);
+                        placeHolderMovies.find(".modal").modal('show');
                     });
+
+                    placeHolderMovies.on('click',
+                        '#btnSave',
+                        function (event) {
+                            event.preventDefault();
+                            const form = $('#form-comment-add');
+                            const actionUrl = form.attr('action');
+                            const dataToSend = form.serialize();
+                            $.post(actionUrl, dataToSend).done(function (data) {
+                                console.log(data);
+                                const commentAddAjaxModel = jQuery.parseJSON(data);
+                                console.log(commentAddAjaxModel);
+                                const newFormBody = $('.modal-body', commentAddAjaxModel.CommentAddPartial);
+                                placeHolderMovies.find('.modal-body').replaceWith(newFormBody);
+                                const isValid = newFormBody.find('[name="IsValid"]').val() === 'True';
+                                if (isValid) {
+                                    placeHolderMovies.find('.modal').modal('hide');
+                                    const newTableRow = `
+                                         <div class="card-footer" >
+                                           ${commentAddAjaxModel.CommentDto.Subject}
+                                    </div>`;
+
+                                    const newTableRowObject = $(newTableRow);
+                                    newTableRowObject.hide();
+                                    $('#placeHolderMovies').append(newTableRowObject);
+                                    newTableRowObject.fadeIn(3500);
+
+
+                                    //53-16.DK
+                                }
+                            });
+                        });
+                });
             });
-        });
-    </script>
-}
+        </script>
+    }*@

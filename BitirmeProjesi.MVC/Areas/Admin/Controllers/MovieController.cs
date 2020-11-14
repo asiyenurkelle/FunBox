@@ -15,10 +15,11 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         {
             _movieService = movieService;
         }
-        public async Task <IActionResult> Index()
+        public async Task<IActionResult> Index()
         {
             var result = await _movieService.GetAll();
             return View(result.Data);
         }
+
     }
 }

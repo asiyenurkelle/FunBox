@@ -403,3 +403,4 @@ C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreap
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\BitirmeProjesi.MVC.dll
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\BitirmeProjesi.MVC.pdb
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\BitirmeProjesi.MVC.genruntimeconfig.cache
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\Book\Details.cshtml.g.cs
