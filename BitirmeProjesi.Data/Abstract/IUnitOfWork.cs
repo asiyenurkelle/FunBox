@@ -11,8 +11,7 @@ namespace BitirmeProjesi.Data.Abstract
         ISerieRepository Series { get; }
         IBookRepository Books { get; }
         ICategoryRepository Categories { get; }
-       
-        IUserRepository Users { get; }
+      
         ICommentRepository Comments { get; }
         Task<int> SaveAsync();
     }

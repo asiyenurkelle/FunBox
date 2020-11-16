@@ -9,7 +9,6 @@ C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreap
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\bin\Debug\netcoreapp5.0\appsettings.Development.json
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\bin\Debug\netcoreapp5.0\appsettings.json
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\bin\Debug\netcoreapp5.0\libman.json
-C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\bin\Debug\netcoreapp5.0\Properties\launchSettings.json
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\bin\Debug\netcoreapp5.0\BitirmeProjesi.MVC.exe
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\bin\Debug\netcoreapp5.0\BitirmeProjesi.MVC.deps.json
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\bin\Debug\netcoreapp5.0\BitirmeProjesi.MVC.runtimeconfig.json
@@ -406,3 +405,14 @@ C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreap
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\Book\Details.cshtml.g.cs
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\Movie\Details.cshtml.g.cs
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\Serie\Details.cshtml.g.cs
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\bin\Debug\netcoreapp5.0\ref\BitirmeProjesi.MVC.dll
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\bin\Debug\netcoreapp5.0\EntityFramework.SqlServer.dll
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\bin\Debug\netcoreapp5.0\EntityFramework.dll
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\bin\Debug\netcoreapp5.0\Microsoft.AspNet.Identity.Core.dll
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\bin\Debug\netcoreapp5.0\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\bin\Debug\netcoreapp5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\BitirmeProjesi.MVC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\scopedcss\bundle\BitirmeProjesi.MVC.styles.css
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\ref\BitirmeProjesi.MVC.dll
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\Shared\_UserLoginLayout.cshtml.g.cs
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\User\UserLogin.cshtml.g.cs

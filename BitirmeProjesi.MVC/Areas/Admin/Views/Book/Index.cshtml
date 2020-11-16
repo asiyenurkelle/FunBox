@@ -23,7 +23,7 @@
                                 <img class="card-img-top text-center" src="~/img/@book.ThumbNail" alt="">
                                 <div class="card-body">
                                     <h4 class="card-title">
-                                        <a asp-area="Admin" asp-controller="Book"  asp-action="Details" asp-route-id="@book.Id" class="text-info text-center">@book.Title</a>
+                                        <a asp-area="Admin" asp-controller="Book" asp-action="Details" asp-route-id="@book.Id" class="text-info text-center">@book.Title</a>
                                     </h4>
 
                                     <p class="card-text">
@@ -31,12 +31,10 @@
                                     </p>
                                 </div>
                                 <div class="card-footer">
-                                    <a type="button" class="btn btn-info" id="DetailsBooks" asp-area="Admin" asp-controller="Book" asp-action="Details" asp-route-id="@book.Id" >Details</a>
-                                    <a type="button" class="btn btn-info" id="AddListBooks">Add List</a>
+                                    <a type="button" class="btn btn-info" id="DetailsBooks" asp-area="Admin" asp-controller="Book" asp-action="Details" asp-route-id="@book.Id">Detaylar</a>
+                                    <button type="button" class="btn btn-info" id="AddCommentBooks">Yorum Ekle</button>
                                 </div>
-                                <div class="card-footer" id="placeHolderBooks">
 
-                                </div>
                             </div>
                         </div>
                     }
@@ -54,17 +52,17 @@
 
     </div>
 }
-@*@section Scripts{
+@section Scripts{
     <script>
         $(function () {
             const url = '@Url.Action("Add","Comment")';
             const placeHolderBooks = $('#placeHolderBooks');
-            $('#DetailsBooks').click(function () {
+            $('#AddCommentBooks').click(function () {
                 $.get(url).done(function (data) {
                     placeHolderBooks.html(data);
                     placeHolderBooks.find(".modal").modal('show');
                 })
             });
-        })
+        });
     </script>
- }*@
+}

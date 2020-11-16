@@ -31,12 +31,10 @@
                                     </p>
                                 </div>
                                 <div class="card-footer">
-                                    <a type="button" class="btn btn-info" id="DetailsBooks" asp-area="Admin" asp-controller="Movie" asp-action="Details" asp-route-id="@movie.Id">Details</a>
-                                    <a type="button" class="btn btn-info" id="AddListBooks">Add List</a>
+                                    <a type="button" class="btn btn-info" id="DetailsMovies" asp-area="Admin" asp-controller="Movie" asp-action="Details" asp-route-id="@movie.Id">Detaylar</a>
+                                    <a type="button" class="btn btn-info" id="AddCommentMovies">Yorum Ekle</a>
                                 </div>
-                                <div class="card-footer" id="placeHolderMovies">
-
-                                </div>
+                               
                             </div>
                         </div>
                     }
@@ -54,12 +52,12 @@
 
     </div>
 }
-@*@section Scripts{
+@section Scripts{
         <script>
             $(function () {
                 const url = '@Url.Action("Add","Comment")';
                 const placeHolderMovies = $('#placeHolderMovies');
-                $('#DetailsMovies').click(function () {
+                $('#AddCommentMovies').click(function () {
                     $.get(url).done(function (data) {
                         placeHolderMovies.html(data);
                         placeHolderMovies.find(".modal").modal('show');
@@ -84,19 +82,17 @@
                                     const newTableRow = `
                                          <div class="card-footer" >
                                            ${commentAddAjaxModel.CommentDto.Subject}
+                                          
                                     </div>`;
 
                                     const newTableRowObject = $(newTableRow);
-                                    newTableRowObject.hide();
-                                    $('#placeHolderMovies').append(newTableRowObject);
-                                    newTableRowObject.fadeIn(3500);
+                                    //newTableRowObject.hide();
+ 
 
-
-                                    //53-16.DK
                                 }
                             });
                         });
                 });
             });
         </script>
-    }*@
+    }

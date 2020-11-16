@@ -14,3 +14,6 @@ C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Services\bin\Debug\netc
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Services\obj\Debug\netcoreapp5.0\BitirmeProjesi.Services.csproj.CopyComplete
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Services\obj\Debug\netcoreapp5.0\BitirmeProjesi.Services.dll
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Services\obj\Debug\netcoreapp5.0\BitirmeProjesi.Services.pdb
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Services\bin\Debug\netcoreapp5.0\ref\BitirmeProjesi.Services.dll
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Services\obj\Debug\netcoreapp5.0\BitirmeProjesi.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Services\obj\Debug\netcoreapp5.0\ref\BitirmeProjesi.Services.dll

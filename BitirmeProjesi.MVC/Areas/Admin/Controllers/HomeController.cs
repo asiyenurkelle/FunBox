@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using BitirmeProjesi.Services.Abstract;
 using BitirmeProjesi.Shared.Utilities.Results.Complex_Types;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BitirmeProjesi.MVC.Areas.Anasayfa.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly IBookSerieMovieService _bookSerieMovieService;

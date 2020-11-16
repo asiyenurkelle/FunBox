@@ -32,7 +32,7 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 Title = "Hababam Sınıfı",
                 CategoryId = 10,
                 Subject = "Öğrencilik hayatları haylazlık ve tembellik üzerine kurulu olan bir sınıf dolusu matrak öğrencinin, Özel Çamlıca Lisesi’nde yaşadığı yer yer eğlenceli, yer yer de dokunaklı öyküleri anlatan film, Hababam Sınıfı serisinin ilk filmidir",
-                ThumbNail = "default.jpg",
+                ThumbNail = "hababamsinifi.jpg",
                 Time= "1 saat 30 dakika",
                 Scenarist="Umur Bugay",
                 Production="Yerli"
@@ -43,7 +43,7 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 Title = "The Godfather",
                 CategoryId = 1,
                 Subject = "Baba, 40’lar ve 50’lerin Amerika’sında, bir İtalyan mafya ailesinin destansı öyküsünü konu alıyor. Don Corleone’nin kızı Connie’nin düğününde, ailenin en küçük oğlu ve bir savaş gazisi olan Michael babasıyla barışır. Bir suikast girişimi, Don’u artık işleri yönetemeyecek duruma düşürünce, ailenin başına Michael ve ağabeyi Sonny geçer.",
-                ThumbNail = "default.jpg",
+                ThumbNail = "thegodfather.jpg",
                 Time="2 saat 58 dakika",
                 Scenarist= "Mario Puzo",
                 Production="Yabancı"
@@ -54,7 +54,7 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 Title="Braveheart",
                 CategoryId=11,
                 Subject= "Cesuryürek'te, William Wallace yaşanan büyük acılar sonrası yeniden memleketi olan İskoçya’ya döner. Onun asıl amacı çiftçilik yaparak sakin bir hayat sürmektir. Çocukluk aşkıyla karşılaştığında bunun onu dipsiz bir uçuruma iteceğinin farkında değildir.",
-                ThumbNail="default.jpg",
+                ThumbNail="braveheart.jpg",
                 Time="3 saat 2 dakika",
                 Scenarist="Randall Wallace",
                 Production="Yabancı"
@@ -66,7 +66,7 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 Title="Eşkiya",
                 CategoryId=11,
                 Subject= "Eşkiya, hapse düşmesine neden olan arkadaşının peşine düşen bir adamın hikayesini anlatıyor. 35 yıl önce Cudi dağlarında bir grup eşkiya yakalandı ve hapse atıldı. Yıllar içinde kimi hastalıktan, kimi hesaplaşma sonucu öldü. Biri hariç... 35 yıl sonra Hapisten çıkınca Baran’ ın ilk işi köyüne dönmek olur.",
-                ThumbNail="default.jpg",
+                ThumbNail="eskiya.jpg",
                 Time="2 saat 8 dakika",
                 Scenarist="Yavuz Turgul",
                 Production="Yerli"

@@ -39,7 +39,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
                 {
                     var commentAddAjaxModel = JsonSerializer.Serialize(new CommentAddAjaxViewModel
                     {
-                       CommentDto = result.Data,
+                        CommentDto = result.Data,
                         CommentAddPartial = await this.RenderViewToStringAsync("_CommentAddPartial", commentAddDto)
                     });
                     return Json(commentAddAjaxModel);

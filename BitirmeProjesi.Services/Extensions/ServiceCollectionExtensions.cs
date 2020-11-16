@@ -1,6 +1,7 @@
 ﻿using BitirmeProjesi.Data.Abstract;
 using BitirmeProjesi.Data.Concrete;
 using BitirmeProjesi.Data.Concrete.EntityFramework.Contexts;
+using BitirmeProjesi.Entities.Concrete;
 using BitirmeProjesi.Services.Abstract;
 using BitirmeProjesi.Services.Concrete;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +16,26 @@ namespace BitirmeProjesi.Services.Extensions
         public static IServiceCollection LoadMyServices(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddDbContext<BitirmeProjesiContext>();
+            serviceCollection.AddIdentity<User, Role>(options=>
+            {
+                //USER PASSWORD OPTİONS
+                //sifrede rakam bulunma durumu
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 5;
+                //uniq karakterlerden kaç tane bulunması gerektiği (?!)
+                options.Password.RequiredUniqueChars = 0;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+
+                //USER USERNAME AND EMAİL OPTİONS
+                //kullanıcı adı oluşturulurken sadece aşağıdaki özel karakterler kullanılabilir olucak.
+                options.User.AllowedUserNameCharacters= "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                //girilen emailden sistemde sadece bir tane olmasını sağladık.
+                options.User.RequireUniqueEmail = true;
+                
+
+            }).AddEntityFrameworkStores<BitirmeProjesiContext>();
             serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
             serviceCollection.AddScoped<ICategoryService, CategoryManager>();
             serviceCollection.AddScoped<ISerieService, SerieManager>();

@@ -31,12 +31,10 @@
                                     </p>
                                 </div>
                                 <div class="card-footer">
-                                    <a type="button" class="btn btn-info" id="DetailsSeries" asp-area="Admin" asp-controller="Serie" asp-action="Details" asp-route-id="@serie.Id">Details</a>
-                                    <a type="button" class="btn btn-info" id="AddListSeries">Add List</a>
+                                    <a type="button" class="btn btn-info" id="DetailsSeries" asp-area="Admin" asp-controller="Serie" asp-action="Details" asp-route-id="@serie.Id">Detaylar</a>
+                                    <a type="button" class="btn btn-info" id="AddCommentSeries">Yorum Ekle</a>
                                 </div>
-                                <div class="card-footer" id="placeHolderSeries">
-
-                                </div>
+                               
                             </div>
                         </div>
                     }
@@ -54,13 +52,13 @@
 
     </div>
 }
-@*@section Scripts{
+@section Scripts{
     <script>
 
         $(function () {
             const url = '@Url.Action("Add","Comment")';
             const placeHolderSeries = $('#placeHolderSeries');
-            $('#DetailsSeries').click(function () {
+            $('#AddCommentSeries').click(function () {
                 $.get(url).done(function (data) {
                     placeHolderSeries.html(data);
                     placeHolderSeries.find(".modal").modal('show');
@@ -68,4 +66,4 @@
             });
         })
     </script>
-}*@
+}

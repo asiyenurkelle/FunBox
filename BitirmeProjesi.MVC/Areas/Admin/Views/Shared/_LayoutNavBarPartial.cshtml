@@ -1,22 +1,30 @@
 ﻿<div class="collapse navbar-collapse" id="navbarResponsive">
     <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-            <a class="nav-link text-white"  asp-area="Admin" asp-controller="Home" asp-action="Index">
+            <a class="nav-link text-white" asp-area="Admin" asp-controller="Home" asp-action="Index">
                 ANASAYFA
                 <span class="sr-only">(current)</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" asp-area="Admin" asp-controller="MoodTest" asp-action="Index" > MOD TESTİ</a>
+            <a class="nav-link text-white" asp-area="Admin" asp-controller="MoodTest" asp-action="Index"> MOD TESTİ</a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-white" asp-area="Admin" asp-controller="Activities" asp-action="Index">AKTİVİTELER</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" asp-area="Admin" asp-controller="Profile" asp-action="Index">PROFİL</a>
+            <a class="nav-link text-white fas fa-user fa-fw" asp-area="Admin" asp-controller="Profile" asp-action="Index">KULLANICI İŞLEMLERİ</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" asp-area="Admin" asp-controller="Login" asp-action="Index">GİRİŞ YAP</a>
-        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="userDropdown"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+
+                <a class="dropdown-item text-white" >Bilgilerimi Düzenle</a>
+                <a class="dropdown-item text-white ">Şifremi Değiştir</a>
+                <a class="dropdown-item text-white" asp-controller="User" asp-action="Logout">Çıkış Yap</a>
+
+</li>
+        
+
     </ul>
 </div>

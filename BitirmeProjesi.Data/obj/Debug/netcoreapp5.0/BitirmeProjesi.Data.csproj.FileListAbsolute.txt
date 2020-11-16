@@ -15,3 +15,6 @@ C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Data\obj\Debug\netcorea
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Data\obj\Debug\netcoreapp5.0\BitirmeProjesi.Data.dll
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Data\obj\Debug\netcoreapp5.0\BitirmeProjesi.Data.pdb
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Data\obj\Debug\netcoreapp5.0\BitirmeProjesi.Data.genruntimeconfig.cache
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Data\bin\Debug\netcoreapp5.0\ref\BitirmeProjesi.Data.dll
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Data\obj\Debug\netcoreapp5.0\BitirmeProjesi.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Data\obj\Debug\netcoreapp5.0\ref\BitirmeProjesi.Data.dll

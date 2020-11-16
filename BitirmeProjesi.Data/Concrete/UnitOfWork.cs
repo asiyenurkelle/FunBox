@@ -17,7 +17,6 @@ namespace BitirmeProjesi.Data.Concrete
         private EfCategoryRepository _categoryRepository;
         private EfCommentRepository _commentRepository;
       
-        private EfUserRepository _userRepository;
        
         public UnitOfWork(BitirmeProjesiContext bitirmeProjesiContext)
         {
@@ -33,7 +32,7 @@ namespace BitirmeProjesi.Data.Concrete
         public ICommentRepository Comments => _commentRepository ?? new EfCommentRepository(_bitirmeProjesiContext);
       
 
-        public IUserRepository Users => _userRepository ?? new EfUserRepository(_bitirmeProjesiContext);
+        
 
         public async ValueTask DisposeAsync()
         {
