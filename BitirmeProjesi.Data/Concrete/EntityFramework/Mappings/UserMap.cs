@@ -13,11 +13,7 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.Property(u => u.Picture).IsRequired();
-            builder.Property(u => u.Picture).HasMaxLength(250);
-
-
-
+           
 
             // Primary key
             builder.HasKey(u => u.Id);
@@ -61,7 +57,7 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 Email = "adminuser@gmail.com",
                 NormalizedEmail = "ADMINUSER@GMAIL.COM",
                 PhoneNumber = "+905555555",
-                Picture = "defaultUser.png",
+               
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true,
                 SecurityStamp = Guid.NewGuid().ToString()
@@ -77,7 +73,7 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 Email = "customeruser@gmail.com",
                 NormalizedEmail = "CUSTOMERUSER@GMAIL.COM",
                 PhoneNumber = "+905555555",
-                Picture = "defaultUser.png",
+               
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true,
                 SecurityStamp = Guid.NewGuid().ToString()
@@ -93,7 +89,7 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 Email = "asiyenurkelle@gmail.com",
                 NormalizedEmail = "ASIYENURKELLE@GMAIL.COM",
                 PhoneNumber = "+905555555",
-                Picture = "defaultUser.png",
+              
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true,
                 SecurityStamp = Guid.NewGuid().ToString()

@@ -3,6 +3,7 @@ using BitirmeProjesi.Entities.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Threading.Tasks;
 
 namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
@@ -27,6 +28,44 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         {
             return View("UserLogin");
         }
+
+        [HttpGet]
+        public IActionResult SignUp()
+        {
+            return View("UserSignUp");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SignUp(UserSignUpDto userSignUpDto)
+        {
+            if (ModelState.IsValid)
+            {
+                User user = new User
+                {
+                    UserName = userSignUpDto.UserName,
+                    Email = userSignUpDto.Email,
+                    PhoneNumber=userSignUpDto.PhoneNumber
+
+                };
+                var result = await _userManager.CreateAsync(user, userSignUpDto.Password);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("","Lütfen tüm alanları doldurun.");
+                    return View("UserSignUp");
+                }
+            }
+            else
+            {
+                return View("UserSignUp");
+            }
+        }
+
+
+
 
         [HttpPost]
         public async Task<IActionResult> Login(UserLoginDto userLoginDto)
