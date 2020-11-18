@@ -285,25 +285,8 @@ namespace BitirmeProjesi.Data.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.InsertData(
-                table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[,]
-                {
-                    { 3, "0621e0da-860a-4e2c-b554-fc33482681b0", "Asiye", "Asiye" },
-                    { 2, "4206060a-94f1-4104-8144-fb1c041aa084", "Customer", "Customer" },
-                    { 1, "35b89454-34ee-4e0c-9f4e-9d86063bbe0a", "Admin", "Admin" }
-                });
+           
 
-            migrationBuilder.InsertData(
-                table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Picture", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[,]
-                {
-                    { 3, 0, "de0522d6-8e45-4221-9e9c-33d06b57f54b", "asiyenurkelle@gmail.com", true, false, null, "ASIYENURKELLE@GMAIL.COM", "ASIYENURKELLE", null, "+905555555", true, "defaultUser.png", "eeba933f-fd43-4b68-a5f7-0c094f5c6cb4", false, "asiyenurkelle" },
-                    { 1, 0, "8e3475b7-d3c4-4982-ba5a-a8b323059b7d", "adminuser@gmail.com", true, false, null, "ADMINUSER@GMAIL.COM", "ADMINUSER", "AQAAAAEAACcQAAAAEKIzq4Lmz9dde9DGZxZOsktfCzE53K30rjt5Bhvy1YCH+QOuFwaPgqI6t4vd2f9vBg==", "+905555555", true, "defaultUser.png", "c4e92fdb-17a4-4a15-b473-463e02b3487a", false, "adminuser" },
-                    { 2, 0, "2899b30b-4b2f-4747-9931-20d90d83ade8", "customeruser@gmail.com", true, false, null, "CUSTOMERUSER@GMAIL.COM", "CUSTOMERUSER", "AQAAAAEAACcQAAAAEDso8Ytuk1E3bM+gDkVZOdg/lIAZ+dYVk2yvtxQU9Ibjeh7i4/LqKi6cih70P667GQ==", "+905555555", true, "defaultUser.png", "88177e91-cd75-46e6-b02f-e79bd48ad32d", false, "customeruser" }
-                });
 
             migrationBuilder.InsertData(
                 table: "Categories",
@@ -325,15 +308,7 @@ namespace BitirmeProjesi.Data.Migrations
                     { 1, "Polisiye" }
                 });
 
-            migrationBuilder.InsertData(
-                table: "AspNetUserRoles",
-                columns: new[] { "RoleId", "UserId" },
-                values: new object[,]
-                {
-                    { 3, 3 },
-                    { 1, 1 },
-                    { 2, 2 }
-                });
+           
 
             migrationBuilder.InsertData(
                 table: "Books",

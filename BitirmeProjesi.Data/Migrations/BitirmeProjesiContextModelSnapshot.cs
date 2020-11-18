@@ -359,28 +359,7 @@ namespace BitirmeProjesi.Data.Migrations
 
                     b.ToTable("AspNetRoles");
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ConcurrencyStamp = "35b89454-34ee-4e0c-9f4e-9d86063bbe0a",
-                            Name = "Admin",
-                            NormalizedName = "Admin"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ConcurrencyStamp = "4206060a-94f1-4104-8144-fb1c041aa084",
-                            Name = "Customer",
-                            NormalizedName = "Customer"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ConcurrencyStamp = "0621e0da-860a-4e2c-b554-fc33482681b0",
-                            Name = "Asiye",
-                            NormalizedName = "Asiye"
-                        });
+                  
                 });
 
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.RoleClaim", b =>
@@ -587,60 +566,8 @@ namespace BitirmeProjesi.Data.Migrations
 
                     b.ToTable("AspNetUsers");
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "8e3475b7-d3c4-4982-ba5a-a8b323059b7d",
-                            Email = "adminuser@gmail.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMINUSER@GMAIL.COM",
-                            NormalizedUserName = "ADMINUSER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKIzq4Lmz9dde9DGZxZOsktfCzE53K30rjt5Bhvy1YCH+QOuFwaPgqI6t4vd2f9vBg==",
-                            PhoneNumber = "+905555555",
-                            PhoneNumberConfirmed = true,
-                            Picture = "defaultUser.png",
-                            SecurityStamp = "c4e92fdb-17a4-4a15-b473-463e02b3487a",
-                            TwoFactorEnabled = false,
-                            UserName = "adminuser"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "2899b30b-4b2f-4747-9931-20d90d83ade8",
-                            Email = "customeruser@gmail.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "CUSTOMERUSER@GMAIL.COM",
-                            NormalizedUserName = "CUSTOMERUSER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDso8Ytuk1E3bM+gDkVZOdg/lIAZ+dYVk2yvtxQU9Ibjeh7i4/LqKi6cih70P667GQ==",
-                            PhoneNumber = "+905555555",
-                            PhoneNumberConfirmed = true,
-                            Picture = "defaultUser.png",
-                            SecurityStamp = "88177e91-cd75-46e6-b02f-e79bd48ad32d",
-                            TwoFactorEnabled = false,
-                            UserName = "customeruser"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "de0522d6-8e45-4221-9e9c-33d06b57f54b",
-                            Email = "asiyenurkelle@gmail.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ASIYENURKELLE@GMAIL.COM",
-                            NormalizedUserName = "ASIYENURKELLE",
-                            PhoneNumber = "+905555555",
-                            PhoneNumberConfirmed = true,
-                            Picture = "defaultUser.png",
-                            SecurityStamp = "eeba933f-fd43-4b68-a5f7-0c094f5c6cb4",
-                            TwoFactorEnabled = false,
-                            UserName = "asiyenurkelle"
-                        });
+                   
+                          
                 });
 
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.UserClaim", b =>
@@ -703,22 +630,7 @@ namespace BitirmeProjesi.Data.Migrations
 
                     b.ToTable("AspNetUserRoles");
 
-                    b.HasData(
-                        new
-                        {
-                            UserId = 1,
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            UserId = 2,
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            UserId = 3,
-                            RoleId = 3
-                        });
+                   
                 });
 
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.UserToken", b =>

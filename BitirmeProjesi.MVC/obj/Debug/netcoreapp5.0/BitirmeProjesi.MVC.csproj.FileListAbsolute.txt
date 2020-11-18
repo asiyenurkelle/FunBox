@@ -418,3 +418,5 @@ C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreap
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\User\UserLogin.cshtml.g.cs
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\User\PasswordChange.cshtml.g.cs
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\User\UserSignUp.cshtml.g.cs
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\User\ResetPassword.cshtml.g.cs
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\User\UpdatePassword.cshtml.g.cs

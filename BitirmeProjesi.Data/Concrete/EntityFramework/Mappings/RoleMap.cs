@@ -39,29 +39,7 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
             builder.HasMany<RoleClaim>().WithOne().HasForeignKey(rc => rc.RoleId).IsRequired();
 
 
-            builder.HasData(
-                new Role
-                {
-                    Id = 1,
-                    Name = "Admin",
-                    NormalizedName = "Admin",
-                    ConcurrencyStamp = Guid.NewGuid().ToString()
-                },
-                new Role
-                {
-                    Id = 2,
-                    Name = "Customer",
-                    NormalizedName = "Customer",
-                    ConcurrencyStamp = Guid.NewGuid().ToString()
-                },
-                new Role
-                {
-                    Id=3,
-                    Name="Asiye",
-                    NormalizedName="Asiye",
-                    ConcurrencyStamp=Guid.NewGuid().ToString()
-                }
-                );
+           
             
         }
     }

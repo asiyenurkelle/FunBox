@@ -4,7 +4,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 {
@@ -44,7 +48,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
                 {
                     UserName = userSignUpDto.UserName,
                     Email = userSignUpDto.Email,
-                    PhoneNumber=userSignUpDto.PhoneNumber
+                    PhoneNumber = userSignUpDto.PhoneNumber
 
                 };
                 var result = await _userManager.CreateAsync(user, userSignUpDto.Password);
@@ -54,7 +58,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("","Lütfen tüm alanları doldurun.");
+                    ModelState.AddModelError("", "Lütfen tüm alanları doldurun.");
                     return View("UserSignUp");
                 }
             }
@@ -89,7 +93,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
                 else
                 {
                     ModelState.AddModelError("", "E-posta adresiniz veya şifreniz yanlıştır.");
-                    return View("UserLogin");   
+                    return View("UserLogin");
                 }
             }
             else
@@ -108,7 +112,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task <IActionResult> PasswordChange(UserPasswordChangeDto userPasswordChangeDto)
+        public async Task<IActionResult> PasswordChange(UserPasswordChangeDto userPasswordChangeDto)
         {
             if (ModelState.IsValid)
             {
@@ -121,10 +125,10 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
                     {
                         await _userManager.UpdateSecurityStampAsync(user);
                         await _signInManager.SignOutAsync();
-                        await _signInManager.PasswordSignInAsync(user, userPasswordChangeDto.NewPassword,true,false);
+                        await _signInManager.PasswordSignInAsync(user, userPasswordChangeDto.NewPassword, true, false);
                         TempData.Add("SuccessMessage", $"Şifreniz başarıyla değiştirilmiştir.");
                         return View();
-                       
+
                     }
                 }
                 else
@@ -135,12 +139,86 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             }
             else
             {
-              
+
                 return View(userPasswordChangeDto);
             }
             return View();
-           
+
         }
+
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ViewResult ResetPassword()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        
+        public async Task<IActionResult> ResetPassword(UserPasswordResetDto userPasswordResetDto)
+        {
+            if (ModelState.IsValid)
+            {
+
+                User user = await _userManager.FindByEmailAsync(userPasswordResetDto.Email);
+                if (user != null)
+                {
+                    string resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+                    MailMessage mail = new MailMessage();
+                    mail.IsBodyHtml = true;
+                    mail.To.Add(userPasswordResetDto.Email);
+                    mail.From = new MailAddress("asiyekelle7@gmail.com", "Şifre Güncelleme", System.Text.Encoding.UTF8);
+                    mail.Subject = "Şifre Güncelleme Talebi";
+                    mail.Body = $"<a target=\"_blank\" href=\"https://localhost:44359{Url.Action("UpdatePassword", "User", new { userId = user.Id, token = HttpUtility.UrlEncode(resetToken) })}\">Yeni şifre talebi için tıklayınız</a>";
+                    mail.IsBodyHtml = true;
+                  
+                    SmtpClient smp = new SmtpClient();
+                    smp.Credentials = new NetworkCredential("asiyekelle7@gmail.com", "asiyekelle7asiyekelle7");
+                    smp.UseDefaultCredentials = false;
+                    smp.Port = 587;
+                    smp.Host = "smtp.gmail.com";
+                    smp.EnableSsl = true;
+                    smp.Send(mail);
+                    
+                    ViewBag.State = true;
+                }
+                else
+                {
+                    ViewBag.State = false;
+
+                    return View();
+                }
+            }
+            else
+            {
+
+                return View(userPasswordResetDto);
+            }
+            return View();
+
+        }
+
+        [HttpGet("[action]/{userId}/{token}")]
+        public IActionResult UpdatePassword(string userId, string token)
+        {
+            return View();
+        }
+        public async Task<IActionResult> UpdatePassword(UserUpdatePasswordDto userUpdatePasswordDto, string userId, string token)
+        {
+            User user = await _userManager.FindByIdAsync(userId);
+            IdentityResult result = await _userManager.ResetPasswordAsync(user, HttpUtility.UrlDecode(token), userUpdatePasswordDto.Password);
+            if (result.Succeeded)
+            {
+                ViewBag.State = true;
+                await _userManager.UpdateSecurityStampAsync(user);
+            }
+            else
+                ViewBag.State = false;
+            return View();
+        }
+
 
 
         [Authorize]
@@ -150,5 +228,8 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home", new { Area = "Admin" });
         }
+
+
+      
     }
 }

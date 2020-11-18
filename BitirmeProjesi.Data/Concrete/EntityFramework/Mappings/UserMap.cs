@@ -13,7 +13,7 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-           
+
 
             // Primary key
             builder.HasKey(u => u.Id);
@@ -48,61 +48,6 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
 
             // Each User can have many entries in the UserRole join table
             builder.HasMany<UserRole>().WithOne().HasForeignKey(ur => ur.UserId).IsRequired();
-
-            var adminUser = new User
-            {
-                Id = 1,
-                UserName = "adminuser",
-                NormalizedUserName = "ADMINUSER",
-                Email = "adminuser@gmail.com",
-                NormalizedEmail = "ADMINUSER@GMAIL.COM",
-                PhoneNumber = "+905555555",
-               
-                EmailConfirmed = true,
-                PhoneNumberConfirmed = true,
-                SecurityStamp = Guid.NewGuid().ToString()
-
-            };
-            adminUser.PasswordHash = CreatePasswordHash(adminUser, "adminuser");
-
-            var customerUser = new User
-            {
-                Id = 2,
-                UserName = "customeruser",
-                NormalizedUserName = "CUSTOMERUSER",
-                Email = "customeruser@gmail.com",
-                NormalizedEmail = "CUSTOMERUSER@GMAIL.COM",
-                PhoneNumber = "+905555555",
-               
-                EmailConfirmed = true,
-                PhoneNumberConfirmed = true,
-                SecurityStamp = Guid.NewGuid().ToString()
-
-            };
-            customerUser.PasswordHash = CreatePasswordHash(customerUser, "customeruser");
-
-            var asiyenurkelle = new User
-            {
-                Id = 3,
-                UserName = "asiyenurkelle",
-                NormalizedUserName = "ASIYENURKELLE",
-                Email = "asiyenurkelle@gmail.com",
-                NormalizedEmail = "ASIYENURKELLE@GMAIL.COM",
-                PhoneNumber = "+905555555",
-              
-                EmailConfirmed = true,
-                PhoneNumberConfirmed = true,
-                SecurityStamp = Guid.NewGuid().ToString()
-
-            };
-            asiyenurkelle.PasswordHash = CreatePasswordHash(asiyenurkelle, "asiyenurkelle");
-
-            builder.HasData(adminUser, customerUser,asiyenurkelle);
-        }
-        private string CreatePasswordHash(User user, string password)
-        {
-            var passwordHasher = new PasswordHasher<User>();
-            return passwordHasher.HashPassword(user,password);
         }
     }
 
