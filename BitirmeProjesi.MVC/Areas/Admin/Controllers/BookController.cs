@@ -19,23 +19,21 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         {
             _bookService = bookService;
         }
-        public async Task <IActionResult> Index()
+        public async Task<IActionResult> Index()
         {
+            TempData["Active"] = "kitap";
             var result = await _bookService.GetAll();
             return View(result.Data);
         }
 
-       [HttpGet("Admin/Book/Details/{Id}")]
+        [HttpGet("Admin/Book/Details/{Id}")]
         public async Task<IActionResult> Details(int Id)
         {
-            
+            TempData["Active"] = "kitap";
             var result = await _bookService.Get(Id);
-            if (result.ResultStatus == ResultStatus.Success)
-            {
-                return View(result.Data);
-            }
-            return View();
-           
-         }
+            return View(result.Data);
+
+
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Index()
         {
+            TempData["Active"] = "film";
             var result = await _movieService.GetAll();
             return View(result.Data);
         }
@@ -24,6 +25,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         [HttpGet("Admin/Movie/Details/{Id}")]
         public async Task<IActionResult> Details(int Id)
         {
+            TempData["Active"] = "film";
             var result = await _movieService.Get(Id);
             return View(result.Data);
         }

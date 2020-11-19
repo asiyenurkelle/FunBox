@@ -19,8 +19,9 @@ namespace BitirmeProjesi.Entities.Concrete
         public Category Category { get; set; }
         //public Comment Comment { get; set; }
         public ICollection<Comment> Comments { get; set; }
+       }
 
        
 
-    }
+    
 }

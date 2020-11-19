@@ -1,12 +1,21 @@
-﻿<div class="col-lg-3">
+﻿@{ 
+    string active = string.Empty;
+    if( TempData["Active"] != null)
+    {
+        active = TempData["Active"].ToString();
+    }
+}
+
+
+<div class="col-lg-3">
 
     <h4 class="my-4 text-info h-auto w-auto">E-Hobilerim </h4>
     <div class="list-group">
-        <a asp-area="Admin" asp-controller="Movie" asp-action="Index" class="list-group-item text-white">FİLM</a>
-        <a asp-area="Admin" asp-controller="Serie" asp-action="Index" class="list-group-item text-white">DİZİ</a>
-        <a asp-area="Admin" asp-controller="Book" asp-action="Index" class="list-group-item text-white">KİTAP</a>
-        
+        <a asp-area="Admin" asp-controller="Movie" asp-action="Index" class="list-group-item text-white @(active=="film"?"active":"")">FİLM</a>
+        <a asp-area="Admin" asp-controller="Serie" asp-action="Index" class="list-group-item text-white  @(active=="dizi"?"active":"")">DİZİ</a>
+        <a asp-area="Admin" asp-controller="Book" asp-action="Index" class="list-group-item text-white  @(active=="kitap"?"active":"")">KİTAP</a>
+
     </div>
-  
+
 
 </div>

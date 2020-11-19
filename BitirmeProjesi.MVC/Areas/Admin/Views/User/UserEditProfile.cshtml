@@ -1,0 +1,43 @@
+﻿@model BitirmeProjesi.Entities.Dtos.UserDetailDto
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_UserLoginLayout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-5">
+            <div class="card shadow-lg  rounded-lg mt-5 bg-dark">
+                <div class="card-header text-info"><h3 class="text-center bg-dark my-4"> <span></span>Bilgilerim</h3></div>
+                <div class="card-body">
+                    <form asp-controller="User" asp-action="EditProfile" method="post">
+                        <div asp-validation-summary="All" class="text-danger" id="validation-summary">
+                        </div>
+                        <div class="form-group">
+                            <label class="small text-white" asp-for="UserName">İsim Soyisim</label>
+                            <input class="form-control py-4 " asp-for="UserName"  placeholder="" />
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="small  text-white" asp-for="PhoneNumber">Telefon Numarası</label>
+                            <input class="form-control py-4 " asp-for="PhoneNumber"  placeholder="" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="small  text-white" asp-for="Email">Email</label>
+                            <input class="form-control py-4 " asp-for="Email"  placeholder="sfsfs" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-info btn-block" id="btnSave"><span class="fas fa-save"></span> Kaydet </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

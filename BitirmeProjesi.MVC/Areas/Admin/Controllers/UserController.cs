@@ -33,6 +33,39 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             return View("UserLogin");
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Login(UserLoginDto userLoginDto)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(userLoginDto.Email);
+                if (user != null)
+                {
+                    var result = await _signInManager.PasswordSignInAsync(user, userLoginDto.Password, userLoginDto.RememberMe, false);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "E-posta adresiniz veya şifreniz yanlıştır.");
+                        return View("UserLogin");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "E-posta adresiniz veya şifreniz yanlıştır.");
+                    return View("UserLogin");
+                }
+            }
+            else
+            {
+                return View("UserLogin");
+            }
+
+
+        }
+
         [HttpGet]
         public IActionResult SignUp()
         {
@@ -68,41 +101,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             }
         }
 
-
-
-
-        [HttpPost]
-        public async Task<IActionResult> Login(UserLoginDto userLoginDto)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = await _userManager.FindByEmailAsync(userLoginDto.Email);
-                if (user != null)
-                {
-                    var result = await _signInManager.PasswordSignInAsync(user, userLoginDto.Password, userLoginDto.RememberMe, false);
-                    if (result.Succeeded)
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("", "E-posta adresiniz veya şifreniz yanlıştır.");
-                        return View("UserLogin");
-                    }
-                }
-                else
-                {
-                    ModelState.AddModelError("", "E-posta adresiniz veya şifreniz yanlıştır.");
-                    return View("UserLogin");
-                }
-            }
-            else
-            {
-                return View("UserLogin");
-            }
-
-
-        }
+      
         [Authorize]
         [HttpGet]
         public ViewResult PasswordChange()
@@ -126,8 +125,8 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
                         await _userManager.UpdateSecurityStampAsync(user);
                         await _signInManager.SignOutAsync();
                         await _signInManager.PasswordSignInAsync(user, userPasswordChangeDto.NewPassword, true, false);
-                        TempData.Add("SuccessMessage", $"Şifreniz başarıyla değiştirilmiştir.");
-                        return View();
+                       // TempData.Add("SuccessMessage", $"Şifreniz başarıyla değiştirilmiştir.");
+                        return View("UserLogin");
 
                     }
                 }
@@ -229,6 +228,37 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             return RedirectToAction("Index", "Home", new { Area = "Admin" });
         }
 
+
+        [HttpGet]
+        public IActionResult EditProfile()
+        {
+            return View("UserEditProfile");
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> EditProfile(UserDetailDto userDetailDto)
+        {
+            if (ModelState.IsValid)
+            {
+                User user = await _userManager.FindByNameAsync(User.Identity.Name);
+                user.PhoneNumber = userDetailDto.PhoneNumber;
+                user.Email = userDetailDto.Email;
+                user.UserName = userDetailDto.UserName;
+                IdentityResult result = await _userManager.UpdateAsync(user);
+                if (!result.Succeeded)
+                {
+                    ModelState.AddModelError("", "Bilgileri güncelleme başarısız");
+                    return View(userDetailDto);
+                }
+                await _userManager.UpdateSecurityStampAsync(user);
+                await _signInManager.SignOutAsync();
+                await _signInManager.SignInAsync(user, true);
+            }
+            return RedirectToAction("Index", "Home", new { Area = "Admin" });
+
+        }
+       
 
       
     }

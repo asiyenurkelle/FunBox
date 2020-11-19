@@ -17,12 +17,14 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Index()
         {
+            TempData["Active"] = "dizi";
             var result = await _serieService.GetAll();
             return View(result.Data);
         }
         [HttpGet("/Serie/Details/{Id}")]
         public async Task<IActionResult> Details(int Id)
         {
+            TempData["Active"] = "dizi";
             var result = await _serieService.Get(Id);
             return View(result.Data);
         }
