@@ -81,7 +81,9 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
                 {
                     UserName = userSignUpDto.UserName,
                     Email = userSignUpDto.Email,
-                    PhoneNumber = userSignUpDto.PhoneNumber
+                    PhoneNumber = userSignUpDto.PhoneNumber,
+                    
+                    
 
                 };
                 var result = await _userManager.CreateAsync(user, userSignUpDto.Password);
@@ -101,7 +103,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             }
         }
 
-      
+
         [Authorize]
         [HttpGet]
         public ViewResult PasswordChange()
@@ -125,7 +127,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
                         await _userManager.UpdateSecurityStampAsync(user);
                         await _signInManager.SignOutAsync();
                         await _signInManager.PasswordSignInAsync(user, userPasswordChangeDto.NewPassword, true, false);
-                       // TempData.Add("SuccessMessage", $"Şifreniz başarıyla değiştirilmiştir.");
+                        // TempData.Add("SuccessMessage", $"Şifreniz başarıyla değiştirilmiştir.");
                         return View("UserLogin");
 
                     }
@@ -155,7 +157,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 
 
         [HttpPost]
-        
+
         public async Task<IActionResult> ResetPassword(UserPasswordResetDto userPasswordResetDto)
         {
             if (ModelState.IsValid)
@@ -172,7 +174,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
                     mail.Subject = "Şifre Güncelleme Talebi";
                     mail.Body = $"<a target=\"_blank\" href=\"https://localhost:44359{Url.Action("UpdatePassword", "User", new { userId = user.Id, token = HttpUtility.UrlEncode(resetToken) })}\">Yeni şifre talebi için tıklayınız</a>";
                     mail.IsBodyHtml = true;
-                  
+
                     SmtpClient smp = new SmtpClient();
                     smp.Credentials = new NetworkCredential("asiyekelle7@gmail.com", "asiyekelle7asiyekelle7");
                     smp.UseDefaultCredentials = false;
@@ -180,7 +182,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
                     smp.Host = "smtp.gmail.com";
                     smp.EnableSsl = true;
                     smp.Send(mail);
-                    
+
                     ViewBag.State = true;
                 }
                 else
@@ -230,22 +232,31 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 
 
         [HttpGet]
-        public IActionResult EditProfile()
+        public async Task<IActionResult> UserEditProfile()
         {
-            return View("UserEditProfile");
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            UserDetailDto model = new UserDetailDto();
+            model.UserName = user.UserName;
+            model.PhoneNumber = user.PhoneNumber;
+            model.Email = user.Email;
+          
+            return View(model);
         }
 
 
         [HttpPost]
-        public async Task<IActionResult> EditProfile(UserDetailDto userDetailDto)
+        public async Task<IActionResult> UserEditProfile(UserDetailDto userDetailDto)
         {
             if (ModelState.IsValid)
             {
                 User user = await _userManager.FindByNameAsync(User.Identity.Name);
+
+                user.UserName = userDetailDto.UserName;
                 user.PhoneNumber = userDetailDto.PhoneNumber;
                 user.Email = userDetailDto.Email;
-                user.UserName = userDetailDto.UserName;
+
                 IdentityResult result = await _userManager.UpdateAsync(user);
+              
                 if (!result.Succeeded)
                 {
                     ModelState.AddModelError("", "Bilgileri güncelleme başarısız");
@@ -258,8 +269,8 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             return RedirectToAction("Index", "Home", new { Area = "Admin" });
 
         }
-       
 
-      
+
+
     }
 }
