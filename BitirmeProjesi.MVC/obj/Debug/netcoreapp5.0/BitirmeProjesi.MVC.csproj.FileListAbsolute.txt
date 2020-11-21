@@ -421,3 +421,6 @@ C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreap
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\User\ResetPassword.cshtml.g.cs
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\User\UpdatePassword.cshtml.g.cs
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\User\UserEditProfile.cshtml.g.cs
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\Movie\AddComment.cshtml.g.cs
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\Book\AddComment.cshtml.g.cs
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\Serie\AddComment.cshtml.g.cs

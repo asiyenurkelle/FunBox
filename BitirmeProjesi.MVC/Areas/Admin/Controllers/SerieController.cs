@@ -23,6 +23,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             var result = await _serieService.GetAll();
             return View(result.Data);
         }
+
         [HttpGet("Admin/Serie/Details/{Id}")]
         public async Task<IActionResult> Details(int Id)
         {
@@ -31,6 +32,11 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             return View(result.Data);
         }
 
+        [HttpGet("Admin/Serie/AddComment/{Id}")]
+        public IActionResult AddComment()
+        {
+            return View();
+        }
 
     }
 }

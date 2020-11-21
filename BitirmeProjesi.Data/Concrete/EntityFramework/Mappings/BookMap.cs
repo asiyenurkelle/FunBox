@@ -14,7 +14,7 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
             builder.HasKey(b => b.Id);
             builder.Property(b => b.Id).ValueGeneratedOnAdd();
             builder.Property(b => b.Title).HasMaxLength(100).IsRequired();
-            builder.Property(b => b.Subject).HasColumnName("NVARCHAR(MAX)").IsRequired();
+            builder.Property(b => b.Subject).HasColumnType("NVARCHAR(MAX)").IsRequired();
             builder.Property(b => b.ThumbNail).IsRequired();
             builder.Property(b => b.Page).IsRequired();
             builder.Property(b => b.Production).IsRequired();

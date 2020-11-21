@@ -35,8 +35,14 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             return View(result.Data);
         }
 
-        
-       
+        [HttpGet("Admin/Book/AddComment/{Id}")]
+        public IActionResult AddComment()
+        {
+            return View();
+        }
+
+
+
 
     }
 }
