@@ -2,6 +2,7 @@
 using BitirmeProjesi.Entities.Concrete;
 using BitirmeProjesi.Entities.Dtos;
 using BitirmeProjesi.Services.Abstract;
+using BitirmeProjesi.Services.Utilities;
 using BitirmeProjesi.Shared.Utilities.Results.Abstract;
 using BitirmeProjesi.Shared.Utilities.Results.Complex_Types;
 using BitirmeProjesi.Shared.Utilities.Results.Concrete;
@@ -21,16 +22,18 @@ namespace BitirmeProjesi.Services.Concrete
         }
         public async Task<IDataResult<BookDto>> Get(int bookId)
         {
-            var book = await _unitOfWork.Books.GetAsync(b => b.Id == bookId, b => b.Category);
+            var book = await _unitOfWork.Books.GetAsync(b => b.Id == bookId, b => b.Category, b => b.Comments);
             if (book != null)
             {
                 return new DataResult<BookDto>(ResultStatus.Success, new BookDto
                 {
                     Book = book,
-                    ResultStatus = ResultStatus.Success
+                    ResultStatus = ResultStatus.Success,
+                    Message= Messages.Book.NotFound(isPlural: false)
+
                 });
             }
-            return new DataResult<BookDto>(ResultStatus.Error, "Böyle bir kitap bulunamadı.", null);
+            return new DataResult<BookDto>(ResultStatus.Error, Messages.Book.NotFound(isPlural:false), null);
 
         }
 
@@ -45,11 +48,11 @@ namespace BitirmeProjesi.Services.Concrete
                     ResultStatus = ResultStatus.Success
                 });
             }
-            return new DataResult<BookListDto>(ResultStatus.Error, "Kitaplar bulunamadı.", new BookListDto
+            return new DataResult<BookListDto>(ResultStatus.Error, Messages.Book.NotFound(isPlural: true), new BookListDto
             {
                 Books=null,
                 ResultStatus=ResultStatus.Error,
-                Message= "Kitaplar bulunamadı."
+                Message= Messages.Book.NotFound(isPlural: true)
             });
 
         }

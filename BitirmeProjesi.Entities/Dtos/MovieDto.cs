@@ -10,6 +10,7 @@ namespace BitirmeProjesi.Entities.Dtos
     public class MovieDto:DtoGetBase
     {
         public Movie Movie { get; set; }
+       
       
     }
 }

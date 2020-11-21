@@ -3,6 +3,7 @@ using BitirmeProjesi.Data.Concrete;
 using BitirmeProjesi.Entities.Concrete;
 using BitirmeProjesi.Entities.Dtos;
 using BitirmeProjesi.Services.Abstract;
+using BitirmeProjesi.Services.Utilities;
 using BitirmeProjesi.Shared.Utilities.Results.Abstract;
 using BitirmeProjesi.Shared.Utilities.Results.Complex_Types;
 using BitirmeProjesi.Shared.Utilities.Results.Concrete;
@@ -22,16 +23,18 @@ namespace BitirmeProjesi.Services.Concrete
         }
         public async  Task<IDataResult<MovieDto>> Get(int movieId)
         {
-            var movie = await _unitOfWork.Movies.GetAsync(m => m.Id == movieId, m => m.Category);
+            var movie = await _unitOfWork.Movies.GetAsync(m => m.Id == movieId, m => m.Category, m=>m.Comments);
             if (movie != null)
             {
                 return new DataResult<MovieDto>(ResultStatus.Success, new MovieDto
                 {
                     Movie=movie,
-                    ResultStatus = ResultStatus.Success
+                    ResultStatus = ResultStatus.Success,
+                    Message=Messages.Movie.NotFound(isPlural:false)
+                    
                 });
             }
-            return new DataResult<MovieDto>(ResultStatus.Error, "Böyle bir kitap bulunamadı.", null);
+            return new DataResult<MovieDto>(ResultStatus.Error,  Messages.Movie.NotFound(isPlural: false), null);
         }
 
         public async  Task<IDataResult<MovieListDto>> GetAll()
@@ -42,10 +45,12 @@ namespace BitirmeProjesi.Services.Concrete
                 return new DataResult<MovieListDto>(ResultStatus.Success, new MovieListDto
                 {
                     Movies=movies,
-                    ResultStatus = ResultStatus.Success
+                    ResultStatus = ResultStatus.Success,
+                    Message=Messages.Movie.NotFound(isPlural:true)
+                    
                 });
             }
-            return new DataResult<MovieListDto>(ResultStatus.Error, "Filmler bulunamadı.", null);
+            return new DataResult<MovieListDto>(ResultStatus.Error, Messages.Movie.NotFound(isPlural: true), null);
         }
     }
 }

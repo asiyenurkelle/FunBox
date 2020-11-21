@@ -11,10 +11,12 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
     public class SerieController : Controller
     {
         private readonly ISerieService _serieService;
+
         public SerieController(ISerieService serieService)
         {
             _serieService = serieService;
         }
+
         public async Task<IActionResult> Index()
         {
             TempData["Active"] = "dizi";
@@ -28,6 +30,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             var result = await _serieService.Get(Id);
             return View(result.Data);
         }
-        
+
+
     }
 }

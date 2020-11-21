@@ -4,6 +4,7 @@ using BitirmeProjesi.Data.Concrete;
 using BitirmeProjesi.Entities.Concrete;
 using BitirmeProjesi.Entities.Dtos;
 using BitirmeProjesi.Services.Abstract;
+using BitirmeProjesi.Services.Utilities;
 using BitirmeProjesi.Shared.Utilities.Results.Abstract;
 using BitirmeProjesi.Shared.Utilities.Results.Complex_Types;
 using BitirmeProjesi.Shared.Utilities.Results.Concrete;
@@ -37,7 +38,7 @@ namespace BitirmeProjesi.Services.Concrete
                     ResultStatus = ResultStatus.Success
                 }) ;
             }
-            return new DataResult<CategoryDto>(ResultStatus.Error, "Böyle bir kategori bulunamadı", null);
+            return new DataResult<CategoryDto>(ResultStatus.Error, Messages.Category.NotFound(isPlural:false), null);
         }
 
         public async Task<IDataResult<CategoryListDto>> GetAll()
@@ -51,7 +52,7 @@ namespace BitirmeProjesi.Services.Concrete
                     ResultStatus=ResultStatus.Success
                 });
             }
-            return new DataResult<CategoryListDto>(ResultStatus.Error,"Hiçbir kategori bulunamadı",null); 
+            return new DataResult<CategoryListDto>(ResultStatus.Error, Messages.Category.NotFound(isPlural: true), null); 
         }
 
        

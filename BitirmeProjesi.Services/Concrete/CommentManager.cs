@@ -3,6 +3,7 @@ using BitirmeProjesi.Data.Abstract;
 using BitirmeProjesi.Entities.Concrete;
 using BitirmeProjesi.Entities.Dtos;
 using BitirmeProjesi.Services.Abstract;
+using BitirmeProjesi.Services.Utilities;
 using BitirmeProjesi.Shared.Utilities.Results.Abstract;
 using BitirmeProjesi.Shared.Utilities.Results.Complex_Types;
 using BitirmeProjesi.Shared.Utilities.Results.Concrete;
@@ -28,11 +29,11 @@ namespace BitirmeProjesi.Services.Concrete
             var addedComment = await _unitOfWork.Comments.AddAsync(comment);
             await _unitOfWork.SaveAsync();
             //USERID EKLENCEK BUNUN İÇİNDE USER İSLEMLERİNİ EKLE.KİMİN YORUM YAPTIGINI GÖRMEK İÇİN.
-            return new DataResult<CommentDto>(ResultStatus.Success, $"{commentAddDto.Title} başlıklı yorum başarıyla eklendi.", new CommentDto
+            return new DataResult<CommentDto>(ResultStatus.Success, Messages.Comment.Add(addedComment.Title), new CommentDto
             {
                 Comment = addedComment,
                 ResultStatus = ResultStatus.Success,
-                Message = $"{commentAddDto.Title} başlıklı yorum başarıyla eklendi."
+                Message = Messages.Comment.Add(addedComment.Title)
             });
         }
 
@@ -44,14 +45,14 @@ namespace BitirmeProjesi.Services.Concrete
                 var comment = await _unitOfWork.Comments.GetAsync(c => c.Id == commentId);
                 await _unitOfWork.Comments.DeleteAsync(comment);
                 await _unitOfWork.SaveAsync();
-                return new Result(ResultStatus.Success, $"{comment.Title} başlıklı yorum başarıyla silinmiştir.");
+                return new Result(ResultStatus.Success, Messages.Comment.Delete(comment.Title));
             }
-            return new Result(ResultStatus.Error, "Böyle bir yorum bulunamadı");
+            return new Result(ResultStatus.Error, Messages.Comment.NotFound(isPlural:false));
         }
 
         public async Task<IDataResult<CommentDto>> Get(int commentId)
         {
-            var comment = await _unitOfWork.Comments.GetAsync(c => c.Id == commentId);
+            var comment = await _unitOfWork.Comments.GetAsync(c => c.Id == commentId, c=>c.Serie);
             if (comment != null)
             {
                 return new DataResult<CommentDto>(ResultStatus.Success, new CommentDto
@@ -60,11 +61,11 @@ namespace BitirmeProjesi.Services.Concrete
                     ResultStatus = ResultStatus.Success
                 });
             }
-            return new DataResult<CommentDto>(ResultStatus.Error, "Böyle bir yorum bulunamadı", new CommentDto
+            return new DataResult<CommentDto>(ResultStatus.Error, Messages.Comment.NotFound(isPlural: false), new CommentDto
             {
                 Comment=null,
                 ResultStatus=ResultStatus.Error,
-                Message="Böyle bir yorum bulunamadı."
+                Message= Messages.Comment.NotFound(isPlural: false)
             });
         }
 
@@ -79,11 +80,11 @@ namespace BitirmeProjesi.Services.Concrete
                     ResultStatus = ResultStatus.Success
                 });
             }
-            return new DataResult<CommentListDto>(ResultStatus.Error, "Yorumlar bulunamadı.", new CommentListDto
+            return new DataResult<CommentListDto>(ResultStatus.Error, Messages.Comment.NotFound(isPlural:true), new CommentListDto
             {
                 Comments = null,
                 ResultStatus = ResultStatus.Error,
-                Message = "Yorumlar bulunamadı."
+                Message = Messages.Comment.NotFound(isPlural: true)
             });
         }
 
