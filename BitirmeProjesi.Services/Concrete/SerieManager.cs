@@ -20,9 +20,9 @@ namespace BitirmeProjesi.Services.Concrete
         {
             _unitOfWork = unitOfWork;
         }
-        public async Task<IDataResult<SerieDto>> Get(int serieId)
+        public async Task<IDataResult<SerieDto>> Get(int Id)
         {
-            var serie = await _unitOfWork.Series.GetAsync(s => s.Id == serieId, s => s.Category);
+            var serie = await _unitOfWork.Series.GetAsync(s => s.Id == Id, s => s.Category, s=>s.Comments);
             if (serie != null)
             {
                 return new DataResult<SerieDto>(ResultStatus.Success, new SerieDto
@@ -37,7 +37,7 @@ namespace BitirmeProjesi.Services.Concrete
 
         public async Task<IDataResult<SerieListDto>> GetAll()
         {
-            var series = await _unitOfWork.Series.GetAllAsync(null, s => s.Category);
+            var series = await _unitOfWork.Series.GetAllAsync(null, s => s.Category, s => s.Comments);
             if (series.Count > -1)
             {
                 return new DataResult<SerieListDto>(ResultStatus.Success, new SerieListDto

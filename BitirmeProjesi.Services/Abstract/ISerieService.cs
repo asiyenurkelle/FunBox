@@ -10,7 +10,7 @@ namespace BitirmeProjesi.Services.Abstract
 {
     public interface ISerieService
     {
-        Task<IDataResult<SerieDto>> Get(int serieId);
+        Task<IDataResult<SerieDto>> Get(int Id);
         Task<IDataResult<SerieListDto>> GetAll();
        
     }

@@ -1,4 +1,5 @@
 ﻿using BitirmeProjesi.Data.Abstract;
+using BitirmeProjesi.Data.Concrete.EntityFramework.Contexts;
 using BitirmeProjesi.Entities.Concrete;
 using BitirmeProjesi.Entities.Dtos;
 using BitirmeProjesi.Services.Abstract;
@@ -8,6 +9,8 @@ using BitirmeProjesi.Shared.Utilities.Results.Complex_Types;
 using BitirmeProjesi.Shared.Utilities.Results.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,9 +23,9 @@ namespace BitirmeProjesi.Services.Concrete
         {
             _unitOfWork = unitOfWork;
         }
-        public async Task<IDataResult<BookDto>> Get(int bookId)
+        public async Task<IDataResult<BookDto>> Get(int Id)
         {
-            var book = await _unitOfWork.Books.GetAsync(b => b.Id == bookId, b => b.Category, b => b.Comments);
+            var book = await _unitOfWork.Books.GetAsync(b => b.Id == Id, b => b.Category, b => b.Comments);
             if (book != null)
             {
                 return new DataResult<BookDto>(ResultStatus.Success, new BookDto
@@ -56,6 +59,9 @@ namespace BitirmeProjesi.Services.Concrete
             });
 
         }
+
+       
+       
 
     }
 }

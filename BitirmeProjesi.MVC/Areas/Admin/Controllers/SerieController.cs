@@ -23,7 +23,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             var result = await _serieService.GetAll();
             return View(result.Data);
         }
-        [HttpGet("/Serie/Details/{Id}")]
+        [HttpGet("Admin/Serie/Details/{Id}")]
         public async Task<IActionResult> Details(int Id)
         {
             TempData["Active"] = "dizi";

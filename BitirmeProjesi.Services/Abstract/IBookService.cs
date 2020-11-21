@@ -10,8 +10,10 @@ namespace BitirmeProjesi.Services.Abstract
 {
     public interface IBookService
     {
-        Task<IDataResult<BookDto>> Get(int bookId);
+        Task<IDataResult<BookDto>> Get(int Id);
         Task<IDataResult<BookListDto>>GetAll();
-       
+     
+
+        
     }
 }

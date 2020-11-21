@@ -1,4 +1,5 @@
 ﻿using BitirmeProjesi.Data.Abstract;
+using BitirmeProjesi.Data.Concrete.EntityFramework.Contexts;
 using BitirmeProjesi.Entities.Concrete;
 using BitirmeProjesi.Shared.Data.Concrete.EntityFramework;
 using Microsoft.EntityFrameworkCore;
@@ -14,5 +15,6 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Repositories
         {
 
         }
+        
     }
 }

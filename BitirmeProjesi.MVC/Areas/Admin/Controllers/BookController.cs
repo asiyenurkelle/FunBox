@@ -14,10 +14,11 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
     public class BookController : Controller
     {
         private readonly IBookService _bookService;
-
+     
         public BookController(IBookService bookService)
         {
             _bookService = bookService;
+           
         }
         public async Task<IActionResult> Index()
         {
@@ -32,8 +33,10 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             TempData["Active"] = "kitap";
             var result = await _bookService.Get(Id);
             return View(result.Data);
-
-
         }
+
+        
+       
+
     }
 }

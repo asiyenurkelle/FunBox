@@ -21,7 +21,7 @@
                     @Model.Serie.Scenarist
                     <br />
                     <span class="text-info">Süre:</span>
-                    @Model.Serie.Time 
+                    @Model.Serie.Time
                     <br />
                     <span class="text-info">Kategori:</span>
                     @Model.Serie.Category.Name
@@ -34,23 +34,29 @@
             <!-- /.card -->
 
             <div class="card card-outline-secondary my-4">
-                <div class="card-header  text-center">
-                    Dizi Yorumları
+                <div class="card-header  text-center text-info">
+                    Yorumlar
                 </div>
-                <div class="card-body" asp-area="Admin" asp-controller="Serie" asp-action="Comments">
-                    <p id="placeHolderSeries"></p>
-                    <small class="text-muted" >Posted by Anonymous on 3/1/17</small>
-                    <hr>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                    <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                    <hr>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                    <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                    <hr>
-                    <a href="#" class="btn btn-warning text-center">Aktivitelere Ekle</a>
+                @foreach (var serie in Model.Serie.Comments)
+                {
+                    <div class="card-body" id="placeHolderBooks">
+                        <p class="font-weight-bold">@serie.Title</p>
+                        <p>@serie.Subject</p>
+                        <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+
+                    </div>
+
+                }
+                <div class="text-center">
+                    <a href="#" class="btn btn-info text-center">Aktivitelere Ekle</a>
                 </div>
+                <div class="card-header  text-center text-info">
+
+                </div>
+
+                <!-- /.card -->
             </div>
-         
+
             <!-- /.card -->
         </div>
 
