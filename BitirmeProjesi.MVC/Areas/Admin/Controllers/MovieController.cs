@@ -49,15 +49,18 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
                 var result = await _commentService.Add(commentAddDto);
                 if (result.ResultStatus == ResultStatus.Success)
                 {
-                    CommentAddDto dto = new CommentAddDto()
+                    var sonuc = new CommentAddDto()
                     {
                         Subject = commentAddDto.Subject,
                         Title = commentAddDto.Title
                     };
+                    return View(sonuc);
                 }
-               
+
             }
-            return View(commentAddDto);
+            return View();
+          
+           
         }
     }
 }

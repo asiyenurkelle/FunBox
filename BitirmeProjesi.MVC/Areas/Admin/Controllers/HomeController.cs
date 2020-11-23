@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BitirmeProjesi.Entities.Dtos;
 using BitirmeProjesi.Services.Abstract;
 using BitirmeProjesi.Shared.Utilities.Results.Complex_Types;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PagedList.Core;
 
 namespace BitirmeProjesi.MVC.Areas.Anasayfa.Controllers
 {

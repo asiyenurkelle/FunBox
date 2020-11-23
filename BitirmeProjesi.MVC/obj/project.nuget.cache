@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "nGQxzIY6BVAQ0UfX2eRImxCHx7dIko1qcARJojXMlcfpQLWmyVzggLp8s4aJJBQGdgC7rZ/+o1AN9JT7NLsJxw==",
+  "dgSpecHash": "g9vryVB+o4ePVwH9OXwvinSe1lLtA6NL3blKCOh86UxKHWnGmjwaMVUU3QxaeufdPlx2iD2ORK5Td+fvi9Awkw==",
   "success": true,
   "projectFilePath": "C:\\Users\\asus\\source\\repos\\BitirmeProjesi\\BitirmeProjesi.MVC\\BitirmeProjesi.MVC.csproj",
   "expectedPackageFiles": [
@@ -103,6 +103,8 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\newtonsoft.json.bson\\1.0.1\\newtonsoft.json.bson.1.0.1.nupkg.sha512",
+    "C:\\Users\\asus\\.nuget\\packages\\pagedlist.core\\1.17.4\\pagedlist.core.1.17.4.nupkg.sha512",
+    "C:\\Users\\asus\\.nuget\\packages\\pagedlist.core.mvc\\3.0.0\\pagedlist.core.mvc.3.0.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
