@@ -30,6 +30,9 @@
                     <span class="text-info">Kitap Tarzı:</span>
                     @Model.Book.Production
                     <br />
+                    <span class="text-info">Basım Tarihi:</span>
+                    @Model.Book.Date.ToShortDateString()
+                    <br />
 
                 </div>
             </div>

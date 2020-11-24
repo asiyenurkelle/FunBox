@@ -20,13 +20,16 @@
                     @Model.Movie.Scenarist
                     <br />
                     <span class="text-info"> Süre:</span>
-                    @Model.Movie.Time 
+                    @Model.Movie.Time
                     <br />
                     <span class="text-info">Kategori:</span>
                     @Model.Movie.Category.Name
                     <br />
                     <span class="text-info">Kitap Tarzı:</span>
                     @Model.Movie.Production
+                    <br />
+                    <span class="text-info">Vizyona Çıkış Tarihi</span>
+                    @Model.Movie.Date.ToShortDateString()
                     <br />
                 </div>
                 </div>
