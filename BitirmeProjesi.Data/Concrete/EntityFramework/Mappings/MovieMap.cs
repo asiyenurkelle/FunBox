@@ -20,7 +20,9 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
             builder.Property(m => m.Subject).HasColumnType("NVARCHAR(MAX)").IsRequired();
             builder.Property(m => m.Production).IsRequired();
             builder.Property(m => m.Scenarist).IsRequired();
+            builder.Property(s => s.Activities).HasColumnType("BİT");
             builder.Property(m => m.Time).IsRequired();
+           
 
             builder.HasOne<Category>(m => m.Category).WithMany(c => c.Movies).HasForeignKey(m => m.CategoryId).OnDelete(DeleteBehavior.Restrict);
             

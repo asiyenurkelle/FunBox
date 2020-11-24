@@ -5,7 +5,9 @@ using BitirmeProjesi.Shared.Data.Concrete.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BitirmeProjesi.Data.Concrete.EntityFramework.Repositories
 {
@@ -15,6 +17,18 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Repositories
         {
 
         }
-        
+
+        public async Task<Comment> GetById(int commentId)
+        {
+            return await BitirmeProjesiContext.Comments.SingleOrDefaultAsync(c => c.Id == commentId);
+        }
+
+        private BitirmeProjesiContext BitirmeProjesiContext
+        {
+            get
+            {
+                return _context as BitirmeProjesiContext;
+            }
+        }
     }
 }

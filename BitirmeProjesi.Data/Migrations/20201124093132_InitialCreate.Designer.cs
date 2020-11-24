@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BitirmeProjesi.Data.Migrations
 {
     [DbContext(typeof(BitirmeProjesiContext))]
-    [Migration("20201116215423_InitialCreate")]
+    [Migration("20201124093132_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,8 +28,14 @@ namespace BitirmeProjesi.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<bool>("Activities")
+                        .HasColumnType("BİT");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("Page")
                         .HasColumnType("int");
@@ -40,8 +46,7 @@ namespace BitirmeProjesi.Data.Migrations
 
                     b.Property<string>("Subject")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("NVARCHAR(MAX)");
+                        .HasColumnType("NVARCHAR(MAX)");
 
                     b.Property<string>("ThumbNail")
                         .IsRequired()
@@ -65,55 +70,65 @@ namespace BitirmeProjesi.Data.Migrations
                         new
                         {
                             Id = 1,
+                            Activities = false,
                             CategoryId = 1,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Page = 192,
                             Production = "Yabancı",
                             Subject = "Her birinin gizledikleri ve korktukları sırları olan on kişi, Zenci Adası’ndaki ıssız bir malikâneye davet edilirler. Ancak malikâneye giden grubu bir sürpriz beklemektedir, ev sahibi ortalarda yoktur. Geçmişlerindeki karanlık sırlardan başka hiçbir şeyleri olmayan bu insanlar adada mahsur kalmışlardır. Konuklar bir süre sonra gizledikleri sırları birbirlerine anlatırlar. Ve teker teker ölmeye başlarlar.",
-                            ThumbNail = "default.jpg",
+                            ThumbNail = "onkucukzenci.jpg",
                             Title = "On Küçük Zenci",
                             Writer = "Agatha Christie"
                         },
                         new
                         {
                             Id = 2,
+                            Activities = false,
                             CategoryId = 1,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Page = 256,
                             Production = "Yabancı",
                             Subject = "Gece yarısından sonra artan şiddetli tipi yüzünden Doğu Ekspresi artık yoluna devam edemeyecek durumdadır. Yılın bu zamanlarında lüks tren tamamen doludur. Ertesi sabah yapılan kontroller sonucu tüm yolcuların sağsalim trende olduğu anlaşılır. Ancak defalarca bıçaklanarak öldürülen Amerikalı yolcunun kompartımanının kapısı içeriden kilitlidir.",
-                            ThumbNail = "default.jpg",
+                            ThumbNail = "doguekspresindecinayet.jpg",
                             Title = "Doğu Ekspresinde Cinayet",
                             Writer = "Agatha Christie"
                         },
                         new
                         {
                             Id = 3,
+                            Activities = false,
                             CategoryId = 2,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Page = 536,
                             Production = "Yabancı",
                             Subject = "Genç adam, aniden üç büyük dinin temsilcilerine döndü. “Şaşırtıcı bulacağınızı tahmin ettiğim bilimsel bir buluşum sebebiyle bugün buradayım. İnsanlık deneyimimizin en temel iki sorusuna cevap bulma ümidi ile yıllardır peşinden koşuyordum. Bu bilginin tüm inananları derinden etkileyeceğine inanıyorum. Nasıl desem, ‘yıkıcı’ diye tanımlanabilecek bir değişikliğe sebep olabilir.",
-                            ThumbNail = "default.jpg",
+                            ThumbNail = "baslangic.jpg",
                             Title = "Başlangıç",
                             Writer = "Dan Brown"
                         },
                         new
                         {
                             Id = 4,
+                            Activities = false,
                             CategoryId = 2,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Page = 495,
                             Production = "Yabancı",
                             Subject = "Dan Brown, ülkedeki birkaç usta yazardan biri. Da Vinci Şifresi üstün bir zeka tarafından kurgulanmış harika bir gerilim romanı.Entrika ve tehlikenin iç içe geçtiği okuduğum en iyi gerilim romanı. Kelime oyunları, gizemler ve bulmacalarla örülmüş akıllara durgunluk veren bir öykü.",
-                            ThumbNail = "default.jpg",
+                            ThumbNail = "davincisifresi.jpg",
                             Title = "Da Vinci Şifresi",
                             Writer = "Dan Brown"
                         },
                         new
                         {
                             Id = 5,
+                            Activities = false,
                             CategoryId = 4,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Page = 456,
                             Production = "Yerli",
                             Subject = "Masal tadındaki bu fantastik kurgu,okuyucuyu bir zaman yolculuğuna çıkarır.Okuyucunun çözebileceği küçük süprizlerin gizlendiği tarihin değişik zamanlarındaki yaşanmışlıkları,aynı zaman sürecinde yaşatan bu eser,ayrıca gizemli bir aşkın romanıdır.",
-                            ThumbNail = "default.jpg",
+                            ThumbNail = "adaletsavascilari.jpg",
                             Title = "Adalet Savaşçıları",
                             Writer = "Bahri Akkoç"
                         });
@@ -252,8 +267,14 @@ namespace BitirmeProjesi.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<bool>("Activities")
+                        .HasColumnType("BİT");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Production")
                         .IsRequired()
@@ -290,44 +311,52 @@ namespace BitirmeProjesi.Data.Migrations
                         new
                         {
                             Id = 1,
+                            Activities = false,
                             CategoryId = 10,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Production = "Yerli",
                             Scenarist = "Umur Bugay",
                             Subject = "Öğrencilik hayatları haylazlık ve tembellik üzerine kurulu olan bir sınıf dolusu matrak öğrencinin, Özel Çamlıca Lisesi’nde yaşadığı yer yer eğlenceli, yer yer de dokunaklı öyküleri anlatan film, Hababam Sınıfı serisinin ilk filmidir",
-                            ThumbNail = "default.jpg",
+                            ThumbNail = "hababamsinifi.jpg",
                             Time = "1 saat 30 dakika",
                             Title = "Hababam Sınıfı"
                         },
                         new
                         {
                             Id = 2,
+                            Activities = false,
                             CategoryId = 1,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Production = "Yabancı",
                             Scenarist = "Mario Puzo",
                             Subject = "Baba, 40’lar ve 50’lerin Amerika’sında, bir İtalyan mafya ailesinin destansı öyküsünü konu alıyor. Don Corleone’nin kızı Connie’nin düğününde, ailenin en küçük oğlu ve bir savaş gazisi olan Michael babasıyla barışır. Bir suikast girişimi, Don’u artık işleri yönetemeyecek duruma düşürünce, ailenin başına Michael ve ağabeyi Sonny geçer.",
-                            ThumbNail = "default.jpg",
+                            ThumbNail = "thegodfather.jpg",
                             Time = "2 saat 58 dakika",
                             Title = "The Godfather"
                         },
                         new
                         {
                             Id = 3,
+                            Activities = false,
                             CategoryId = 11,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Production = "Yabancı",
                             Scenarist = "Randall Wallace",
                             Subject = "Cesuryürek'te, William Wallace yaşanan büyük acılar sonrası yeniden memleketi olan İskoçya’ya döner. Onun asıl amacı çiftçilik yaparak sakin bir hayat sürmektir. Çocukluk aşkıyla karşılaştığında bunun onu dipsiz bir uçuruma iteceğinin farkında değildir.",
-                            ThumbNail = "default.jpg",
+                            ThumbNail = "braveheart.jpg",
                             Time = "3 saat 2 dakika",
                             Title = "Braveheart"
                         },
                         new
                         {
                             Id = 4,
+                            Activities = false,
                             CategoryId = 11,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Production = "Yerli",
                             Scenarist = "Yavuz Turgul",
                             Subject = "Eşkiya, hapse düşmesine neden olan arkadaşının peşine düşen bir adamın hikayesini anlatıyor. 35 yıl önce Cudi dağlarında bir grup eşkiya yakalandı ve hapse atıldı. Yıllar içinde kimi hastalıktan, kimi hesaplaşma sonucu öldü. Biri hariç... 35 yıl sonra Hapisten çıkınca Baran’ ın ilk işi köyüne dönmek olur.",
-                            ThumbNail = "default.jpg",
+                            ThumbNail = "eskiya.jpg",
                             Time = "2 saat 8 dakika",
                             Title = "Eşkiya"
                         });
@@ -360,29 +389,6 @@ namespace BitirmeProjesi.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ConcurrencyStamp = "35b89454-34ee-4e0c-9f4e-9d86063bbe0a",
-                            Name = "Admin",
-                            NormalizedName = "Admin"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ConcurrencyStamp = "4206060a-94f1-4104-8144-fb1c041aa084",
-                            Name = "Customer",
-                            NormalizedName = "Customer"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ConcurrencyStamp = "0621e0da-860a-4e2c-b554-fc33482681b0",
-                            Name = "Asiye",
-                            NormalizedName = "Asiye"
-                        });
                 });
 
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.RoleClaim", b =>
@@ -415,8 +421,14 @@ namespace BitirmeProjesi.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<bool>("Activities")
+                        .HasColumnType("BİT");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Production")
                         .IsRequired()
@@ -453,66 +465,78 @@ namespace BitirmeProjesi.Data.Migrations
                         new
                         {
                             Id = 1,
+                            Activities = false,
                             CategoryId = 11,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Production = "Yabancı",
                             Scenarist = "Steven Knigt",
                             Subject = "Peaky Blinders, İngiltere'nin Birmingham şehrinde çetelerin birbiriyle yaşadığı olayları izleyiciye aktarmaktadır. Çete için her şey tıkırında giderken son bir soygunda hata yapılır ve çetenin başına bela olacak bir müfettiş görevlendirilir.",
-                            ThumbNail = "default.jpg",
+                            ThumbNail = "peakyblinders.jpg",
                             Time = "58 dakika",
                             Title = "Peaky Blinders"
                         },
                         new
                         {
                             Id = 2,
+                            Activities = false,
                             CategoryId = 11,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Production = "Yabancı",
                             Scenarist = "Andrew Baldwin",
                             Subject = "11 yaşında feci şekilde katledilen bir çocuğun cesedi parkta bulunur. Etraftaki görgü tanıkları ve cesedin üzerindeki bulgular, şehirde yaşayan saygın bir iş adamını işaret etmektedir. Bu kişi ise koçluk ve  İngilizce öğretmenliği yapan, aynı zamanda iyi bir eş ve kız babası olan Terry Maitland’dır.",
-                            ThumbNail = "default.jpg",
+                            ThumbNail = "theoutsider.jpg",
                             Time = "1 saat",
                             Title = "The Outsider"
                         },
                         new
                         {
                             Id = 3,
+                            Activities = false,
                             CategoryId = 6,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Production = "Yabancı",
                             Scenarist = "Lauren Schmidt Hissrich",
                             Subject = "Fantastik bir dizi olan The Witcher’da, çok uzun yıllardır barış içerisinde yaşayan insanlar, cüceler ve elfler artık savaş halindedir. Ana karakterimiz The Witcher lakaplı Geralt of Rivia ise acımasız bir suikastçıdır. Kendisi durumun farkında olmasa da aslında kendisine vaadedilen bir kız çocuğu bu dünya düzenini değiştirecektir.",
-                            ThumbNail = "default.jpg",
+                            ThumbNail = "thewitcher.jpg",
                             Time = "1 saat",
                             Title = "The Witcher"
                         },
                         new
                         {
                             Id = 4,
+                            Activities = false,
                             CategoryId = 6,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Production = "Yabancı",
                             Scenarist = "Blake Neely",
                             Subject = "kitapçıda çalışan Joe ve o kitapçıya müşteri olarak gelen Beck’in hikayesini izleyiciye aktarmaktadır. Joe, Beck’e gördüğü andan itibaren aşık durumdadır ve onu korumak için ne gerekiyorsa yapmaktadır. Joe’nin Beck’e karşı takıntılı tavırlar göstermesi Beck’in yakın arkadaşı Peach’in dikkatini çekse de Joe’ye engel olmak mümkün değildir. Yaptığı her takıntılı davranışı Beck’e aşık olduğu için yaptığını düşünen Joe, aslında tam bir saplantı yaşamaktadır.",
-                            ThumbNail = "default.jpg",
+                            ThumbNail = "you.jpg",
                             Time = "45 dakika",
                             Title = "You"
                         },
                         new
                         {
                             Id = 5,
+                            Activities = false,
                             CategoryId = 13,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Production = "Yabancı",
                             Scenarist = "Matt Duffer",
                             Subject = " Winona Ryder, David Harbour, Cara Buono'yu başrollerinde buluşturan dizide, kaybolan genç çocuk ve onu bulmaya çalışan ailenin yaşadıkları anlatılmaktadır.",
-                            ThumbNail = "default.jpg",
+                            ThumbNail = "strangerthings.jpg",
                             Time = "56 dakika",
                             Title = "Stranger Things"
                         },
                         new
                         {
                             Id = 6,
+                            Activities = false,
                             CategoryId = 4,
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Production = "Yabancı",
                             Scenarist = "Howard Fast",
                             Subject = "Trakyalılar çoğunlukla Trakya topraklarını yağmalayan Getae’ye karşı bir ayaklanma düzenleyerek Roma lejyonlarında yardımcı olarak görev yapacakları Claudius Glaber tarafından ikna edilmeye başlanmıştır. Bununla birlikte, Glaber, anlaşma konusunda ısrar ettikten sonra Getae’ten dikkatini Küçük Asya’daki Mithridates saldırısına çekmeyi başarır.",
-                            ThumbNail = "default.jpg",
+                            ThumbNail = "spartacus.jpg",
                             Time = "42 dakika",
                             Title = "Spartacus"
                         });
@@ -562,11 +586,6 @@ namespace BitirmeProjesi.Data.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Picture")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -588,61 +607,6 @@ namespace BitirmeProjesi.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "8e3475b7-d3c4-4982-ba5a-a8b323059b7d",
-                            Email = "adminuser@gmail.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMINUSER@GMAIL.COM",
-                            NormalizedUserName = "ADMINUSER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKIzq4Lmz9dde9DGZxZOsktfCzE53K30rjt5Bhvy1YCH+QOuFwaPgqI6t4vd2f9vBg==",
-                            PhoneNumber = "+905555555",
-                            PhoneNumberConfirmed = true,
-                            Picture = "defaultUser.png",
-                            SecurityStamp = "c4e92fdb-17a4-4a15-b473-463e02b3487a",
-                            TwoFactorEnabled = false,
-                            UserName = "adminuser"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "2899b30b-4b2f-4747-9931-20d90d83ade8",
-                            Email = "customeruser@gmail.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "CUSTOMERUSER@GMAIL.COM",
-                            NormalizedUserName = "CUSTOMERUSER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDso8Ytuk1E3bM+gDkVZOdg/lIAZ+dYVk2yvtxQU9Ibjeh7i4/LqKi6cih70P667GQ==",
-                            PhoneNumber = "+905555555",
-                            PhoneNumberConfirmed = true,
-                            Picture = "defaultUser.png",
-                            SecurityStamp = "88177e91-cd75-46e6-b02f-e79bd48ad32d",
-                            TwoFactorEnabled = false,
-                            UserName = "customeruser"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "de0522d6-8e45-4221-9e9c-33d06b57f54b",
-                            Email = "asiyenurkelle@gmail.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ASIYENURKELLE@GMAIL.COM",
-                            NormalizedUserName = "ASIYENURKELLE",
-                            PhoneNumber = "+905555555",
-                            PhoneNumberConfirmed = true,
-                            Picture = "defaultUser.png",
-                            SecurityStamp = "eeba933f-fd43-4b68-a5f7-0c094f5c6cb4",
-                            TwoFactorEnabled = false,
-                            UserName = "asiyenurkelle"
-                        });
                 });
 
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.UserClaim", b =>
@@ -704,23 +668,6 @@ namespace BitirmeProjesi.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = 1,
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            UserId = 2,
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            UserId = 3,
-                            RoleId = 3
-                        });
                 });
 
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.UserToken", b =>

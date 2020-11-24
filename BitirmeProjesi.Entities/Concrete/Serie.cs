@@ -20,6 +20,7 @@ namespace BitirmeProjesi.Entities.Concrete
         public ICollection<Comment> Comments { get; set; }
 
         //bir dizide birden cok yorum olabilir, bir yorumda bir tane diziye sahip olmak zorundadır.
-
+        public bool Activities { get; set; }
+        public DateTime Date { get; set; }
     }
 }

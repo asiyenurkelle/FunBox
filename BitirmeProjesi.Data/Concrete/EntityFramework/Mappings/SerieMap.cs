@@ -19,7 +19,8 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
             builder.Property(s => s.Production).IsRequired();
             builder.Property(s => s.Time).IsRequired();
             builder.Property(s => s.Scenarist).IsRequired();
-
+            builder.Property(s => s.Activities).HasColumnType("BİT");
+          
             builder.HasOne<Category>(s => s.Category).WithMany(c => c.Series).HasForeignKey(s => s.CategoryId).OnDelete(DeleteBehavior.Restrict);
             builder.ToTable("Series");
 
@@ -32,7 +33,8 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 ThumbNail = "peakyblinders.jpg",
                 Time = "58 dakika",
                 Scenarist = "Steven Knigt",
-                Production = "Yabancı"
+                Production = "Yabancı",
+               
 
             },
             new Serie

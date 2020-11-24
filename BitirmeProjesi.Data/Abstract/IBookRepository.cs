@@ -8,5 +8,6 @@ namespace BitirmeProjesi.Data.Abstract
 {
     public interface IBookRepository : IEntityRepository<Book>
     {
+
     }
 }

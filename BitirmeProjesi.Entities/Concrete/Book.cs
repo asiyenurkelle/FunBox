@@ -19,5 +19,8 @@ namespace BitirmeProjesi.Entities.Concrete
         //public Comment Comment { get; set; }
         public ICollection<Comment> Comments { get; set; }
 
+        public bool Activities { get; set; }
+        public DateTime Date { get; set; }
+
     }
 }

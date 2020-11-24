@@ -15,5 +15,6 @@ namespace BitirmeProjesi.Services.Abstract
         Task<IDataResult<CommentDto>> Add(CommentAddDto commentAddDto);
         //Dto lar frontend tarafında sadece ihtiyacımız olan dataları barındırı viewmodeller gibi düşünebiliriz.
         Task<IResult> Delete(int commentId);
+
     }
 }

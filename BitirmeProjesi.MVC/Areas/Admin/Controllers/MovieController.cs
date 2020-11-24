@@ -58,7 +58,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
                 }
 
             }
-            return View();
+            return View("Details");
           
            
         }

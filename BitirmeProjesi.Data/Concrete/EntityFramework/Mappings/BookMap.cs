@@ -17,7 +17,9 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
             builder.Property(b => b.Subject).HasColumnType("NVARCHAR(MAX)").IsRequired();
             builder.Property(b => b.ThumbNail).IsRequired();
             builder.Property(b => b.Page).IsRequired();
+            builder.Property(s => s.Activities).HasColumnType("BİT");
             builder.Property(b => b.Production).IsRequired();
+           
             builder.HasOne<Category>(b => b.Category).WithMany(c => c.Books).HasForeignKey(b => b.CategoryId).OnDelete(DeleteBehavior.Restrict);
             
             builder.ToTable("Books");
@@ -32,12 +34,13 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 Page=192,
                 Writer="Agatha Christie",
                 Production="Yabancı"
+
             },
             new Book
             {
                 Id = 2,
                 Title="Doğu Ekspresinde Cinayet",
-                ThumbNail = "doguekspesindecinayet.jpg",
+                ThumbNail = "doguekspresindecinayet.jpg",
                 Subject = "Gece yarısından sonra artan şiddetli tipi yüzünden Doğu Ekspresi artık yoluna devam edemeyecek durumdadır. Yılın bu zamanlarında lüks tren tamamen doludur. Ertesi sabah yapılan kontroller sonucu tüm yolcuların sağsalim trende olduğu anlaşılır. Ancak defalarca bıçaklanarak öldürülen Amerikalı yolcunun kompartımanının kapısı içeriden kilitlidir.",
                 CategoryId=1,
                 Page=256,
