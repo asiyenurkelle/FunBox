@@ -1,23 +1,17 @@
-﻿using BitirmeProjesi.Entities.Concrete;
-using BitirmeProjesi.Entities.Dtos;
+﻿using BitirmeProjesi.Entities.Dtos;
 using BitirmeProjesi.Shared.Utilities.Results.Abstract;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BitirmeProjesi.Services.Abstract
 {
-    public interface IBookService
+    public interface IActivityService
     {
-        Task<IDataResult<BookDto>> Get(int Id);
-        Task<IDataResult<BookListDto>>GetAll();
+        Task<IDataResult<BookSerieMovieDto>> GetActivities();
         
-
-
-
-
-
 
     }
 }

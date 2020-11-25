@@ -1,9 +1,15 @@
-﻿<div class="container">
+﻿@model BitirmeProjesi.Entities.Dtos.BookSerieMovieDto
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
 
     <div class="row" id="HomePage">
 
         <div class="col-lg-3 bg-transparent">
-            @*EKLEME YAPILABİLİR*@ 
+            @*EKLEME YAPILABİLİR*@
         </div>
         <!-- /.col-lg-3 -->
 
@@ -11,29 +17,28 @@
 
             <div class="row">
 
-
-
                 <div class="col-lg-4 col-md-6 mb-4">
 
                     <div class="card h-100">
 
                         <div class="card-body ">
-                            <h5 class="card-title text-center text-info">İzlenilecek Filmler Listesi</h5>
+                            <h5 class="card-title text-center text-info">Okunacak Kitaplar Listesi</h5>
 
                         </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Spartacus</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="#" class="card-link text-info">Listeden Çıkar</a>
-                            <a href="#" class="card-link text-info">Detaylara Git</a>
-                        </div>
+                        @foreach (var book in Model.Books)
+                        {
+
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">@book.Title</li>
+                                <li class=" btn btn-group-toggle">
+                                    <a asp-area="Admin" asp-controller="Book" asp-action="Details" class="btn btn-sm text-info">Listeden Çıkar</a>
+                                    <a asp-area="Admin" asp-controller="Book" asp-action="Details" asp-route-id="@book.Id" class="btn btn-sm text-info">Detaylar</a>
+                                </li>
+
+                            </ul>
+
+                        }
+
 
                     </div>
                 </div>
@@ -48,22 +53,23 @@
                             <h5 class="card-title text-center text-info">İzlenilecek Diziler Listesi</h5>
 
                         </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Spartacus</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="#" class="card-link text-info">Listeden Çıkar</a>
-                            <a href="#" class="card-link text-info">Detaylara Git</a>
-                        </div>
+                        @foreach (var serie in Model.Series)
+                        {
+
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">@serie.Title</li>
+                                <li class=" btn btn-group-toggle">
+                                    <a asp-area="Admin" asp-controller="Seri" asp-action="Details" class="btn btn-sm text-info">Listeden Çıkar</a>
+                                    <a asp-area="Admin" asp-controller="Serie" asp-action="Details" asp-route-id="@serie.Id" class="btn btn-sm text-info">Detaylar</a>
+                                </li>
+
+                            </ul>
+                        }
+
 
                     </div>
                 </div>
+
 
 
 
@@ -72,22 +78,22 @@
                     <div class="card h-100">
 
                         <div class="card-body ">
-                            <h5 class="card-title text-center text-info">Okunacak Kitaplar Listesi</h5>
+                            <h5 class="card-title text-center text-info">İzlenilecek Filmler Listesi</h5>
 
                         </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Spartacus</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="#" class="card-link text-info">Listeden Çıkar</a>
-                            <a href="#" class="card-link text-info">Detaylara Git</a>
-                        </div>
+                        @foreach (var movie in Model.Movies)
+                        {
+
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">@movie.Title</li>
+                                <li class=" btn btn-group-toggle">
+                                    <a asp-area="Admin" asp-controller="Movie" asp-action="Details" class="btn btn-sm text-info">Listeden Çıkar</a>
+                                    <a asp-area="Admin" asp-controller="Movie" asp-action="Details" asp-route-id="@movie.Id" class="btn btn-sm text-info">Detaylar</a>
+                                </li>
+
+                            </ul>
+                        }
+                        
 
                     </div>
                 </div>

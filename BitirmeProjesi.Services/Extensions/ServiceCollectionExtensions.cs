@@ -46,6 +46,7 @@ namespace BitirmeProjesi.Services.Extensions
             serviceCollection.AddScoped<IBookService, BookManager>();
             serviceCollection.AddScoped<IBookSerieMovieService, BookSerieMovieManager>();
             serviceCollection.AddScoped<ICommentService, CommentManager>();
+            serviceCollection.AddScoped<IActivityService, ActivityManager>();
             return serviceCollection;
         }
     }

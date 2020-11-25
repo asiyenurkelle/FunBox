@@ -35,7 +35,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             return View(result.Data);
         }
 
-        [HttpGet("Admin/Movie/AddComment/{Id}")]
+        [HttpGet]
         public IActionResult AddComment()
         {
             return View();
@@ -49,12 +49,12 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
                 var result = await _commentService.Add(commentAddDto);
                 if (result.ResultStatus == ResultStatus.Success)
                 {
-                    var sonuc = new CommentAddDto()
-                    {
-                        Subject = commentAddDto.Subject,
-                        Title = commentAddDto.Title
-                    };
-                    return View(sonuc);
+                    //var sonuc = new CommentAddDto()
+                    //{
+                    //    Subject = commentAddDto.Subject,
+                    //    Title = commentAddDto.Title
+                    //};
+                    return View(result.Data);
                 }
 
             }

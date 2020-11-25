@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BitirmeProjesi.Data.Concrete.EntityFramework.Repositories
 {
@@ -16,7 +17,12 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Repositories
         {
 
         }
-
-       
+        private BitirmeProjesiContext BitirmeProjesiContext
+        {
+            get
+            {
+                return _context as BitirmeProjesiContext;
+            }
+        }
     }
 }
