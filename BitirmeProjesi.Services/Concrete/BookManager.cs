@@ -26,6 +26,8 @@ namespace BitirmeProjesi.Services.Concrete
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
+
+
         public async Task<IDataResult<BookDto>> Get(int Id)
         {
             var book = await _unitOfWork.Books.GetAsync(b => b.Id == Id, b => b.Category, b => b.Comments);
@@ -70,6 +72,23 @@ namespace BitirmeProjesi.Services.Concrete
             {
                 var book = await _unitOfWork.Books.GetAsync(b => b.Id == bookId, b => b.Category);
                 book.Activities = false;
+                await _unitOfWork.SaveAsync();
+                var bookUpdateDto = _mapper.Map<BookUpdateDto>(book);
+                return new DataResult<BookUpdateDto>(ResultStatus.Success, bookUpdateDto);
+            }
+            else
+            {
+                return new DataResult<BookUpdateDto>(ResultStatus.Error, "Kitap bulunamadı.", null);
+            }
+        }
+
+        public async Task<IDataResult<BookUpdateDto>> AddListBook(int bookId)
+        {
+            var result = await _unitOfWork.Books.AnyAsync(b => b.Id == bookId);
+            if (result)
+            {
+                var book = await _unitOfWork.Books.GetAsync(b => b.Id == bookId, b => b.Category);
+                book.Activities = true;
                 await _unitOfWork.SaveAsync();
                 var bookUpdateDto = _mapper.Map<BookUpdateDto>(book);
                 return new DataResult<BookUpdateDto>(ResultStatus.Success, bookUpdateDto);

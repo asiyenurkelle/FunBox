@@ -23,6 +23,7 @@ namespace BitirmeProjesi.Services.Concrete
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
+
         public async Task<IDataResult<SerieDto>> Get(int Id)
         {
             var serie = await _unitOfWork.Series.GetAsync(s => s.Id == Id, s => s.Category, s=>s.Comments);
@@ -60,6 +61,22 @@ namespace BitirmeProjesi.Services.Concrete
             {
                 var serie = await _unitOfWork.Series.GetAsync(s => s.Id == serieId, s => s.Category);
                 serie.Activities = false;
+                await _unitOfWork.SaveAsync();
+                var serieUpdateDto = _mapper.Map<SerieUpdateDto>(serie);
+                return new DataResult<SerieUpdateDto>(ResultStatus.Success, serieUpdateDto);
+            }
+            else
+            {
+                return new DataResult<SerieUpdateDto>(ResultStatus.Error, "Dizi bulunamadı.", null);
+            }
+        }
+        public async Task<IDataResult<SerieUpdateDto>> AddListSerie(int serieId)
+        {
+            var result = await _unitOfWork.Series.AnyAsync(s => s.Id == serieId);
+            if (result)
+            {
+                var serie = await _unitOfWork.Series.GetAsync(s => s.Id == serieId, s => s.Category);
+                serie.Activities = true;
                 await _unitOfWork.SaveAsync();
                 var serieUpdateDto = _mapper.Map<SerieUpdateDto>(serie);
                 return new DataResult<SerieUpdateDto>(ResultStatus.Success, serieUpdateDto);

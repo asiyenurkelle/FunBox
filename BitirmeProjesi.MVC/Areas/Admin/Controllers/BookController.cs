@@ -39,10 +39,17 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         public IActionResult AddComment()
         {
             return View();
-          
-            
+           
         }
-        
+
+        [HttpGet("Book/Details/AddList")]
+        public async Task<IActionResult> AddList(int Id)
+        {
+            var book = await _bookService.AddListBook(Id);
+            return Json(null);
+        }
+
+
 
 
 

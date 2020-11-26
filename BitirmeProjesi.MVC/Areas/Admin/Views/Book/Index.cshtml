@@ -52,17 +52,3 @@
 
     </div>
 }
-@section Scripts{
-    <script>
-        $(function () {
-            const url = '@Url.Action("Add","Comment")';
-            const placeHolderBooks = $('#placeHolderBooks');
-            $('#AddCommentBooks').click(function () {
-                $.get(url).done(function (data) {
-                    placeHolderBooks.html(data);
-                    placeHolderBooks.find(".modal").modal('show');
-                })
-            });
-        });
-    </script>
-}

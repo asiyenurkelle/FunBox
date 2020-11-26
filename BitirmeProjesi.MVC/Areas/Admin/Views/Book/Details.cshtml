@@ -54,17 +54,68 @@
 
                 }
                 <div class="text-center">
-                    <a href="#" class="btn btn-info text-center">Aktivitelere Ekle</a>
+                    <a href="#" class="btn btn-info text-center" data-toggle="modal" data-target="#exampleModal" data-id="@Model.Book.Id">Aktivitelere Ekle</a>
                 </div>
                 <div class="card-header  text-center text-info">
-                    
+
                 </div>
 
                 <!-- /.card -->
             </div>
 
-        </div>
+
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Uyarı</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-center lead">
+                            @Model.Book.Title isimli kitabı aktivitelere eklemek istediğinize emin misiniz?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+                            <button id="btnSave" type="button" class="btn btn-info">Listeye Ekle</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#exampleModal").on("show.bs.modal", function (event) {
+                let tetikleyenElement = $(event.relatedTarget);
+                let data = tetikleyenElement.data("id");
+
+                $("#btnSave").click(function () {
+                    $.ajax({
+                        type: "GET",
+                        contentType: "application/json; charset=utf-8",
+                        url: "/Book/Details/AddList",
+                        data: { Id: data },
+                        success: function () {
+                            alert("@Model.Book.Title isimli kitap aktivitelere başarıyla eklendi.");
+                            $('#exampleModal').modal('hide');
+                        },
+                        error: function (error) {
+                            alert(error.responseText);
+                        }
+                    })
+                })
+            });
+        });
+    </script>
+
+}
 
 

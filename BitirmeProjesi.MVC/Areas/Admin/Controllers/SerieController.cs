@@ -38,5 +38,13 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             return View();
         }
 
+
+
+        [HttpGet("Serie/Details/AddList")]
+        public async Task<IActionResult> AddList(int Id)
+        {
+            await _serieService.AddListSerie(Id);
+            return Json(null);
+        }
     }
 }

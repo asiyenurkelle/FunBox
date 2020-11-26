@@ -41,26 +41,31 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddComment(CommentAddDto commentAddDto)
-        {
-            if (ModelState.IsValid)
-            {
-                var result = await _commentService.Add(commentAddDto);
-                if (result.ResultStatus == ResultStatus.Success)
-                {
-                    //var sonuc = new CommentAddDto()
-                    //{
-                    //    Subject = commentAddDto.Subject,
-                    //    Title = commentAddDto.Title
-                    //};
-                    return View(result.Data);
-                }
+        //[HttpPost]
+        //public async Task<IActionResult> AddComment(CommentAddDto commentAddDto)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var result = await _commentService.Add(commentAddDto);
+        //        if (result.ResultStatus == ResultStatus.Success)
+        //        {
+        //            //var sonuc = new CommentAddDto()
+        //            //{
+        //            //    Subject = commentAddDto.Subject,
+        //            //    Title = commentAddDto.Title
+        //            //};
+        //            return View(result.Data);
+        //        }
 
-            }
-            return View("Details");
-          
-           
+        //    }
+        //    return View("Details"); 
+        //}
+
+        [HttpGet("Movie/Details/AddList")]
+        public async Task<IActionResult> AddList(int Id)
+        {
+             await _movieService.AddListMovie(Id);
+            return Json(null);
         }
     }
 }
