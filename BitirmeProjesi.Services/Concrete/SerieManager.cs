@@ -1,4 +1,5 @@
-﻿using BitirmeProjesi.Data.Abstract;
+﻿using AutoMapper;
+using BitirmeProjesi.Data.Abstract;
 using BitirmeProjesi.Entities.Concrete;
 using BitirmeProjesi.Entities.Dtos;
 using BitirmeProjesi.Services.Abstract;
@@ -16,9 +17,11 @@ namespace BitirmeProjesi.Services.Concrete
     public class SerieManager : ISerieService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public SerieManager(IUnitOfWork unitOfWork)
+        private readonly IMapper _mapper;
+        public SerieManager(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
         public async Task<IDataResult<SerieDto>> Get(int Id)
         {
@@ -50,6 +53,21 @@ namespace BitirmeProjesi.Services.Concrete
             return new DataResult<SerieListDto>(ResultStatus.Error, Messages.Serie.NotFound(true), null);
         }
 
-
+        public async Task<IDataResult<SerieUpdateDto>> GetSerieUpdateDto(int serieId)
+        {
+            var result = await _unitOfWork.Series.AnyAsync(s => s.Id == serieId);
+            if (result)
+            {
+                var serie = await _unitOfWork.Series.GetAsync(s => s.Id == serieId, s => s.Category);
+                serie.Activities = false;
+                await _unitOfWork.SaveAsync();
+                var serieUpdateDto = _mapper.Map<SerieUpdateDto>(serie);
+                return new DataResult<SerieUpdateDto>(ResultStatus.Success, serieUpdateDto);
+            }
+            else
+            {
+                return new DataResult<SerieUpdateDto>(ResultStatus.Error, "Dizi bulunamadı.", null);
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using BitirmeProjesi.Data.Abstract;
+﻿using AutoMapper;
+using BitirmeProjesi.Data.Abstract;
 using BitirmeProjesi.Data.Concrete;
 using BitirmeProjesi.Entities.Concrete;
 using BitirmeProjesi.Entities.Dtos;
@@ -17,40 +18,62 @@ namespace BitirmeProjesi.Services.Concrete
     public class MovieManager : IMovieService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public MovieManager(IUnitOfWork unitOfWork)
+        private readonly IMapper _mapper;
+        public MovieManager(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
-        public async  Task<IDataResult<MovieDto>> Get(int movieId)
+        public async Task<IDataResult<MovieDto>> Get(int movieId)
         {
-            var movie = await _unitOfWork.Movies.GetAsync(m => m.Id == movieId, m => m.Category, m=>m.Comments);
+            var movie = await _unitOfWork.Movies.GetAsync(m => m.Id == movieId, m => m.Category, m => m.Comments);
             if (movie != null)
             {
                 return new DataResult<MovieDto>(ResultStatus.Success, new MovieDto
                 {
-                    Movie=movie,
+                    Movie = movie,
                     ResultStatus = ResultStatus.Success,
-                    Message=Messages.Movie.NotFound(isPlural:false)
-                    
+                    Message = "basarılı"
+
                 });
             }
-            return new DataResult<MovieDto>(ResultStatus.Error,  Messages.Movie.NotFound(isPlural: false), null);
+            return new DataResult<MovieDto>(ResultStatus.Error, Messages.Movie.NotFound(isPlural: false), null);
         }
 
-        public async  Task<IDataResult<MovieListDto>> GetAll()
+        public async Task<IDataResult<MovieListDto>> GetAll()
         {
             var movies = await _unitOfWork.Movies.GetAllAsync(null, m => m.Category);
             if (movies.Count > -1)
             {
                 return new DataResult<MovieListDto>(ResultStatus.Success, new MovieListDto
                 {
-                    Movies=movies,
+                    Movies = movies,
                     ResultStatus = ResultStatus.Success,
-                    Message=Messages.Movie.NotFound(isPlural:true)
-                    
+                    Message = Messages.Movie.NotFound(isPlural: true)
+
                 });
             }
             return new DataResult<MovieListDto>(ResultStatus.Error, Messages.Movie.NotFound(isPlural: true), null);
         }
+
+        public async Task<IDataResult<MovieUpdateDto>> GetMovieUpdateDto(int movieId)
+        {
+            var result = await _unitOfWork.Movies.AnyAsync(m => m.Id == movieId);
+            if (result)
+            {
+                var movie = await _unitOfWork.Movies.GetAsync(m => m.Id == movieId, m => m.Category);
+                movie.Activities = false;
+               await _unitOfWork.SaveAsync();
+                var movieUpdateDto = _mapper.Map<MovieUpdateDto>(movie);
+                return new DataResult<MovieUpdateDto>(ResultStatus.Success, movieUpdateDto);
+            }
+            else
+            {
+                return new DataResult<MovieUpdateDto>(ResultStatus.Error, "Film bulunamadı.",null);
+            }
+        }
+
+      
+
     }
 }

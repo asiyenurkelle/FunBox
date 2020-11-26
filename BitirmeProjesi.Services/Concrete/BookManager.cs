@@ -1,4 +1,5 @@
-﻿using BitirmeProjesi.Data.Abstract;
+﻿using AutoMapper;
+using BitirmeProjesi.Data.Abstract;
 using BitirmeProjesi.Data.Concrete.EntityFramework.Contexts;
 using BitirmeProjesi.Entities.Concrete;
 using BitirmeProjesi.Entities.Dtos;
@@ -19,9 +20,11 @@ namespace BitirmeProjesi.Services.Concrete
     public class BookManager : IBookService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public BookManager(IUnitOfWork unitOfWork)
+        private readonly IMapper _mapper;
+        public BookManager(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
         public async Task<IDataResult<BookDto>> Get(int Id)
         {
@@ -60,8 +63,21 @@ namespace BitirmeProjesi.Services.Concrete
 
         }
 
-       
-       
-
+        public async  Task<IDataResult<BookUpdateDto>> GetBookUpdateDto(int bookId)
+        {
+            var result = await _unitOfWork.Books.AnyAsync(b => b.Id == bookId);
+            if (result)
+            {
+                var book = await _unitOfWork.Books.GetAsync(b => b.Id == bookId, b => b.Category);
+                book.Activities = false;
+                await _unitOfWork.SaveAsync();
+                var bookUpdateDto = _mapper.Map<BookUpdateDto>(book);
+                return new DataResult<BookUpdateDto>(ResultStatus.Success, bookUpdateDto);
+            }
+            else
+            {
+                return new DataResult<BookUpdateDto>(ResultStatus.Error, "Kitap bulunamadı.", null);
+            }
+        }
     }
 }
