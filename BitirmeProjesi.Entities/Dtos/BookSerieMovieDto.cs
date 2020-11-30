@@ -11,5 +11,7 @@ namespace BitirmeProjesi.Entities.Dtos
         public IList<Book> Books { get; set; }
         public IList<Serie> Series { get; set; }
         public IList<Movie> Movies { get; set; }
+        public IList<Category> Categories { get; set; }
+        
     }
 }

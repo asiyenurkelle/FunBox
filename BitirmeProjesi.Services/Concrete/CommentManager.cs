@@ -26,7 +26,7 @@ namespace BitirmeProjesi.Services.Concrete
         public async Task<IDataResult<CommentDto>> Add(CommentAddDto commentAddDto)
         {
             var comment = _mapper.Map<Comment>(commentAddDto);
-            var addedComment = await _unitOfWork.Comments.AddAsync(comment);
+            var addedComment = await _unitOfWork.Comments.AddAsync(comment); 
             await _unitOfWork.SaveAsync();
             //USERID EKLENCEK BUNUN İÇİNDE USER İSLEMLERİNİ EKLE.KİMİN YORUM YAPTIGINI GÖRMEK İÇİN.
             return new DataResult<CommentDto>(ResultStatus.Success, Messages.Comment.Add(addedComment.Title), new CommentDto
@@ -87,6 +87,7 @@ namespace BitirmeProjesi.Services.Concrete
                 Message = Messages.Comment.NotFound(isPlural: true)
             });
         }
+
 
     }
 }

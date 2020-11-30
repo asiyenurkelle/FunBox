@@ -9,10 +9,21 @@
 
         <div class="row">
 
-            @await Html.PartialAsync("_LayoutListGroupPartial")
-            <!-- /.col-lg-3 -->
+            <div class="col-lg-3">
 
-            <div class="col-lg-9 p-3">
+                <h4 class="my-4 text-info h-auto w-auto">E-Hobilerim </h4>
+                <div class="list-group ">
+                    @foreach (var categories in Model.Categories)
+                    {
+                        <a asp-area="Admin" asp-controller="Book" asp-action="Index" asp-route-id="@categories.Id" class="list-group-item text-info @*@(active==" film"?"active":""*@)">@categories.Name</a>
+
+                    }
+
+
+                </div>
+            </div>
+
+            <div class="col-lg-9 p-3 pt-5">
 
                 <div class="row">
 

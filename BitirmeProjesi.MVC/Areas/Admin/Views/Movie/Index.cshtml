@@ -5,14 +5,27 @@
 
 @if (Model.ResultStatus == BitirmeProjesi.Shared.Utilities.Results.Complex_Types.ResultStatus.Success)
 {
+    <div id="placeHolderMovies" aria-hidden="true"></div>
     <div class="container">
 
         <div class="row">
 
-            @await Html.PartialAsync("_LayoutListGroupPartial")
+            <div class="col-lg-3">
+
+                <h4 class="my-4 text-info h-auto w-auto">E-Hobilerim </h4>
+                <div class="list-group ">
+                    @foreach (var categories in Model.Categories)
+                    {
+                        <a asp-area="Admin" asp-controller="Movie" asp-action="Index" asp-route-id="@categories.Id" class="list-group-item text-info @*@(active==" film"?"active":""*@)">@categories.Name</a>
+
+                    }
+
+
+                </div>
+            </div>
             <!-- /.col-lg-3 -->
 
-            <div class="col-lg-9 p-3">
+            <div class="col-lg-9 p-3 pt-5">
 
                 <div class="row">
 
@@ -34,7 +47,7 @@
                                     <a type="button" class="btn btn-info" id="DetailsMovies" asp-area="Admin" asp-controller="Movie" asp-action="Details" asp-route-id="@movie.Id">Detaylar</a>
                                     <a type="button" class="btn btn-info" id="AddCommentMovies" asp-area="Admin" asp-controller="Movie" asp-action="AddComment" asp-route-id="@movie.Id">Yorum Ekle</a>
                                 </div>
-                               
+
                             </div>
                         </div>
                     }
@@ -52,10 +65,10 @@
 
     </div>
 }
-@section Scripts{
-        <script>
+@*@section Scripts{
+    <script>
             $(function () {
-                const url = '@Url.Action("Add","Comment")';
+                const url = '@Url.Action("AddComment","Movie")';
                 const placeHolderMovies = $('#placeHolderMovies');
                 $('#AddCommentMovies').click(function () {
                     $.get(url).done(function (data) {
@@ -64,35 +77,39 @@
                     });
 
                     placeHolderMovies.on('click',
-                        '#btnSave',
+                        '#btnSaveComment',
                         function (event) {
                             event.preventDefault();
                             const form = $('#form-comment-add');
                             const actionUrl = form.attr('action');
                             const dataToSend = form.serialize();
                             $.post(actionUrl, dataToSend).done(function (data) {
-                                console.log(data);
+
                                 const commentAddAjaxModel = jQuery.parseJSON(data);
                                 console.log(commentAddAjaxModel);
                                 const newFormBody = $('.modal-body', commentAddAjaxModel.CommentAddPartial);
                                 placeHolderMovies.find('.modal-body').replaceWith(newFormBody);
+
                                 const isValid = newFormBody.find('[name="IsValid"]').val() === 'True';
                                 if (isValid) {
                                     placeHolderMovies.find('.modal').modal('hide');
                                     const newTableRow = `
-                                         <div class="card-footer" >
-                                           ${commentAddAjaxModel.CommentDto.Subject}
-                                          
-                                    </div>`;
+                                         <div class="card-body">
+                        <p class="font-weight-bold">${commentAddAjaxModel.CommentDto.Title}</p>
+                        <p>${commentAddAjaxModel.CommentDto.Subject}</p>
+                        <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+
+                    </div>`;
 
                                     const newTableRowObject = $(newTableRow);
                                     //newTableRowObject.hide();
- 
+
 
                                 }
                             });
                         });
                 });
             });
-        </script>
-    }
+
+    </script>
+}*@

@@ -9,6 +9,7 @@ namespace BitirmeProjesi.Entities.Dtos
     public class MovieListDto:DtoGetBase
     {
         public IList<Movie> Movies { get; set; }
+        public IList<Category> Categories { get; set; }
       
     }
 }

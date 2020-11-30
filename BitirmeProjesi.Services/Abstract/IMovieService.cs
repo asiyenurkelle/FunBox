@@ -14,5 +14,6 @@ namespace BitirmeProjesi.Services.Abstract
         Task<IDataResult<MovieListDto>> GetAll();
         Task<IDataResult<MovieUpdateDto>> GetMovieUpdateDto(int movieId);
         Task<IDataResult<MovieUpdateDto>> AddListMovie(int movieId);
+        Task<IDataResult<MovieListDto>> GetCategories(int? id);
     }
 }

@@ -7,6 +7,9 @@ using BitirmeProjesi.Services.Abstract;
 using Microsoft.AspNetCore.Mvc;
 using BitirmeProjesi.Shared.Utilities.Results.Complex_Types;
 using System.Text.Json;
+using BitirmeProjesi.MVC.Areas.Admin.Models;
+using BitirmeProjesi.Shared.Utilities.Extensions;
+using BitirmeProjesi.Entities.Concrete;
 
 namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 {
@@ -20,26 +23,57 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             _movieService = movieService;
             _commentService = commentService;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
-            TempData["Active"] = "film";
-            var result = await _movieService.GetAll();
-            return View(result.Data);
+            if (id == null)
+            {
+                var result = await _movieService.GetAll();
+                return View(result.Data);
+            }
+            else
+            {
+                var result = await _movieService.GetCategories((int)id);
+                return View(result.Data);
+            }
         }
-        
+
         [HttpGet("Admin/Movie/Details/{Id}")]
         public async Task<IActionResult> Details(int Id)
         {
-            TempData["Active"] = "film";
             var result = await _movieService.Get(Id);
             return View(result.Data);
         }
+
+        [HttpGet("Movie/Details/AddList")]
+        public async Task<IActionResult> AddList(int Id)
+        {
+            await _movieService.AddListMovie(Id);
+            return Json(null);
+        }
+
 
         [HttpGet]
         public IActionResult AddComment()
         {
             return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AddComment(CommentAddDto commentAddDto)
+        {
+            if (ModelState.IsValid)
+            {
+              
+                var result = await _commentService.Add(commentAddDto);
+                if (result.ResultStatus == ResultStatus.Success)
+                {
+                    return View(result.Data);
+                }
+
+            }
+            return View("Details");
+        }
+
 
         //[HttpPost]
         //public async Task<IActionResult> AddComment(CommentAddDto commentAddDto)
@@ -49,23 +83,14 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         //        var result = await _commentService.Add(commentAddDto);
         //        if (result.ResultStatus == ResultStatus.Success)
         //        {
-        //            //var sonuc = new CommentAddDto()
-        //            //{
-        //            //    Subject = commentAddDto.Subject,
-        //            //    Title = commentAddDto.Title
-        //            //};
+        //           var commentAddAjaxModel=JsonSerializer.Serialize(new CommentAddAjaxViewModel
         //            return View(result.Data);
         //        }
 
         //    }
-        //    return View("Details"); 
+        //    return View("Details");
         //}
 
-        [HttpGet("Movie/Details/AddList")]
-        public async Task<IActionResult> AddList(int Id)
-        {
-             await _movieService.AddListMovie(Id);
-            return Json(null);
-        }
+
     }
 }

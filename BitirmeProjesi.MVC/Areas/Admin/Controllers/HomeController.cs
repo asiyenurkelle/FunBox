@@ -20,11 +20,23 @@ namespace BitirmeProjesi.MVC.Areas.Anasayfa.Controllers
         {
             _bookSerieMovieService = bookSerieMovieService;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
-            var result = await _bookSerieMovieService.GetAll();
-            return View(result.Data);
+            if (id == null)
+            {
+                var result = await _bookSerieMovieService.GetAll();
+                return View(result.Data);
+            }
+            else
+            {
+                var result = await _bookSerieMovieService.GetCategories((int)id);
+                return View(result.Data);
+            }
+           
             
         }
+      
+
+
     }
 }

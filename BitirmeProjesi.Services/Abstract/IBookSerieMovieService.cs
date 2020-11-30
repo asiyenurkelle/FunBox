@@ -10,6 +10,7 @@ namespace BitirmeProjesi.Services.Abstract
     public interface IBookSerieMovieService
     {
         Task<IDataResult<BookSerieMovieDto>> GetAll();
+        Task<IDataResult<BookSerieMovieDto>> GetCategories(int? id);
     
     }
 }

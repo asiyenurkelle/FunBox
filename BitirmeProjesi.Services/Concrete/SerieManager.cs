@@ -42,11 +42,13 @@ namespace BitirmeProjesi.Services.Concrete
         public async Task<IDataResult<SerieListDto>> GetAll()
         {
             var series = await _unitOfWork.Series.GetAllAsync(null, s => s.Category, s => s.Comments);
+            var categories = await _unitOfWork.Categories.GetAllAsync(null, c => c.Series);
             if (series.Count > -1)
             {
                 return new DataResult<SerieListDto>(ResultStatus.Success, new SerieListDto
                 {
                     Series = series,
+                    Categories=categories,
                     ResultStatus = ResultStatus.Success,
                     Message = Messages.Serie.NotFound(true)
                 });
@@ -85,6 +87,28 @@ namespace BitirmeProjesi.Services.Concrete
             {
                 return new DataResult<SerieUpdateDto>(ResultStatus.Error, "Dizi bulunamadı.", null);
             }
+        }
+
+        public async Task<IDataResult<SerieListDto>> GetCategories(int? id)
+        {
+            var categoriesSerie = await _unitOfWork.Series.GetAllAsync(s => s.CategoryId == id, s => s.Category);
+            var categories = await _unitOfWork.Categories.GetAllAsync(null, c => c.Books, c => c.Movies, c => c.Series);
+            if (categoriesSerie != null)
+            {
+                return new DataResult<SerieListDto>(ResultStatus.Success, new SerieListDto
+                {
+                    Series = categoriesSerie,
+                    Categories = categories,
+
+                    ResultStatus = ResultStatus.Success
+                });
+            }
+            return new DataResult<SerieListDto>(ResultStatus.Error, "Diziler bulunamadı.", new SerieListDto
+            {
+                Series = null,
+                ResultStatus = ResultStatus.Error,
+                Message = "Diziler bulunamadı."
+            });
         }
     }
 }

@@ -17,26 +17,28 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             _serieService = serieService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
-            TempData["Active"] = "dizi";
-            var result = await _serieService.GetAll();
-            return View(result.Data);
+            if (id == null)
+            {
+                var result = await _serieService.GetAll();
+                return View(result.Data);
+            }
+            else
+            {
+                var result = await _serieService.GetCategories((int)id);
+                return View(result.Data);
+            }
         }
 
         [HttpGet("Admin/Serie/Details/{Id}")]
         public async Task<IActionResult> Details(int Id)
         {
-            TempData["Active"] = "dizi";
+
             var result = await _serieService.Get(Id);
             return View(result.Data);
         }
 
-        [HttpGet("Admin/Serie/AddComment/{Id}")]
-        public IActionResult AddComment()
-        {
-            return View();
-        }
 
 
 

@@ -1,21 +1,24 @@
-﻿@{ 
+﻿@model BitirmeProjesi.Entities.Dtos.BookSerieMovieDto
+
+@*@{
     string active = string.Empty;
-    if( TempData["Active"] != null)
+    if (TempData["Active"] != null)
     {
         active = TempData["Active"].ToString();
     }
-}
+}*@
 
 
 <div class="col-lg-3">
 
     <h4 class="my-4 text-info h-auto w-auto">E-Hobilerim </h4>
-    <div class="list-group">
-        <a asp-area="Admin" asp-controller="Movie" asp-action="Index" class="list-group-item text-white @(active=="film"?"active":"")">FİLM</a>
-        <a asp-area="Admin" asp-controller="Serie" asp-action="Index" class="list-group-item text-white  @(active=="dizi"?"active":"")">DİZİ</a>
-        <a asp-area="Admin" asp-controller="Book" asp-action="Index" class="list-group-item text-white  @(active=="kitap"?"active":"")">KİTAP</a>
+    <div class="list-group ">
+        @foreach (var categories in Model.Categories)
+        {
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" asp-route-id="@categories.Id"  class="list-group-item text-info @*@(active=="film"?"active":""*@)">@categories.Name</a>
+
+        }
+
 
     </div>
-
-
 </div>

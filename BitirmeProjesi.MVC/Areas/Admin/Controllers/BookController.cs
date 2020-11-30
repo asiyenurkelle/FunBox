@@ -20,27 +20,28 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             _bookService = bookService;
            
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
-            TempData["Active"] = "kitap";
-            var result = await _bookService.GetAll();
-            return View(result.Data);
+            if (id == null)
+            {
+                var result = await _bookService.GetAll();
+                return View(result.Data);
+            }
+            else
+            {
+                var result = await _bookService.GetCategories((int)id);
+                return View(result.Data);
+            }
         }
 
         [HttpGet("Admin/Book/Details/{Id}")]
         public async Task<IActionResult> Details(int Id)
         {
-            TempData["Active"] = "kitap";
+            
             var result = await _bookService.Get(Id);
             return View(result.Data);
         }
 
-        [HttpGet("Admin/Book/AddComment/{Id}")]
-        public IActionResult AddComment()
-        {
-            return View();
-           
-        }
 
         [HttpGet("Book/Details/AddList")]
         public async Task<IActionResult> AddList(int Id)
@@ -48,10 +49,6 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             var book = await _bookService.AddListBook(Id);
             return Json(null);
         }
-
-
-
-
 
 
     }

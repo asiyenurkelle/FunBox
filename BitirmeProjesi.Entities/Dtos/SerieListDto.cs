@@ -10,6 +10,7 @@ namespace BitirmeProjesi.Entities.Dtos
     public class SerieListDto:DtoGetBase
     {
         public IList<Serie> Series { get; set; }
+        public IList<Category> Categories { get; set; }
         
     }
 }

@@ -3,13 +3,16 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+@*<link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">*@
 <script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="~/vendor/jquery/jquery.min.js"></script>
+
+<link href="~/css/MoodTest.css" rel="stylesheet" />
+
 <!------ Include the above in your HEAD tag ---------->
 
 <div class="container-fluid bg-info">
-   
+
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -42,3 +45,39 @@
         </div>
     </div>
 </div>
+
+@section Scripts{
+  <script>
+      $(function () {
+          var loading = $('#loadbar').hide();
+          $(document)
+              .ajaxStart(function () {
+                  loading.show();
+              }).ajaxStop(function () {
+                  loading.hide();
+              });
+
+          $("label.btn").on('click', function () {
+              var choice = $(this).find('input:radio').val();
+              $('#loadbar').show();
+              $('#quiz').fadeOut();
+              setTimeout(function () {
+                  $("#answer").html($(this).checking(choice));
+                  $('#quiz').show();
+                  $('#loadbar').fadeOut();
+                  /* something else */
+              }, 1500);
+          });
+
+          $ans = 3;
+
+          $.fn.checking = function (ck) {
+              if (ck != $ans)
+                  return 'INCORRECT';
+              else
+                  return 'CORRECT';
+          };
+      });	
+  </script>
+}
+    

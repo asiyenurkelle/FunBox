@@ -10,6 +10,7 @@ namespace BitirmeProjesi.Entities.Dtos
     public class BookDto:DtoGetBase
     {
         public Book Book { get; set; }
+        public IList<Category> Categories { get; set; }
        
     }
 }

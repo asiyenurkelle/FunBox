@@ -45,11 +45,13 @@ namespace BitirmeProjesi.Services.Concrete
         public async Task<IDataResult<MovieListDto>> GetAll()
         {
             var movies = await _unitOfWork.Movies.GetAllAsync(null, m => m.Category);
+            var categories = await _unitOfWork.Categories.GetAllAsync(null, m => m.Movies);
             if (movies.Count > -1)
             {
                 return new DataResult<MovieListDto>(ResultStatus.Success, new MovieListDto
                 {
                     Movies = movies,
+                    Categories=categories,
                     ResultStatus = ResultStatus.Success,
                     Message = Messages.Movie.NotFound(isPlural: true)
 
@@ -90,6 +92,27 @@ namespace BitirmeProjesi.Services.Concrete
             {
                 return new DataResult<MovieUpdateDto>(ResultStatus.Error, "Film bulunamadı.", null);
             }
+        }
+        public async Task<IDataResult<MovieListDto>> GetCategories(int? id)
+        {
+            var categoriesMovie = await _unitOfWork.Movies.GetAllAsync(m => m.CategoryId == id, m => m.Category);
+            var categories = await _unitOfWork.Categories.GetAllAsync(null, c => c.Books, c => c.Movies, c => c.Series);
+            if (categoriesMovie != null)
+            {
+                return new DataResult<MovieListDto>(ResultStatus.Success, new MovieListDto
+                {
+                    Movies = categoriesMovie,
+                    Categories = categories,
+
+                    ResultStatus = ResultStatus.Success
+                });
+            }
+            return new DataResult<MovieListDto>(ResultStatus.Error, "Filmler bulunamadı.", new MovieListDto
+            {
+                Movies = null,
+                ResultStatus = ResultStatus.Error,
+                Message = "Filmler bulunamadı."
+            });
         }
 
 

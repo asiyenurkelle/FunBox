@@ -15,5 +15,7 @@ namespace BitirmeProjesi.Services.Abstract
         Task<IDataResult<SerieUpdateDto>> GetSerieUpdateDto(int serieId);
         Task<IDataResult<SerieUpdateDto>> AddListSerie(int serieId);
 
+        Task<IDataResult<SerieListDto>> GetCategories(int? id);
+
     }
 }

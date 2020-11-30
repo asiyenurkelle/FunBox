@@ -3136,14 +3136,18 @@
           "BitirmeProjesi.Data": "1.0.0",
           "BitirmeProjesi.Entities": "1.0.0",
           "BitirmeProjesi.Shared": "1.0.0",
-          "Microsoft.AspNetCore.Identity": "2.2.0"
+          "Microsoft.AspNetCore.Identity": "2.2.0",
+          "PagedList.Core.Mvc": "3.0.0"
         },
         "compile": {
           "bin/placeholder/BitirmeProjesi.Services.dll": {}
         },
         "runtime": {
           "bin/placeholder/BitirmeProjesi.Services.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "BitirmeProjesi.Shared/1.0.0": {
         "type": "project",

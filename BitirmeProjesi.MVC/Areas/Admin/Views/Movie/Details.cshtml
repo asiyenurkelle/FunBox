@@ -3,9 +3,13 @@
 @{
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+
+
 <div class="container">
     <div class="row">
-        @await Html.PartialAsync("_LayoutListGroupPartial")
+        <div class="col-lg-3">
+
+        </div>
 
         <div class="col-lg-7 p-5">
 
@@ -41,7 +45,7 @@
                 </div>
                 @foreach (var movie in Model.Movie.Comments)
                 {
-                    <div class="card-body" id="placeHolderBooks">
+                    <div class="card-body">
                         <p class="font-weight-bold">@movie.Title</p>
                         <p>@movie.Subject</p>
                         <small class="text-muted">Posted by Anonymous on 3/1/17</small>

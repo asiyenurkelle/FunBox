@@ -1,38 +1,41 @@
 ﻿@model BitirmeProjesi.Entities.Dtos.BookSerieMovieDto
 @{
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+   
 }
 @if (Model.ResultStatus == BitirmeProjesi.Shared.Utilities.Results.Complex_Types.ResultStatus.Success)
 {
-    <div  id="modalPlaceHolder" aria-hidden="true"></div>
+    <div id="modalPlaceHolder" aria-hidden="true"></div>
     <div class="container">
 
         <div class="row" id="HomePage">
 
             @await Html.PartialAsync("_LayoutListGroupPartial")
+           
+
             <!-- /.col-lg-3 -->
 
-            <div class="col-lg-9 p-3">
-                
+            <div class="col-lg-9 p-3 pt-5">
+
                 <div class="row ">
-                
+
 
                     @foreach (var book in Model.Books)
                     {
-                        <div class="col-lg-4 col-md-6 mb-4"> 
+                        <div class="col-lg-4 col-md-6 mb-4">
 
-                            <div class="card h-100" >
+                            <div class="card h-100">
                                 <img class="card-img-top" src="~/img/@book.ThumbNail" alt="">
                                 <div class="card-body ">
                                     <h4 class="card-title">
-                                        <a asp-area="Admin" asp-controller="Book" asp-action="Index" class="text-info">@book.Title</a>
+                                        <a asp-area="Admin" asp-controller="Book" asp-action="Details"  asp-route-id="@book.Id" class="text-info">@book.Title</a>
                                     </h4>
 
                                     <p class="card-text">
                                         @book.Subject
                                     </p>
                                 </div>
-                                
+
                             </div>
                         </div>
                     }
@@ -44,14 +47,14 @@
                                 <img class="card-img-top" src="~/img/@serie.ThumbNail" alt="">
                                 <div class="card-body">
                                     <h4 class="card-title">
-                                        <a asp-area="Admin" asp-controller="Serie" asp-action="Index" class="text-info">@serie.Title</a>
+                                        <a asp-area="Admin" asp-controller="Serie" asp-action="Details" asp-route-id="@serie.Id" class="text-info">@serie.Title</a>
                                     </h4>
 
                                     <p class="card-text">
                                         @serie.Subject
                                     </p>
                                 </div>
-                                
+
                             </div>
                         </div>
                     }
@@ -64,14 +67,14 @@
                                 <div class="card-body">
                                     <h4 class="card-title ">
 
-                                        <a asp-area="Admin" asp-controller="Movie" asp-action="Index" class="text-info">@movie.Title</a>
+                                        <a asp-area="Admin" asp-controller="Movie" asp-action="Details" asp-route-id="@movie.Id" class="text-info">@movie.Title</a>
                                     </h4>
 
                                     <p class="card-text">
                                         @movie.Subject
                                     </p>
                                 </div>
-                                
+
                             </div>
                         </div>
                     }
