@@ -31,19 +31,13 @@
     </nav>
    
         <footer class="pt-5 bg-dark p-5">
-            @*<div class="container bg-transparent">*@
-
+            
                 @RenderBody()
-            @*</div>*@
-
-            <!-- /.container -->
+            
         </footer>
    
 
-    <!-- Page Content -->
-    <!-- /.container -->
-    <!-- Footer -->
-    <!-- Bootstrap core JavaScript -->
+    
     @await Html.PartialAsync("_LayoutJsPartial")
     @await RenderSectionAsync("Scripts", false)
 
