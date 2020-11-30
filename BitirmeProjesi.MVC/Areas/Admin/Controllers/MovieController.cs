@@ -25,6 +25,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Index(int? id)
         {
+            ViewBag.SelectedCategory = RouteData.Values["id"];
             if (id == null)
             {
                 var result = await _movieService.GetAll();
