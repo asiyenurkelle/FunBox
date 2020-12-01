@@ -1,13 +1,13 @@
 ﻿@model BitirmeProjesi.Entities.Dtos.UserLoginDto
 @{ 
-    Layout = "~/Areas/Admin/Views/Shared/_UserLoginLayout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutLoginAndSignUp.cshtml";
     ViewBag.Title = "Giriş Yap";
 }
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-5">
-            <div class="card shadow-lg  rounded-lg mt-5 bg-dark">
-                <div class="card-header text-info"><h3 class="text-center bg-dark my-4"> <span class="fas fa-house-user"></span> Giriş Yap</h3></div>
+            <div class="card  mt-5 bg-dark">
+                <div class="card-header text-info"><h3 class="text-center  my-4"> <span class="fas fa-house-user"></span> Giriş Yap</h3></div>
                 <div class="card-body">
                     <form asp-controller="User" asp-action="Login" method="post">
                         <div asp-validation-summary="All" class="text-danger">
@@ -17,25 +17,26 @@
                             <input class="form-control py-4 " asp-for="Email" type="email" placeholder="Lütfen e-posta adresinizi giriniz." />
                             <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
+
                         <div class="form-group">
                             <label class="small  text-white" asp-for="Password">Şifre</label>
                             <input class="form-control py-4 " asp-for="Password" type="password" placeholder="Lütfen şifrenizi giriniz." />
                             <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
-                        <div class="form-group">
-                            <div>
-                                
-                            </div>
-                        </div>
+
+                        
+
                         <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                            <a class="btn btn-info text-white "asp-area="Admin" asp-controller="User" asp-action="ResetPassword "> <span class="fas fa-user-lock "></span> Şifremi Unuttum</a>
-                            <button class="btn btn-info" type="submit" > <span class="fas fa-sign-in-alt"></span> Giriş Yap</button>
+                            <a class="btn btn-info text-white " asp-area="Admin" asp-controller="User" asp-action="ResetPassword "> <span class="fas fa-user-lock "></span> Şifremi Unuttum</a>
+                            <button class="btn btn-info" type="submit"> <span class="fas fa-sign-in-alt"></span> Giriş Yap</button>
                         </div>
+
                     </form>
                 </div>
-                <div class="card-footer text-center">
-                   <a class="btn btn-info btn-block text-white" asp-area="Admin" asp-controller="User" asp-action="SignUp"> <span class="fas fa-user-edit"></span> Kayıt Ol</a>
+                <div class="form">
+                    <a type="submit" class="btn btn-info btn-block" asp-area="Admin" asp-controller="User" asp-action="SignUp"><span class="fas fa-user-edit"></span> Kayıt Ol </a>
                 </div>
+
             </div>
         </div>
     </div>

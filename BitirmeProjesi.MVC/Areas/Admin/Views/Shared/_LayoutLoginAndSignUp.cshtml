@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>@ViewBag.Title-E Hobilerim </title>
+
+    @await Html.PartialAsync("_LayoutCssPartial")
+
+</head>
+
+<body>
+
+    <footer class="pt-5 bg-dark p-5">
+
+        @RenderBody()
+
+    </footer>
+
+    @await Html.PartialAsync("_LayoutJsPartial")
+    @await RenderSectionAsync("Scripts", false)
+
+</body>
+
+</html>

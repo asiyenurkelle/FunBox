@@ -1,13 +1,13 @@
 ﻿@model BitirmeProjesi.Entities.Dtos.UserSignUpDto
 @{ 
-    Layout = "~/Areas/Admin/Views/Shared/_UserLoginLayout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutLoginAndSignUp.cshtml";
     ViewBag.Title = "Kayıt Ol";
     }
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-5">
-            <div class="card shadow-lg  rounded-lg mt-5 bg-dark">
-                <div class="card-header text-info"><h3 class="text-center bg-dark my-4"> <span class="fas fa-house-user"></span> Kaydol</h3></div>
+            <div class="card   mt-5 bg-dark">
+                <div class="card-header text-info"><h3 class="text-center  my-4"> <span class="fas fa-house-user"></span> Kaydol</h3></div>
                 <div class="card-body">
                     <form asp-controller="User" asp-action="SignUp" method="post">
                         <div asp-validation-summary="All" class="text-danger">
@@ -41,14 +41,12 @@
                         </div>
 
                         <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                            <a class="btn btn-info text-white"> <span class="fas fa-user-lock "></span> Şifremi Unuttum</a>
+                            <a class="btn btn-info text-white" asp-controller="User" asp-action="Login"> <span class="fas fa-user-lock "></span> Vazgeç</a>
                             <button class="btn btn-info" type="submit"> <span class="fas fa-sign-in-alt"></span> Kaydol</button>
                         </div>
                     </form>
                 </div>
-                @*<div class="card-footer text-center">
-                    <a class="btn btn-info btn-block text-white"> <span class="fas fa-user-edit"></span> Kaydol</a>
-                </div>*@
+                
             </div>
         </div>
     </div>

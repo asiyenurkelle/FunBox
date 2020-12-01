@@ -23,18 +23,15 @@ namespace BitirmeProjesi.Services.Concrete
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<IDataResult<CommentDto>> Add(CommentAddDto commentAddDto)
+        public async Task<IResult> Add(CommentAddDto commentAddDto)
         {
-            var comment = _mapper.Map<Comment>(commentAddDto);
-            var addedComment = await _unitOfWork.Comments.AddAsync(comment); 
-            await _unitOfWork.SaveAsync();
-            //USERID EKLENCEK BUNUN İÇİNDE USER İSLEMLERİNİ EKLE.KİMİN YORUM YAPTIGINI GÖRMEK İÇİN.
-            return new DataResult<CommentDto>(ResultStatus.Success, Messages.Comment.Add(addedComment.Title), new CommentDto
+            await _unitOfWork.Comments.AddAsync(new Comment
             {
-                Comment = addedComment,
-                ResultStatus = ResultStatus.Success,
-                Message = Messages.Comment.Add(addedComment.Title)
+                MovieId = commentAddDto.Movie.Id,
+                Subject = commentAddDto.Subject,
+                Title = commentAddDto.Title
             });
+            return new  Result(ResultStatus.Success);
         }
 
         public async Task<IResult> Delete(int commentId)

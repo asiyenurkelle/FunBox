@@ -427,3 +427,4 @@ C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreap
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\Book\AddComment.cshtml.g.cs
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\Movie\AddComment.cshtml.g.cs
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\Serie\AddComment.cshtml.g.cs
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\Shared\_LayoutLoginAndSignUp.cshtml.g.cs

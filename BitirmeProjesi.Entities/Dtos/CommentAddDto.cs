@@ -1,4 +1,5 @@
-﻿using BitirmeProjesi.Shared.Entities.Abstract;
+﻿using BitirmeProjesi.Entities.Concrete;
+using BitirmeProjesi.Shared.Entities.Abstract;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,13 +8,13 @@ using System.Text;
 
 namespace BitirmeProjesi.Entities.Dtos
 {
-    public class CommentAddDto:DtoGetBase
+    public class CommentAddDto : DtoGetBase
     {
 
         [DisplayName("Yorum Başlığı:")]
-        [Required(ErrorMessage ="{0} boş geçilmemelidir")]
-        [MaxLength(100,ErrorMessage= "{0} {1} karakterden büyük olmamalıdır!")]
-        [MinLength(3,ErrorMessage ="{0} {1} karakterden az olmamalıdır!")]
+        [Required(ErrorMessage = "{0} boş geçilmemelidir")]
+        [MaxLength(100, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır!")]
+        [MinLength(3, ErrorMessage = "{0} {1} karakterden az olmamalıdır!")]
         public string Title { get; set; }
 
         [DisplayName("Yorum İçeriği:")]
@@ -21,5 +22,8 @@ namespace BitirmeProjesi.Entities.Dtos
         [MaxLength(500, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır!")]
         [MinLength(3, ErrorMessage = "{0} {1} karakterden az olmamalıdır!")]
         public string Subject { get; set; }
+        public Comment Comment { get; set; }
+        public Movie Movie { get; set; }
     }
+
 }

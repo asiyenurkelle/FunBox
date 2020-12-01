@@ -53,27 +53,29 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         }
 
 
-        [HttpGet]
-        public IActionResult AddComment()
-        {
-            return View();
-        }
+        //[HttpGet]
+        //public IActionResult AddComment(int id)
+        //{
+        //    CommentAddDto model = new CommentAddDto();
+        //    model.Movie.Id = id;
+        //    return View();
+        //}
 
-        [HttpPost]
-        public async Task<IActionResult> AddComment(CommentAddDto commentAddDto)
-        {
-            if (ModelState.IsValid)
-            {
+        //[HttpPost]
+        //public async Task<IActionResult> AddComment(CommentAddDto commentAddDto)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
               
-                var result = await _commentService.Add(commentAddDto);
-                if (result.ResultStatus == ResultStatus.Success)
-                {
-                    return View(result.Data);
-                }
+        //        var result = await _commentService.Add(commentAddDto);
+        //        if (result.ResultStatus == ResultStatus.Success)
+        //        {
+        //            return View(result);
+        //        }
 
-            }
-            return View("Details");
-        }
+        //    }
+        //    return View("Details");
+        //}
 
 
         //[HttpPost]
