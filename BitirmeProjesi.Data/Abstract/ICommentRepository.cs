@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace BitirmeProjesi.Data.Abstract
 {
-    public interface ICommentRepository:IEntityRepository<Comment>
+    public interface ICommentRepository : IEntityRepository<Comment>
     {
-        Task<Comment> GetById(int commentId);
     }
 }

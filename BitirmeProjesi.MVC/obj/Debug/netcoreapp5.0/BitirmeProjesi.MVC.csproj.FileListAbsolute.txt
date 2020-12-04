@@ -413,7 +413,6 @@ C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\bin\Debug\netcoreap
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\BitirmeProjesi.MVC.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\scopedcss\bundle\BitirmeProjesi.MVC.styles.css
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\ref\BitirmeProjesi.MVC.dll
-C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\Shared\_UserLoginLayout.cshtml.g.cs
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\User\UserLogin.cshtml.g.cs
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\User\PasswordChange.cshtml.g.cs
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\User\UserSignUp.cshtml.g.cs
@@ -428,3 +427,5 @@ C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreap
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\Movie\AddComment.cshtml.g.cs
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\Serie\AddComment.cshtml.g.cs
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\Shared\_LayoutLoginAndSignUp.cshtml.g.cs
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Mvc\bin\Debug\netcoreapp5.0\Humanizer.dll
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Mvc\bin\Debug\netcoreapp5.0\Microsoft.EntityFrameworkCore.Design.dll

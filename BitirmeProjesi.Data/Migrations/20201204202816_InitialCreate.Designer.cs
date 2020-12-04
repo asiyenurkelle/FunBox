@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BitirmeProjesi.Data.Migrations
 {
     [DbContext(typeof(BitirmeProjesiContext))]
-    [Migration("20201124093132_InitialCreate")]
+    [Migration("20201204202816_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,43 @@ namespace BitirmeProjesi.Data.Migrations
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
+
+            modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.Answer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("AnswerText")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Options1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Options2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Options3")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Answers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AnswerText = "1 saat",
+                            Options1 = "1 saatten az",
+                            Options2 = "2 saat",
+                            Options3 = "2 saat ve daha fazla"
+                        });
+                });
 
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.Book", b =>
                 {
@@ -359,6 +396,36 @@ namespace BitirmeProjesi.Data.Migrations
                             ThumbNail = "eskiya.jpg",
                             Time = "2 saat 8 dakika",
                             Title = "Eşkiya"
+                        });
+                });
+
+            modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.Question", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("AnswerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("QuestionText")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnswerId")
+                        .IsUnique();
+
+                    b.ToTable("Questions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AnswerId = 1,
+                            QuestionText = "Film izlerken sıkılmadan devam edebildiğin ideal süren aşağıdakilerden hangisine daha yakındır?"
                         });
                 });
 
@@ -748,6 +815,17 @@ namespace BitirmeProjesi.Data.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.Question", b =>
+                {
+                    b.HasOne("BitirmeProjesi.Entities.Concrete.Answer", "Answer")
+                        .WithOne("Question")
+                        .HasForeignKey("BitirmeProjesi.Entities.Concrete.Question", "AnswerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Answer");
+                });
+
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.RoleClaim", b =>
                 {
                     b.HasOne("BitirmeProjesi.Entities.Concrete.Role", null)
@@ -808,6 +886,11 @@ namespace BitirmeProjesi.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.Answer", b =>
+                {
+                    b.Navigation("Question");
                 });
 
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.Book", b =>

@@ -19,8 +19,6 @@ namespace BitirmeProjesi.MVC
         }
 
         public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 
@@ -31,7 +29,7 @@ namespace BitirmeProjesi.MVC
             });
             services.AddSession();
             services.AddAutoMapper(typeof(CommentProfile));
-            services.LoadMyServices();
+            services.LoadMyServices(connectionString:Configuration.GetConnectionString("LocalDB"));
             services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = new PathString("/Admin/User/Login");

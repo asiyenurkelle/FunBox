@@ -18,11 +18,6 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Repositories
 
         }
 
-        public async Task<Comment> GetById(int commentId)
-        {
-            return await BitirmeProjesiContext.Comments.SingleOrDefaultAsync(c => c.Id == commentId);
-        }
-
         private BitirmeProjesiContext BitirmeProjesiContext
         {
             get

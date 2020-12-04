@@ -11,20 +11,18 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Contexts
 {
     public class BitirmeProjesiContext:IdentityDbContext<User,Role,int,UserClaim,UserRole,UserLogin,RoleClaim,UserToken>
     {
+        public BitirmeProjesiContext(DbContextOptions<BitirmeProjesiContext> options):base(options)
+        {
+
+        }
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Serie> Series { get; set; }
         public DbSet<Book> Books { get; set; }
-      
         public DbSet<Category> Categories { get; set; }
-       
-
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Answer> Answers { get; set; }
+        public DbSet<Question> Questions { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server = . ; Database = BitirmeProjesi; integrated security=true");
-
-        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new MovieMap());
@@ -39,10 +37,8 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Contexts
             modelBuilder.ApplyConfiguration(new UserLoginMap());
             modelBuilder.ApplyConfiguration(new UserRoleMap());
             modelBuilder.ApplyConfiguration(new UserTokenMap());
-
-
-
-
+            modelBuilder.ApplyConfiguration(new QuestionMap());
+            modelBuilder.ApplyConfiguration(new AnswerMap());
         }
     }
 }

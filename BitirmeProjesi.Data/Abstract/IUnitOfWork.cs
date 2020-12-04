@@ -13,6 +13,9 @@ namespace BitirmeProjesi.Data.Abstract
         ICategoryRepository Categories { get; }
       
         ICommentRepository Comments { get; }
+
+        IAnswerRepository Answers { get; }
+        IQuestionRepository Questions { get; }
         Task<int> SaveAsync();
     }
 }

@@ -5,6 +5,7 @@ using BitirmeProjesi.Entities.Concrete;
 using BitirmeProjesi.Services.Abstract;
 using BitirmeProjesi.Services.Concrete;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,9 @@ namespace BitirmeProjesi.Services.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection LoadMyServices(this IServiceCollection serviceCollection)
+        public static IServiceCollection LoadMyServices(this IServiceCollection serviceCollection,string connectionString)
         {
-            serviceCollection.AddDbContext<BitirmeProjesiContext>();
+            serviceCollection.AddDbContext<BitirmeProjesiContext>(options=>options.UseSqlServer(connectionString));
             serviceCollection.AddIdentity<User, Role>(options =>
             {
                 //USER PASSWORD OPTİONS
