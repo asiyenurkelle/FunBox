@@ -7,6 +7,8 @@ using BitirmeProjesi.Entities.Dtos;
 using BitirmeProjesi.Services.Abstract;
 using Microsoft.AspNetCore.Mvc;
 using BitirmeProjesi.Shared.Utilities.Results.Complex_Types;
+using Microsoft.AspNetCore.Identity;
+using BitirmeProjesi.Entities.Concrete;
 
 namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 {
@@ -14,14 +16,17 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
     public class BookController : Controller
     {
         private readonly IBookService _bookService;
-     
-        public BookController(IBookService bookService)
+        private readonly UserManager<User> _userManager;
+
+        public BookController(IBookService bookService, UserManager<User> userManager)
         {
             _bookService = bookService;
+            _userManager = userManager;
            
         }
         public async Task<IActionResult> Index(int? id)
         {
+            TempData["Active"] = "Kitap";
             ViewBag.SelectedCategory = RouteData.Values["id"];
             if (id == null)
             {
@@ -38,7 +43,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         [HttpGet("Admin/Book/Details/{Id}")]
         public async Task<IActionResult> Details(int Id)
         {
-            
+            TempData["Active"] = "Kitap";
             var result = await _bookService.Get(Id);
             return View(result.Data);
         }
@@ -47,6 +52,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         [HttpGet("Book/Details/AddList")]
         public async Task<IActionResult> AddList(int Id)
         {
+            TempData["Active"] = "Kitap";
             var book = await _bookService.AddListBook(Id);
             return Json(null);
         }

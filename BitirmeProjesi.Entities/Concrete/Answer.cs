@@ -12,7 +12,6 @@ namespace BitirmeProjesi.Entities.Concrete
         public string AnswerText { get; set; }
         public string Options1 { get; set; }
         public string Options2 { get; set; }
-        public string Options3 { get; set; }
         public Question Question { get; set; }
     }
 }

@@ -25,6 +25,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Index(int? id)
         {
+            TempData["Active"] = "Film";
             ViewBag.SelectedCategory = RouteData.Values["id"];
             if (id == null)
             {
@@ -41,6 +42,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         [HttpGet("Admin/Movie/Details/{Id}")]
         public async Task<IActionResult> Details(int Id)
         {
+            TempData["Active"] = "Film";
             var result = await _movieService.Get(Id);
             return View(result.Data);
         }
@@ -48,6 +50,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         [HttpGet("Movie/Details/AddList")]
         public async Task<IActionResult> AddList(int Id)
         {
+            TempData["Active"] = "Film";
             await _movieService.AddListMovie(Id);
             return Json(null);
         }

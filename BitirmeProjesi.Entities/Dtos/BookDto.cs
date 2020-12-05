@@ -11,6 +11,7 @@ namespace BitirmeProjesi.Entities.Dtos
     {
         public Book Book { get; set; }
         public IList<Category> Categories { get; set; }
+        public User User { get; set; }
        
     }
 }

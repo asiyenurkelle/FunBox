@@ -26,6 +26,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 
         public async Task< IActionResult> Index()
         {
+            TempData["Active"] = "Aktiviteler";
             var result = await _activityService.GetActivities();
             return View(result.Data);
         }

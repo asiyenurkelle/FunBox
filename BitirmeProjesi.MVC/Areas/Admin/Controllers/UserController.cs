@@ -25,17 +25,20 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
+            TempData["Active"] = "Kullanıcı";
             return View();
         }
         [HttpGet]
         public IActionResult Login()
         {
+            TempData["Active"] = "Kullanıcı";
             return View("UserLogin");
         }
 
         [HttpPost]
         public async Task<IActionResult> Login(UserLoginDto userLoginDto)
         {
+            TempData["Active"] = "Kullanıcı";
             if (ModelState.IsValid)
             {
                 var user = await _userManager.FindByEmailAsync(userLoginDto.Email);
@@ -69,12 +72,14 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult SignUp()
         {
+            TempData["Active"] = "Kullanıcı";
             return View("UserSignUp");
         }
 
         [HttpPost]
         public async Task<IActionResult> SignUp(UserSignUpDto userSignUpDto)
         {
+            TempData["Active"] = "Kullanıcı";
             if (ModelState.IsValid)
             {
                 User user = new User
@@ -108,6 +113,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         [HttpGet]
         public ViewResult PasswordChange()
         {
+            TempData["Active"] = "Kullanıcı";
             return View();
         }
 
@@ -115,6 +121,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> PasswordChange(UserPasswordChangeDto userPasswordChangeDto)
         {
+            TempData["Active"] = "Kullanıcı";
             if (ModelState.IsValid)
             {
                 var user = await _userManager.GetUserAsync(HttpContext.User);
@@ -152,6 +159,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         [AllowAnonymous]
         public ViewResult ResetPassword()
         {
+            TempData["Active"] = "Kullanıcı";
             return View();
         }
 
@@ -160,6 +168,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 
         public async Task<IActionResult> ResetPassword(UserPasswordResetDto userPasswordResetDto)
         {
+            TempData["Active"] = "Kullanıcı";
             if (ModelState.IsValid)
             {
 
@@ -204,10 +213,12 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         [HttpGet("[action]/{userId}/{token}")]
         public IActionResult UpdatePassword(string userId, string token)
         {
+            TempData["Active"] = "Kullanıcı";
             return View();
         }
         public async Task<IActionResult> UpdatePassword(UserUpdatePasswordDto userUpdatePasswordDto, string userId, string token)
         {
+            TempData["Active"] = "Kullanıcı";
             User user = await _userManager.FindByIdAsync(userId);
             IdentityResult result = await _userManager.ResetPasswordAsync(user, HttpUtility.UrlDecode(token), userUpdatePasswordDto.Password);
             if (result.Succeeded)
@@ -226,6 +237,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Logout()
         {
+            TempData["Active"] = "Kullanıcı";
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home", new { Area = "Admin" });
         }
@@ -234,6 +246,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> UserEditProfile()
         {
+            TempData["Active"] = "Kullanıcı";
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
             UserDetailDto model = new UserDetailDto();
             model.UserName = user.UserName;
@@ -247,6 +260,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> UserEditProfile(UserDetailDto userDetailDto)
         {
+            TempData["Active"] = "Kullanıcı";
             if (ModelState.IsValid)
             {
                 User user = await _userManager.FindByNameAsync(User.Identity.Name);

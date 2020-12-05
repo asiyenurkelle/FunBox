@@ -22,6 +22,7 @@ namespace BitirmeProjesi.MVC.Areas.Anasayfa.Controllers
         }
         public async Task<IActionResult> Index(int? id)
         {
+            TempData["Active"] = "Anasayfa";
             ViewBag.SelectedCategory = RouteData.Values["id"];
             if (id == null)
             {

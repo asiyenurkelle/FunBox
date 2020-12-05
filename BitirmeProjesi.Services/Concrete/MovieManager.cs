@@ -29,6 +29,7 @@ namespace BitirmeProjesi.Services.Concrete
         public async Task<IDataResult<MovieDto>> Get(int movieId)
         {
             var movie = await _unitOfWork.Movies.GetAsync(m => m.Id == movieId, m => m.Category, m => m.Comments);
+          
             if (movie != null)
             {
                 return new DataResult<MovieDto>(ResultStatus.Success, new MovieDto

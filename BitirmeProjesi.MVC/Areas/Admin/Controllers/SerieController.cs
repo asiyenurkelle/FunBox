@@ -19,6 +19,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index(int? id)
         {
+            TempData["Active"] = "Dizi";
             ViewBag.SelectedCategory = RouteData.Values["id"];
             if (id == null)
             {
@@ -35,7 +36,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         [HttpGet("Admin/Serie/Details/{Id}")]
         public async Task<IActionResult> Details(int Id)
         {
-
+            TempData["Active"] = "Dizi";
             var result = await _serieService.Get(Id);
             return View(result.Data);
         }
@@ -46,6 +47,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         [HttpGet("Serie/Details/AddList")]
         public async Task<IActionResult> AddList(int Id)
         {
+            TempData["Active"] = "Dizi";
             await _serieService.AddListSerie(Id);
             return Json(null);
         }
