@@ -16,12 +16,13 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
     public class BookController : Controller
     {
         private readonly IBookService _bookService;
-        private readonly UserManager<User> _userManager;
+        private readonly IBookQuestionService _bookQuestionService;
 
-        public BookController(IBookService bookService, UserManager<User> userManager)
+        public BookController(IBookService bookService, IBookQuestionService bookQuestionService)
         {
             _bookService = bookService;
-            _userManager = userManager;
+            _bookQuestionService = bookQuestionService;
+           
            
         }
         public async Task<IActionResult> Index(int? id)
@@ -53,8 +54,15 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         public async Task<IActionResult> AddList(int Id)
         {
             TempData["Active"] = "Kitap";
-            var book = await _bookService.AddListBook(Id);
+            var result = await _bookService.AddListBook(Id);
             return Json(null);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> MoodTesting()
+        {
+            var result = await _bookQuestionService.GetQuestions();
+            return View(result.Data);
         }
 
 

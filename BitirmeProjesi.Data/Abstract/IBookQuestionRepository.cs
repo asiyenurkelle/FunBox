@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BitirmeProjesi.Data.Abstract
 {
-    public interface IQuestionRepository : IEntityRepository<Question>
+    public interface IBookQuestionRepository : IEntityRepository<BookQuestion>
     {
     }
 }

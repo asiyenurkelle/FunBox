@@ -16,8 +16,10 @@ namespace BitirmeProjesi.Data.Concrete
         private EfBookRepository _bookRepository;
         private EfCategoryRepository _categoryRepository;
         private EfCommentRepository _commentRepository;
-        private EfQuestionRepository _questionRepository;
-        private EfAnswerRepository _answerRepository;
+        private EfBookQuestionRepository _bookquestionRepository;
+        private EfSerieQuestionRepository _seriequestionRepository;
+        private EfMovieQuestionRepository _moviequestionRepository;
+       
       
        
         public UnitOfWork(BitirmeProjesiContext bitirmeProjesiContext)
@@ -32,10 +34,10 @@ namespace BitirmeProjesi.Data.Concrete
 
         public ICategoryRepository Categories => _categoryRepository ?? new EfCategoryRepository(_bitirmeProjesiContext);
         public ICommentRepository Comments => _commentRepository ?? new EfCommentRepository(_bitirmeProjesiContext);
+        public IBookQuestionRepository BookQuestions => _bookquestionRepository ?? new EfBookQuestionRepository(_bitirmeProjesiContext);
+        public ISerieQuestionRepository SerieQuestions => _seriequestionRepository ?? new EfSerieQuestionRepository(_bitirmeProjesiContext);
+        public IMovieQuestionRepository MovieQuestions => _moviequestionRepository ?? new EfMovieQuestionRepository(_bitirmeProjesiContext);
 
-        public IAnswerRepository Answers => _answerRepository ?? new EfAnswerRepository(_bitirmeProjesiContext);
-
-        public IQuestionRepository Questions => _questionRepository ?? new EfQuestionRepository(_bitirmeProjesiContext);
 
         public async ValueTask DisposeAsync()
         {

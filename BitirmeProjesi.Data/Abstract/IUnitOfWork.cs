@@ -14,8 +14,10 @@ namespace BitirmeProjesi.Data.Abstract
       
         ICommentRepository Comments { get; }
 
-        IAnswerRepository Answers { get; }
-        IQuestionRepository Questions { get; }
+        IMovieQuestionRepository MovieQuestions { get; }
+        ISerieQuestionRepository SerieQuestions { get; }
+
+        IBookQuestionRepository BookQuestions { get; }
         Task<int> SaveAsync();
     }
 }

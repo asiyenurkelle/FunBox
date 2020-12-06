@@ -378,7 +378,6 @@ C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreap
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\BitirmeProjesi.MVC.RazorCoreGenerate.cache
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\Book\Index.cshtml.g.cs
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\Home\Index.cshtml.g.cs
-C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\MoodTest\Index.cshtml.g.cs
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\Movie\Index.cshtml.g.cs
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\Serie\Index.cshtml.g.cs
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\Shared\_Layout.cshtml.g.cs
@@ -429,3 +428,6 @@ C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreap
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\Shared\_LayoutLoginAndSignUp.cshtml.g.cs
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Mvc\bin\Debug\netcoreapp5.0\Humanizer.dll
 C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.Mvc\bin\Debug\netcoreapp5.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\Book\MoodTesting.cshtml.g.cs
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\Movie\MoodTesting.cshtml.g.cs
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0\Razor\Areas\Admin\Views\Serie\MoodTesting.cshtml.g.cs

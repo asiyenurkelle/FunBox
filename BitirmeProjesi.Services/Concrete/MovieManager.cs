@@ -25,7 +25,6 @@ namespace BitirmeProjesi.Services.Concrete
             _mapper = mapper;
         }
 
-
         public async Task<IDataResult<MovieDto>> Get(int movieId)
         {
             var movie = await _unitOfWork.Movies.GetAsync(m => m.Id == movieId, m => m.Category, m => m.Comments);
@@ -116,8 +115,43 @@ namespace BitirmeProjesi.Services.Concrete
             });
         }
 
+        public async Task<IDataResult<MovieListDto>> GetAllLessThanOneHour()
+        {
+            var movie = await _unitOfWork.Movies.GetAllAsync(m => m.Time <= 60, m=>m.Category);
+            if (movie != null)
+            {
+                 return new DataResult<MovieListDto>(ResultStatus.Success, new MovieListDto
+                {
+                    Movies=movie,
+                    ResultStatus = ResultStatus.Success
+                });
+            }
+            return new DataResult<MovieListDto>(ResultStatus.Error, "Filmler bulunamadı.", new MovieListDto
+            {
+                Movies = null,
+                ResultStatus = ResultStatus.Error,
+                Message = "Filmler bulunamadı."
+            });
 
+        }
 
-
+        public async Task<IDataResult<MovieListDto>> GetAllMoreThanOneHour()
+        {
+            var movie = await _unitOfWork.Movies.GetAllAsync(m => m.Time > 60, m => m.Category);
+            if (movie != null)
+            {
+                return new DataResult<MovieListDto>(ResultStatus.Success, new MovieListDto
+                {
+                    Movies = movie,
+                    ResultStatus = ResultStatus.Success
+                });
+            }
+            return new DataResult<MovieListDto>(ResultStatus.Error, "Filmler bulunamadı.", new MovieListDto
+            {
+                Movies = null,
+                ResultStatus = ResultStatus.Error,
+                Message = "Filmler bulunamadı."
+            });
+        }
     }
 }

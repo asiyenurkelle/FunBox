@@ -6,7 +6,8 @@
 
     <h4 class="my-4 text-info h-auto w-auto">E-Hobilerim </h4>
     <div class="list-group bg-white ">
-      
+
+        <a asp-area="Admin" asp-controller="Home" asp-action="Index" asp-route-id="null" class="list-group-item text-info ">Tüm Kategoriler</a>
         @foreach (var categories in Model.Categories)
         {
             <a asp-area="Admin" asp-controller="Home" asp-action="Index" asp-route-id="@categories.Id" class="list-group-item text-info @(ViewBag.SelectedCategory==categories.Id.ToString()?"active":"")">@categories.Name</a>

@@ -19,43 +19,6 @@ namespace BitirmeProjesi.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.Answer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("AnswerText")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Options1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Options2")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Options3")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Answers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AnswerText = "1 saat",
-                            Options1 = "1 saatten az",
-                            Options2 = "2 saat",
-                            Options3 = "2 saat ve daha fazla"
-                        });
-                });
-
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.Book", b =>
                 {
                     b.Property<int>("Id")
@@ -166,6 +129,39 @@ namespace BitirmeProjesi.Data.Migrations
                             ThumbNail = "adaletsavascilari.jpg",
                             Title = "Adalet Savaşçıları",
                             Writer = "Bahri Akkoç"
+                        });
+                });
+
+            modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.BookQuestion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("OptionsOne")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OptionsTwo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QuestionText")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BookQuestions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            OptionsOne = "200 sayfa ve altı",
+                            OptionsTwo = "200 sayfadan daha fazla",
+                            QuestionText = "Kitap okurken sıkılmadan devam edebildiğin ideal sayfa sayısı aşağıdakilerden hangisine daha yakındır?"
                         });
                 });
 
@@ -327,9 +323,8 @@ namespace BitirmeProjesi.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Time")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Time")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -353,7 +348,7 @@ namespace BitirmeProjesi.Data.Migrations
                             Scenarist = "Umur Bugay",
                             Subject = "Öğrencilik hayatları haylazlık ve tembellik üzerine kurulu olan bir sınıf dolusu matrak öğrencinin, Özel Çamlıca Lisesi’nde yaşadığı yer yer eğlenceli, yer yer de dokunaklı öyküleri anlatan film, Hababam Sınıfı serisinin ilk filmidir",
                             ThumbNail = "hababamsinifi.jpg",
-                            Time = "1 saat 30 dakika",
+                            Time = 90,
                             Title = "Hababam Sınıfı"
                         },
                         new
@@ -366,7 +361,7 @@ namespace BitirmeProjesi.Data.Migrations
                             Scenarist = "Mario Puzo",
                             Subject = "Baba, 40’lar ve 50’lerin Amerika’sında, bir İtalyan mafya ailesinin destansı öyküsünü konu alıyor. Don Corleone’nin kızı Connie’nin düğününde, ailenin en küçük oğlu ve bir savaş gazisi olan Michael babasıyla barışır. Bir suikast girişimi, Don’u artık işleri yönetemeyecek duruma düşürünce, ailenin başına Michael ve ağabeyi Sonny geçer.",
                             ThumbNail = "thegodfather.jpg",
-                            Time = "2 saat 58 dakika",
+                            Time = 178,
                             Title = "The Godfather"
                         },
                         new
@@ -379,7 +374,7 @@ namespace BitirmeProjesi.Data.Migrations
                             Scenarist = "Randall Wallace",
                             Subject = "Cesuryürek'te, William Wallace yaşanan büyük acılar sonrası yeniden memleketi olan İskoçya’ya döner. Onun asıl amacı çiftçilik yaparak sakin bir hayat sürmektir. Çocukluk aşkıyla karşılaştığında bunun onu dipsiz bir uçuruma iteceğinin farkında değildir.",
                             ThumbNail = "braveheart.jpg",
-                            Time = "3 saat 2 dakika",
+                            Time = 182,
                             Title = "Braveheart"
                         },
                         new
@@ -392,20 +387,25 @@ namespace BitirmeProjesi.Data.Migrations
                             Scenarist = "Yavuz Turgul",
                             Subject = "Eşkiya, hapse düşmesine neden olan arkadaşının peşine düşen bir adamın hikayesini anlatıyor. 35 yıl önce Cudi dağlarında bir grup eşkiya yakalandı ve hapse atıldı. Yıllar içinde kimi hastalıktan, kimi hesaplaşma sonucu öldü. Biri hariç... 35 yıl sonra Hapisten çıkınca Baran’ ın ilk işi köyüne dönmek olur.",
                             ThumbNail = "eskiya.jpg",
-                            Time = "2 saat 8 dakika",
+                            Time = 128,
                             Title = "Eşkiya"
                         });
                 });
 
-            modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.Question", b =>
+            modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.MovieQuestion", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("AnswerId")
-                        .HasColumnType("int");
+                    b.Property<string>("OptionsOne")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OptionsTwo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("QuestionText")
                         .IsRequired()
@@ -413,16 +413,14 @@ namespace BitirmeProjesi.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AnswerId")
-                        .IsUnique();
-
-                    b.ToTable("Questions");
+                    b.ToTable("MovieQuestions");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            AnswerId = 1,
+                            OptionsOne = "1 saat veya daha kısa",
+                            OptionsTwo = "1 saatten daha uzun",
                             QuestionText = "Film izlerken sıkılmadan devam edebildiğin ideal süren aşağıdakilerden hangisine daha yakındır?"
                         });
                 });
@@ -511,9 +509,8 @@ namespace BitirmeProjesi.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Time")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Time")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -537,7 +534,7 @@ namespace BitirmeProjesi.Data.Migrations
                             Scenarist = "Steven Knigt",
                             Subject = "Peaky Blinders, İngiltere'nin Birmingham şehrinde çetelerin birbiriyle yaşadığı olayları izleyiciye aktarmaktadır. Çete için her şey tıkırında giderken son bir soygunda hata yapılır ve çetenin başına bela olacak bir müfettiş görevlendirilir.",
                             ThumbNail = "peakyblinders.jpg",
-                            Time = "58 dakika",
+                            Time = 58,
                             Title = "Peaky Blinders"
                         },
                         new
@@ -550,7 +547,7 @@ namespace BitirmeProjesi.Data.Migrations
                             Scenarist = "Andrew Baldwin",
                             Subject = "11 yaşında feci şekilde katledilen bir çocuğun cesedi parkta bulunur. Etraftaki görgü tanıkları ve cesedin üzerindeki bulgular, şehirde yaşayan saygın bir iş adamını işaret etmektedir. Bu kişi ise koçluk ve  İngilizce öğretmenliği yapan, aynı zamanda iyi bir eş ve kız babası olan Terry Maitland’dır.",
                             ThumbNail = "theoutsider.jpg",
-                            Time = "1 saat",
+                            Time = 60,
                             Title = "The Outsider"
                         },
                         new
@@ -563,7 +560,7 @@ namespace BitirmeProjesi.Data.Migrations
                             Scenarist = "Lauren Schmidt Hissrich",
                             Subject = "Fantastik bir dizi olan The Witcher’da, çok uzun yıllardır barış içerisinde yaşayan insanlar, cüceler ve elfler artık savaş halindedir. Ana karakterimiz The Witcher lakaplı Geralt of Rivia ise acımasız bir suikastçıdır. Kendisi durumun farkında olmasa da aslında kendisine vaadedilen bir kız çocuğu bu dünya düzenini değiştirecektir.",
                             ThumbNail = "thewitcher.jpg",
-                            Time = "1 saat",
+                            Time = 60,
                             Title = "The Witcher"
                         },
                         new
@@ -576,7 +573,7 @@ namespace BitirmeProjesi.Data.Migrations
                             Scenarist = "Blake Neely",
                             Subject = "kitapçıda çalışan Joe ve o kitapçıya müşteri olarak gelen Beck’in hikayesini izleyiciye aktarmaktadır. Joe, Beck’e gördüğü andan itibaren aşık durumdadır ve onu korumak için ne gerekiyorsa yapmaktadır. Joe’nin Beck’e karşı takıntılı tavırlar göstermesi Beck’in yakın arkadaşı Peach’in dikkatini çekse de Joe’ye engel olmak mümkün değildir. Yaptığı her takıntılı davranışı Beck’e aşık olduğu için yaptığını düşünen Joe, aslında tam bir saplantı yaşamaktadır.",
                             ThumbNail = "you.jpg",
-                            Time = "45 dakika",
+                            Time = 45,
                             Title = "You"
                         },
                         new
@@ -589,7 +586,7 @@ namespace BitirmeProjesi.Data.Migrations
                             Scenarist = "Matt Duffer",
                             Subject = " Winona Ryder, David Harbour, Cara Buono'yu başrollerinde buluşturan dizide, kaybolan genç çocuk ve onu bulmaya çalışan ailenin yaşadıkları anlatılmaktadır.",
                             ThumbNail = "strangerthings.jpg",
-                            Time = "56 dakika",
+                            Time = 56,
                             Title = "Stranger Things"
                         },
                         new
@@ -602,8 +599,41 @@ namespace BitirmeProjesi.Data.Migrations
                             Scenarist = "Howard Fast",
                             Subject = "Trakyalılar çoğunlukla Trakya topraklarını yağmalayan Getae’ye karşı bir ayaklanma düzenleyerek Roma lejyonlarında yardımcı olarak görev yapacakları Claudius Glaber tarafından ikna edilmeye başlanmıştır. Bununla birlikte, Glaber, anlaşma konusunda ısrar ettikten sonra Getae’ten dikkatini Küçük Asya’daki Mithridates saldırısına çekmeyi başarır.",
                             ThumbNail = "spartacus.jpg",
-                            Time = "42 dakika",
+                            Time = 42,
                             Title = "Spartacus"
+                        });
+                });
+
+            modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.SerieQuestion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("OptionsOne")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OptionsTwo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QuestionText")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SerieQuestions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            OptionsOne = "1 saat veya daha kısa",
+                            OptionsTwo = "1 saatten daha uzun",
+                            QuestionText = "Dizi izlerken sıkılmadan devam edebildiğin ideal süren aşağıdakilerden hangisine daha yakındır?"
                         });
                 });
 
@@ -813,17 +843,6 @@ namespace BitirmeProjesi.Data.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.Question", b =>
-                {
-                    b.HasOne("BitirmeProjesi.Entities.Concrete.Answer", "Answer")
-                        .WithOne("Question")
-                        .HasForeignKey("BitirmeProjesi.Entities.Concrete.Question", "AnswerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Answer");
-                });
-
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.RoleClaim", b =>
                 {
                     b.HasOne("BitirmeProjesi.Entities.Concrete.Role", null)
@@ -884,11 +903,6 @@ namespace BitirmeProjesi.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.Answer", b =>
-                {
-                    b.Navigation("Question");
                 });
 
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.Book", b =>

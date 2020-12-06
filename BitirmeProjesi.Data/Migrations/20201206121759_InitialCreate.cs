@@ -8,22 +8,6 @@ namespace BitirmeProjesi.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Answers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AnswerText = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Options1 = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Options2 = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Options3 = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Answers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
@@ -65,6 +49,21 @@ namespace BitirmeProjesi.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "BookQuestions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    QuestionText = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OptionsOne = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OptionsTwo = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BookQuestions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Categories",
                 columns: table => new
                 {
@@ -78,23 +77,33 @@ namespace BitirmeProjesi.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Questions",
+                name: "MovieQuestions",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     QuestionText = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AnswerId = table.Column<int>(type: "int", nullable: false)
+                    OptionsOne = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OptionsTwo = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Questions", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Questions_Answers_AnswerId",
-                        column: x => x.AnswerId,
-                        principalTable: "Answers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                    table.PrimaryKey("PK_MovieQuestions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SerieQuestions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    QuestionText = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OptionsOne = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OptionsTwo = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SerieQuestions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -240,7 +249,7 @@ namespace BitirmeProjesi.Data.Migrations
                     Subject = table.Column<string>(type: "NVARCHAR(MAX)", nullable: false),
                     ThumbNail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    Time = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Time = table.Column<int>(type: "int", nullable: false),
                     Scenarist = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Production = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Activities = table.Column<bool>(type: "BİT", nullable: false),
@@ -267,7 +276,7 @@ namespace BitirmeProjesi.Data.Migrations
                     Subject = table.Column<string>(type: "NVARCHAR(MAX)", nullable: false),
                     ThumbNail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    Time = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Time = table.Column<int>(type: "int", nullable: false),
                     Scenarist = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Production = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Activities = table.Column<bool>(type: "BİT", nullable: false),
@@ -327,9 +336,9 @@ namespace BitirmeProjesi.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Answers",
-                columns: new[] { "Id", "AnswerText", "Options1", "Options2", "Options3" },
-                values: new object[] { 1, "1 saat", "1 saatten az", "2 saat", "2 saat ve daha fazla" });
+                table: "BookQuestions",
+                columns: new[] { "Id", "OptionsOne", "OptionsTwo", "QuestionText" },
+                values: new object[] { 1, "200 sayfa ve altı", "200 sayfadan daha fazla", "Kitap okurken sıkılmadan devam edebildiğin ideal sayfa sayısı aşağıdakilerden hangisine daha yakındır?" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
@@ -352,6 +361,16 @@ namespace BitirmeProjesi.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "MovieQuestions",
+                columns: new[] { "Id", "OptionsOne", "OptionsTwo", "QuestionText" },
+                values: new object[] { 1, "1 saat veya daha kısa", "1 saatten daha uzun", "Film izlerken sıkılmadan devam edebildiğin ideal süren aşağıdakilerden hangisine daha yakındır?" });
+
+            migrationBuilder.InsertData(
+                table: "SerieQuestions",
+                columns: new[] { "Id", "OptionsOne", "OptionsTwo", "QuestionText" },
+                values: new object[] { 1, "1 saat veya daha kısa", "1 saatten daha uzun", "Dizi izlerken sıkılmadan devam edebildiğin ideal süren aşağıdakilerden hangisine daha yakındır?" });
+
+            migrationBuilder.InsertData(
                 table: "Books",
                 columns: new[] { "Id", "Activities", "CategoryId", "Date", "Page", "Production", "Subject", "ThumbNail", "Title", "Writer" },
                 values: new object[,]
@@ -368,28 +387,23 @@ namespace BitirmeProjesi.Data.Migrations
                 columns: new[] { "Id", "Activities", "CategoryId", "Date", "Production", "Scenarist", "Subject", "ThumbNail", "Time", "Title" },
                 values: new object[,]
                 {
-                    { 2, false, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Yabancı", "Mario Puzo", "Baba, 40’lar ve 50’lerin Amerika’sında, bir İtalyan mafya ailesinin destansı öyküsünü konu alıyor. Don Corleone’nin kızı Connie’nin düğününde, ailenin en küçük oğlu ve bir savaş gazisi olan Michael babasıyla barışır. Bir suikast girişimi, Don’u artık işleri yönetemeyecek duruma düşürünce, ailenin başına Michael ve ağabeyi Sonny geçer.", "thegodfather.jpg", "2 saat 58 dakika", "The Godfather" },
-                    { 1, false, 10, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Yerli", "Umur Bugay", "Öğrencilik hayatları haylazlık ve tembellik üzerine kurulu olan bir sınıf dolusu matrak öğrencinin, Özel Çamlıca Lisesi’nde yaşadığı yer yer eğlenceli, yer yer de dokunaklı öyküleri anlatan film, Hababam Sınıfı serisinin ilk filmidir", "hababamsinifi.jpg", "1 saat 30 dakika", "Hababam Sınıfı" },
-                    { 3, false, 11, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Yabancı", "Randall Wallace", "Cesuryürek'te, William Wallace yaşanan büyük acılar sonrası yeniden memleketi olan İskoçya’ya döner. Onun asıl amacı çiftçilik yaparak sakin bir hayat sürmektir. Çocukluk aşkıyla karşılaştığında bunun onu dipsiz bir uçuruma iteceğinin farkında değildir.", "braveheart.jpg", "3 saat 2 dakika", "Braveheart" },
-                    { 4, false, 11, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Yerli", "Yavuz Turgul", "Eşkiya, hapse düşmesine neden olan arkadaşının peşine düşen bir adamın hikayesini anlatıyor. 35 yıl önce Cudi dağlarında bir grup eşkiya yakalandı ve hapse atıldı. Yıllar içinde kimi hastalıktan, kimi hesaplaşma sonucu öldü. Biri hariç... 35 yıl sonra Hapisten çıkınca Baran’ ın ilk işi köyüne dönmek olur.", "eskiya.jpg", "2 saat 8 dakika", "Eşkiya" }
+                    { 2, false, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Yabancı", "Mario Puzo", "Baba, 40’lar ve 50’lerin Amerika’sında, bir İtalyan mafya ailesinin destansı öyküsünü konu alıyor. Don Corleone’nin kızı Connie’nin düğününde, ailenin en küçük oğlu ve bir savaş gazisi olan Michael babasıyla barışır. Bir suikast girişimi, Don’u artık işleri yönetemeyecek duruma düşürünce, ailenin başına Michael ve ağabeyi Sonny geçer.", "thegodfather.jpg", 178, "The Godfather" },
+                    { 1, false, 10, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Yerli", "Umur Bugay", "Öğrencilik hayatları haylazlık ve tembellik üzerine kurulu olan bir sınıf dolusu matrak öğrencinin, Özel Çamlıca Lisesi’nde yaşadığı yer yer eğlenceli, yer yer de dokunaklı öyküleri anlatan film, Hababam Sınıfı serisinin ilk filmidir", "hababamsinifi.jpg", 90, "Hababam Sınıfı" },
+                    { 3, false, 11, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Yabancı", "Randall Wallace", "Cesuryürek'te, William Wallace yaşanan büyük acılar sonrası yeniden memleketi olan İskoçya’ya döner. Onun asıl amacı çiftçilik yaparak sakin bir hayat sürmektir. Çocukluk aşkıyla karşılaştığında bunun onu dipsiz bir uçuruma iteceğinin farkında değildir.", "braveheart.jpg", 182, "Braveheart" },
+                    { 4, false, 11, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Yerli", "Yavuz Turgul", "Eşkiya, hapse düşmesine neden olan arkadaşının peşine düşen bir adamın hikayesini anlatıyor. 35 yıl önce Cudi dağlarında bir grup eşkiya yakalandı ve hapse atıldı. Yıllar içinde kimi hastalıktan, kimi hesaplaşma sonucu öldü. Biri hariç... 35 yıl sonra Hapisten çıkınca Baran’ ın ilk işi köyüne dönmek olur.", "eskiya.jpg", 128, "Eşkiya" }
                 });
-
-            migrationBuilder.InsertData(
-                table: "Questions",
-                columns: new[] { "Id", "AnswerId", "QuestionText" },
-                values: new object[] { 1, 1, "Film izlerken sıkılmadan devam edebildiğin ideal süren aşağıdakilerden hangisine daha yakındır?" });
 
             migrationBuilder.InsertData(
                 table: "Series",
                 columns: new[] { "Id", "Activities", "CategoryId", "Date", "Production", "Scenarist", "Subject", "ThumbNail", "Time", "Title" },
                 values: new object[,]
                 {
-                    { 6, false, 4, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Yabancı", "Howard Fast", "Trakyalılar çoğunlukla Trakya topraklarını yağmalayan Getae’ye karşı bir ayaklanma düzenleyerek Roma lejyonlarında yardımcı olarak görev yapacakları Claudius Glaber tarafından ikna edilmeye başlanmıştır. Bununla birlikte, Glaber, anlaşma konusunda ısrar ettikten sonra Getae’ten dikkatini Küçük Asya’daki Mithridates saldırısına çekmeyi başarır.", "spartacus.jpg", "42 dakika", "Spartacus" },
-                    { 3, false, 6, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Yabancı", "Lauren Schmidt Hissrich", "Fantastik bir dizi olan The Witcher’da, çok uzun yıllardır barış içerisinde yaşayan insanlar, cüceler ve elfler artık savaş halindedir. Ana karakterimiz The Witcher lakaplı Geralt of Rivia ise acımasız bir suikastçıdır. Kendisi durumun farkında olmasa da aslında kendisine vaadedilen bir kız çocuğu bu dünya düzenini değiştirecektir.", "thewitcher.jpg", "1 saat", "The Witcher" },
-                    { 4, false, 6, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Yabancı", "Blake Neely", "kitapçıda çalışan Joe ve o kitapçıya müşteri olarak gelen Beck’in hikayesini izleyiciye aktarmaktadır. Joe, Beck’e gördüğü andan itibaren aşık durumdadır ve onu korumak için ne gerekiyorsa yapmaktadır. Joe’nin Beck’e karşı takıntılı tavırlar göstermesi Beck’in yakın arkadaşı Peach’in dikkatini çekse de Joe’ye engel olmak mümkün değildir. Yaptığı her takıntılı davranışı Beck’e aşık olduğu için yaptığını düşünen Joe, aslında tam bir saplantı yaşamaktadır.", "you.jpg", "45 dakika", "You" },
-                    { 1, false, 11, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Yabancı", "Steven Knigt", "Peaky Blinders, İngiltere'nin Birmingham şehrinde çetelerin birbiriyle yaşadığı olayları izleyiciye aktarmaktadır. Çete için her şey tıkırında giderken son bir soygunda hata yapılır ve çetenin başına bela olacak bir müfettiş görevlendirilir.", "peakyblinders.jpg", "58 dakika", "Peaky Blinders" },
-                    { 2, false, 11, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Yabancı", "Andrew Baldwin", "11 yaşında feci şekilde katledilen bir çocuğun cesedi parkta bulunur. Etraftaki görgü tanıkları ve cesedin üzerindeki bulgular, şehirde yaşayan saygın bir iş adamını işaret etmektedir. Bu kişi ise koçluk ve  İngilizce öğretmenliği yapan, aynı zamanda iyi bir eş ve kız babası olan Terry Maitland’dır.", "theoutsider.jpg", "1 saat", "The Outsider" },
-                    { 5, false, 13, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Yabancı", "Matt Duffer", " Winona Ryder, David Harbour, Cara Buono'yu başrollerinde buluşturan dizide, kaybolan genç çocuk ve onu bulmaya çalışan ailenin yaşadıkları anlatılmaktadır.", "strangerthings.jpg", "56 dakika", "Stranger Things" }
+                    { 6, false, 4, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Yabancı", "Howard Fast", "Trakyalılar çoğunlukla Trakya topraklarını yağmalayan Getae’ye karşı bir ayaklanma düzenleyerek Roma lejyonlarında yardımcı olarak görev yapacakları Claudius Glaber tarafından ikna edilmeye başlanmıştır. Bununla birlikte, Glaber, anlaşma konusunda ısrar ettikten sonra Getae’ten dikkatini Küçük Asya’daki Mithridates saldırısına çekmeyi başarır.", "spartacus.jpg", 42, "Spartacus" },
+                    { 3, false, 6, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Yabancı", "Lauren Schmidt Hissrich", "Fantastik bir dizi olan The Witcher’da, çok uzun yıllardır barış içerisinde yaşayan insanlar, cüceler ve elfler artık savaş halindedir. Ana karakterimiz The Witcher lakaplı Geralt of Rivia ise acımasız bir suikastçıdır. Kendisi durumun farkında olmasa da aslında kendisine vaadedilen bir kız çocuğu bu dünya düzenini değiştirecektir.", "thewitcher.jpg", 60, "The Witcher" },
+                    { 4, false, 6, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Yabancı", "Blake Neely", "kitapçıda çalışan Joe ve o kitapçıya müşteri olarak gelen Beck’in hikayesini izleyiciye aktarmaktadır. Joe, Beck’e gördüğü andan itibaren aşık durumdadır ve onu korumak için ne gerekiyorsa yapmaktadır. Joe’nin Beck’e karşı takıntılı tavırlar göstermesi Beck’in yakın arkadaşı Peach’in dikkatini çekse de Joe’ye engel olmak mümkün değildir. Yaptığı her takıntılı davranışı Beck’e aşık olduğu için yaptığını düşünen Joe, aslında tam bir saplantı yaşamaktadır.", "you.jpg", 45, "You" },
+                    { 1, false, 11, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Yabancı", "Steven Knigt", "Peaky Blinders, İngiltere'nin Birmingham şehrinde çetelerin birbiriyle yaşadığı olayları izleyiciye aktarmaktadır. Çete için her şey tıkırında giderken son bir soygunda hata yapılır ve çetenin başına bela olacak bir müfettiş görevlendirilir.", "peakyblinders.jpg", 58, "Peaky Blinders" },
+                    { 2, false, 11, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Yabancı", "Andrew Baldwin", "11 yaşında feci şekilde katledilen bir çocuğun cesedi parkta bulunur. Etraftaki görgü tanıkları ve cesedin üzerindeki bulgular, şehirde yaşayan saygın bir iş adamını işaret etmektedir. Bu kişi ise koçluk ve  İngilizce öğretmenliği yapan, aynı zamanda iyi bir eş ve kız babası olan Terry Maitland’dır.", "theoutsider.jpg", 60, "The Outsider" },
+                    { 5, false, 13, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Yabancı", "Matt Duffer", " Winona Ryder, David Harbour, Cara Buono'yu başrollerinde buluşturan dizide, kaybolan genç çocuk ve onu bulmaya çalışan ailenin yaşadıkları anlatılmaktadır.", "strangerthings.jpg", 56, "Stranger Things" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -462,12 +476,6 @@ namespace BitirmeProjesi.Data.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Questions_AnswerId",
-                table: "Questions",
-                column: "AnswerId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Series_CategoryId",
                 table: "Series",
                 column: "CategoryId");
@@ -491,10 +499,16 @@ namespace BitirmeProjesi.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "BookQuestions");
+
+            migrationBuilder.DropTable(
                 name: "Comments");
 
             migrationBuilder.DropTable(
-                name: "Questions");
+                name: "MovieQuestions");
+
+            migrationBuilder.DropTable(
+                name: "SerieQuestions");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -510,9 +524,6 @@ namespace BitirmeProjesi.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Series");
-
-            migrationBuilder.DropTable(
-                name: "Answers");
 
             migrationBuilder.DropTable(
                 name: "Categories");

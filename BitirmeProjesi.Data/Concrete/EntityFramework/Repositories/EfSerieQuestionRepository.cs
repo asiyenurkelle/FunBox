@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace BitirmeProjesi.Data.Concrete.EntityFramework.Repositories
 {
-    public class EfQuestionRepository: EfEntityRepositoryBase<Question>, IQuestionRepository
+    public class EfSerieQuestionRepository: EfEntityRepositoryBase<SerieQuestion>, ISerieQuestionRepository
     {
-        public EfQuestionRepository(DbContext context) : base(context)
+        public EfSerieQuestionRepository(DbContext context) : base(context)
         {
 
         }

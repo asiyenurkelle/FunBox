@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace BitirmeProjesi.Entities.Concrete
 {
-    public class Question: EntityBase,IEntity
+    public class BookQuestion: EntityBase,IEntity
     {
         public string QuestionText { get; set; }
-        public int AnswerId { get; set; }
-        public Answer Answer { get; set; }
+        public string OptionsOne { get; set; }
+        public string OptionsTwo { get; set; }
     }
 }

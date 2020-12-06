@@ -10,6 +10,7 @@ using System.Text.Json;
 using BitirmeProjesi.MVC.Areas.Admin.Models;
 using BitirmeProjesi.Shared.Utilities.Extensions;
 using BitirmeProjesi.Entities.Concrete;
+using System.Text.Json.Serialization;
 
 namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 {
@@ -18,9 +19,11 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
     {
         private readonly IMovieService _movieService;
         private readonly ICommentService _commentService;
-        public MovieController(IMovieService movieService, ICommentService commentService)
+        private readonly IMovieQuestionService _movieQuestionService;
+        public MovieController(IMovieService movieService, IMovieQuestionService movieQuestionService, ICommentService commentService)
         {
             _movieService = movieService;
+            _movieQuestionService = movieQuestionService;
             _commentService = commentService;
         }
         public async Task<IActionResult> Index(int? id)
@@ -55,6 +58,12 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             return Json(null);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> MoodTesting()
+        {
+            var result = await _movieQuestionService.GetQuestions();
+            return View(result.Data);
+        }
 
         //[HttpGet]
         //public IActionResult AddComment(int id)
@@ -69,7 +78,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         //{
         //    if (ModelState.IsValid)
         //    {
-              
+
         //        var result = await _commentService.Add(commentAddDto);
         //        if (result.ResultStatus == ResultStatus.Success)
         //        {
@@ -96,7 +105,26 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         //    }
         //    return View("Details");
         //}
+        public async Task<IActionResult> GetSuggestionsLessOne()
+        {
+            var result = await _movieService.GetAllLessThanOneHour();
+            var movies = JsonSerializer.Serialize(result.Data, new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
+            return Json(movies);
 
+        }
+        public async Task<IActionResult> GetSuggestionsMoreOne()
+        {
+            var result = await _movieService.GetAllMoreThanOneHour();
+            var movies = JsonSerializer.Serialize(result.Data, new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
+            return Json(movies);
+
+        }
 
     }
 }

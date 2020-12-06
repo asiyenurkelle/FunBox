@@ -11,10 +11,12 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
     public class SerieController : Controller
     {
         private readonly ISerieService _serieService;
+        private readonly ISerieQuestionService _serieQuestionService;
 
-        public SerieController(ISerieService serieService)
+        public SerieController(ISerieService serieService, ISerieQuestionService serieQuestionService)
         {
             _serieService = serieService;
+            _serieQuestionService = serieQuestionService;
         }
 
         public async Task<IActionResult> Index(int? id)
@@ -42,14 +44,19 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         }
 
 
-
-
         [HttpGet("Serie/Details/AddList")]
         public async Task<IActionResult> AddList(int Id)
         {
             TempData["Active"] = "Dizi";
             await _serieService.AddListSerie(Id);
             return Json(null);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> MoodTesting()
+        {
+            var result = await _serieQuestionService.GetQuestions();
+            return View(result.Data);
         }
     }
 }
