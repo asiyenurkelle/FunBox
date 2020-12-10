@@ -1,0 +1,17 @@
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0.0\BitirmeProjesi.MVC.csprojAssemblyReference.cache
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0.0\BitirmeProjesi.MVC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0.0\BitirmeProjesi.MVC.AssemblyInfoInputs.cache
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0.0\BitirmeProjesi.MVC.AssemblyInfo.cs
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0.0\BitirmeProjesi.MVC.csproj.CoreCompileInputs.cache
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0.0\BitirmeProjesi.MVC.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0.0\BitirmeProjesi.MVC.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0.0\BitirmeProjesi.MVC.RazorAssemblyInfo.cache
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0.0\BitirmeProjesi.MVC.RazorAssemblyInfo.cs
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0.0\staticwebassets\BitirmeProjesi.MVC.StaticWebAssets.Manifest.cache
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0.0\staticwebassets\BitirmeProjesi.MVC.StaticWebAssets.xml
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0.0\scopedcss\bundle\BitirmeProjesi.MVC.styles.css
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0.0\BitirmeProjesi.MVC.TagHelpers.input.cache
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0.0\BitirmeProjesi.MVC.TagHelpers.output.cache
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0.0\BitirmeProjesi.MVC.dll
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0.0\ref\BitirmeProjesi.MVC.dll
+C:\Users\asus\source\repos\BitirmeProjesi\BitirmeProjesi.MVC\obj\Debug\netcoreapp5.0.0\BitirmeProjesi.MVC.pdb
