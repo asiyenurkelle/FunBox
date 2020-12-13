@@ -53,7 +53,6 @@ namespace BitirmeProjesi.Services.Concrete
                     Movies = movies,
                     Categories=categories,
                     ResultStatus = ResultStatus.Success,
-                    Message = Messages.Movie.NotFound(isPlural: true)
 
                 });
             }
@@ -73,7 +72,7 @@ namespace BitirmeProjesi.Services.Concrete
             }
             else
             {
-                return new DataResult<MovieUpdateDto>(ResultStatus.Error, "Film bulunamadı.", null);
+                return new DataResult<MovieUpdateDto>(ResultStatus.Error, Messages.Movie.NotFound(isPlural: false), null);
             }
         }
 
@@ -90,7 +89,7 @@ namespace BitirmeProjesi.Services.Concrete
             }
             else
             {
-                return new DataResult<MovieUpdateDto>(ResultStatus.Error, "Film bulunamadı.", null);
+                return new DataResult<MovieUpdateDto>(ResultStatus.Error, Messages.Movie.NotFound(isPlural: false), null);
             }
         }
         public async Task<IDataResult<MovieListDto>> GetCategories(int? id)
@@ -103,21 +102,21 @@ namespace BitirmeProjesi.Services.Concrete
                 {
                     Movies = categoriesMovie,
                     Categories = categories,
-
                     ResultStatus = ResultStatus.Success
+                   
                 });
             }
-            return new DataResult<MovieListDto>(ResultStatus.Error, "Filmler bulunamadı.", new MovieListDto
+            return new DataResult<MovieListDto>(ResultStatus.Error, Messages.Movie.NotFound(isPlural: true), new MovieListDto
             {
                 Movies = null,
                 ResultStatus = ResultStatus.Error,
-                Message = "Filmler bulunamadı."
+                Message = Messages.Movie.NotFound(isPlural: true)
             });
         }
 
-        public async Task<IDataResult<MovieListDto>> GetAllLessThanOneHour()
+        public async Task<IDataResult<MovieListDto>> GetAllLessThanTwoHour()
         {
-            var movie = await _unitOfWork.Movies.GetAllAsync(m => m.Time <= 60, m=>m.Category);
+            var movie = await _unitOfWork.Movies.GetAllAsync(m => m.Time <= 120, m=>m.Category);
             if (movie != null)
             {
                  return new DataResult<MovieListDto>(ResultStatus.Success, new MovieListDto
@@ -126,18 +125,18 @@ namespace BitirmeProjesi.Services.Concrete
                     ResultStatus = ResultStatus.Success
                 });
             }
-            return new DataResult<MovieListDto>(ResultStatus.Error, "Filmler bulunamadı.", new MovieListDto
+            return new DataResult<MovieListDto>(ResultStatus.Error, Messages.Movie.NotFound(isPlural: true), new MovieListDto
             {
                 Movies = null,
                 ResultStatus = ResultStatus.Error,
-                Message = "Filmler bulunamadı."
+                Message = Messages.Movie.NotFound(isPlural: true)
             });
 
         }
 
-        public async Task<IDataResult<MovieListDto>> GetAllMoreThanOneHour()
+        public async Task<IDataResult<MovieListDto>> GetAllMoreThanTwoHour()
         {
-            var movie = await _unitOfWork.Movies.GetAllAsync(m => m.Time > 60, m => m.Category);
+            var movie = await _unitOfWork.Movies.GetAllAsync(m => m.Time > 120, m => m.Category);
             if (movie != null)
             {
                 return new DataResult<MovieListDto>(ResultStatus.Success, new MovieListDto
@@ -146,11 +145,11 @@ namespace BitirmeProjesi.Services.Concrete
                     ResultStatus = ResultStatus.Success
                 });
             }
-            return new DataResult<MovieListDto>(ResultStatus.Error, "Filmler bulunamadı.", new MovieListDto
+            return new DataResult<MovieListDto>(ResultStatus.Error, Messages.Movie.NotFound(isPlural: true), new MovieListDto
             {
                 Movies = null,
                 ResultStatus = ResultStatus.Error,
-                Message = "Filmler bulunamadı."
+                Message = Messages.Movie.NotFound(isPlural: true)
             });
         }
     }

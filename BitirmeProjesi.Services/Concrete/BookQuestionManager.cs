@@ -1,6 +1,7 @@
 ﻿using BitirmeProjesi.Data.Abstract;
 using BitirmeProjesi.Entities.Dtos;
 using BitirmeProjesi.Services.Abstract;
+using BitirmeProjesi.Services.Utilities;
 using BitirmeProjesi.Shared.Utilities.Results.Abstract;
 using BitirmeProjesi.Shared.Utilities.Results.Complex_Types;
 using BitirmeProjesi.Shared.Utilities.Results.Concrete;
@@ -26,11 +27,11 @@ namespace BitirmeProjesi.Services.Concrete
                     ResultStatus = ResultStatus.Success
                 });
             }
-            return new DataResult<BookQuestionDto>(ResultStatus.Error, "Sorular Bulunamadı", new BookQuestionDto
+            return new DataResult<BookQuestionDto>(ResultStatus.Error, Messages.Question.NotFound(isPlural: true), new BookQuestionDto
             {
                 BookQuestions = null,
                 ResultStatus = ResultStatus.Error,
-                Message = "Sorular bulunamadı"
+                Message = Messages.Question.NotFound(isPlural: true)
             });
         }
     }

@@ -13,7 +13,7 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
         public void Configure(EntityTypeBuilder<Comment> builder)
         {
             builder.HasKey(c => c.Id);
-            builder.Property(c => c.Id).ValueGeneratedOnAdd();
+            //builder.Property(c => c.Id).ValueGeneratedOnAdd();
             builder.Property(c => c.Title).HasMaxLength(100).IsRequired();
             builder.Property(c => c.Subject).HasMaxLength(500).IsRequired();
 

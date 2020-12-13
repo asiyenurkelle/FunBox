@@ -61,5 +61,33 @@ namespace BitirmeProjesi.Services.Utilities
             }
         }
 
+        public static class BookSerieMovie
+        {
+            public static string NotFound(bool isPlural)
+            {
+                if (isPlural) return "Diziler,filmler, kitaplar bulunamadı";
+                return "Dizi, film, kitap bulunamadı.";
+            }
+        }
+
+        public static class Activity
+        {
+            public static string NotFound(bool isPlural)
+            {
+                if (isPlural) return "Aktiviteler bulunamadı";
+                return "Aktivite bulunamadı.";
+            }
+        }
+
+        public static class Question
+        {
+            public static string NotFound(bool isPlural)
+            {
+                if (isPlural) return "Sorular bulunamadı";
+                return "Soru bulunamadı.";
+            }
+        }
+
+
     }
 }

@@ -69,7 +69,7 @@ namespace BitirmeProjesi.Services.Concrete
             }
             else
             {
-                return new DataResult<SerieUpdateDto>(ResultStatus.Error, "Dizi bulunamadı.", null);
+                return new DataResult<SerieUpdateDto>(ResultStatus.Error, Messages.Serie.NotFound(isPlural: false), null);
             }
         }
         public async Task<IDataResult<SerieUpdateDto>> AddListSerie(int serieId)
@@ -85,7 +85,7 @@ namespace BitirmeProjesi.Services.Concrete
             }
             else
             {
-                return new DataResult<SerieUpdateDto>(ResultStatus.Error, "Dizi bulunamadı.", null);
+                return new DataResult<SerieUpdateDto>(ResultStatus.Error, Messages.Serie.NotFound(isPlural: false), null);
             }
         }
 
@@ -103,11 +103,11 @@ namespace BitirmeProjesi.Services.Concrete
                     ResultStatus = ResultStatus.Success
                 });
             }
-            return new DataResult<SerieListDto>(ResultStatus.Error, "Diziler bulunamadı.", new SerieListDto
+            return new DataResult<SerieListDto>(ResultStatus.Error, Messages.Serie.NotFound(isPlural: true), new SerieListDto
             {
                 Series = null,
                 ResultStatus = ResultStatus.Error,
-                Message = "Diziler bulunamadı."
+                Message = Messages.Serie.NotFound(isPlural: true)
             });
         }
     }

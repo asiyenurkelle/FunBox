@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using PagedList.Core;
+using BitirmeProjesi.Services.Utilities;
 
 namespace BitirmeProjesi.Services.Concrete
 {
@@ -37,14 +38,14 @@ namespace BitirmeProjesi.Services.Concrete
                     ResultStatus = ResultStatus.Success
                 });
             }
-            return new DataResult<BookSerieMovieDto>(ResultStatus.Error, "Kitaplar bulunamadı.", new BookSerieMovieDto
+            return new DataResult<BookSerieMovieDto>(ResultStatus.Error, Messages.BookSerieMovie.NotFound(isPlural: true), new BookSerieMovieDto
             {
                 Books = null,
                 Series = null,
                 Movies = null,
                 Categories=null,
                 ResultStatus = ResultStatus.Error,
-                Message = "Kitaplar, diziler,filmler bulunamadı."
+                Message = Messages.BookSerieMovie.NotFound(isPlural: true)
             });
 
 
@@ -69,13 +70,13 @@ namespace BitirmeProjesi.Services.Concrete
                     ResultStatus = ResultStatus.Success
                 });
             }
-            return new DataResult<BookSerieMovieDto>(ResultStatus.Error, "Kitaplar bulunamadı.", new BookSerieMovieDto
+            return new DataResult<BookSerieMovieDto>(ResultStatus.Error, Messages.BookSerieMovie.NotFound(isPlural: true), new BookSerieMovieDto
             {
                 Books = null,
                 Series = null,
                 Movies = null,
                 ResultStatus = ResultStatus.Error,
-                Message = "Kitaplar, diziler,filmler bulunamadı."
+                Message = Messages.BookSerieMovie.NotFound(isPlural: true)
             });
         }
     }

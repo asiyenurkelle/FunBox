@@ -121,7 +121,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> PasswordChange(UserPasswordChangeDto userPasswordChangeDto)
         {
-            TempData["Active"] = "Kullanıcı";
+           
             if (ModelState.IsValid)
             {
                 var user = await _userManager.GetUserAsync(HttpContext.User);

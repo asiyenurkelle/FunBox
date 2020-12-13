@@ -15,7 +15,7 @@ namespace BitirmeProjesi.Services.Abstract
         Task<IDataResult<MovieUpdateDto>> GetMovieUpdateDto(int movieId);
         Task<IDataResult<MovieUpdateDto>> AddListMovie(int movieId);
         Task<IDataResult<MovieListDto>> GetCategories(int? id);
-        Task<IDataResult<MovieListDto>> GetAllLessThanOneHour();
-        Task<IDataResult<MovieListDto>> GetAllMoreThanOneHour();
+        Task<IDataResult<MovieListDto>> GetAllLessThanTwoHour();
+        Task<IDataResult<MovieListDto>> GetAllMoreThanTwoHour();
     }
 }

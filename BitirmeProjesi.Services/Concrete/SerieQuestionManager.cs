@@ -1,6 +1,7 @@
 ﻿using BitirmeProjesi.Data.Abstract;
 using BitirmeProjesi.Entities.Dtos;
 using BitirmeProjesi.Services.Abstract;
+using BitirmeProjesi.Services.Utilities;
 using BitirmeProjesi.Shared.Utilities.Results.Abstract;
 using BitirmeProjesi.Shared.Utilities.Results.Complex_Types;
 using BitirmeProjesi.Shared.Utilities.Results.Concrete;
@@ -30,11 +31,11 @@ namespace BitirmeProjesi.Services.Concrete
                     ResultStatus = ResultStatus.Success
                 });
             }
-            return new DataResult<SerieQuestionDto>(ResultStatus.Error, "Diziler Bulunamadı", new SerieQuestionDto
+            return new DataResult<SerieQuestionDto>(ResultStatus.Error, Messages.Question.NotFound(isPlural: true), new SerieQuestionDto
             {
                 SerieQuestions = null,
                 ResultStatus = ResultStatus.Error,
-                Message = "Diziler bulunamadı"
+                Message = Messages.Question.NotFound(isPlural: true)
             });
         }
     }

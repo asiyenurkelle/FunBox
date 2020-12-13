@@ -55,6 +55,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> MoodTesting()
         {
+            TempData["Active"] = "ModTesti";
             var result = await _serieQuestionService.GetQuestions();
             return View(result.Data);
         }

@@ -23,7 +23,6 @@ namespace BitirmeProjesi.Services.Concrete
             _mapper = mapper;
         }
 
-
         public async Task<IDataResult<BookDto>> Get(int Id)
         {
             var book = await _unitOfWork.Books.GetAsync(b => b.Id == Id, b => b.Category, b => b.Comments);
@@ -78,7 +77,7 @@ namespace BitirmeProjesi.Services.Concrete
             }
             else
             {
-                return new DataResult<BookUpdateDto>(ResultStatus.Error, "Kitap bulunamadı.", null);
+                return new DataResult<BookUpdateDto>(ResultStatus.Error, Messages.Book.NotFound(isPlural: false), null);
             }
         }
 
@@ -95,7 +94,7 @@ namespace BitirmeProjesi.Services.Concrete
             }
             else
             {
-                return new DataResult<BookUpdateDto>(ResultStatus.Error, "Kitap bulunamadı.", null);
+                return new DataResult<BookUpdateDto>(ResultStatus.Error, Messages.Book.NotFound(isPlural: false), null);
             }
         }
         public async Task<IDataResult<BookListDto>> GetCategories(int? id)
@@ -112,12 +111,12 @@ namespace BitirmeProjesi.Services.Concrete
                     ResultStatus = ResultStatus.Success
                 });
             }
-            return new DataResult<BookListDto>(ResultStatus.Error, "Kitaplar bulunamadı.", new BookListDto
+            return new DataResult<BookListDto>(ResultStatus.Error, Messages.Book.NotFound(isPlural: true), new BookListDto
             {
                 Books = null,
 
                 ResultStatus = ResultStatus.Error,
-                Message = "Kitaplar bulunamadı."
+                Message = Messages.Book.NotFound(isPlural: true)
             });
         }
 

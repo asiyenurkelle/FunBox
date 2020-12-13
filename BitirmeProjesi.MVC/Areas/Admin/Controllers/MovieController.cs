@@ -61,33 +61,35 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> MoodTesting()
         {
+            TempData["Active"] = "ModTesti";
             var result = await _movieQuestionService.GetQuestions();
             return View(result.Data);
         }
 
-        //[HttpGet]
-        //public IActionResult AddComment(int id)
-        //{
-        //    CommentAddDto model = new CommentAddDto();
-        //    model.Movie.Id = id;
-        //    return View();
-        //}
+        [HttpGet]
+        public IActionResult AddComment(int id)
+        {
+            //CommentAddDto model = new CommentAddDto();
+            //model.CommentId = id;
+            return View(new CommentAddDto());
+        }
 
-        //[HttpPost]
-        //public async Task<IActionResult> AddComment(CommentAddDto commentAddDto)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
+        [HttpPost]
+        public async Task<IActionResult> AddComment(CommentAddDto commentAddDto)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _commentService.Add(commentAddDto);
 
-        //        var result = await _commentService.Add(commentAddDto);
-        //        if (result.ResultStatus == ResultStatus.Success)
-        //        {
-        //            return View(result);
-        //        }
+                if (result.ResultStatus == ResultStatus.Success)
+                {
+                    return View(result.Data);
+                }
+            }
+           
 
-        //    }
-        //    return View("Details");
-        //}
+            return RedirectToAction("Index", "Movie");
+        }
 
 
         //[HttpPost]
@@ -105,9 +107,9 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         //    }
         //    return View("Details");
         //}
-        public async Task<IActionResult> GetSuggestionsLessOne()
+        public async Task<IActionResult> GetSuggestionsLessTwo()
         {
-            var result = await _movieService.GetAllLessThanOneHour();
+            var result = await _movieService.GetAllLessThanTwoHour();
             var movies = JsonSerializer.Serialize(result.Data, new JsonSerializerOptions
             {
                 ReferenceHandler = ReferenceHandler.Preserve
@@ -115,9 +117,9 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             return Json(movies);
 
         }
-        public async Task<IActionResult> GetSuggestionsMoreOne()
+        public async Task<IActionResult> GetSuggestionsMoreTwo()
         {
-            var result = await _movieService.GetAllMoreThanOneHour();
+            var result = await _movieService.GetAllMoreThanTwoHour();
             var movies = JsonSerializer.Serialize(result.Data, new JsonSerializerOptions
             {
                 ReferenceHandler = ReferenceHandler.Preserve

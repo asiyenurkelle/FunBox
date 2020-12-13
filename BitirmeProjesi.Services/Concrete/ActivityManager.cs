@@ -35,13 +35,13 @@ namespace BitirmeProjesi.Services.Concrete
                     ResultStatus = ResultStatus.Success
                 });
             }
-            return new DataResult<BookSerieMovieDto>(ResultStatus.Error,"Hata", new BookSerieMovieDto
+            return new DataResult<BookSerieMovieDto>(ResultStatus.Error, Messages.Activity.NotFound(isPlural: true), new BookSerieMovieDto
             {
                 Books = null,
                 Series=null,
                 Movies=null,
                 ResultStatus = ResultStatus.Error,
-                Message = "Hata"
+                Message = Messages.Activity.NotFound(isPlural: true)
             });
         }
     }

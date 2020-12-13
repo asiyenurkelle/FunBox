@@ -23,15 +23,33 @@ namespace BitirmeProjesi.Services.Concrete
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<IResult> Add(CommentAddDto commentAddDto)
+        public async Task<IDataResult<CommentAddDto>> Add(CommentAddDto commentAddDto)
         {
-            await _unitOfWork.Comments.AddAsync(new Comment
+            
+            var comment = _mapper.Map<Comment>(commentAddDto);
+            //created by name eklicez
+            // comment.MovieId=commentAddDto.CommentId
+            comment.MovieId = commentAddDto.Id;
+            comment.Title = commentAddDto.Title;
+            comment.Subject = commentAddDto.Subject;
+           var addedComment= await _unitOfWork.Comments.AddAsync(comment);
+            await _unitOfWork.SaveAsync();
+
+            return new DataResult<CommentAddDto>(ResultStatus.Success, "başarılı", new CommentAddDto
             {
-                MovieId = commentAddDto.Movie.Id,
-                Subject = commentAddDto.Subject,
-                Title = commentAddDto.Title
+                Comment = addedComment,
+                ResultStatus = ResultStatus.Success,
+                Message = "Başarılı"
             });
-            return new  Result(ResultStatus.Success);
+
+
+            //await _unitOfWork.Comments.AddAsync(new Comment
+            //{
+            //    MovieId = commentAddDto.Movie.Id,
+            //    Subject = commentAddDto.Subject,
+            //    Title = commentAddDto.Title
+            //});
+            
         }
 
         public async Task<IResult> Delete(int commentId)
@@ -44,12 +62,12 @@ namespace BitirmeProjesi.Services.Concrete
                 await _unitOfWork.SaveAsync();
                 return new Result(ResultStatus.Success, Messages.Comment.Delete(comment.Title));
             }
-            return new Result(ResultStatus.Error, Messages.Comment.NotFound(isPlural:false));
+            return new Result(ResultStatus.Error, Messages.Comment.NotFound(isPlural: false));
         }
 
         public async Task<IDataResult<CommentDto>> Get(int commentId)
         {
-            var comment = await _unitOfWork.Comments.GetAsync(c => c.Id == commentId, c=>c.Serie);
+            var comment = await _unitOfWork.Comments.GetAsync(c => c.Id == commentId, c => c.Serie);
             if (comment != null)
             {
                 return new DataResult<CommentDto>(ResultStatus.Success, new CommentDto
@@ -60,9 +78,9 @@ namespace BitirmeProjesi.Services.Concrete
             }
             return new DataResult<CommentDto>(ResultStatus.Error, Messages.Comment.NotFound(isPlural: false), new CommentDto
             {
-                Comment=null,
-                ResultStatus=ResultStatus.Error,
-                Message= Messages.Comment.NotFound(isPlural: false)
+                Comment = null,
+                ResultStatus = ResultStatus.Error,
+                Message = Messages.Comment.NotFound(isPlural: false)
             });
         }
 
@@ -77,7 +95,7 @@ namespace BitirmeProjesi.Services.Concrete
                     ResultStatus = ResultStatus.Success
                 });
             }
-            return new DataResult<CommentListDto>(ResultStatus.Error, Messages.Comment.NotFound(isPlural:true), new CommentListDto
+            return new DataResult<CommentListDto>(ResultStatus.Error, Messages.Comment.NotFound(isPlural: true), new CommentListDto
             {
                 Comments = null,
                 ResultStatus = ResultStatus.Error,
