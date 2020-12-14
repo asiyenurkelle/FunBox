@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BitirmeProjesi.Services.AutoMapper.Profiles
+namespace BitirmeProjesi.MVC.AutoMapper.Profiles
 {
     public class BookProfile:Profile
     {

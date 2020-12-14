@@ -11,6 +11,7 @@ using BitirmeProjesi.MVC.Areas.Admin.Models;
 using BitirmeProjesi.Shared.Utilities.Extensions;
 using BitirmeProjesi.Entities.Concrete;
 using System.Text.Json.Serialization;
+using AutoMapper;
 
 namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 {
@@ -20,11 +21,14 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         private readonly IMovieService _movieService;
         private readonly ICommentService _commentService;
         private readonly IMovieQuestionService _movieQuestionService;
-        public MovieController(IMovieService movieService, IMovieQuestionService movieQuestionService, ICommentService commentService)
+        private readonly IMapper _mapper;
+
+        public MovieController(IMovieService movieService, IMovieQuestionService movieQuestionService, ICommentService commentService, IMapper mapper)
         {
             _movieService = movieService;
             _movieQuestionService = movieQuestionService;
             _commentService = commentService;
+            _mapper = mapper;
         }
         public async Task<IActionResult> Index(int? id)
         {
@@ -69,44 +73,31 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult AddComment(int id)
         {
-            //CommentAddDto model = new CommentAddDto();
-            //model.CommentId = id;
             return View(new CommentAddDto());
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddComment(CommentAddDto commentAddDto)
+        public async Task<IActionResult> AddComment(CommentAddViewModel commentAddViewModel)
         {
             if (ModelState.IsValid)
             {
+                var commentAddDto = _mapper.Map<CommentAddDto>(commentAddViewModel);
                 var result = await _commentService.Add(commentAddDto);
-
                 if (result.ResultStatus == ResultStatus.Success)
                 {
-                    return View(result.Data);
+                    return RedirectToAction("Index", "Movie" );
                 }
-            }
-           
+                else
+                {
+                    ModelState.AddModelError("", result.Message);
+                    return View(commentAddViewModel);
+                }
 
-            return RedirectToAction("Index", "Movie");
+            }
+            return View(commentAddViewModel);
         }
 
 
-        //[HttpPost]
-        //public async Task<IActionResult> AddComment(CommentAddDto commentAddDto)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var result = await _commentService.Add(commentAddDto);
-        //        if (result.ResultStatus == ResultStatus.Success)
-        //        {
-        //           var commentAddAjaxModel=JsonSerializer.Serialize(new CommentAddAjaxViewModel
-        //            return View(result.Data);
-        //        }
-
-        //    }
-        //    return View("Details");
-        //}
         public async Task<IActionResult> GetSuggestionsLessTwo()
         {
             var result = await _movieService.GetAllLessThanTwoHour();

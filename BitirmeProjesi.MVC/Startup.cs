@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 using AutoMapper;
-using BitirmeProjesi.Services.AutoMapper.Profiles;
+using BitirmeProjesi.MVC.AutoMapper.Profiles;
 using BitirmeProjesi.Services.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,7 +28,7 @@ namespace BitirmeProjesi.MVC
                 opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
             });
             services.AddSession();
-            services.AddAutoMapper(typeof(CommentProfile));
+            services.AddAutoMapper(typeof(CommentProfile),typeof(ViewModelsProfile));
             services.LoadMyServices(connectionString:Configuration.GetConnectionString("LocalDB"));
             services.ConfigureApplicationCookie(options =>
             {

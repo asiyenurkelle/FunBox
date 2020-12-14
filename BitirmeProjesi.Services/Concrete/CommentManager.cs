@@ -23,34 +23,22 @@ namespace BitirmeProjesi.Services.Concrete
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<IDataResult<CommentAddDto>> Add(CommentAddDto commentAddDto)
+
+        public async Task<IResult> Add(CommentAddDto commentAddDto)
         {
-            
             var comment = _mapper.Map<Comment>(commentAddDto);
-            //created by name eklicez
-            // comment.MovieId=commentAddDto.CommentId
+
             comment.MovieId = commentAddDto.Id;
-            comment.Title = commentAddDto.Title;
+
             comment.Subject = commentAddDto.Subject;
-           var addedComment= await _unitOfWork.Comments.AddAsync(comment);
+            comment.Title = commentAddDto.Title;
+            var addedComment = await _unitOfWork.Comments.AddAsync(comment);
             await _unitOfWork.SaveAsync();
+            return new Result(ResultStatus.Success, "başarılı");
 
-            return new DataResult<CommentAddDto>(ResultStatus.Success, "başarılı", new CommentAddDto
-            {
-                Comment = addedComment,
-                ResultStatus = ResultStatus.Success,
-                Message = "Başarılı"
-            });
-
-
-            //await _unitOfWork.Comments.AddAsync(new Comment
-            //{
-            //    MovieId = commentAddDto.Movie.Id,
-            //    Subject = commentAddDto.Subject,
-            //    Title = commentAddDto.Title
-            //});
-            
         }
+
+
 
         public async Task<IResult> Delete(int commentId)
         {

@@ -5,7 +5,7 @@ using AutoMapper;
 using BitirmeProjesi.Entities.Concrete;
 using BitirmeProjesi.Entities.Dtos;
 
-namespace BitirmeProjesi.Services.AutoMapper.Profiles
+namespace BitirmeProjesi.MVC.AutoMapper.Profiles
 {
     public class CommentProfile:Profile
     {

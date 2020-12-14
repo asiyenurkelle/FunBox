@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BitirmeProjesi.Services.AutoMapper.Profiles
+namespace BitirmeProjesi.MVC.AutoMapper.Profiles
 {
-   public  class MovieProfile:Profile
+    public class SerieProfile:Profile
     {
-        public MovieProfile()
+        public SerieProfile()
         {
-            CreateMap<Movie, MovieUpdateDto>();
+            CreateMap<Serie, SerieUpdateDto>();
         }
     }
 }

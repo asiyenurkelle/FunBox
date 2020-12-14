@@ -1,16 +1,15 @@
 ﻿using BitirmeProjesi.Entities.Concrete;
-using BitirmeProjesi.Shared.Entities.Abstract;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace BitirmeProjesi.Entities.Dtos
+namespace BitirmeProjesi.MVC.Areas.Admin.Models
 {
-    public class CommentAddDto : DtoGetBase
+    public class CommentAddViewModel
     {
-
         [DisplayName("Yorum Başlığı:")]
         [Required(ErrorMessage = "{0} boş geçilmemelidir")]
         [MaxLength(100, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır!")]
@@ -24,5 +23,4 @@ namespace BitirmeProjesi.Entities.Dtos
         public string Subject { get; set; }
         public int Id { get; set; }
     }
-
 }
