@@ -19,10 +19,12 @@ namespace BitirmeProjesi.Services.Concrete
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+      
         public MovieManager(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+           
         }
 
         public async Task<IDataResult<MovieDto>> Get(int movieId)
@@ -91,6 +93,20 @@ namespace BitirmeProjesi.Services.Concrete
             {
                 return new DataResult<MovieUpdateDto>(ResultStatus.Error, Messages.Movie.NotFound(isPlural: false), null);
             }
+        }
+
+        public async Task<IResult> AddComment(CommentAddDto commentAddDto)
+        {
+            var comment = _mapper.Map<Comment>(commentAddDto);
+
+            var movie = await _unitOfWork.Movies.GetAsync(m => m.Id == commentAddDto.MovieId);
+            comment.MovieId = movie.Id;
+            comment.Subject = commentAddDto.Subject;
+            comment.Title = commentAddDto.Title;
+            var addedComment = await _unitOfWork.Comments.AddAsync(comment);
+            await _unitOfWork.SaveAsync();
+            return new Result(ResultStatus.Success, "başarılı");
+
         }
         public async Task<IDataResult<MovieListDto>> GetCategories(int? id)
         {

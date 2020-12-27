@@ -24,22 +24,6 @@ namespace BitirmeProjesi.Services.Concrete
             _mapper = mapper;
         }
 
-        public async Task<IResult> Add(CommentAddDto commentAddDto)
-        {
-            var comment = _mapper.Map<Comment>(commentAddDto);
-
-            comment.MovieId = commentAddDto.Id;
-
-            comment.Subject = commentAddDto.Subject;
-            comment.Title = commentAddDto.Title;
-            var addedComment = await _unitOfWork.Comments.AddAsync(comment);
-            await _unitOfWork.SaveAsync();
-            return new Result(ResultStatus.Success, "başarılı");
-
-        }
-
-
-
         public async Task<IResult> Delete(int commentId)
         {
             var result = await _unitOfWork.Comments.AnyAsync(c => c.Id == commentId);

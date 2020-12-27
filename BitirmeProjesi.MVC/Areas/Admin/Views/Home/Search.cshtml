@@ -4,7 +4,7 @@
 
 
 }
-@if (Model.ResultStatus == BitirmeProjesi.Shared.Utilities.Results.Complex_Types.ResultStatus.Success)
+@if (!string.IsNullOrWhiteSpace(ViewBag.SearchString))
 {
     <div id="modalPlaceHolder" aria-hidden="true"></div>
     <div class="container">

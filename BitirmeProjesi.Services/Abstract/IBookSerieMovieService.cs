@@ -11,6 +11,10 @@ namespace BitirmeProjesi.Services.Abstract
     {
         Task<IDataResult<BookSerieMovieDto>> GetAll();
         Task<IDataResult<BookSerieMovieDto>> GetCategories(int? id);
-    
+
+        Task<IDataResult<BookSerieMovieDto>> Search(string searchString);
+
+
+
     }
 }

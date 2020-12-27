@@ -8,7 +8,13 @@
 }
 
 <div class="collapse navbar-collapse" id="navbarResponsive">
+    <form class="form-inline my-2 my-lg-0 bg-dark" asp-action="Search" asp-controller="Home" method="GET">
+        <input class="form-control mr-sm-2 text-white bg-dark" name="SearchString"type="search" placeholder="Aramak istediğiniz metni giriniz." aria-label="Search">
+        <button class="btn btn-outline-info my-2 my-sm-0 " type="submit" >Ara</button>
+    </form>
+
     <ul class="navbar-nav ml-auto">
+
         <li class="nav-item  @(active=="Anasayfa"?"active":"")">
             <a class="nav-link text-white " asp-area="Admin" asp-controller="Home" asp-action="Index">
                 ANASAYFA
@@ -53,6 +59,5 @@
                 <a class="dropdown-item text-white" asp-area="Admin" asp-controller="User" asp-action="Logout">Çıkış Yap</a>
             </div>
         </li>
-
     </ul>
 </div>

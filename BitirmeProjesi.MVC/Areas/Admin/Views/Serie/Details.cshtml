@@ -103,11 +103,11 @@
                         url: "/Serie/Details/AddList",
                         data: { Id: data },
                         success: function () {
-                            alert("@Model.Serie.Title isimli kitap aktivitelere başarıyla eklendi.");
+                            toastr.success("@Model.Serie.Title isimli kitap aktivitelere başarıyla eklendi.");
                             $('#exampleModal').modal('hide');
                         },
                         error: function (error) {
-                            alert(error.responseText);
+                            toastr.error(error.responseText);
                         }
                     })
                 })

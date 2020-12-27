@@ -22,7 +22,6 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            
             return View();
         }
         

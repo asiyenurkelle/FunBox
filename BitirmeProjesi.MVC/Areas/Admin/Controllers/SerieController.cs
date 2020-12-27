@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using BitirmeProjesi.Entities.Dtos;
+using BitirmeProjesi.MVC.Areas.Admin.Models;
 using BitirmeProjesi.Services.Abstract;
+using BitirmeProjesi.Shared.Utilities.Results.Complex_Types;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
@@ -12,11 +16,15 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
     {
         private readonly ISerieService _serieService;
         private readonly ISerieQuestionService _serieQuestionService;
+        private readonly ICommentService _commentService;
+        private readonly IMapper _mapper;
 
-        public SerieController(ISerieService serieService, ISerieQuestionService serieQuestionService)
+        public SerieController(ISerieService serieService, ISerieQuestionService serieQuestionService,ICommentService commentService,IMapper mapper)
         {
             _serieService = serieService;
             _serieQuestionService = serieQuestionService;
+            _commentService = commentService;
+            _mapper = mapper;
         }
 
         public async Task<IActionResult> Index(int? id)
@@ -58,6 +66,33 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             TempData["Active"] = "ModTesti";
             var result = await _serieQuestionService.GetQuestions();
             return View(result.Data);
+        }
+
+        [HttpGet]
+        public IActionResult AddComment()
+        {
+            return View(new CommentAddDto());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddComment(CommentAddViewModel commentAddViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var commentAddDto = _mapper.Map<CommentAddDto>(commentAddViewModel);
+                var result = await _serieService.AddComment(commentAddDto);
+                if (result.ResultStatus == ResultStatus.Success)
+                {
+                    return RedirectToAction("Index", "Movie");
+                }
+                else
+                {
+                    ModelState.AddModelError("", result.Message);
+                    return View(commentAddViewModel);
+                }
+
+            }
+            return View(commentAddViewModel);
         }
     }
 }

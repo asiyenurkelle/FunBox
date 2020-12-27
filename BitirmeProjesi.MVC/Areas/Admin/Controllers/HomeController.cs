@@ -35,8 +35,21 @@ namespace BitirmeProjesi.MVC.Areas.Anasayfa.Controllers
                 return View(result.Data);
             }
            
-            
         }
+        public async Task<IActionResult> Search(string searchString)
+        {
+            if (!string.IsNullOrWhiteSpace(searchString))
+            {
+                ViewBag.SearchString = searchString;
+                var result = await _bookSerieMovieService.Search(searchString);
+                return View(result.Data);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+            
       
 
 

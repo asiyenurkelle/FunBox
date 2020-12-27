@@ -103,11 +103,11 @@
                         url: "/Movie/Details/AddList",
                         data: { Id: data },
                         success: function () {
-                            alert("@Model.Movie.Title isimli kitap aktivitelere başarıyla eklendi.");
+                            toastr.success ("@Model.Movie.Title isimli kitap aktivitelere başarıyla eklendi.");
                             $('#exampleModal').modal('hide');
                         },
                         error: function (error) {
-                            alert(error.responseText);
+                            toastr.error(error.responseText);
                         }
                     })
                 })

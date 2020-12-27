@@ -79,6 +79,35 @@ namespace BitirmeProjesi.Services.Concrete
                 Message = Messages.BookSerieMovie.NotFound(isPlural: true)
             });
         }
+
+        public async Task<IDataResult<BookSerieMovieDto>> Search(string searchString)
+        {
+            var resultMovie = await _unitOfWork.Movies.GetAllAsync(m => m.Title.Contains(searchString), m => m.Category);
+            var resultSerie = await _unitOfWork.Series.GetAllAsync(s => s.Title.Contains(searchString), s => s.Category);
+            var resultBook = await _unitOfWork.Books.GetAllAsync(b => b.Title.Contains(searchString), b => b.Category);
+            var categories = await _unitOfWork.Categories.GetAllAsync(null, c => c.Books, c => c.Movies, c => c.Series);
+
+            if (resultMovie.Count> 0|| resultSerie.Count>0 || resultBook.Count > 0)
+            {
+                return new DataResult<BookSerieMovieDto>(ResultStatus.Success, new BookSerieMovieDto
+                {
+                    Books = resultBook,
+                    Movies = resultMovie,
+                    Series = resultSerie,
+                    Categories= categories,
+                    ResultStatus = ResultStatus.Success
+                });
+            }
+            return new DataResult<BookSerieMovieDto>(ResultStatus.Error, Messages.BookSerieMovie.NotFound(isPlural: true), new BookSerieMovieDto
+            {
+                Books = null,
+                Series = null,
+                Movies = null,
+                ResultStatus = ResultStatus.Error,
+                Message = Messages.BookSerieMovie.NotFound(isPlural: true)
+            });
+
+        }
     }
 }
 

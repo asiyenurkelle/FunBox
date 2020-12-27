@@ -49,6 +49,9 @@
           "lib/netstandard2.0/Humanizer.dll": {}
         }
       },
+      "jQuery/1.6.3": {
+        "type": "package"
+      },
       "Microsoft.AspNet.Identity.Core/2.2.3": {
         "type": "package",
         "compile": {
@@ -3125,6 +3128,12 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "toastr/2.1.1": {
+        "type": "package",
+        "dependencies": {
+          "jQuery": "1.6.3"
+        }
+      },
       "BitirmeProjesi.Data/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -3268,6 +3277,24 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
+      ]
+    },
+    "jQuery/1.6.3": {
+      "sha512": "vb0p7+eRmc2evBCT9W7PCUupqWiDMi9/ofBHN99LraRzLY5jPKMeFzFYBoMgwA8TiwRoFDke5hiDDLsvae7qMg==",
+      "type": "package",
+      "path": "jquery/1.6.3",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Content/Scripts/jquery-1.6.3-vsdoc.js",
+        "Content/Scripts/jquery-1.6.3.js",
+        "Content/Scripts/jquery-1.6.3.min.js",
+        "Tools/install.ps1",
+        "Tools/jquery-1.6.3-vsdoc-para.js",
+        "Tools/uninstall.ps1",
+        "jquery.1.6.3.nupkg.sha512",
+        "jquery.nuspec"
       ]
     },
     "Microsoft.AspNet.Identity.Core/2.2.3": {
@@ -9599,6 +9626,23 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "toastr/2.1.1": {
+      "sha512": "h/688XvzYk1xVYn213ryU+HCElE4n/drYzAHJkAi9LsSUPS3EbI6wGlvCglBUt7i4h5iESgAVarYaigjQmVpqg==",
+      "type": "package",
+      "path": "toastr/2.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/content/toastr.css",
+        "content/content/toastr.less",
+        "content/content/toastr.min.css",
+        "content/content/toastr.scss",
+        "content/scripts/toastr.js",
+        "content/scripts/toastr.min.js",
+        "toastr.2.1.1.nupkg.sha512",
+        "toastr.nuspec"
+      ]
+    },
     "BitirmeProjesi.Data/1.0.0": {
       "type": "project",
       "path": "../BitirmeProjesi.Data/BitirmeProjesi.Data.csproj",
@@ -9628,7 +9672,8 @@
       "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation >= 5.0.0-preview.7.20365.19",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.0",
       "NuGet.CommandLine >= 5.8.0",
-      "PagedList.Core.Mvc >= 3.0.0"
+      "PagedList.Core.Mvc >= 3.0.0",
+      "toastr >= 2.1.1"
     ]
   },
   "packageFolders": {
@@ -9707,6 +9752,10 @@
           "PagedList.Core.Mvc": {
             "target": "Package",
             "version": "[3.0.0, )"
+          },
+          "toastr": {
+            "target": "Package",
+            "version": "[2.1.1, )"
           }
         },
         "imports": [

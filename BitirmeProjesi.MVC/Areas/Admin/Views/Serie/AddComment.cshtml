@@ -1,6 +1,6 @@
 ﻿@model BitirmeProjesi.Entities.Dtos.CommentAddDto
 @{
-    Layout = "~/Areas/Admin/Views/Shared/_UserLoginLayout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 
@@ -8,7 +8,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-5">
             <div class="card shadow-lg  rounded-lg mt-5 bg-dark">
-                <div class="card-header text-info"><h3 class="text-center bg-dark my-4"> <span class="fas fa-edit"></span>Yorum Ekle</h3></div>
+                <div class="card-header text-info"><h3 class="text-center my-4"> <span class="fas fa-edit"></span>Yorum Ekle</h3></div>
                 <div class="card-body">
                     <form asp-controller="Serie" asp-action="AddComment" method="post">
                         <div asp-validation-summary="All" class="text-danger" id="validation-summary">
