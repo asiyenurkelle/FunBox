@@ -1,5 +1,6 @@
 ﻿using BitirmeProjesi.Entities.Dtos;
 using BitirmeProjesi.Services.Abstract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class ActivitiesController : Controller
     {
         private readonly IActivityService _activityService;

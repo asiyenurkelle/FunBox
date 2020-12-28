@@ -9,10 +9,12 @@ using BitirmeProjesi.Services.Abstract;
 using BitirmeProjesi.Shared.Utilities.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using BitirmeProjesi.Shared.Utilities.Results.Complex_Types;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class CommentController : Controller
     {
         private readonly ICommentService _commentService;

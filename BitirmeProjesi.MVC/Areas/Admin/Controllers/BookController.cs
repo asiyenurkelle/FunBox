@@ -9,10 +9,13 @@ using Microsoft.AspNetCore.Mvc;
 using BitirmeProjesi.Shared.Utilities.Results.Complex_Types;
 using Microsoft.AspNetCore.Identity;
 using BitirmeProjesi.Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
+
     public class BookController : Controller
     {
         private readonly IBookService _bookService;
@@ -42,6 +45,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         }
 
         [HttpGet("Admin/Book/Details/{Id}")]
+        
         public async Task<IActionResult> Details(int Id)
         {
             TempData["Active"] = "Kitap";
@@ -51,6 +55,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 
 
         [HttpGet("Book/Details/AddList")]
+        
         public async Task<IActionResult> AddList(int Id)
         {
             TempData["Active"] = "Kitap";
@@ -59,6 +64,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         }
 
         [HttpGet]
+     
         public async Task<IActionResult> MoodTesting()
         {
             TempData["Active"] = "ModTesti";

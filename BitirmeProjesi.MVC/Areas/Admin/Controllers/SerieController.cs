@@ -7,11 +7,13 @@ using BitirmeProjesi.Entities.Dtos;
 using BitirmeProjesi.MVC.Areas.Admin.Models;
 using BitirmeProjesi.Services.Abstract;
 using BitirmeProjesi.Shared.Utilities.Results.Complex_Types;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class SerieController : Controller
     {
         private readonly ISerieService _serieService;
@@ -53,6 +55,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 
 
         [HttpGet("Serie/Details/AddList")]
+        [Authorize]
         public async Task<IActionResult> AddList(int Id)
         {
             TempData["Active"] = "Dizi";
@@ -61,6 +64,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> MoodTesting()
         {
             TempData["Active"] = "ModTesti";
@@ -69,6 +73,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult AddComment()
         {
             return View(new CommentAddDto());
@@ -83,7 +88,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
                 var result = await _serieService.AddComment(commentAddDto);
                 if (result.ResultStatus == ResultStatus.Success)
                 {
-                    return RedirectToAction("Index", "Movie");
+                    return RedirectToAction("Index", "Serie");
                 }
                 else
                 {

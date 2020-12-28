@@ -5,16 +5,17 @@
 
 <script src="~/vendor/jquery/jquery.min.js"></script>
 <script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-
 <link href="~/css/MoodTest.css" rel="stylesheet" />
 
-<div class="container-fluid text-center">
 
-    <div class="modal-dialog">
-        <div class="modal-content">
-            @foreach (var question in Model.MovieQuestions)
-            {
+
+@foreach (var question in Model.MovieQuestions)
+{
+    <div class="container-fluid text-center">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+
                 <div class="modal-header">
                     <h2 class="text-info"><span class="label label-warning text-info" id="qid"></span>@question.QuestionText </h2>
                 </div>
@@ -31,105 +32,103 @@
                             <div class="blockG" id="rotateG_08"></div>
                         </div>
                     </div>
-
-
                     <div class="quiz" id="quiz" data-toggle="buttons">
                         <label class="element-animation1 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="1">@question.OptionsOne</label>
                         <label class="element-animation2 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="2">@question.OptionsTwo</label>
+                        <label class="element-animation3 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="3">Diğer</label>
 
                     </div>
 
                 </div>
                 <div class="modal-footer " id="answer1">
-                    
+
                 </div>
+
+
+
                
 
-
-            }
-
+            </div>
         </div>
     </div>
-</div>
+}
 
 
-@section Scripts{
-    <script type="text/javascript">
-        $(function () {
-            var loading = $('#loadbar').hide();
-            $(document)
-                .ajaxStart(function () {
-                    loading.show();
-                }).ajaxStop(function () {
-                    loading.hide();
+    @section Scripts{
+        <script type="text/javascript">
+            $(function () {
+                var loading = $('#loadbar').hide();
+                $(document)
+                    .ajaxStart(function () {
+                        loading.show();
+                    }).ajaxStop(function () {
+                        loading.hide();
+                    });
+
+                $("label.btn").on('click', function () {
+                    var choice = $(this).find('input:radio').val();
+
+                    $('#loadbar').show();
+                    $('#quiz').fadeOut();
+                    setTimeout(function () {
+
+                        if (choice = 1)
+                            $.ajax({
+                                type: "GET",
+                                contentType: "application/json; charset=utf-8",
+                                url: "./GetSuggestionsLessTwo",
+                                success: function (result) {
+                                    const resultMovie = jQuery.parseJSON(result);
+
+                                    if (resultMovie.ResultStatus === 0) {
+                                        let answerResult = "";
+                                        $.each(resultMovie.Movies.$values,
+                                            function (index, movie) {
+                                                answerResult += `
+                                                                        <div> ${movie.Title}</div>
+
+                                                                        `;
+                                            }
+                                        );
+                                        $('#answer1').replaceWith(answerResult);
+
+                                    }
+                                }
+                            });
+                        else {
+
+                            $.ajax({
+                                type: "GET",
+                                contentType: "application/json; charset=utf-8",
+                                url: "./GetSuggestionsMoreTwo",
+                                success: function (result) {
+                                    const resultMovieLess = jQuery.parseJSON(result);
+
+                                    if (resultMovieLess.ResultStatus === 0) {
+                                        let answerResultLess = "";
+                                        $('#answer1').html("");
+                                        $.each(resultMovieLess.Movies.$values,
+                                            function (index, movie) {
+                                                answerResultLess += `
+                                                                        <div> ${movie.Title}</div>
+
+                                                                        `;
+                                            }
+                                        );
+                                        $('#answer1').replaceWith(answerResultLess);
+                                    }
+
+                                }
+
+
+                            });
+                        }
+
+,
+
+                    }, 1500);
                 });
 
-            $("label.btn").on('click', function () {
-                var choice = $(this).find('input:radio').val();
-
-                $('#loadbar').show();
-                $('#quiz').fadeOut();
-                setTimeout(function () {
-
-                    if (choice = 1)
-                        $.ajax({
-                            type: "GET",
-                            contentType: "application/json; charset=utf-8",
-                            url: "./GetSuggestionsLessTwo",
-                            success: function (result) {
-                                const resultMovie = jQuery.parseJSON(result);
-
-                                if (resultMovie.ResultStatus === 0) {
-                                    let answerResult = "";
-                                    $.each(resultMovie.Movies.$values,
-                                        function (index, movie) {
-                                            answerResult += `
-                                                                <div> ${movie.Title}</div>
-
-                                                                `;
-                                        }
-                                    );
-                                    $('#answer1').replaceWith(answerResult);
-
-                                }
-                            }
-                        });
-                    else {
-
-                        $.ajax({
-                            type: "GET",
-                            contentType: "application/json; charset=utf-8",
-                            url: "./GetSuggestionsMoreTwo",
-                            success: function (result) {
-                                const resultMovieLess = jQuery.parseJSON(result);
-
-                                if (resultMovieLess.ResultStatus === 0) {
-                                    let answerResultLess = "";
-                                    $('#answer1').html("");
-                                    $.each(resultMovieLess.Movies.$values,
-                                        function (index, movie) {
-                                            answerResultLess += `
-                                                                <div> ${movie.Title}</div>
-
-                                                                `;
-                                        }
-                                    );
-                                    $('#answer1').replaceWith(answerResultLess);
-                                }
-
-                            }
-
-
-                        });
-                    }
-                    
-                    $('#quiz').show();
-                    $('#answer1').hide();
-                    $('#loadbar').fadeOut();
-
-                }, 1500);
             });
-
-        });
-    </script>
-}
+        </script>
+    }

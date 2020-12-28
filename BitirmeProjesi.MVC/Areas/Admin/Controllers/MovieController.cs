@@ -12,10 +12,12 @@ using BitirmeProjesi.Shared.Utilities.Extensions;
 using BitirmeProjesi.Entities.Concrete;
 using System.Text.Json.Serialization;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class MovieController : Controller
     {
         private readonly IMovieService _movieService;
@@ -53,6 +55,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         }
 
         [HttpGet("Movie/Details/AddList")]
+        [Authorize]
         public async Task<IActionResult> AddList(int Id)
         {
             TempData["Active"] = "Film";
@@ -61,6 +64,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> MoodTesting()
         {
             TempData["Active"] = "ModTesti";
@@ -69,6 +73,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult AddComment(int Id)
         {
             var movie = _movieService.Get(Id);

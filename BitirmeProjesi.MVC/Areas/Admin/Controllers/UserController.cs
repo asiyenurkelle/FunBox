@@ -47,7 +47,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
                     var result = await _signInManager.PasswordSignInAsync(user, userLoginDto.Password, userLoginDto.RememberMe, false);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Home", new { area = "" });
                     }
                     else
                     {
@@ -94,7 +94,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
                 var result = await _userManager.CreateAsync(user, userSignUpDto.Password);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home" ,new { area = "" });
                 }
                 else
                 {
@@ -109,16 +109,18 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         }
 
 
-        [Authorize]
+        
         [HttpGet]
+        [Authorize]
         public ViewResult PasswordChange()
         {
             TempData["Active"] = "Kullanıcı";
             return View();
         }
 
-        [Authorize]
+        
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> PasswordChange(UserPasswordChangeDto userPasswordChangeDto)
         {
            
@@ -211,6 +213,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         }
 
         [HttpGet("[action]/{userId}/{token}")]
+        [Authorize]
         public IActionResult UpdatePassword(string userId, string token)
         {
             TempData["Active"] = "Kullanıcı";
@@ -233,17 +236,19 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 
 
 
-        [Authorize]
+        
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Logout()
         {
             TempData["Active"] = "Kullanıcı";
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home", new { Area = "Admin" });
+            return RedirectToAction("Index", "Home", new { area = "" });
         }
 
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> UserEditProfile()
         {
             TempData["Active"] = "Kullanıcı";

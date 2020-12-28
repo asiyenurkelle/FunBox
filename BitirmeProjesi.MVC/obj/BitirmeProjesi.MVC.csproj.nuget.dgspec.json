@@ -236,6 +236,10 @@
               "target": "Package",
               "version": "[3.0.0, )"
             },
+            "PagedList.Mvc": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
             "toastr": {
               "target": "Package",
               "version": "[2.1.1, )"

@@ -11,7 +11,7 @@
 
         <div class="row" id="HomePage">
 
-            @await Html.PartialAsync("_LayoutListGroupPartial")
+            @await Html.PartialAsync("~/Areas/Admin/Views/Shared/_LayoutListGroupPartial.cshtml")
 
 
             <!-- /.col-lg-3 -->
@@ -29,7 +29,7 @@
                                 <img class="card-img-top" src="~/img/@book.ThumbNail" alt="">
                                 <div class="card-body ">
                                     <h4 class="card-title">
-                                        <a asp-area="Admin" asp-controller="Book" asp-action="Details" asp-route-id="@book.Id" class="text-info">@book.Title</a>
+                                        <a asp-area=""  asp-controller="Book" asp-action="Details" asp-route-id="@book.Id" class="text-info">@book.Title</a>
                                     </h4>
 
                                     <p class="card-text">
@@ -48,7 +48,7 @@
                                 <img class="card-img-top" src="~/img/@serie.ThumbNail" alt="">
                                 <div class="card-body">
                                     <h4 class="card-title">
-                                        <a asp-area="Admin" asp-controller="Serie" asp-action="Details" asp-route-id="@serie.Id" class="text-info">@serie.Title</a>
+                                        <a asp-area="" asp-controller="Serie" asp-action="Details" asp-route-id="@serie.Id" class="text-info">@serie.Title</a>
                                     </h4>
 
                                     <p class="card-text">
@@ -68,7 +68,7 @@
                                 <div class="card-body">
                                     <h4 class="card-title ">
 
-                                        <a asp-area="Admin" asp-controller="Movie" asp-action="Details" asp-route-id="@movie.Id" class="text-info">@movie.Title</a>
+                                        <a asp-area="" asp-controller="Movie" asp-action="Details" asp-route-id="@movie.Id" class="text-info">@movie.Title</a>
                                     </h4>
 
                                     <p class="card-text">
@@ -79,6 +79,7 @@
                             </div>
                         </div>
                     }
+                   
 
 
                 </div>
