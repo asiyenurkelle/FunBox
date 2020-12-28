@@ -162,7 +162,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         public ViewResult ResetPassword()
         {
             TempData["Active"] = "Kullanıcı";
-            return View();
+            return View("ResetPassword");
         }
 
 
@@ -187,7 +187,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
                     mail.IsBodyHtml = true;
 
                     SmtpClient smp = new SmtpClient();
-                    smp.Credentials = new NetworkCredential("asiyekelle7@gmail.com", "asiyekelle7asiyekelle7");
+                    smp.Credentials = new NetworkCredential("asiyekelle7@gmail.com", "zeynep2002");
                     smp.UseDefaultCredentials = false;
                     smp.Port = 587;
                     smp.Host = "smtp.gmail.com";
@@ -213,12 +213,13 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         }
 
         [HttpGet("[action]/{userId}/{token}")]
-        [Authorize]
+        //[Authorize]
         public IActionResult UpdatePassword(string userId, string token)
         {
             TempData["Active"] = "Kullanıcı";
             return View();
         }
+        [HttpPost("[action]/{userId}/{token}")]
         public async Task<IActionResult> UpdatePassword(UserUpdatePasswordDto userUpdatePasswordDto, string userId, string token)
         {
             TempData["Active"] = "Kullanıcı";
