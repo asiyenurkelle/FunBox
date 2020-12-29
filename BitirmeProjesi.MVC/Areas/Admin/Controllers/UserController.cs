@@ -13,6 +13,7 @@ using System.Web;
 namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 {
     [Area("Admin")]
+   
     public class UserController : Controller
     {
         private readonly SignInManager<User> _signInManager;
@@ -162,7 +163,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         public ViewResult ResetPassword()
         {
             TempData["Active"] = "Kullanıcı";
-            return View("ResetPassword");
+            return View();
         }
 
 
@@ -213,7 +214,6 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         }
 
         [HttpGet("[action]/{userId}/{token}")]
-        //[Authorize]
         public IActionResult UpdatePassword(string userId, string token)
         {
             TempData["Active"] = "Kullanıcı";
