@@ -11,124 +11,119 @@
 
 @foreach (var question in Model.MovieQuestions)
 {
-    <div class="container-fluid text-center">
+<div class="row">
+    <div class="container text-center col-md-4 ">
 
-        <div class="modal-dialog">
+        <div class="modal-dialog p-2">
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h2 class="text-info"><span class="label label-warning text-info" id="qid"></span>@question.QuestionText </h2>
+                    <h2 class="text-info"><span class="label label-warning text-info" id="question"></span>@question.QuestionText </h2>
                 </div>
                 <div class="modal-body">
-                    <div class="col-xs-3 col-xs-offset-5">
-                        <div id="loadbar" style="display: none;">
-                            <div class="blockG" id="rotateG_01"></div>
-                            <div class="blockG" id="rotateG_02"></div>
-                            <div class="blockG" id="rotateG_03"></div>
-                            <div class="blockG" id="rotateG_04"></div>
-                            <div class="blockG" id="rotateG_05"></div>
-                            <div class="blockG" id="rotateG_06"></div>
-                            <div class="blockG" id="rotateG_07"></div>
-                            <div class="blockG" id="rotateG_08"></div>
-                        </div>
-                    </div>
+
                     <div class="quiz" id="quiz" data-toggle="buttons">
-                        <label class="element-animation1 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="1">@question.OptionsOne</label>
-                        <label class="element-animation2 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="2">@question.OptionsTwo</label>
-                        <label class="element-animation3 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="3">Diğer</label>
 
+                        <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="1">@question.OptionsOne</label>
+                        <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="2">@question.OptionsTwo</label>
+                        <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="3">Diğer</label>
                     </div>
 
                 </div>
-                <div class="modal-footer " id="answer1">
-
-                </div>
-
-
-
-               
 
             </div>
         </div>
     </div>
-}
+    <div class="container text-center col-md-6 " id="SuggestionScreen">
+
+        <div class="modal-dialog p-2">
+            <div class="modal-content">
+
+                <div class="modal-header ">
+                    <h2 class="text-info"><span class="label label-warning text-info" ></span>Senin İçin Önerilerimiz </h2>
+                </div>
+                <div class="modal-body">
+
+                    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                        <div class="card-header bg-info text-dark" id="answer1Title"> </div>       
+                    </div>
+
+                </div>
 
 
-    @section Scripts{
-        <script type="text/javascript">
-            $(function () {
-                var loading = $('#loadbar').hide();
-                $(document)
-                    .ajaxStart(function () {
-                        loading.show();
-                    }).ajaxStop(function () {
-                        loading.hide();
-                    });
+            </div>
+        </div>
 
-                $("label.btn").on('click', function () {
-                    var choice = $(this).find('input:radio').val();
+    </div>
+</div>
 
-                    $('#loadbar').show();
-                    $('#quiz').fadeOut();
-                    setTimeout(function () {
+ } 
 
-                        if (choice = 1)
-                            $.ajax({
-                                type: "GET",
-                                contentType: "application/json; charset=utf-8",
-                                url: "./GetSuggestionsLessTwo",
-                                success: function (result) {
-                                    const resultMovie = jQuery.parseJSON(result);
 
-                                    if (resultMovie.ResultStatus === 0) {
-                                        let answerResult = "";
-                                        $.each(resultMovie.Movies.$values,
-                                            function (index, movie) {
-                                                answerResult += `
-                                                                        <div> ${movie.Title}</div>
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            $('#SuggestionScreen').hide();
+            $("label.btn").on('click', function () {
+                var choice = $(this).find('input:radio').val();
+                
+                    if (choice == 1)
+                        $.ajax({
+                            type: "GET",
+                            contentType: "application/json; charset=utf-8",
+                            url: "./GetSuggestionsLessTwo",
+                            success: function (result) {
+                                $('#SuggestionScreen').show();
+                                const resultMovie = jQuery.parseJSON(result);
 
-                                                                        `;
-                                            }
-                                        );
-                                        $('#answer1').replaceWith(answerResult);
+                                if (resultMovie.ResultStatus === 0) {
+                                    let answerResult = "";
+                                    $.each(resultMovie.Movies.$values,
+                                        function (index, movie) {
+                                            answerResult += `
+                                                                                 <div class="card-header bg-info"> ${movie.Title}</div>
+                                                                               
 
-                                    }
-                                }
-                            });
-                        else {
-
-                            $.ajax({
-                                type: "GET",
-                                contentType: "application/json; charset=utf-8",
-                                url: "./GetSuggestionsMoreTwo",
-                                success: function (result) {
-                                    const resultMovieLess = jQuery.parseJSON(result);
-
-                                    if (resultMovieLess.ResultStatus === 0) {
-                                        let answerResultLess = "";
-                                        $('#answer1').html("");
-                                        $.each(resultMovieLess.Movies.$values,
-                                            function (index, movie) {
-                                                answerResultLess += `
-                                                                        <div> ${movie.Title}</div>
-
-                                                                        `;
-                                            }
-                                        );
-                                        $('#answer1').replaceWith(answerResultLess);
-                                    }
+                                                                                `;
+                                        }
+                                    );
+                                    $('#answer1Title').replaceWith(answerResult);
 
                                 }
+                            }
+                        });
+                    else {
+                        
+                        $('#SuggestionScreen').hide();
+                        $.ajax({
+                            type: "GET",
+                            contentType: "application/json; charset=utf-8",
+                            url: "./GetSuggestionsMoreTwo",
+                            success: function (result) {
+                                $('#SuggestionScreen').show();
+                                const resultMovieLess = jQuery.parseJSON(result);
+
+                                if (resultMovieLess.ResultStatus === 0) {
+                                    let answerResultLess = "";
+                                    $('#answer1Title').html(" ");
+                                    $.each(resultMovieLess.Movies.$values,
+                                        function (index, movie) {
+                                            answerResultLess += `
+                                                                                <div class="card-header bg-info"> ${movie.Title}</div>
+
+                                                                                `;
+                                        }
+                                    );
+                                    $('#answer1Title').replaceWith(answerResultLess);
+                                }
+
+                            }
 
 
-                            });
-                        }
-
-,
-
-                    }, 1500);
-                });
-
+                        });
+                    }
             });
-        </script>
-    }
+
+        });
+    </script>
+}
