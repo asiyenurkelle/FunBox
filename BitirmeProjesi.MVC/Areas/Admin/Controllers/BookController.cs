@@ -10,6 +10,8 @@ using BitirmeProjesi.Shared.Utilities.Results.Complex_Types;
 using Microsoft.AspNetCore.Identity;
 using BitirmeProjesi.Entities.Concrete;
 using Microsoft.AspNetCore.Authorization;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 {
@@ -70,6 +72,68 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             var result = await _bookQuestionService.GetQuestions();
             return View(result.Data);
         }
+        public async Task<IActionResult> GetBookLessThanTwoHundredPage()
+        {
+            var result = await _bookService.GetBookLessThanTwoHundredPage();
+            var books = JsonSerializer.Serialize(result.Data, new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
+            return Json(books);
+        }
+
+        public async Task<IActionResult> GetBookMoreThanTwoHundredPage()
+        {
+            var result = await _bookService.GetBookMoreThanTwoHundredPage();
+            var books = JsonSerializer.Serialize(result.Data, new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
+            return Json(books);
+
+        }
+        public async Task<IActionResult> GetBookClassical()
+        {
+            var result = await _bookService.GetBookClassical();
+            var books = JsonSerializer.Serialize(result.Data, new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
+            return Json(books);
+
+        }
+        public async Task<IActionResult> GetBookNonClassical()
+        {
+            var result = await _bookService.GetBookNonClassical();
+            var books = JsonSerializer.Serialize(result.Data, new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
+            return Json(books);
+
+        }
+        public async Task<IActionResult> GetBookDateLess1990()
+        {
+            var result = await _bookService.GetBookDateLess1990();
+            var books = JsonSerializer.Serialize(result.Data, new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
+            return Json(books);
+
+        }
+        public async Task<IActionResult> GetBookDateThan1990()
+        {
+            var result = await _bookService.GetBookDateThan1990();
+            var books = JsonSerializer.Serialize(result.Data, new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
+            return Json(books);
+
+        }
+
+
 
 
     }

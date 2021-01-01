@@ -9,6 +9,7 @@ using BitirmeProjesi.Shared.Utilities.Results.Complex_Types;
 using BitirmeProjesi.Shared.Utilities.Results.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using System;
 using System.Threading.Tasks;
 
 namespace BitirmeProjesi.Services.Concrete
@@ -120,6 +121,124 @@ namespace BitirmeProjesi.Services.Concrete
             });
         }
 
-        
+        public async Task<IDataResult<BookListDto>> GetBookLessThanTwoHundredPage()
+        {
+            var books = await _unitOfWork.Books.GetAllAsync(s => s.Page <= 200);
+
+            if (books != null)
+            {
+                return new DataResult<BookListDto>(ResultStatus.Success, new BookListDto
+                {
+                    Books = books,
+                    ResultStatus = ResultStatus.Success
+                });
+            }
+            return new DataResult<BookListDto>(ResultStatus.Error, Messages.Book.NotFound(isPlural: true), new BookListDto
+            {
+                Books = null,
+                ResultStatus = ResultStatus.Error,
+                Message = Messages.Book.NotFound(isPlural: true)
+            });
+        }
+
+        public async Task<IDataResult<BookListDto>> GetBookMoreThanTwoHundredPage()
+        {
+            var books = await _unitOfWork.Books.GetAllAsync(s => s.Page > 200);
+
+            if (books != null)
+            {
+                return new DataResult<BookListDto>(ResultStatus.Success, new BookListDto
+                {
+                    Books = books,
+                    ResultStatus = ResultStatus.Success
+                });
+            }
+            return new DataResult<BookListDto>(ResultStatus.Error, Messages.Book.NotFound(isPlural: true), new BookListDto
+            {
+                Books = null,
+                ResultStatus = ResultStatus.Error,
+                Message = Messages.Book.NotFound(isPlural: true)
+            });
+        }
+
+        public async Task<IDataResult<BookListDto>> GetBookClassical()
+        {
+            var books = await _unitOfWork.Books.GetAllAsync(s => s.IsClassical);
+
+            if (books != null)
+            {
+                return new DataResult<BookListDto>(ResultStatus.Success, new BookListDto
+                {
+                    Books = books,
+                    ResultStatus = ResultStatus.Success
+                });
+            }
+            return new DataResult<BookListDto>(ResultStatus.Error, Messages.Book.NotFound(isPlural: true), new BookListDto
+            {
+                Books = null,
+                ResultStatus = ResultStatus.Error,
+                Message = Messages.Book.NotFound(isPlural: true)
+            });
+        }
+
+        public async Task<IDataResult<BookListDto>> GetBookNonClassical()
+        {
+            var books = await _unitOfWork.Books.GetAllAsync(s => s.IsClassical == false);
+
+            if (books != null)
+            {
+                return new DataResult<BookListDto>(ResultStatus.Success, new BookListDto
+                {
+                    Books = books,
+                    ResultStatus = ResultStatus.Success
+                });
+            }
+            return new DataResult<BookListDto>(ResultStatus.Error, Messages.Book.NotFound(isPlural: true), new BookListDto
+            {
+                Books = null,
+                ResultStatus = ResultStatus.Error,
+                Message = Messages.Book.NotFound(isPlural: true)
+            });
+        }
+
+        public async Task<IDataResult<BookListDto>> GetBookDateLess1990()
+        {
+            var books = await _unitOfWork.Books.GetAllAsync(s => s.Date <= new DateTime(1990, 01, 01));
+
+            if (books != null)
+            {
+                return new DataResult<BookListDto>(ResultStatus.Success, new BookListDto
+                {
+                    Books = books,
+                    ResultStatus = ResultStatus.Success
+                });
+            }
+            return new DataResult<BookListDto>(ResultStatus.Error, Messages.Book.NotFound(isPlural: true), new BookListDto
+            {
+                Books = null,
+                ResultStatus = ResultStatus.Error,
+                Message = Messages.Book.NotFound(isPlural: true)
+            });
+        }
+
+        public async Task<IDataResult<BookListDto>> GetBookDateThan1990()
+        {
+            var books = await _unitOfWork.Books.GetAllAsync(s => s.Date > new DateTime(1990, 01, 01));
+
+            if (books != null)
+            {
+                return new DataResult<BookListDto>(ResultStatus.Success, new BookListDto
+                {
+                    Books = books,
+                    ResultStatus = ResultStatus.Success
+                });
+            }
+            return new DataResult<BookListDto>(ResultStatus.Error, Messages.Book.NotFound(isPlural: true), new BookListDto
+            {
+                Books = null,
+                ResultStatus = ResultStatus.Error,
+                Message = Messages.Book.NotFound(isPlural: true)
+            });
+        }
     }
 }
