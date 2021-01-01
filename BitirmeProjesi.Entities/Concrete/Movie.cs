@@ -22,6 +22,8 @@ namespace BitirmeProjesi.Entities.Concrete
         public bool Activities { get; set; }
         public DateTime Date { get; set; }
 
+        public double Imdb { get; set; }
+
 
     }
 

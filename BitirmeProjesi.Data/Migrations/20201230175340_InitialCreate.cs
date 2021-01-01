@@ -253,7 +253,8 @@ namespace BitirmeProjesi.Data.Migrations
                     Scenarist = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Production = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Activities = table.Column<bool>(type: "BİT", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Imdb = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -297,14 +298,14 @@ namespace BitirmeProjesi.Data.Migrations
                 name: "Comments",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: true),
-                        
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Subject = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: true),
-                    MovieId = table.Column<int>(type: "int", nullable: true),
-                    SerieId = table.Column<int>(type: "int", nullable: true),
-                    BookId = table.Column<int>(type: "int", nullable: true)
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    MovieId = table.Column<int>(type: "int", nullable: false),
+                    SerieId = table.Column<int>(type: "int", nullable: false),
+                    BookId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -314,25 +315,25 @@ namespace BitirmeProjesi.Data.Migrations
                         column: x => x.BookId,
                         principalTable: "Books",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.SetNull);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Comments_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.SetNull);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Comments_Movies_MovieId",
                         column: x => x.MovieId,
                         principalTable: "Movies",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.SetNull);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Comments_Series_SerieId",
                         column: x => x.SerieId,
                         principalTable: "Series",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.SetNull);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
@@ -345,25 +346,30 @@ namespace BitirmeProjesi.Data.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { 1, "Polisiye" },
-                    { 2, "Roman" },
-                    { 3, "Hikaye" },
-                    { 4, "Bilim Kurgu" },
-                    { 5, "Aksiyon" },
-                    { 6, "Macera" },
+                    { 13, "Korku" },
+                    { 12, "Romantik" },
+                    { 11, "Dram" },
+                    { 10, "Komedi" },
+                    { 9, "Tarih" },
                     { 7, "Psikoloji" },
                     { 8, "Siyaset" },
-                    { 9, "Tarih" },
-                    { 10, "Komedi" },
-                    { 11, "Dram" },
-                    { 12, "Romantik" },
-                    { 13, "Korku" }
+                    { 5, "Aksiyon" },
+                    { 4, "Bilim Kurgu" },
+                    { 3, "Hikaye" },
+                    { 2, "Roman" },
+                    { 1, "Polisiye" },
+                    { 6, "Macera" }
                 });
 
             migrationBuilder.InsertData(
                 table: "MovieQuestions",
                 columns: new[] { "Id", "OptionsOne", "OptionsTwo", "QuestionText" },
-                values: new object[] { 1, "1 saat veya daha kısa", "1 saatten daha uzun", "Film izlerken sıkılmadan devam edebildiğin ideal süren aşağıdakilerden hangisine daha yakındır?" });
+                values: new object[,]
+                {
+                    { 3, "Evet,1990 ve öncesi yapımlar", "Günümüz ve yakın tarihler", "Eski tarihli filmleri izlemekten hoşlanır mısın?" },
+                    { 1, "2 saat veya daha kısa", "2 saatten daha uzun", "Film izlerken sıkılmadan devam edebildiğin ideal süren aşağıdakilerden hangisine daha yakındır?" },
+                    { 2, "Evet, 7 ve üzeri olmalı", "Hayır, farketmez", "Senin için bir filmin IMDb puanı önemli midir?" }
+                });
 
             migrationBuilder.InsertData(
                 table: "SerieQuestions",
@@ -384,13 +390,13 @@ namespace BitirmeProjesi.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Movies",
-                columns: new[] { "Id", "Activities", "CategoryId", "Date", "Production", "Scenarist", "Subject", "ThumbNail", "Time", "Title" },
+                columns: new[] { "Id", "Activities", "CategoryId", "Date", "Imdb", "Production", "Scenarist", "Subject", "ThumbNail", "Time", "Title" },
                 values: new object[,]
                 {
-                    { 2, false, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Yabancı", "Mario Puzo", "Baba, 40’lar ve 50’lerin Amerika’sında, bir İtalyan mafya ailesinin destansı öyküsünü konu alıyor. Don Corleone’nin kızı Connie’nin düğününde, ailenin en küçük oğlu ve bir savaş gazisi olan Michael babasıyla barışır. Bir suikast girişimi, Don’u artık işleri yönetemeyecek duruma düşürünce, ailenin başına Michael ve ağabeyi Sonny geçer.", "thegodfather.jpg", 178, "The Godfather" },
-                    { 1, false, 10, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Yerli", "Umur Bugay", "Öğrencilik hayatları haylazlık ve tembellik üzerine kurulu olan bir sınıf dolusu matrak öğrencinin, Özel Çamlıca Lisesi’nde yaşadığı yer yer eğlenceli, yer yer de dokunaklı öyküleri anlatan film, Hababam Sınıfı serisinin ilk filmidir", "hababamsinifi.jpg", 90, "Hababam Sınıfı" },
-                    { 3, false, 11, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Yabancı", "Randall Wallace", "Cesuryürek'te, William Wallace yaşanan büyük acılar sonrası yeniden memleketi olan İskoçya’ya döner. Onun asıl amacı çiftçilik yaparak sakin bir hayat sürmektir. Çocukluk aşkıyla karşılaştığında bunun onu dipsiz bir uçuruma iteceğinin farkında değildir.", "braveheart.jpg", 182, "Braveheart" },
-                    { 4, false, 11, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Yerli", "Yavuz Turgul", "Eşkiya, hapse düşmesine neden olan arkadaşının peşine düşen bir adamın hikayesini anlatıyor. 35 yıl önce Cudi dağlarında bir grup eşkiya yakalandı ve hapse atıldı. Yıllar içinde kimi hastalıktan, kimi hesaplaşma sonucu öldü. Biri hariç... 35 yıl sonra Hapisten çıkınca Baran’ ın ilk işi köyüne dönmek olur.", "eskiya.jpg", 128, "Eşkiya" }
+                    { 2, false, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 7.5999999999999996, "Yabancı", "Mario Puzo", "Baba, 40’lar ve 50’lerin Amerika’sında, bir İtalyan mafya ailesinin destansı öyküsünü konu alıyor. Don Corleone’nin kızı Connie’nin düğününde, ailenin en küçük oğlu ve bir savaş gazisi olan Michael babasıyla barışır. Bir suikast girişimi, Don’u artık işleri yönetemeyecek duruma düşürünce, ailenin başına Michael ve ağabeyi Sonny geçer.", "thegodfather.jpg", 178, "The Godfather" },
+                    { 1, false, 10, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 9.3000000000000007, "Yerli", "Umur Bugay", "Öğrencilik hayatları haylazlık ve tembellik üzerine kurulu olan bir sınıf dolusu matrak öğrencinin, Özel Çamlıca Lisesi’nde yaşadığı yer yer eğlenceli, yer yer de dokunaklı öyküleri anlatan film, Hababam Sınıfı serisinin ilk filmidir", "hababamsinifi.jpg", 90, "Hababam Sınıfı" },
+                    { 3, false, 11, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 8.3000000000000007, "Yabancı", "Randall Wallace", "Cesuryürek'te, William Wallace yaşanan büyük acılar sonrası yeniden memleketi olan İskoçya’ya döner. Onun asıl amacı çiftçilik yaparak sakin bir hayat sürmektir. Çocukluk aşkıyla karşılaştığında bunun onu dipsiz bir uçuruma iteceğinin farkında değildir.", "braveheart.jpg", 182, "Braveheart" },
+                    { 4, false, 11, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 7.2999999999999998, "Yerli", "Yavuz Turgul", "Eşkiya, hapse düşmesine neden olan arkadaşının peşine düşen bir adamın hikayesini anlatıyor. 35 yıl önce Cudi dağlarında bir grup eşkiya yakalandı ve hapse atıldı. Yıllar içinde kimi hastalıktan, kimi hesaplaşma sonucu öldü. Biri hariç... 35 yıl sonra Hapisten çıkınca Baran’ ın ilk işi köyüne dönmek olur.", "eskiya.jpg", 128, "Eşkiya" }
                 });
 
             migrationBuilder.InsertData(

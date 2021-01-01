@@ -12,13 +12,18 @@ namespace BitirmeProjesi.Services.Abstract
     {
         Task<IDataResult<MovieDto>> Get(int movieId);
         Task<IDataResult<MovieListDto>> GetAll();
-
         Task<IResult> AddComment(CommentAddDto commentAddDto);
-
         Task<IDataResult<MovieUpdateDto>> GetMovieUpdateDto(int movieId);
         Task<IDataResult<MovieUpdateDto>> AddListMovie(int movieId);
         Task<IDataResult<MovieListDto>> GetCategories(int? id);
         Task<IDataResult<MovieListDto>> GetAllLessThanTwoHour();
         Task<IDataResult<MovieListDto>> GetAllMoreThanTwoHour();
+        Task<IDataResult<MovieListDto>> GetImdbGreaterThanSeven();
+        Task<IDataResult<MovieListDto>> GetMovieDateLess1990();
+        Task<IDataResult<MovieListDto>> GetMovieDateThan1990();
+
+
+
+
     }
 }

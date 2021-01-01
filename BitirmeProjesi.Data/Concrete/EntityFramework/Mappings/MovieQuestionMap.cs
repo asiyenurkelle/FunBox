@@ -25,9 +25,26 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
             {
                 Id=1,
                 QuestionText="Film izlerken sıkılmadan devam edebildiğin ideal süren aşağıdakilerden hangisine daha yakındır?" ,
-                OptionsOne="1 saat veya daha kısa",
-                OptionsTwo="1 saatten daha uzun"
+                OptionsOne="2 saat veya daha kısa",
+                OptionsTwo="2 saatten daha uzun"
                 
+            });
+            
+            builder.HasData(new MovieQuestion
+            {
+                Id = 2,
+                QuestionText = "Senin için bir filmin IMDb puanı önemli midir?",
+                OptionsOne = "Evet, 7 ve üzeri olmalı",
+                OptionsTwo = "Hayır, farketmez"
+
+            });
+            builder.HasData(new MovieQuestion
+            {
+                Id = 3,
+                QuestionText = "Eski tarihli filmleri izlemekten hoşlanır mısın?",
+                OptionsOne = "Evet,1990 ve öncesi yapımlar",
+                OptionsTwo = "Günümüz ve yakın tarihler"
+
             });
         }
     }

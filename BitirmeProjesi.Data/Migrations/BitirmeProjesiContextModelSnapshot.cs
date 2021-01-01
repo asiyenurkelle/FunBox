@@ -307,6 +307,9 @@ namespace BitirmeProjesi.Data.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<double>("Imdb")
+                        .HasColumnType("float");
+
                     b.Property<string>("Production")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -344,6 +347,7 @@ namespace BitirmeProjesi.Data.Migrations
                             Activities = false,
                             CategoryId = 10,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Imdb = 9.3000000000000007,
                             Production = "Yerli",
                             Scenarist = "Umur Bugay",
                             Subject = "Öğrencilik hayatları haylazlık ve tembellik üzerine kurulu olan bir sınıf dolusu matrak öğrencinin, Özel Çamlıca Lisesi’nde yaşadığı yer yer eğlenceli, yer yer de dokunaklı öyküleri anlatan film, Hababam Sınıfı serisinin ilk filmidir",
@@ -357,6 +361,7 @@ namespace BitirmeProjesi.Data.Migrations
                             Activities = false,
                             CategoryId = 1,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Imdb = 7.5999999999999996,
                             Production = "Yabancı",
                             Scenarist = "Mario Puzo",
                             Subject = "Baba, 40’lar ve 50’lerin Amerika’sında, bir İtalyan mafya ailesinin destansı öyküsünü konu alıyor. Don Corleone’nin kızı Connie’nin düğününde, ailenin en küçük oğlu ve bir savaş gazisi olan Michael babasıyla barışır. Bir suikast girişimi, Don’u artık işleri yönetemeyecek duruma düşürünce, ailenin başına Michael ve ağabeyi Sonny geçer.",
@@ -370,6 +375,7 @@ namespace BitirmeProjesi.Data.Migrations
                             Activities = false,
                             CategoryId = 11,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Imdb = 8.3000000000000007,
                             Production = "Yabancı",
                             Scenarist = "Randall Wallace",
                             Subject = "Cesuryürek'te, William Wallace yaşanan büyük acılar sonrası yeniden memleketi olan İskoçya’ya döner. Onun asıl amacı çiftçilik yaparak sakin bir hayat sürmektir. Çocukluk aşkıyla karşılaştığında bunun onu dipsiz bir uçuruma iteceğinin farkında değildir.",
@@ -383,6 +389,7 @@ namespace BitirmeProjesi.Data.Migrations
                             Activities = false,
                             CategoryId = 11,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Imdb = 7.2999999999999998,
                             Production = "Yerli",
                             Scenarist = "Yavuz Turgul",
                             Subject = "Eşkiya, hapse düşmesine neden olan arkadaşının peşine düşen bir adamın hikayesini anlatıyor. 35 yıl önce Cudi dağlarında bir grup eşkiya yakalandı ve hapse atıldı. Yıllar içinde kimi hastalıktan, kimi hesaplaşma sonucu öldü. Biri hariç... 35 yıl sonra Hapisten çıkınca Baran’ ın ilk işi köyüne dönmek olur.",
@@ -419,9 +426,23 @@ namespace BitirmeProjesi.Data.Migrations
                         new
                         {
                             Id = 1,
-                            OptionsOne = "1 saat veya daha kısa",
-                            OptionsTwo = "1 saatten daha uzun",
+                            OptionsOne = "2 saat veya daha kısa",
+                            OptionsTwo = "2 saatten daha uzun",
                             QuestionText = "Film izlerken sıkılmadan devam edebildiğin ideal süren aşağıdakilerden hangisine daha yakındır?"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            OptionsOne = "Evet, 7 ve üzeri olmalı",
+                            OptionsTwo = "Hayır, farketmez",
+                            QuestionText = "Senin için bir filmin IMDb puanı önemli midir?"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            OptionsOne = "Evet,1990 ve öncesi yapımlar",
+                            OptionsTwo = "Günümüz ve yakın tarihler",
+                            QuestionText = "Eski tarihli filmleri izlemekten hoşlanır mısın?"
                         });
                 });
 

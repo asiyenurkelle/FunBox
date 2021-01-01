@@ -22,6 +22,7 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
             builder.Property(m => m.Scenarist).IsRequired();
             builder.Property(s => s.Activities).HasColumnType("BİT");
             builder.Property(m => m.Time).IsRequired();
+            builder.Property(m => m.Imdb).IsRequired();
            
 
             builder.HasOne<Category>(m => m.Category).WithMany(c => c.Movies).HasForeignKey(m => m.CategoryId).OnDelete(DeleteBehavior.Restrict);
@@ -37,7 +38,8 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 ThumbNail = "hababamsinifi.jpg",
                 Time= 90,
                 Scenarist="Umur Bugay",
-                Production="Yerli"
+                Production="Yerli",
+                Imdb=9.3
             },
             new Movie
             {
@@ -48,7 +50,8 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 ThumbNail = "thegodfather.jpg",
                 Time=178,
                 Scenarist= "Mario Puzo",
-                Production="Yabancı"
+                Production="Yabancı",
+                Imdb=7.6
             },
             new Movie
             {
@@ -59,7 +62,8 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 ThumbNail="braveheart.jpg",
                 Time=182,
                 Scenarist="Randall Wallace",
-                Production="Yabancı"
+                Production="Yabancı",
+                Imdb=8.3
 
             },
             new Movie
@@ -71,7 +75,8 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 ThumbNail="eskiya.jpg",
                 Time=128,
                 Scenarist="Yavuz Turgul",
-                Production="Yerli"
+                Production="Yerli",
+                Imdb=7.3
 
             }
             );

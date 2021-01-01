@@ -8,56 +8,41 @@
 <link href="~/css/MoodTest.css" rel="stylesheet" />
 
 
-
-@foreach (var question in Model.MovieQuestions)
-{
 <div class="row">
     <div class="container text-center col-md-4 ">
-
         <div class="modal-dialog p-2">
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <h2 class="text-info"><span class="label label-warning text-info" id="question"></span>@question.QuestionText </h2>
-                </div>
-                <div class="modal-body">
-
-                    <div class="quiz" id="quiz" data-toggle="buttons">
-
-                        <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="1">@question.OptionsOne</label>
-                        <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="2">@question.OptionsTwo</label>
-                        <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="3">Diğer</label>
+            @foreach (var test in Model.MovieQuestions)
+            {
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="text-info"><span class="label label-warning text-info" id="question"></span>@test.QuestionText </h2>
                     </div>
-
+                    <div class="modal-body">
+                        <div class="quiz" id="quiz" data-toggle="buttons">
+                            <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="@test.OptionsOne">@test.OptionsOne</label>
+                            <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="@test.OptionsTwo">@test.OptionsTwo</label>
+                        </div>
+                    </div>
                 </div>
-
-            </div>
+            }
         </div>
     </div>
     <div class="container text-center col-md-6 " id="SuggestionScreen">
-
         <div class="modal-dialog p-2">
             <div class="modal-content">
-
                 <div class="modal-header ">
-                    <h2 class="text-info"><span class="label label-warning text-info" ></span>Senin İçin Önerilerimiz </h2>
+                    <h2 class="text-info"><span class="label label-warning text-info"></span>Senin İçin Önerilerimiz </h2>
                 </div>
                 <div class="modal-body">
-
                     <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                        <div class="card-header bg-info text-dark" id="answer1Title"> </div>       
+                        <a class="card-header bg-info text-dark" id="answer1Title"> </a>
                     </div>
-
                 </div>
-
-
             </div>
         </div>
-
     </div>
 </div>
 
- } 
 
 
 @section Scripts{
@@ -66,64 +51,170 @@
             $('#SuggestionScreen').hide();
             $("label.btn").on('click', function () {
                 var choice = $(this).find('input:radio').val();
-                
-                    if (choice == 1)
-                        $.ajax({
-                            type: "GET",
-                            contentType: "application/json; charset=utf-8",
-                            url: "./GetSuggestionsLessTwo",
-                            success: function (result) {
-                                $('#SuggestionScreen').show();
-                                const resultMovie = jQuery.parseJSON(result);
+                console.log(choice);
+                if (choice == "2 saat veya daha kısa")
+                    $.ajax({
+                        type: "GET",
+                        contentType: "application/json; charset=utf-8",
+                        url: "./GetSuggestionsLessTwo",
+                        success: function (result) {
+                            $('#SuggestionScreen').show();
+                            const resultMovie = jQuery.parseJSON(result);
 
-                                if (resultMovie.ResultStatus === 0) {
-                                    let answerResult = "";
-                                    $.each(resultMovie.Movies.$values,
-                                        function (index, movie) {
-                                            answerResult += `
+                            if (resultMovie.ResultStatus === 0) {
+                                let answerResult = "";
+                                $.each(resultMovie.Movies.$values,
+                                    function (index, movie) {
+                                        answerResult += `
                                                                                  <div class="card-header bg-info"> ${movie.Title}</div>
-                                                                               
+
 
                                                                                 `;
-                                        }
-                                    );
-                                    $('#answer1Title').replaceWith(answerResult);
+                                    }
+                                );
+                                $('#answer1Title').replaceWith(answerResult);
 
-                                }
                             }
-                        });
-                    else {
-                        
-                        $('#SuggestionScreen').hide();
-                        $.ajax({
-                            type: "GET",
-                            contentType: "application/json; charset=utf-8",
-                            url: "./GetSuggestionsMoreTwo",
-                            success: function (result) {
-                                $('#SuggestionScreen').show();
-                                const resultMovieLess = jQuery.parseJSON(result);
+                        }
+                    });
 
-                                if (resultMovieLess.ResultStatus === 0) {
-                                    let answerResultLess = "";
-                                    $('#answer1Title').html(" ");
-                                    $.each(resultMovieLess.Movies.$values,
-                                        function (index, movie) {
-                                            answerResultLess += `
+                else if (choice == "2 saatten daha uzun") {
+
+                    $('#SuggestionScreen').hide();
+                    $.ajax({
+                        type: "GET",
+                        contentType: "application/json; charset=utf-8",
+                        url: "./GetSuggestionsMoreTwo",
+                        success: function (result) {
+                            $('#SuggestionScreen').show();
+                            const resultMovieLess = jQuery.parseJSON(result);
+
+                            if (resultMovieLess.ResultStatus === 0) {
+                                let answerResultLess = "";
+                                $('#answer1Title').html(" ");
+                                $.each(resultMovieLess.Movies.$values,
+                                    function (index, movie) {
+                                        answerResultLess += `
                                                                                 <div class="card-header bg-info"> ${movie.Title}</div>
 
                                                                                 `;
-                                        }
-                                    );
-                                    $('#answer1Title').replaceWith(answerResultLess);
-                                }
-
+                                    }
+                                );
+                                $('#answer1Title').replaceWith(answerResultLess);
                             }
+                        }
+                    });
+                }
+                else if (choice == "Evet,7 ve üzeri olmalı") {
 
+                    $('#SuggestionScreen').hide();
+                    $.ajax({
+                        type: "GET",
+                        contentType: "application/json; charset=utf-8",
+                        url: "./GetSuggestionImdbGreaterSeven",
+                        success: function (result) {
+                            $('#SuggestionScreen').show();
+                            const resultMovieLess = jQuery.parseJSON(result);
 
-                        });
-                    }
+                            if (resultMovieLess.ResultStatus === 0) {
+                                let answerResultLess = "";
+                                $('#answer1Title').html(" ");
+                                $.each(resultMovieLess.Movies.$values,
+                                    function (index, movie) {
+                                        answerResultLess += `
+                                                                                <div class="card-header bg-info"> ${movie.Title}</div>
+
+                                                                                `;
+                                    }
+                                );
+                                $('#answer1Title').replaceWith(answerResultLess);
+                            }
+                        }
+                    });
+                }
+                else if (choice == "Hayır, farketmez") {
+
+                    $('#SuggestionScreen').hide();
+                    $.ajax({
+                        type: "GET",
+                        contentType: "application/json; charset=utf-8",
+                        url: "./GetSuggestionImdbAll",
+                        success: function (result) {
+                            $('#SuggestionScreen').show();
+                            const resultMovieLess = jQuery.parseJSON(result);
+
+                            if (resultMovieLess.ResultStatus === 0) {
+                                let answerResultLess = "";
+                                $('#answer1Title').html(" ");
+                                $.each(resultMovieLess.Movies.$values,
+                                    function (index, movie) {
+                                        answerResultLess += `
+                                                                                <div class="card-header bg-info"> ${movie.Title}</div>
+
+                                                                                `;
+                                    }
+                                );
+                                $('#answer1Title').replaceWith(answerResultLess);
+                            }
+                        }
+                    });
+                }
+                else if (choice == "Evet,1990 ve öncesi yapımlar") {
+
+                    $('#SuggestionScreen').hide();
+                    $.ajax({
+                        type: "GET",
+                        contentType: "application/json; charset=utf-8",
+                        url: "./GetDateLess1990",
+                        success: function (result) {
+                            $('#SuggestionScreen').show();
+                            const resultMovieLess = jQuery.parseJSON(result);
+
+                            if (resultMovieLess.ResultStatus === 0) {
+                                let answerResultLess = "";
+                                $('#answer1Title').html(" ");
+                                $.each(resultMovieLess.Movies.$values,
+                                    function (index, movie) {
+                                        answerResultLess += `
+                                                                                <div class="card-header bg-info"> ${movie.Title}</div>
+
+                                                                                `;
+                                    }
+                                );
+                                $('#answer1Title').replaceWith(answerResultLess);
+                            }
+                        }
+                    });
+                }
+                else if (choice == "Günümüz ve yakın tarihler") {
+
+                    $('#SuggestionScreen').hide();
+                    $.ajax({
+                        type: "GET",
+                        contentType: "application/json; charset=utf-8",
+                        url: "./GetMovieDateThan1990 ",
+                        success: function (result) {
+                            $('#SuggestionScreen').show();
+                            const resultMovieLess = jQuery.parseJSON(result);
+
+                            if (resultMovieLess.ResultStatus === 0) {
+                                let answerResultLess = "";
+                                $('#answer1Title').html(" ");
+                                $.each(resultMovieLess.Movies.$values,
+                                    function (index, movie) {
+                                        answerResultLess += `
+                                                                                <div class="card-header bg-info"> ${movie.Title}</div>
+
+                                                                                `;
+                                    }
+                                );
+                                $('#answer1Title').replaceWith(answerResultLess);
+                            }
+                        }
+                    });
+                }
+
             });
-
         });
     </script>
 }

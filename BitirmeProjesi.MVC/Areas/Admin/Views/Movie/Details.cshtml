@@ -26,6 +26,9 @@
                     <span class="text-info"> Süre:</span>
                     @Model.Movie.Time
                     <br />
+                    <span class="text-info">IMDb: </span>
+                    @Model.Movie.Imdb /10
+                    <br />
                     <span class="text-info">Kategori:</span>
                     @Model.Movie.Category.Name
                     <br />
@@ -35,6 +38,7 @@
                     <span class="text-info">Vizyona Çıkış Tarihi</span>
                     @Model.Movie.Date.ToShortDateString()
                     <br />
+
                 </div>
             </div>
             <!-- /.card -->

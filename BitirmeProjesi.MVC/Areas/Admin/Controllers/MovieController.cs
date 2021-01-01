@@ -67,7 +67,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         [Authorize]
         public async Task<IActionResult> MoodTesting()
         {
-            TempData["Active"] = "ModTesti";
+            TempData["Active"] = "ÖneriTesti";
             var result = await _movieQuestionService.GetQuestions();
             return View(result.Data);
         }
@@ -125,6 +125,44 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             return Json(movies);
 
         }
+        public async Task<IActionResult> GetSuggestionImdbGreaterSeven()
+        {
+            var result = await _movieService.GetImdbGreaterThanSeven();
+            var movies = JsonSerializer.Serialize(result.Data, new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
+            return Json(movies);
+        }
+        public async Task<IActionResult> GetSuggestionImdbAll()
+        {
+            var result = await _movieService.GetAll();
+            var movies = JsonSerializer.Serialize(result.Data, new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
+            return Json(movies);
+        }
+        public async Task<IActionResult> GetDateLess1990()
+        {
+            var result = await _movieService.GetMovieDateLess1990();
+            var movies = JsonSerializer.Serialize(result.Data, new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
+            return Json(movies);
+        }
+        public async Task<IActionResult> GetMovieDateThan1990()
+        {
+            var result = await _movieService.GetMovieDateThan1990();
+            var movies = JsonSerializer.Serialize(result.Data, new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
+            return Json(movies);
+        }
+
+
 
     }
 }
