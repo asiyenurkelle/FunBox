@@ -3,88 +3,218 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="~/vendor/jquery/jquery.min.js"></script>
-
+<script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
 <link href="~/css/MoodTest.css" rel="stylesheet" />
 
-<div class="container-fluid text-center">
 
-    <div class="modal-dialog">
-        <div class="modal-content">
-            @foreach (var question in Model.SerieQuestions)
+<div class="row">
+    <div class="container text-center col-md-4 ">
+        <div class="modal-dialog p-2">
+            @foreach (var test in Model.SerieQuestions)
             {
-                <div class="modal-header">
-                    <h2 class="text-info"><span class="label label-warning text-info" id="qid"></span>@question.QuestionText </h2>
-                </div>
-                <div class="modal-body">
-                    <div class="col-xs-3 col-xs-offset-5">
-                        <div id="loadbar" style="display: none;">
-                            <div class="blockG" id="rotateG_01"></div>
-                            <div class="blockG" id="rotateG_02"></div>
-                            <div class="blockG" id="rotateG_03"></div>
-                            <div class="blockG" id="rotateG_04"></div>
-                            <div class="blockG" id="rotateG_05"></div>
-                            <div class="blockG" id="rotateG_06"></div>
-                            <div class="blockG" id="rotateG_07"></div>
-                            <div class="blockG" id="rotateG_08"></div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="text-info"><span class="label label-warning text-info" id="question"></span>@test.QuestionText </h2>
+                    </div>
+                    <div class="modal-body">
+                        <div class="quiz" id="quiz" data-toggle="buttons">
+                            <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="@test.OptionsOne">@test.OptionsOne</label>
+                            <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="@test.OptionsTwo">@test.OptionsTwo</label>
                         </div>
                     </div>
-
-
-                    <div class="quiz" id="quiz" data-toggle="buttons">
-                        <label class="element-animation1 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="1">@question.OptionsOne</label>
-                        <label class="element-animation2 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="2">@question.OptionsTwo</label>
-                        <label class="element-animation3 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="3">Diğer</label>
-
-                    </div>
-
                 </div>
-                <div class="modal-footer text-muted">
-                    <span id="answer"></span>
-                </div>
-
             }
-            <div>
-                <a class="btn btn-info btn-sm">Önerileri göster</a>
+        </div>
+    </div>
+    <div class="container text-center col-md-6 " id="SuggestionScreen">
+        <div class="modal-dialog p-2">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <h2 class="text-info"><span class="label label-warning text-info"></span>Senin İçin Önerilerimiz </h2>
+                </div>
+                <div class="modal-body">
+                    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                        <a class="card-header bg-info text-dark" id="answer1Title"> </a>
+                    </div>
+                </div>
             </div>
-
         </div>
     </div>
 </div>
 
 
-@section Scripts{
-    <script>
-        $(function () {
-            var loading = $('#loadbar').hide();
-            $(document)
-                .ajaxStart(function () {
-                    loading.show();
-                }).ajaxStop(function () {
-                    loading.hide();
-                });
 
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            $('#SuggestionScreen').hide();
             $("label.btn").on('click', function () {
                 var choice = $(this).find('input:radio').val();
-                $('#loadbar').show();
-                $('#quiz').fadeOut();
-                setTimeout(function () {
-                    $("#answer").html($(this).checking(choice));
-                    $('#quiz').show();
-                    $('#loadbar').fadeOut();
-                    /* something else */
-                }, 1500);
+                console.log(choice);
+                if (choice == "1 saat veya daha kısa")
+                    $.ajax({
+                        type: "GET",
+                        contentType: "application/json; charset=utf-8",
+                        url: "./GetSerieLessThanOneHour",
+                        success: function (result) {
+                            $('#SuggestionScreen').show();
+                            const resultSerie = jQuery.parseJSON(result);
+
+                            if (resultSerie.ResultStatus === 0) {
+                                let answerResult = "";
+                                $.each(resultSerie.Series.$values,
+                                    function (index, serie) {
+                                        answerResult += `
+                                                                                     <div class="card-header bg-info"> ${serie.Title}</div>
+
+
+                                                                                    `;
+                                    }
+                                );
+                                $('#answer1Title').replaceWith(answerResult);
+
+                            }
+                        }
+                    });
+
+                else if (choice == "1 saatten daha uzun") {
+
+                    $('#suggestionscreen').hide();
+                    $.ajax({
+                        type: "GET",
+                        contenttype: "application/json; charset=utf-8",
+                        url: "./GetSerieMoreThanOneHour",
+                        success: function (result) {
+                            $('#SuggestionScreen').show();
+                            const resultSerieLess = jQuery.parseJSON(result);
+
+                            if (resultSerieLess.ResultStatus === 0) {
+                                let answerResultLess = "";
+                                $('#answer1Title').html(" ");
+                                $.each(resultSerieLess.Series.$values,
+                                    function (index, serie) {
+                                        answerResultLess += `
+                                                                                    <div class="card-header bg-info"> ${serie.title}</div>
+
+                                                                                    `;
+                                    }
+                                );
+                                $('#answer1Title').replaceWith(answerResultLess);
+                            }
+                        }
+                    });
+                }
+                else if (choice == "Evet,7 ve üzeri olmalı") {
+
+                    $('#SuggestionScreen').hide();
+                    $.ajax({
+                        type: "GET",
+                        contentType: "application/json; charset=utf-8",
+                        url: "./GetImdbGreaterThanSeven",
+                        success: function (result) {
+                            $('#SuggestionScreen').show();
+                            const resultSerieLess = jQuery.parseJSON(result);
+
+                            if (resultSerieLess.ResultStatus === 0) {
+                                let answerResultLess = "";
+                                $('#answer1Title').html(" ");
+                                $.each(resultSerieLess.Series.$values,
+                                    function (index, serie) {
+                                        answerResultLess += `
+                                                                                    <div class="card-header bg-info"> ${serie.Title}</div>
+
+                                                                                    `;
+                                    }
+                                );
+                                $('#answer1Title').replaceWith(answerResultLess);
+                            }
+                        }
+                    });
+                }
+                else if (choice == "Hayır bu benim için bir kriter değil") {
+
+                    $('#SuggestionScreen').hide();
+                    $.ajax({
+                        type: "GET",
+                        contentType: "application/json; charset=utf-8",
+                        url: "./GetImdbAll",
+                        success: function (result) {
+                            $('#SuggestionScreen').show();
+                            const resultSerieLess = jQuery.parseJSON(result);
+
+                            if (resultSerieLess.ResultStatus === 0) {
+                                let answerResultLess = "";
+                                $('#answer1Title').html(" ");
+                                $.each(resultSerieLess.Series.$values,
+                                    function (index, serie) {
+                                        answerResultLess += `
+                                                                                    <div class="card-header bg-info"> ${serie.Title}</div>
+
+                                                                                    `;
+                                    }
+                                );
+                                $('#answer1Title').replaceWith(answerResultLess);
+                            }
+                        }
+                    });
+                }
+                else if (choice == "5 sezon ve daha az") {
+
+                    $('#SuggestionScreen').hide();
+                    $.ajax({
+                        type: "GET",
+                        contentType: "application/json; charset=utf-8",
+                        url: "./GetSerieLessThanFiveSeason",
+                        success: function (result) {
+                            $('#SuggestionScreen').show();
+                            const resultSerieLess = jQuery.parseJSON(result);
+
+                            if (resultSerieLess.ResultStatus === 0) {
+                                let answerResultLess = "";
+                                $('#answer1Title').html(" ");
+                                $.each(resultSerieLess.Series.$values,
+                                    function (index, serie) {
+                                        answerResultLess += `
+                                                                                    <div class="card-header bg-info"> ${serie.Title}</div>
+
+                                                                                    `;
+                                    }
+                                );
+                                $('#answer1Title').replaceWith(answerResultLess);
+                            }
+                        }
+                    });
+                }
+                else if (choice == "5 sezondan daha fazla") {
+
+                    $('#SuggestionScreen').hide();
+                    $.ajax({
+                        type: "GET",
+                        contentType: "application/json; charset=utf-8",
+                        url: "./GetSerieMoreThanFiveSeason",
+                        success: function (result) {
+                            $('#SuggestionScreen').show();
+                            const resultSerieLess = jQuery.parseJSON(result);
+
+                            if (resultSerieLess.ResultStatus === 0) {
+                                let answerResultLess = "";
+                                $('#answer1Title').html(" ");
+                                $.each(resultSerieLess.Series.$values,
+                                    function (index, serie) {
+                                        answerResultLess += `
+                                                                                    <div class="card-header bg-info"> ${serie.Title}</div>
+
+                                                                                    `;
+                                    }
+                                );
+                                $('#answer1Title').replaceWith(answerResultLess);
+                            }
+                        }
+                    });
+                }
+
             });
-
-            $ans = 3;
-
-            $.fn.checking = function (ck) {
-                if (ck != $ans)
-                    return 'INCORRECT';
-                else
-                    return 'CORRECT';
-            };
         });
     </script>
 }

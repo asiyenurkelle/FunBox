@@ -122,5 +122,125 @@ namespace BitirmeProjesi.Services.Concrete
                 Message = Messages.Serie.NotFound(isPlural: true)
             });
         }
+
+        public async Task<IDataResult<SerieListDto>> GetSerieLessThanOneHour()
+        {
+            var series = await _unitOfWork.Series.GetAllAsync(s=>s.Time<=60);
+
+            if (series != null)
+            {
+                return new DataResult<SerieListDto>(ResultStatus.Success, new SerieListDto
+                {
+                    Series = series,
+                    ResultStatus = ResultStatus.Success
+                });
+            }
+            return new DataResult<SerieListDto>(ResultStatus.Error, Messages.Movie.NotFound(isPlural: true), new SerieListDto
+            {
+                Series = null,
+                ResultStatus = ResultStatus.Error,
+                Message = Messages.Serie.NotFound(isPlural: true)
+            });
+        }
+
+        public async Task<IDataResult<SerieListDto>> GetSerieMoreThanOneHour()
+        {
+            var series = await _unitOfWork.Series.GetAllAsync(s=>s.Time>60);
+
+            if (series != null)
+            {
+                return new DataResult<SerieListDto>(ResultStatus.Success, new SerieListDto
+                {
+                    Series = series,
+                    ResultStatus = ResultStatus.Success
+                });
+            }
+            return new DataResult<SerieListDto>(ResultStatus.Error, Messages.Movie.NotFound(isPlural: true), new SerieListDto
+            {
+                Series = null,
+                ResultStatus = ResultStatus.Error,
+                Message = Messages.Serie.NotFound(isPlural: true)
+            });
+        }
+
+        public async Task<IDataResult<SerieListDto>> GetImdbGreaterThanSeven()
+        {
+            var series = await _unitOfWork.Series.GetAllAsync(s => s.Imdb >= 7);
+
+            if (series != null)
+            {
+                return new DataResult<SerieListDto>(ResultStatus.Success, new SerieListDto
+                {
+                    Series = series,
+                    ResultStatus = ResultStatus.Success
+                });
+            }
+            return new DataResult<SerieListDto>(ResultStatus.Error, Messages.Serie.NotFound(isPlural: true), new SerieListDto
+            {
+                Series = null,
+                ResultStatus = ResultStatus.Error,
+                Message = Messages.Serie.NotFound(isPlural: true)
+            });
+        }
+
+        public async Task<IDataResult<SerieListDto>> GetImdbAll()
+        {
+            var series = await _unitOfWork.Series.GetAllAsync(null);
+
+            if (series != null)
+            {
+                return new DataResult<SerieListDto>(ResultStatus.Success, new SerieListDto
+                {
+                    Series = series,
+                    ResultStatus = ResultStatus.Success
+                });
+            }
+            return new DataResult<SerieListDto>(ResultStatus.Error, Messages.Serie.NotFound(isPlural: true), new SerieListDto
+            {
+                Series = null,
+                ResultStatus = ResultStatus.Error,
+                Message = Messages.Serie.NotFound(isPlural: true)
+            });
+        }
+
+        public async Task<IDataResult<SerieListDto>> GetSerieLessThanFiveSeason()
+        {
+            var series = await _unitOfWork.Series.GetAllAsync(s=>s.SeasonNumber<=5);
+
+            if (series != null)
+            {
+                return new DataResult<SerieListDto>(ResultStatus.Success, new SerieListDto
+                {
+                    Series = series,
+                    ResultStatus = ResultStatus.Success
+                });
+            }
+            return new DataResult<SerieListDto>(ResultStatus.Error, Messages.Serie.NotFound(isPlural: true), new SerieListDto
+            {
+                Series = null,
+                ResultStatus = ResultStatus.Error,
+                Message = Messages.Serie.NotFound(isPlural: true)
+            });
+        }
+
+        public async Task<IDataResult<SerieListDto>> GetSerieMoreThanFiveSeason()
+        {
+            var series = await _unitOfWork.Series.GetAllAsync(s => s.SeasonNumber > 5);
+
+            if (series != null)
+            {
+                return new DataResult<SerieListDto>(ResultStatus.Success, new SerieListDto
+                {
+                    Series = series,
+                    ResultStatus = ResultStatus.Success
+                });
+            }
+            return new DataResult<SerieListDto>(ResultStatus.Error, Messages.Serie.NotFound(isPlural: true), new SerieListDto
+            {
+                Series = null,
+                ResultStatus = ResultStatus.Error,
+                Message = Messages.Serie.NotFound(isPlural: true)
+            });
+        }
     }
 }

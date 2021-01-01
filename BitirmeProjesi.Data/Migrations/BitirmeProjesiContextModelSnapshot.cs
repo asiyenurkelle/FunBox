@@ -35,6 +35,9 @@ namespace BitirmeProjesi.Data.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsClassical")
+                        .HasColumnType("BIT");
+
                     b.Property<int>("Page")
                         .HasColumnType("int");
 
@@ -71,6 +74,7 @@ namespace BitirmeProjesi.Data.Migrations
                             Activities = false,
                             CategoryId = 1,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsClassical = false,
                             Page = 192,
                             Production = "Yabancı",
                             Subject = "Her birinin gizledikleri ve korktukları sırları olan on kişi, Zenci Adası’ndaki ıssız bir malikâneye davet edilirler. Ancak malikâneye giden grubu bir sürpriz beklemektedir, ev sahibi ortalarda yoktur. Geçmişlerindeki karanlık sırlardan başka hiçbir şeyleri olmayan bu insanlar adada mahsur kalmışlardır. Konuklar bir süre sonra gizledikleri sırları birbirlerine anlatırlar. Ve teker teker ölmeye başlarlar.",
@@ -84,6 +88,7 @@ namespace BitirmeProjesi.Data.Migrations
                             Activities = false,
                             CategoryId = 1,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsClassical = false,
                             Page = 256,
                             Production = "Yabancı",
                             Subject = "Gece yarısından sonra artan şiddetli tipi yüzünden Doğu Ekspresi artık yoluna devam edemeyecek durumdadır. Yılın bu zamanlarında lüks tren tamamen doludur. Ertesi sabah yapılan kontroller sonucu tüm yolcuların sağsalim trende olduğu anlaşılır. Ancak defalarca bıçaklanarak öldürülen Amerikalı yolcunun kompartımanının kapısı içeriden kilitlidir.",
@@ -97,6 +102,7 @@ namespace BitirmeProjesi.Data.Migrations
                             Activities = false,
                             CategoryId = 2,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsClassical = false,
                             Page = 536,
                             Production = "Yabancı",
                             Subject = "Genç adam, aniden üç büyük dinin temsilcilerine döndü. “Şaşırtıcı bulacağınızı tahmin ettiğim bilimsel bir buluşum sebebiyle bugün buradayım. İnsanlık deneyimimizin en temel iki sorusuna cevap bulma ümidi ile yıllardır peşinden koşuyordum. Bu bilginin tüm inananları derinden etkileyeceğine inanıyorum. Nasıl desem, ‘yıkıcı’ diye tanımlanabilecek bir değişikliğe sebep olabilir.",
@@ -110,6 +116,7 @@ namespace BitirmeProjesi.Data.Migrations
                             Activities = false,
                             CategoryId = 2,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsClassical = false,
                             Page = 495,
                             Production = "Yabancı",
                             Subject = "Dan Brown, ülkedeki birkaç usta yazardan biri. Da Vinci Şifresi üstün bir zeka tarafından kurgulanmış harika bir gerilim romanı.Entrika ve tehlikenin iç içe geçtiği okuduğum en iyi gerilim romanı. Kelime oyunları, gizemler ve bulmacalarla örülmüş akıllara durgunluk veren bir öykü.",
@@ -123,6 +130,7 @@ namespace BitirmeProjesi.Data.Migrations
                             Activities = false,
                             CategoryId = 4,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsClassical = false,
                             Page = 456,
                             Production = "Yerli",
                             Subject = "Masal tadındaki bu fantastik kurgu,okuyucuyu bir zaman yolculuğuna çıkarır.Okuyucunun çözebileceği küçük süprizlerin gizlendiği tarihin değişik zamanlarındaki yaşanmışlıkları,aynı zaman sürecinde yaşatan bu eser,ayrıca gizemli bir aşkın romanıdır.",
@@ -162,6 +170,20 @@ namespace BitirmeProjesi.Data.Migrations
                             OptionsOne = "200 sayfa ve altı",
                             OptionsTwo = "200 sayfadan daha fazla",
                             QuestionText = "Kitap okurken sıkılmadan devam edebildiğin ideal sayfa sayısı aşağıdakilerden hangisine daha yakındır?"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            OptionsOne = "Evet",
+                            OptionsTwo = "Hayır",
+                            QuestionText = "Dünya klasiklerini okumaktan hoşlanır mısınız?"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            OptionsOne = "Evet eski tarihli kitaplar öncelikli tercihimdir",
+                            OptionsTwo = "Günümüze daha yakın tarihli kitapları tercih ederim",
+                            QuestionText = "Eski tarihli kitapları okumaktan hoşlanır mısınız?"
                         });
                 });
 
@@ -514,6 +536,9 @@ namespace BitirmeProjesi.Data.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<double>("Imdb")
+                        .HasColumnType("float");
+
                     b.Property<string>("Production")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -521,6 +546,9 @@ namespace BitirmeProjesi.Data.Migrations
                     b.Property<string>("Scenarist")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SeasonNumber")
+                        .HasColumnType("int");
 
                     b.Property<string>("Subject")
                         .IsRequired()
@@ -551,8 +579,10 @@ namespace BitirmeProjesi.Data.Migrations
                             Activities = false,
                             CategoryId = 11,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Imdb = 8.6999999999999993,
                             Production = "Yabancı",
                             Scenarist = "Steven Knigt",
+                            SeasonNumber = 5,
                             Subject = "Peaky Blinders, İngiltere'nin Birmingham şehrinde çetelerin birbiriyle yaşadığı olayları izleyiciye aktarmaktadır. Çete için her şey tıkırında giderken son bir soygunda hata yapılır ve çetenin başına bela olacak bir müfettiş görevlendirilir.",
                             ThumbNail = "peakyblinders.jpg",
                             Time = 58,
@@ -564,8 +594,10 @@ namespace BitirmeProjesi.Data.Migrations
                             Activities = false,
                             CategoryId = 11,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Imdb = 6.2999999999999998,
                             Production = "Yabancı",
                             Scenarist = "Andrew Baldwin",
+                            SeasonNumber = 1,
                             Subject = "11 yaşında feci şekilde katledilen bir çocuğun cesedi parkta bulunur. Etraftaki görgü tanıkları ve cesedin üzerindeki bulgular, şehirde yaşayan saygın bir iş adamını işaret etmektedir. Bu kişi ise koçluk ve  İngilizce öğretmenliği yapan, aynı zamanda iyi bir eş ve kız babası olan Terry Maitland’dır.",
                             ThumbNail = "theoutsider.jpg",
                             Time = 60,
@@ -577,8 +609,10 @@ namespace BitirmeProjesi.Data.Migrations
                             Activities = false,
                             CategoryId = 6,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Imdb = 8.4000000000000004,
                             Production = "Yabancı",
                             Scenarist = "Lauren Schmidt Hissrich",
+                            SeasonNumber = 1,
                             Subject = "Fantastik bir dizi olan The Witcher’da, çok uzun yıllardır barış içerisinde yaşayan insanlar, cüceler ve elfler artık savaş halindedir. Ana karakterimiz The Witcher lakaplı Geralt of Rivia ise acımasız bir suikastçıdır. Kendisi durumun farkında olmasa da aslında kendisine vaadedilen bir kız çocuğu bu dünya düzenini değiştirecektir.",
                             ThumbNail = "thewitcher.jpg",
                             Time = 60,
@@ -590,8 +624,10 @@ namespace BitirmeProjesi.Data.Migrations
                             Activities = false,
                             CategoryId = 6,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Imdb = 7.7000000000000002,
                             Production = "Yabancı",
                             Scenarist = "Blake Neely",
+                            SeasonNumber = 3,
                             Subject = "kitapçıda çalışan Joe ve o kitapçıya müşteri olarak gelen Beck’in hikayesini izleyiciye aktarmaktadır. Joe, Beck’e gördüğü andan itibaren aşık durumdadır ve onu korumak için ne gerekiyorsa yapmaktadır. Joe’nin Beck’e karşı takıntılı tavırlar göstermesi Beck’in yakın arkadaşı Peach’in dikkatini çekse de Joe’ye engel olmak mümkün değildir. Yaptığı her takıntılı davranışı Beck’e aşık olduğu için yaptığını düşünen Joe, aslında tam bir saplantı yaşamaktadır.",
                             ThumbNail = "you.jpg",
                             Time = 45,
@@ -603,8 +639,10 @@ namespace BitirmeProjesi.Data.Migrations
                             Activities = false,
                             CategoryId = 13,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Imdb = 8.6999999999999993,
                             Production = "Yabancı",
                             Scenarist = "Matt Duffer",
+                            SeasonNumber = 4,
                             Subject = " Winona Ryder, David Harbour, Cara Buono'yu başrollerinde buluşturan dizide, kaybolan genç çocuk ve onu bulmaya çalışan ailenin yaşadıkları anlatılmaktadır.",
                             ThumbNail = "strangerthings.jpg",
                             Time = 56,
@@ -616,8 +654,10 @@ namespace BitirmeProjesi.Data.Migrations
                             Activities = false,
                             CategoryId = 4,
                             Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Imdb = 8.5,
                             Production = "Yabancı",
                             Scenarist = "Howard Fast",
+                            SeasonNumber = 3,
                             Subject = "Trakyalılar çoğunlukla Trakya topraklarını yağmalayan Getae’ye karşı bir ayaklanma düzenleyerek Roma lejyonlarında yardımcı olarak görev yapacakları Claudius Glaber tarafından ikna edilmeye başlanmıştır. Bununla birlikte, Glaber, anlaşma konusunda ısrar ettikten sonra Getae’ten dikkatini Küçük Asya’daki Mithridates saldırısına çekmeyi başarır.",
                             ThumbNail = "spartacus.jpg",
                             Time = 42,
@@ -655,6 +695,20 @@ namespace BitirmeProjesi.Data.Migrations
                             OptionsOne = "1 saat veya daha kısa",
                             OptionsTwo = "1 saatten daha uzun",
                             QuestionText = "Dizi izlerken sıkılmadan devam edebildiğin ideal süren aşağıdakilerden hangisine daha yakındır?"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            OptionsOne = "Evet,7 ve üzeri olmalı",
+                            OptionsTwo = "Hayır bu benim için bir kriter değil",
+                            QuestionText = "Senin için bir dizinin IMDb puanı önemli midir?"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            OptionsOne = "5 sezon ve daha az",
+                            OptionsTwo = "5 sezondan daha fazla",
+                            QuestionText = "Kaç sezonluk dizileri izlemeyi tercih edersin?"
                         });
                 });
 

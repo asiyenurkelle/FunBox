@@ -29,6 +29,23 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 OptionsTwo="200 sayfadan daha fazla"
                 
             });
+            builder.HasData(new BookQuestion
+            {
+                Id = 2,
+                QuestionText = "Dünya klasiklerini okumaktan hoşlanır mısınız?",
+                OptionsOne = "Evet",
+                OptionsTwo = "Hayır"
+
+            });
+            builder.HasData(new BookQuestion
+            {
+                Id = 3,
+                QuestionText = "Eski tarihli kitapları okumaktan hoşlanır mısınız?",
+                OptionsOne = "Evet eski tarihli kitaplar öncelikli tercihimdir",
+                OptionsTwo = "Günümüze daha yakın tarihli kitapları tercih ederim"
+
+            });
+
         }
     }
 }

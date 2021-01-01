@@ -22,7 +22,7 @@
                     <span class="text-info">Yönetmen:</span>
                     @Model.Serie.Scenarist
                     <br />
-                    <span class="text-info">Süre:</span>
+                    <span class="text-info"> Ortalama Bölüm Süresi:</span>
                     @Model.Serie.Time
                     <br />
                     <span class="text-info">Kategori:</span>
@@ -33,6 +33,12 @@
                     <br />
                     <span class="text-info">Vizyona Çıkış Tarihi:</span>
                     @Model.Serie.Date.ToShortDateString()
+                    <br />
+                    <span class="text-info">Sezon Sayısı:</span>
+                    @Model.Serie.SeasonNumber
+                    <br />
+                    <span class="text-info">Imdb:</span>
+                    @Model.Serie.Imdb /10
                     <br />
 
                 </div>

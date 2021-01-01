@@ -132,7 +132,7 @@ namespace BitirmeProjesi.Services.Concrete
 
         public async Task<IDataResult<MovieListDto>> GetAllLessThanTwoHour()
         {
-            var movie = await _unitOfWork.Movies.GetAllAsync(m => m.Time <= 120, m=>m.Category);
+            var movie = await _unitOfWork.Movies.GetAllAsync(m => m.Time <= 120);
             if (movie != null)
             {
                  return new DataResult<MovieListDto>(ResultStatus.Success, new MovieListDto
@@ -152,7 +152,7 @@ namespace BitirmeProjesi.Services.Concrete
 
         public async Task<IDataResult<MovieListDto>> GetAllMoreThanTwoHour()
         {
-            var movie = await _unitOfWork.Movies.GetAllAsync(m => m.Time > 120, m => m.Category);
+            var movie = await _unitOfWork.Movies.GetAllAsync(m => m.Time > 120);
             if (movie != null)
             {
                 return new DataResult<MovieListDto>(ResultStatus.Success, new MovieListDto
@@ -171,7 +171,7 @@ namespace BitirmeProjesi.Services.Concrete
 
         public async Task<IDataResult<MovieListDto>> GetImdbGreaterThanSeven()
         {
-            var movie = await _unitOfWork.Movies.GetAllAsync(m => m.Imdb > 7, m => m.Category);
+            var movie = await _unitOfWork.Movies.GetAllAsync(m => m.Imdb > 7);
             if (movie != null)
             {
                 return new DataResult<MovieListDto>(ResultStatus.Success, new MovieListDto
@@ -188,10 +188,28 @@ namespace BitirmeProjesi.Services.Concrete
             });
 
         }
+        public async Task<IDataResult<MovieListDto>> GetImdbAll()
+        {
+            var movie = await _unitOfWork.Movies.GetAllAsync(null);
+            if (movie != null)
+            {
+                return new DataResult<MovieListDto>(ResultStatus.Success, new MovieListDto
+                {
+                    Movies = movie,
+                    ResultStatus = ResultStatus.Success
+                });
+            }
+            return new DataResult<MovieListDto>(ResultStatus.Error, Messages.Movie.NotFound(isPlural: true), new MovieListDto
+            {
+                Movies = null,
+                ResultStatus = ResultStatus.Error,
+                Message = Messages.Movie.NotFound(isPlural: true)
+            });
+        }
 
         public async Task<IDataResult<MovieListDto>> GetMovieDateLess1990()
         {
-            var movie = await _unitOfWork.Movies.GetAllAsync(m => m.Date <= new DateTime(1990, 01, 01), m=>m.Category);
+            var movie = await _unitOfWork.Movies.GetAllAsync(m => m.Date <= new DateTime(1990, 01, 01));
             if (movie != null)
             {
                 return new DataResult<MovieListDto>(ResultStatus.Success, new MovieListDto
@@ -211,7 +229,7 @@ namespace BitirmeProjesi.Services.Concrete
 
         public async Task<IDataResult<MovieListDto>> GetMovieDateThan1990()
         {
-            var movie = await _unitOfWork.Movies.GetAllAsync(m => m.Date > new DateTime(1990, 01, 01), m => m.Category);
+            var movie = await _unitOfWork.Movies.GetAllAsync(m => m.Date > new DateTime(1990, 01, 01));
             if (movie != null)
             {
                 return new DataResult<MovieListDto>(ResultStatus.Success, new MovieListDto
@@ -227,5 +245,7 @@ namespace BitirmeProjesi.Services.Concrete
                 Message = Messages.Movie.NotFound(isPlural: true)
             });
         }
+
+        
     }
 }

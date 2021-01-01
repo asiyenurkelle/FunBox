@@ -2,8 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
 {
@@ -20,7 +18,10 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
             builder.Property(s => s.Time).IsRequired();
             builder.Property(s => s.Scenarist).IsRequired();
             builder.Property(s => s.Activities).HasColumnType("BİT");
-          
+            //builder.Property(s => s.Date).IsRequired();
+            builder.Property(s => s.Imdb).IsRequired();
+            builder.Property(s => s.SeasonNumber).IsRequired();
+
             builder.HasOne<Category>(s => s.Category).WithMany(c => c.Series).HasForeignKey(s => s.CategoryId).OnDelete(DeleteBehavior.Restrict);
             builder.ToTable("Series");
 
@@ -34,7 +35,10 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 Time = 58 ,
                 Scenarist = "Steven Knigt",
                 Production = "Yabancı",
-               
+               // Date = new DateTime(2013, 09, 12),
+                Imdb=8.7,
+                SeasonNumber=5
+
 
             },
             new Serie
@@ -46,7 +50,10 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 ThumbNail = "theoutsider.jpg",
                 Time = 60,
                 Scenarist = "Andrew Baldwin",
-                Production = "Yabancı"
+                Production = "Yabancı",
+               // Date = new DateTime(2020,01,12),
+                Imdb = 6.3,
+                SeasonNumber = 1
 
             },
             new Serie
@@ -58,7 +65,10 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 ThumbNail = "thewitcher.jpg",
                 Time = 60,
                 Scenarist = "Lauren Schmidt Hissrich",
-                Production = "Yabancı"
+                Production = "Yabancı",
+               // Date = new DateTime(2019, 10, 26),
+                Imdb = 8.4,
+                SeasonNumber = 1
             },
             new Serie
             {
@@ -69,7 +79,10 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 ThumbNail = "you.jpg",
                 Time = 45 ,
                 Scenarist = "Blake Neely",
-                Production = "Yabancı"
+                Production = "Yabancı",
+               // Date = new DateTime(2018, 01, 01),
+                Imdb = 7.7,
+                SeasonNumber = 3
             },
             new Serie
             {
@@ -80,7 +93,10 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 ThumbNail = "strangerthings.jpg",
                 Time = 56,
                 Scenarist = "Matt Duffer",
-                Production = "Yabancı"
+                Production = "Yabancı",
+               // Date = new DateTime(2016, 07, 15),
+                Imdb = 8.7,
+                SeasonNumber = 4
             },
             new Serie
             {
@@ -91,7 +107,10 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 ThumbNail = "spartacus.jpg",
                 Time = 42,
                 Scenarist = "Howard Fast",
-                Production = "Yabancı"
+                Production = "Yabancı",
+               // Date = new DateTime(2010, 01, 22),
+                Imdb = 8.5,
+                SeasonNumber = 3
 
             }
             );

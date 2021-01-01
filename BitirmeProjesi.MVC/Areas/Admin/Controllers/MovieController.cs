@@ -136,7 +136,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         }
         public async Task<IActionResult> GetSuggestionImdbAll()
         {
-            var result = await _movieService.GetAll();
+            var result = await _movieService.GetImdbAll();
             var movies = JsonSerializer.Serialize(result.Data, new JsonSerializerOptions
             {
                 ReferenceHandler = ReferenceHandler.Preserve

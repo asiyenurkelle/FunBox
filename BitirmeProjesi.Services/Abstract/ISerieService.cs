@@ -16,6 +16,13 @@ namespace BitirmeProjesi.Services.Abstract
         Task<IDataResult<SerieUpdateDto>> AddListSerie(int serieId);
         Task<IResult> AddComment(CommentAddDto commentAddDto);
         Task<IDataResult<SerieListDto>> GetCategories(int? id);
+        Task<IDataResult<SerieListDto>> GetSerieLessThanOneHour();
+        Task<IDataResult<SerieListDto>> GetSerieMoreThanOneHour();
+        Task<IDataResult<SerieListDto>> GetImdbGreaterThanSeven();
+        Task<IDataResult<SerieListDto>> GetImdbAll();
+        Task<IDataResult<SerieListDto>> GetSerieLessThanFiveSeason();
+        Task<IDataResult<SerieListDto>> GetSerieMoreThanFiveSeason();
+
 
     }
 }

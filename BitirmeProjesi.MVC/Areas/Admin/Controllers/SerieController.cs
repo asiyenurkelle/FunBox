@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using AutoMapper;
 using BitirmeProjesi.Entities.Dtos;
@@ -21,7 +23,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         private readonly ICommentService _commentService;
         private readonly IMapper _mapper;
 
-        public SerieController(ISerieService serieService, ISerieQuestionService serieQuestionService,ICommentService commentService,IMapper mapper)
+        public SerieController(ISerieService serieService, ISerieQuestionService serieQuestionService, ICommentService commentService, IMapper mapper)
         {
             _serieService = serieService;
             _serieQuestionService = serieQuestionService;
@@ -99,5 +101,70 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             }
             return View(commentAddViewModel);
         }
+
+        public async Task<IActionResult> GetSerieLessThanOneHour()
+        {
+            var result = await _serieService.GetSerieLessThanOneHour();
+            var series = JsonSerializer.Serialize(result.Data, new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
+            return Json(series);
+
+        }
+
+        public async Task<IActionResult> GetSerieMoreThanOneHour()
+        {
+            var result = await _serieService.GetSerieMoreThanOneHour();
+            var series = JsonSerializer.Serialize(result.Data, new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
+            return Json(series);
+
+        }
+
+        public async Task<IActionResult> GetImdbGreaterThanSeven()
+        {
+            var result = await _serieService.GetImdbGreaterThanSeven();
+            var series = JsonSerializer.Serialize(result.Data, new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
+            return Json(series);
+
+        }
+        public async Task<IActionResult> GetImdbAll()
+        {
+            var result = await _serieService.GetImdbAll();
+            var series = JsonSerializer.Serialize(result.Data, new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
+            return Json(series);
+
+        }
+        public async Task<IActionResult> GetSerieLessThanFiveSeason()
+        {
+            var result = await _serieService.GetSerieLessThanFiveSeason();
+            var series = JsonSerializer.Serialize(result.Data, new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
+            return Json(series);
+
+        }
+
+        public async Task<IActionResult> GetSerieMoreThanFiveSeason()
+        {
+            var result = await _serieService.GetSerieMoreThanFiveSeason();
+            var series = JsonSerializer.Serialize(result.Data, new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
+            return Json(series);
+
+        }
     }
 }
+

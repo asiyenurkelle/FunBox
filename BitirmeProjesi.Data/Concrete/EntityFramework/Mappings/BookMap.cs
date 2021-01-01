@@ -19,7 +19,12 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
             builder.Property(b => b.Page).IsRequired();
             builder.Property(s => s.Activities).HasColumnType("BİT");
             builder.Property(b => b.Production).IsRequired();
-           
+            builder.Property(b => b.IsClassical).IsRequired();
+            builder.Property(b => b.IsClassical).HasColumnType("BIT");
+           // builder.Property(b => b.Date).IsRequired();
+
+
+
             builder.HasOne<Category>(b => b.Category).WithMany(c => c.Books).HasForeignKey(b => b.CategoryId).OnDelete(DeleteBehavior.Restrict);
             
             builder.ToTable("Books");
@@ -33,7 +38,9 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 CategoryId = 1,
                 Page=192,
                 Writer="Agatha Christie",
-                Production="Yabancı"
+                Production="Yabancı",
+                //Date=new DateTime(01,01,1994),
+                IsClassical=false
 
             },
             new Book
@@ -45,7 +52,9 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 CategoryId=1,
                 Page=256,
                 Writer="Agatha Christie",
-                Production="Yabancı"
+                Production="Yabancı",
+               // Date = new DateTime(01, 01, 1994),
+                IsClassical = false
             },
             new Book
             {
@@ -56,7 +65,9 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 CategoryId=2,
                 Page= 536,
                 Writer="Dan Brown",
-                Production="Yabancı"
+                Production="Yabancı",
+                //Date = new DateTime(09, 09, 2019),
+                IsClassical = false
             },
             new Book
             {
@@ -67,7 +78,9 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 CategoryId=2,
                 Page=495,
                 Writer="Dan Brown",
-                Production="Yabancı"
+                Production="Yabancı",
+                //Date = new DateTime(01, 01, 2003),
+                IsClassical = false
             },
             new Book
             {
@@ -78,7 +91,9 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 CategoryId=4,
                 Page=456,
                 Writer="Bahri Akkoç",
-                Production="Yerli"
+                Production="Yerli",
+                //Date = new DateTime(01, 01, 2018),
+                IsClassical = false
 
             }
             );

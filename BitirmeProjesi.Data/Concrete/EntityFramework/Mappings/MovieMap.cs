@@ -39,7 +39,8 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 Time= 90,
                 Scenarist="Umur Bugay",
                 Production="Yerli",
-                Imdb=9.3
+                Imdb=9.3,
+                //Date= new DateTime(1975,01,05)
             },
             new Movie
             {
@@ -51,7 +52,8 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 Time=178,
                 Scenarist= "Mario Puzo",
                 Production="Yabancı",
-                Imdb=7.6
+                Imdb=7.6,
+               // Date = new DateTime(1973, 10, 10)
             },
             new Movie
             {
@@ -63,7 +65,8 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 Time=182,
                 Scenarist="Randall Wallace",
                 Production="Yabancı",
-                Imdb=8.3
+                Imdb=8.3,
+                //Date = new DateTime(1995,09,22)
 
             },
             new Movie
@@ -76,7 +79,8 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 Time=128,
                 Scenarist="Yavuz Turgul",
                 Production="Yerli",
-                Imdb=7.3
+                Imdb=7.3,
+                //Date = new DateTime(1996,10, 29)
 
             }
             );

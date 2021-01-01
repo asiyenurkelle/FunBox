@@ -22,5 +22,7 @@ namespace BitirmeProjesi.Entities.Concrete
         //bir dizide birden cok yorum olabilir, bir yorumda bir tane diziye sahip olmak zorundadır.
         public bool Activities { get; set; }
         public DateTime Date { get; set; }
+        public int SeasonNumber { get; set; }
+        public double Imdb { get; set; }
     }
 }

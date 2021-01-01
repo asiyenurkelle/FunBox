@@ -29,6 +29,24 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 OptionsTwo="1 saatten daha uzun"
                 
             });
+            builder.HasData(new SerieQuestion
+            {
+                Id = 2,
+                QuestionText = "Senin için bir dizinin IMDb puanı önemli midir?",
+                OptionsOne = "Evet,7 ve üzeri olmalı",
+                OptionsTwo = "Hayır bu benim için bir kriter değil"
+
+            });
+            builder.HasData(new SerieQuestion
+            {
+                Id = 3,
+                QuestionText = "Kaç sezonluk dizileri izlemeyi tercih edersin?",
+                OptionsOne = "5 sezon ve daha az",
+                OptionsTwo = "5 sezondan daha fazla"
+
+            });
+
+
         }
     }
 }
