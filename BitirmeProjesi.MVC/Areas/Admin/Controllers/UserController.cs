@@ -286,7 +286,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
                 await _signInManager.SignOutAsync();
                 await _signInManager.SignInAsync(user, true);
             }
-            return RedirectToAction("Index", "Home", new { Area = "Admin" });
+            return RedirectToAction("Index", "Home",new { area = "" });
 
         }
 
