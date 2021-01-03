@@ -44,7 +44,7 @@ namespace BitirmeProjesi.Services.Concrete
 
         public async Task<IDataResult<BookListDto>> GetAll()
         {
-            var books = await _unitOfWork.Books.GetAllAsync(null, b => b.Category, b => b.Comments);
+            var books = await _unitOfWork.Books.GetAllAsync(null, b => b.Category);
             var categories = await _unitOfWork.Categories.GetAllAsync(null, c => c.Books);
             if (books.Count > -1)
             {
@@ -65,22 +65,7 @@ namespace BitirmeProjesi.Services.Concrete
 
         }
 
-        public async Task<IDataResult<BookUpdateDto>> GetBookUpdateDto(int bookId)
-        {
-            var result = await _unitOfWork.Books.AnyAsync(b => b.Id == bookId);
-            if (result)
-            {
-                var book = await _unitOfWork.Books.GetAsync(b => b.Id == bookId, b => b.Category);
-                book.Activities = false;
-                await _unitOfWork.SaveAsync();
-                var bookUpdateDto = _mapper.Map<BookUpdateDto>(book);
-                return new DataResult<BookUpdateDto>(ResultStatus.Success, bookUpdateDto);
-            }
-            else
-            {
-                return new DataResult<BookUpdateDto>(ResultStatus.Error, Messages.Book.NotFound(isPlural: false), null);
-            }
-        }
+        
 
         public async Task<IDataResult<BookUpdateDto>> AddListBook(int bookId)
         {
@@ -108,7 +93,6 @@ namespace BitirmeProjesi.Services.Concrete
                 {
                     Books = categoriesBook,
                     Categories = categories,
-
                     ResultStatus = ResultStatus.Success
                 });
             }
@@ -144,12 +128,12 @@ namespace BitirmeProjesi.Services.Concrete
         public async Task<IDataResult<BookListDto>> GetBookMoreThanTwoHundredPage()
         {
             var books = await _unitOfWork.Books.GetAllAsync(s => s.Page > 200);
-
+            
             if (books != null)
             {
                 return new DataResult<BookListDto>(ResultStatus.Success, new BookListDto
                 {
-                    Books = books,
+                    Books = books,  
                     ResultStatus = ResultStatus.Success
                 });
             }

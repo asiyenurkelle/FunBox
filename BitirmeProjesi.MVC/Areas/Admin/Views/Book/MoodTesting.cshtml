@@ -82,7 +82,7 @@
                     $('#SuggestionScreen').hide();
                     $.ajax({
                         type: "GET",
-                        contenttype: "application/json; charset=utf-8",
+                        contentType: "application/json; charset=utf-8",
                         url: "./GetBookMoreThanTwoHundredPage",
                         success: function (result) {
                             $('#SuggestionScreen').show();
@@ -94,9 +94,9 @@
                                 $.each(resultBookLess.Books.$values,
                                     function (index, book) {
                                         answerResultLess += `
-                                                                                        <div class="card-header bg-info"> ${book.title}</div>
+                                                                                    <div class="card-header bg-info"> ${book.Title}</div>
 
-                                                                                        `;
+                                                                                    `;
                                     }
                                 );
                                 $('#answer1Title').replaceWith(answerResultLess);
@@ -104,12 +104,13 @@
                         }
                     });
                 }
+                
                 else if (choice == "Evet") {
 
                     $('#SuggestionScreen').hide();
                     $.ajax({
                         type: "GET",
-                        contenttype: "application/json; charset=utf-8",
+                        contentType: "application/json; charset=utf-8",
                         url: "./GetBookClassical",
                         success: function (result) {
                             $('#SuggestionScreen').show();
@@ -121,9 +122,9 @@
                                 $.each(resultBookLess.Books.$values,
                                     function (index, book) {
                                         answerResultLess += `
-                                                                                        <div class="card-header bg-info"> ${book.title}</div>
+                                                                                    <div class="card-header bg-info"> ${book.Title}</div>
 
-                                                                                        `;
+                                                                                    `;
                                     }
                                 );
                                 $('#answer1Title').replaceWith(answerResultLess);
@@ -131,12 +132,13 @@
                         }
                     });
                 }
+                
                 else if (choice == "Hayır") {
 
                     $('#SuggestionScreen').hide();
                     $.ajax({
                         type: "GET",
-                        contenttype: "application/json; charset=utf-8",
+                        contentType: "application/json; charset=utf-8",
                         url: "./GetBookNonClassical",
                         success: function (result) {
                             $('#SuggestionScreen').show();
@@ -148,9 +150,9 @@
                                 $.each(resultBookLess.Books.$values,
                                     function (index, book) {
                                         answerResultLess += `
-                                                                                        <div class="card-header bg-info"> ${book.title}</div>
+                                                                                    <div class="card-header bg-info"> ${book.Title}</div>
 
-                                                                                        `;
+                                                                                    `;
                                     }
                                 );
                                 $('#answer1Title').replaceWith(answerResultLess);
@@ -158,12 +160,14 @@
                         }
                     });
                 }
+                
+                
                 else if (choice == "Evet eski tarihli kitaplar öncelikli tercihimdir") {
 
                     $('#SuggestionScreen').hide();
                     $.ajax({
                         type: "GET",
-                        contenttype: "application/json; charset=utf-8",
+                        contentType: "application/json; charset=utf-8",
                         url: "./GetBookDateLess1990",
                         success: function (result) {
                             $('#SuggestionScreen').show();
@@ -175,9 +179,9 @@
                                 $.each(resultBookLess.Books.$values,
                                     function (index, book) {
                                         answerResultLess += `
-                                                                                        <div class="card-header bg-info"> ${book.title}</div>
+                                                                                    <div class="card-header bg-info"> ${book.Title}</div>
 
-                                                                                        `;
+                                                                                    `;
                                     }
                                 );
                                 $('#answer1Title').replaceWith(answerResultLess);
@@ -185,12 +189,13 @@
                         }
                     });
                 }
+               
                 else if (choice == "Günümüze daha yakın tarihli kitapları tercih ederim") {
 
                     $('#SuggestionScreen').hide();
                     $.ajax({
                         type: "GET",
-                        contenttype: "application/json; charset=utf-8",
+                        contentType: "application/json; charset=utf-8",
                         url: "./GetBookDateThan1990",
                         success: function (result) {
                             $('#SuggestionScreen').show();
@@ -202,9 +207,9 @@
                                 $.each(resultBookLess.Books.$values,
                                     function (index, book) {
                                         answerResultLess += `
-                                                                                        <div class="card-header bg-info"> ${book.title}</div>
+                                                                                    <div class="card-header bg-info"> ${book.Title}</div>
 
-                                                                                        `;
+                                                                                    `;
                                     }
                                 );
                                 $('#answer1Title').replaceWith(answerResultLess);

@@ -4,13 +4,13 @@
 
 <div class="col-lg-3">
 
-    <h4 class="my-4 text-info h-auto w-auto">FunBox </h4>
+    <a asp-area="" asp-controller="Home" asp-action="Index" class="my-4 text-info w-400 h-400 btn btn-lg">FunBox </a>
     <div class="list-group bg-white ">
 
-        <a  asp-controller="Home" asp-action="Index" asp-route-id="null" class="list-group-item text-info ">Tüm Kategoriler</a>
+        <a asp-controller="Home" asp-action="Index" asp-route-id="null" class="list-group-item text-info ">Tüm Kategoriler</a>
         @foreach (var categories in Model.Categories)
         {
-            <a  asp-controller="Home" asp-action="Index" asp-route-id="@categories.Id" class="list-group-item text-info @(ViewBag.SelectedCategory==categories.Id.ToString()?"active":"")">@categories.Name</a>
+            <a asp-controller="Home" asp-action="Index" asp-route-id="@categories.Id" class="list-group-item text-info @(ViewBag.SelectedCategory==categories.Id.ToString()?"active":"")">@categories.Name</a>
 
         }
 

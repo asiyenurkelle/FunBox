@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-lg-3">
 
-                <h4 class="my-4 text-info h-auto w-auto">FunBox </h4>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="my-4 text-info w-400 h-400 btn btn-lg">FunBox </a>
                 <div class="list-group ">
                     <a asp-area="Admin" asp-controller="Serie" asp-action="Index" asp-route-id="null" class="list-group-item text-info">Tüm Kategoriler</a>
                     @foreach (var categories in Model.Categories)

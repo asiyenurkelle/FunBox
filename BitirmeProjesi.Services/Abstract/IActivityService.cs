@@ -11,7 +11,8 @@ namespace BitirmeProjesi.Services.Abstract
     public interface IActivityService
     {
         Task<IDataResult<BookSerieMovieDto>> GetActivities();
-        
-
+        Task<IDataResult<MovieUpdateDto>> DeleteActivitiesMovie(int movieId);
+        Task<IDataResult<SerieUpdateDto>> DeleteActivitiesSerie(int serieId);
+        Task<IDataResult<BookUpdateDto>> DeleteActivitiesBook(int bookId);
     }
 }

@@ -74,12 +74,12 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 
         [HttpGet]
         [Authorize]
-        public IActionResult AddComment(int Id)
+        public IActionResult AddComment(/*int Id*/)
         {
-            var movie = _movieService.Get(Id);
-            CommentAddDto commentAddDto = new CommentAddDto();
-            commentAddDto.MovieId = Id;
-            return View(commentAddDto);
+            //var movie = _movieService.Get(Id);
+            //CommentAddDto commentAddDto = new CommentAddDto();
+            //commentAddDto.MovieId = Id;
+            return View(/*commentAddDto*/);
         }
 
         [HttpPost]
@@ -92,6 +92,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
                 var result = await _movieService.AddComment(commentAddDto);
                 if (result.ResultStatus == ResultStatus.Success)
                 {
+                  
                     return RedirectToAction("Index", "Movie" );
                 }
                 else

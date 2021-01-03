@@ -11,5 +11,6 @@ namespace BitirmeProjesi.Entities.Dtos
     public class MovieQuestionDto:DtoGetBase
     {
         public IList<MovieQuestion> MovieQuestions { get; set; }
+        public IList<Movie> Movies { get; set; }
     }
 }

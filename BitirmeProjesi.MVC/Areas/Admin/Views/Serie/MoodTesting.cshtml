@@ -78,12 +78,39 @@
                         }
                     });
 
+                //else if (choice == "1 saatten daha uzun") {
+
+                //    $('#suggestionscreen').hide();
+                //    $.ajax({
+                //        type: "GET",
+                //        contenttype: "application/json; charset=utf-8",
+                //        url: "./GetSerieMoreThanOneHour",
+                //        success: function (result) {
+                //            $('#SuggestionScreen').show();
+                //            const resultSerieLess = jQuery.parseJSON(result);
+
+                //            if (resultSerieLess.ResultStatus === 0) {
+                //                let answerResultLess = "";
+                //                $('#answer1Title').html(" ");
+                //                $.each(resultSerieLess.Series.$values,
+                //                    function (index, serie) {
+                //                        answerResultLess += `
+                //                                                                    <div class="card-header bg-info"> ${serie.title}</div>
+
+                //                                                                    `;
+                //                    }
+                //                );
+                //                $('#answer1Title').replaceWith(answerResultLess);
+                //            }
+                //        }
+                //    });
+                //}
                 else if (choice == "1 saatten daha uzun") {
 
-                    $('#suggestionscreen').hide();
+                    $('#SuggestionScreen').hide();
                     $.ajax({
                         type: "GET",
-                        contenttype: "application/json; charset=utf-8",
+                        contentType: "application/json; charset=utf-8",
                         url: "./GetSerieMoreThanOneHour",
                         success: function (result) {
                             $('#SuggestionScreen').show();
@@ -95,7 +122,7 @@
                                 $.each(resultSerieLess.Series.$values,
                                     function (index, serie) {
                                         answerResultLess += `
-                                                                                    <div class="card-header bg-info"> ${serie.title}</div>
+                                                                                    <div class="card-header bg-info"> ${serie.Title}</div>
 
                                                                                     `;
                                     }

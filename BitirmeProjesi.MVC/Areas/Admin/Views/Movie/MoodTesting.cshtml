@@ -33,11 +33,14 @@
                 <div class="modal-header ">
                     <h2 class="text-info"><span class="label label-warning text-info"></span>Senin İçin Önerilerimiz </h2>
                 </div>
+
                 <div class="modal-body">
                     <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
                         <a class="card-header bg-info text-dark" id="answer1Title"> </a>
                     </div>
                 </div>
+
+
             </div>
         </div>
     </div>
@@ -66,18 +69,17 @@
                                 $.each(resultMovie.Movies.$values,
                                     function (index, movie) {
                                         answerResult += `
-                                                                                 <div class="card-header bg-info"> ${movie.Title}</div>
-
-
-                                                                                `;
-                                    }
+                                                                                    
+                                                                                     <div class="card-header bg-info"> ${movie.Title}</div>
+                                                                                        
+                                                                                    `;
+                                                                                     }
                                 );
                                 $('#answer1Title').replaceWith(answerResult);
 
                             }
                         }
                     });
-
                 else if (choice == "2 saatten daha uzun") {
 
                     $('#SuggestionScreen').hide();
@@ -95,9 +97,9 @@
                                 $.each(resultMovieLess.Movies.$values,
                                     function (index, movie) {
                                         answerResultLess += `
-                                                                                <div class="card-header bg-info"> ${movie.Title}</div>
+                                                                                    <div class="card-header bg-info"> ${movie.Title}</div>
 
-                                                                                `;
+                                                                                    `;
                                     }
                                 );
                                 $('#answer1Title').replaceWith(answerResultLess);
@@ -105,6 +107,8 @@
                         }
                     });
                 }
+
+               
                 else if (choice == "Evet,7 ve üzeri olmalı") {
 
                     $('#SuggestionScreen').hide();
@@ -122,9 +126,9 @@
                                 $.each(resultMovieLess.Movies.$values,
                                     function (index, movie) {
                                         answerResultLess += `
-                                                                                <div class="card-header bg-info"> ${movie.Title}</div>
+                                                                                    <div class="card-header bg-info"> ${movie.Title}</div>
 
-                                                                                `;
+                                                                                    `;
                                     }
                                 );
                                 $('#answer1Title').replaceWith(answerResultLess);
@@ -149,9 +153,9 @@
                                 $.each(resultMovieLess.Movies.$values,
                                     function (index, movie) {
                                         answerResultLess += `
-                                                                                <div class="card-header bg-info"> ${movie.Title}</div>
+                                                                                    <div class="card-header bg-info"> ${movie.Title}</div>
 
-                                                                                `;
+                                                                                    `;
                                     }
                                 );
                                 $('#answer1Title').replaceWith(answerResultLess);
@@ -159,6 +163,7 @@
                         }
                     });
                 }
+                
                 else if (choice == "Evet,1990 ve öncesi yapımlar") {
 
                     $('#SuggestionScreen').hide();
@@ -171,14 +176,14 @@
                             const resultMovieLess = jQuery.parseJSON(result);
 
                             if (resultMovieLess.ResultStatus === 0) {
-                                let answerResultLess = "";
+                             let answerResultLess = "";
                                 $('#answer1Title').html(" ");
                                 $.each(resultMovieLess.Movies.$values,
                                     function (index, movie) {
                                         answerResultLess += `
-                                                                                <div class="card-header bg-info"> ${movie.Title}</div>
+                                                                                    <div class="card-header bg-info"> ${movie.Title}</div>
 
-                                                                                `;
+                                                                                    `;
                                     }
                                 );
                                 $('#answer1Title').replaceWith(answerResultLess);
@@ -203,9 +208,9 @@
                                 $.each(resultMovieLess.Movies.$values,
                                     function (index, movie) {
                                         answerResultLess += `
-                                                                                <div class="card-header bg-info"> ${movie.Title}</div>
+                                                                                    <div class="card-header bg-info"> ${movie.Title}</div>
 
-                                                                                `;
+                                                                                    `;
                                     }
                                 );
                                 $('#answer1Title').replaceWith(answerResultLess);

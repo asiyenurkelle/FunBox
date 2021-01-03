@@ -20,15 +20,17 @@ namespace BitirmeProjesi.Services.Concrete
         {
             _unitOfWork = unitOfWork;
         }
-        public async  Task<IDataResult<MovieQuestionDto>> GetQuestions()
+        public async Task<IDataResult<MovieQuestionDto>> GetQuestions()
         {
             var questions = await _unitOfWork.MovieQuestions.GetAllAsync(null);
+            var movies = await _unitOfWork.Movies.GetAllAsync(null);
             if (questions.Count > -1)
             {
                 return new DataResult<MovieQuestionDto>(ResultStatus.Success, new MovieQuestionDto
                 {
                     MovieQuestions = questions,
-                    ResultStatus = ResultStatus.Success
+                    ResultStatus = ResultStatus.Success,
+                    Movies = movies
                 });
             }
             return new DataResult<MovieQuestionDto>(ResultStatus.Error, Messages.Question.NotFound(isPlural: true), new MovieQuestionDto

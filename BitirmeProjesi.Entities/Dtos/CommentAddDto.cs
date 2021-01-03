@@ -23,8 +23,9 @@ namespace BitirmeProjesi.Entities.Dtos
         //[MinLength(3, ErrorMessage = "{0} {1} karakterden az olmamalıdır!")]
         public string Subject { get; set; }
         public int  MovieId { get; set; }
+        public Movie Movie { get; set; }
 
-        
+
     }
 
 }

@@ -26,7 +26,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             _bookService = bookService;
         }
 
-        public async Task< IActionResult> Index()
+        public async Task<IActionResult> Index()
         {
             TempData["Active"] = "Aktiviteler";
             var result = await _activityService.GetActivities();
@@ -35,11 +35,29 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 
         public async Task<IActionResult> RemoveActivity(int Id)
         {
-            var movie = await _movieService.GetMovieUpdateDto(Id);
-            var serie = await _serieService.GetSerieUpdateDto(Id);
-            var book = await _bookService.GetBookUpdateDto(Id);
+            var movie = await _activityService.DeleteActivitiesMovie(Id);
+            var serie = await _activityService.DeleteActivitiesSerie(Id);
+            var book = await _activityService.DeleteActivitiesBook(Id);
             return Json(null);
 
         }
+        //public async Task<IActionResult> RemoveActivityBook(int Id)
+        //{
+        //    var serie = await _activityService.DeleteActivitiesBook(Id);
+        //    return Json(null);
+
+        //}
+        //public async Task<IActionResult> RemoveActivitySerie(int Id)
+        //{
+        //    var serie = await _activityService.DeleteActivitiesSerie(Id);
+        //    return Json(null);
+
+        //}
+        //public async Task<IActionResult> RemoveActivityMovie(int Id)
+        //{
+        //    var serie = await _activityService.DeleteActivitiesMovie(Id);
+        //    return Json(null);
+
+        //}
     }
 }

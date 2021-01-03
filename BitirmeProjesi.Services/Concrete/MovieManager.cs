@@ -61,22 +61,7 @@ namespace BitirmeProjesi.Services.Concrete
             return new DataResult<MovieListDto>(ResultStatus.Error, Messages.Movie.NotFound(isPlural: true), null);
         }
 
-        public async Task<IDataResult<MovieUpdateDto>> GetMovieUpdateDto(int movieId)
-        {
-            var result = await _unitOfWork.Movies.AnyAsync(m => m.Id == movieId);
-            if (result)
-            {
-                var movie = await _unitOfWork.Movies.GetAsync(m => m.Id == movieId, m => m.Category);
-                movie.Activities = false;
-                await _unitOfWork.SaveAsync();
-                var movieUpdateDto = _mapper.Map<MovieUpdateDto>(movie);
-                return new DataResult<MovieUpdateDto>(ResultStatus.Success, movieUpdateDto);
-            }
-            else
-            {
-                return new DataResult<MovieUpdateDto>(ResultStatus.Error, Messages.Movie.NotFound(isPlural: false), null);
-            }
-        }
+       
 
         public async Task<IDataResult<MovieUpdateDto>> AddListMovie(int movieId)
         {
@@ -99,8 +84,8 @@ namespace BitirmeProjesi.Services.Concrete
         {
             var comment = _mapper.Map<Comment>(commentAddDto);
 
-            var movie = await _unitOfWork.Movies.GetAsync(m => m.Id == commentAddDto.MovieId);
-            comment.MovieId = movie.Id;
+            var movie = await _unitOfWork.Movies.GetAsync(m => m.Id == commentAddDto.Movie.Id);
+            comment.Movie = movie;
             comment.Subject = commentAddDto.Subject;
             comment.Title = commentAddDto.Title;
             var addedComment = await _unitOfWork.Comments.AddAsync(comment);

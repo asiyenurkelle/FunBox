@@ -182,13 +182,13 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
                     MailMessage mail = new MailMessage();
                     mail.IsBodyHtml = true;
                     mail.To.Add(userPasswordResetDto.Email);
-                    mail.From = new MailAddress("asiyekelle7@gmail.com", "Şifre Güncelleme", System.Text.Encoding.UTF8);
+                    mail.From = new MailAddress("bitirmeprojesi7@gmail.com", "Şifre Güncelleme", System.Text.Encoding.UTF8);
                     mail.Subject = "Şifre Güncelleme Talebi";
                     mail.Body = $"<a target=\"_blank\" href=\"https://localhost:44359{Url.Action("UpdatePassword", "User", new { userId = user.Id, token = HttpUtility.UrlEncode(resetToken) })}\">Yeni şifre talebi için tıklayınız</a>";
                     mail.IsBodyHtml = true;
 
                     SmtpClient smp = new SmtpClient();
-                    smp.Credentials = new NetworkCredential("asiyekelle7@gmail.com", "zeynep2002");
+                    smp.Credentials = new NetworkCredential("bitirmeprojesi7@gmail.com", "bitirmeprojesi7bitirmeprojesi7");
                     smp.UseDefaultCredentials = false;
                     smp.Port = 587;
                     smp.Host = "smtp.gmail.com";

@@ -55,7 +55,7 @@
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">@serie.Title</li>
                                 <li class=" btn btn-group-toggle">
-                                    <a asp-area="Admin" asp-controller="Seri" asp-action="Details" class="btn btn-sm text-info" data-toggle="modal" data-target="#exampleModal" data-id="@serie.Id">Listeden Çıkar</a>
+                                    <a asp-area="Admin" asp-controller="Serie" asp-action="Details" class="btn btn-sm text-info" data-toggle="modal" data-target="#exampleModal" data-id="@serie.Id">Listeden Çıkar</a>
                                     <a asp-area="Admin" asp-controller="Serie" asp-action="Details" asp-route-id="@serie.Id" class="btn btn-sm text-info">Detaylar</a>
                                 </li>
 
@@ -80,7 +80,7 @@
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">@movie.Title</li>
                                 <li class=" btn btn-group-toggle">
-                                    <a class="btn btn-sm text-info" data-toggle="modal" data-target="#exampleModal" data-id="@movie.Id">Listeden Çıkar</a>
+                                    <a asp-area="Admin" asp-controller="Movie" asp-action="Details" class="btn btn-sm text-info" data-toggle="modal" data-target="#exampleModal" data-id="@movie.Id">Listeden Çıkar</a>
                                     <a asp-area="Admin" asp-controller="Movie" asp-action="Details" asp-route-id="@movie.Id" class="btn btn-sm text-info">Detaylar</a>
                                 </li>
 

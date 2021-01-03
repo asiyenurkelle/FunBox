@@ -68,22 +68,7 @@ namespace BitirmeProjesi.Services.Concrete
             return new DataResult<SerieListDto>(ResultStatus.Error, Messages.Serie.NotFound(true), null);
         }
 
-        public async Task<IDataResult<SerieUpdateDto>> GetSerieUpdateDto(int serieId)
-        {
-            var result = await _unitOfWork.Series.AnyAsync(s => s.Id == serieId);
-            if (result)
-            {
-                var serie = await _unitOfWork.Series.GetAsync(s => s.Id == serieId, s => s.Category);
-                serie.Activities = false;
-                await _unitOfWork.SaveAsync();
-                var serieUpdateDto = _mapper.Map<SerieUpdateDto>(serie);
-                return new DataResult<SerieUpdateDto>(ResultStatus.Success, serieUpdateDto);
-            }
-            else
-            {
-                return new DataResult<SerieUpdateDto>(ResultStatus.Error, Messages.Serie.NotFound(isPlural: false), null);
-            }
-        }
+        
         public async Task<IDataResult<SerieUpdateDto>> AddListSerie(int serieId)
         {
             var result = await _unitOfWork.Series.AnyAsync(s => s.Id == serieId);

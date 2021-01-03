@@ -12,7 +12,6 @@ namespace BitirmeProjesi.Services.Abstract
     {
         Task<IDataResult<BookDto>> Get(int Id);
         Task<IDataResult<BookListDto>>GetAll();
-        Task<IDataResult<BookUpdateDto>> GetBookUpdateDto(int bookId);
         Task<IDataResult<BookUpdateDto>> AddListBook(int bookId);
         Task<IDataResult<BookListDto>> GetCategories(int? id);
         Task<IDataResult<BookListDto>> GetBookLessThanTwoHundredPage();
