@@ -2,12 +2,13 @@
 using BitirmeProjesi.Shared.Data.Abstract;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BitirmeProjesi.Data.Abstract
 {
-    public interface ICommentRepository : IEntityRepository<Comment>
+    public interface ISerieCommentRepository: IEntityRepository<SerieComment>
     {
     }
 }

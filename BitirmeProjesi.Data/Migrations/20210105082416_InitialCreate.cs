@@ -237,7 +237,7 @@ namespace BitirmeProjesi.Data.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -265,7 +265,7 @@ namespace BitirmeProjesi.Data.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -294,45 +294,66 @@ namespace BitirmeProjesi.Data.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Comments",
+                name: "BookComments",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Subject = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false),
-                    MovieId = table.Column<int>(type: "int", nullable: false),
-                    SerieId = table.Column<int>(type: "int", nullable: false),
+                    Subject = table.Column<string>(type: "NVARCHAR(MAX)", nullable: false),
                     BookId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Comments", x => x.Id);
+                    table.PrimaryKey("PK_BookComments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Comments_Books_BookId",
+                        name: "FK_BookComments_Books_BookId",
                         column: x => x.BookId,
                         principalTable: "Books",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MovieComments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Subject = table.Column<string>(type: "NVARCHAR(MAX)", nullable: false),
+                    MovieId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MovieComments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Comments_Categories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Comments_Movies_MovieId",
+                        name: "FK_MovieComments_Movies_MovieId",
                         column: x => x.MovieId,
                         principalTable: "Movies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SerieComments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Subject = table.Column<string>(type: "NVARCHAR(MAX)", nullable: false),
+                    SerieId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SerieComments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Comments_Series_SerieId",
+                        name: "FK_SerieComments_Series_SerieId",
                         column: x => x.SerieId,
                         principalTable: "Series",
                         principalColumn: "Id",
@@ -465,34 +486,29 @@ namespace BitirmeProjesi.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_BookComments_BookId",
+                table: "BookComments",
+                column: "BookId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Books_CategoryId",
                 table: "Books",
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comments_BookId",
-                table: "Comments",
-                column: "BookId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comments_CategoryId",
-                table: "Comments",
-                column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comments_MovieId",
-                table: "Comments",
+                name: "IX_MovieComments_MovieId",
+                table: "MovieComments",
                 column: "MovieId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comments_SerieId",
-                table: "Comments",
-                column: "SerieId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Movies_CategoryId",
                 table: "Movies",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SerieComments_SerieId",
+                table: "SerieComments",
+                column: "SerieId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Series_CategoryId",
@@ -518,13 +534,19 @@ namespace BitirmeProjesi.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "BookComments");
+
+            migrationBuilder.DropTable(
                 name: "BookQuestions");
 
             migrationBuilder.DropTable(
-                name: "Comments");
+                name: "MovieComments");
 
             migrationBuilder.DropTable(
                 name: "MovieQuestions");
+
+            migrationBuilder.DropTable(
+                name: "SerieComments");
 
             migrationBuilder.DropTable(
                 name: "SerieQuestions");

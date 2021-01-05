@@ -15,13 +15,13 @@ namespace BitirmeProjesi.Data.Concrete
         private EfSerieRepository _serieRepository;
         private EfBookRepository _bookRepository;
         private EfCategoryRepository _categoryRepository;
-        private EfCommentRepository _commentRepository;
         private EfBookQuestionRepository _bookquestionRepository;
         private EfSerieQuestionRepository _seriequestionRepository;
         private EfMovieQuestionRepository _moviequestionRepository;
-       
-      
-       
+        private EfBookCommentRepository _bookcommentRepository;
+        private EfSerieCommentRepository _seriecommentRepository;
+        private EfMovieCommentRepository _moviecommentRepository;
+
         public UnitOfWork(BitirmeProjesiContext bitirmeProjesiContext)
         {
             _bitirmeProjesiContext = bitirmeProjesiContext;
@@ -33,7 +33,10 @@ namespace BitirmeProjesi.Data.Concrete
         public IBookRepository Books => _bookRepository ?? new EfBookRepository(_bitirmeProjesiContext);
 
         public ICategoryRepository Categories => _categoryRepository ?? new EfCategoryRepository(_bitirmeProjesiContext);
-        public ICommentRepository Comments => _commentRepository ?? new EfCommentRepository(_bitirmeProjesiContext);
+        public IBookCommentRepository BookComments => _bookcommentRepository ?? new EfBookCommentRepository(_bitirmeProjesiContext);
+        public ISerieCommentRepository SerieComments => _seriecommentRepository ?? new EfSerieCommentRepository(_bitirmeProjesiContext);
+        public IMovieCommentRepository MovieComments => _moviecommentRepository ?? new EfMovieCommentRepository(_bitirmeProjesiContext);
+
         public IBookQuestionRepository BookQuestions => _bookquestionRepository ?? new EfBookQuestionRepository(_bitirmeProjesiContext);
         public ISerieQuestionRepository SerieQuestions => _seriequestionRepository ?? new EfSerieQuestionRepository(_bitirmeProjesiContext);
         public IMovieQuestionRepository MovieQuestions => _moviequestionRepository ?? new EfMovieQuestionRepository(_bitirmeProjesiContext);

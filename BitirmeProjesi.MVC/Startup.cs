@@ -1,4 +1,4 @@
-using System.Text.Json.Serialization;
+ï»¿using System.Text.Json.Serialization;
 using AutoMapper;
 using BitirmeProjesi.MVC.AutoMapper.Profiles;
 using BitirmeProjesi.Services.Extensions;
@@ -28,8 +28,9 @@ namespace BitirmeProjesi.MVC
                 opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
             });
             services.AddSession();
-            services.AddAutoMapper(typeof(CommentProfile),typeof(ViewModelsProfile));
-            services.LoadMyServices(connectionString:Configuration.GetConnectionString("LocalDB"));
+            
+            services.AddAutoMapper(typeof(BookProfile), typeof(CategoryProfile), typeof(MovieProfile), typeof(SerieProfile), typeof(ViewModelsProfile));
+            services.LoadMyServices(connectionString: Configuration.GetConnectionString("LocalDB"));
             services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = new PathString("/Admin/User/Login");
@@ -39,12 +40,12 @@ namespace BitirmeProjesi.MVC
                     Name = "BitirmeProjesi",
                     HttpOnly = true,
                     SameSite = SameSiteMode.Strict,
-                    //TEST BÝTÝNCE ALWAYSE CEKÝLCEK YOKSA GÜVENLÝK AÇIÐI!!!
-                    SecurePolicy=CookieSecurePolicy.SameAsRequest
+                   
+                    SecurePolicy = CookieSecurePolicy.SameAsRequest
                 };
                 options.SlidingExpiration = true;
                 options.ExpireTimeSpan = System.TimeSpan.FromDays(7);
-                //yetkisi olmayan bir yere giriþ yapmaya calýsan kullanýcýnýn yönlendirileceði adres
+                //yetkisi olmayan bir yere giriÃ¾ yapmaya calÃ½san kullanÃ½cÃ½nÃ½n yÃ¶nlendirileceÃ°i adres
                 options.AccessDeniedPath = new PathString("/Admin/User/AccessDenied");
             });
 
@@ -73,7 +74,7 @@ namespace BitirmeProjesi.MVC
             app.UseAuthentication();
 
             app.UseAuthorization();
-
+           
 
             app.UseEndpoints(endpoints =>
             {

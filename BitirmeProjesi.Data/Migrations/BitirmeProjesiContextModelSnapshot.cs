@@ -140,6 +140,32 @@ namespace BitirmeProjesi.Data.Migrations
                         });
                 });
 
+            modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.BookComment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR(MAX)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookId");
+
+                    b.ToTable("BookComments");
+                });
+
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.BookQuestion", b =>
                 {
                     b.Property<int>("Id")
@@ -271,48 +297,6 @@ namespace BitirmeProjesi.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.Comment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SerieId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Subject")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("MovieId");
-
-                    b.HasIndex("SerieId");
-
-                    b.ToTable("Comments");
-                });
-
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.Movie", b =>
                 {
                     b.Property<int>("Id")
@@ -419,6 +403,32 @@ namespace BitirmeProjesi.Data.Migrations
                             Time = 128,
                             Title = "Eşkiya"
                         });
+                });
+
+            modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.MovieComment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR(MAX)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MovieId");
+
+                    b.ToTable("MovieComments");
                 });
 
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.MovieQuestion", b =>
@@ -665,6 +675,32 @@ namespace BitirmeProjesi.Data.Migrations
                         });
                 });
 
+            modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.SerieComment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("SerieId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR(MAX)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SerieId");
+
+                    b.ToTable("SerieComments");
+                });
+
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.SerieQuestion", b =>
                 {
                     b.Property<int>("Id")
@@ -872,39 +908,15 @@ namespace BitirmeProjesi.Data.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.Comment", b =>
+            modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.BookComment", b =>
                 {
                     b.HasOne("BitirmeProjesi.Entities.Concrete.Book", "Book")
-                        .WithMany("Comments")
+                        .WithMany("BookComments")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("BitirmeProjesi.Entities.Concrete.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BitirmeProjesi.Entities.Concrete.Movie", "Movie")
-                        .WithMany("Comments")
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("BitirmeProjesi.Entities.Concrete.Serie", "Serie")
-                        .WithMany("Comments")
-                        .HasForeignKey("SerieId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("Book");
-
-                    b.Navigation("Category");
-
-                    b.Navigation("Movie");
-
-                    b.Navigation("Serie");
                 });
 
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.Movie", b =>
@@ -916,6 +928,17 @@ namespace BitirmeProjesi.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.MovieComment", b =>
+                {
+                    b.HasOne("BitirmeProjesi.Entities.Concrete.Movie", "Movie")
+                        .WithMany("MovieComments")
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Movie");
                 });
 
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.RoleClaim", b =>
@@ -936,6 +959,17 @@ namespace BitirmeProjesi.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.SerieComment", b =>
+                {
+                    b.HasOne("BitirmeProjesi.Entities.Concrete.Serie", "Serie")
+                        .WithMany("SerieComments")
+                        .HasForeignKey("SerieId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Serie");
                 });
 
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.UserClaim", b =>
@@ -982,7 +1016,7 @@ namespace BitirmeProjesi.Data.Migrations
 
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.Book", b =>
                 {
-                    b.Navigation("Comments");
+                    b.Navigation("BookComments");
                 });
 
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.Category", b =>
@@ -996,12 +1030,12 @@ namespace BitirmeProjesi.Data.Migrations
 
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.Movie", b =>
                 {
-                    b.Navigation("Comments");
+                    b.Navigation("MovieComments");
                 });
 
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.Serie", b =>
                 {
-                    b.Navigation("Comments");
+                    b.Navigation("SerieComments");
                 });
 #pragma warning restore 612, 618
         }

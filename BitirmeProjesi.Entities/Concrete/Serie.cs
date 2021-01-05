@@ -14,12 +14,8 @@ namespace BitirmeProjesi.Entities.Concrete
         public int Time { get; set; }
         public string Scenarist { get; set; }
         public string Production { get; set; }
-        public Category Category { get; set; }
-       // public int CommentId { get; set; }
-       // public Comment Comment { get; set; }
-        public ICollection<Comment> Comments { get; set; }
-
-        //bir dizide birden cok yorum olabilir, bir yorumda bir tane diziye sahip olmak zorundadır.
+        public Category Category { get; set; }     
+        public ICollection<SerieComment> SerieComments { get; set; }
         public bool Activities { get; set; }
         public DateTime Date { get; set; }
         public int SeasonNumber { get; set; }

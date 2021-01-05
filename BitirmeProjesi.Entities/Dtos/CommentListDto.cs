@@ -8,6 +8,9 @@ namespace BitirmeProjesi.Entities.Dtos
 {
     public class CommentListDto:DtoGetBase
     {
-        public IList<Comment> Comments { get; set; }
+        public IList<BookComment> BookComments { get; set; }
+        public IList<SerieComment> SerieComments { get; set; }
+        public IList<MovieComment> MovieComments { get; set; }
+
     }
 }

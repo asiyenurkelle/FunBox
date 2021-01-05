@@ -13,7 +13,10 @@ namespace BitirmeProjesi.MVC.AutoMapper.Profiles
     {
         public ViewModelsProfile()
         {
-            CreateMap<CommentAddViewModel, CommentAddDto>();
+            CreateMap<CommentAddViewModel, CommentAddSerieDto>();
+            CreateMap<CommentAddViewModel, CommentAddMovieDto>();
+            
+            CreateMap<CommentAddViewModel, CommentAddBookDto>();
         }
     }
 }

@@ -29,7 +29,7 @@ namespace BitirmeProjesi.Services.Concrete
 
         public async Task<IDataResult<MovieDto>> Get(int movieId)
         {
-            var movie = await _unitOfWork.Movies.GetAsync(m => m.Id == movieId, m => m.Category, m => m.Comments);
+            var movie = await _unitOfWork.Movies.GetAsync(m => m.Id == movieId, m => m.Category, m=>m.MovieComments);
           
             if (movie != null)
             {
@@ -80,15 +80,16 @@ namespace BitirmeProjesi.Services.Concrete
             }
         }
 
-        public async Task<IResult> AddComment(CommentAddDto commentAddDto)
+        public async Task<IResult> AddComment(CommentAddMovieDto commentAddDto)
         {
-            var comment = _mapper.Map<Comment>(commentAddDto);
+            var comment = _mapper.Map<MovieComment>(commentAddDto);
 
-            var movie = await _unitOfWork.Movies.GetAsync(m => m.Id == commentAddDto.Movie.Id);
+            var movie = await _unitOfWork.Movies.GetAsync(m => m.Id == commentAddDto.MovieId);
             comment.Movie = movie;
+
             comment.Subject = commentAddDto.Subject;
             comment.Title = commentAddDto.Title;
-            var addedComment = await _unitOfWork.Comments.AddAsync(comment);
+            var addedComment = await _unitOfWork.MovieComments.AddAsync(comment);
             await _unitOfWork.SaveAsync();
             return new Result(ResultStatus.Success, "başarılı");
 

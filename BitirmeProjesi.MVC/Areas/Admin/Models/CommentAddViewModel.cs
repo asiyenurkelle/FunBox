@@ -22,6 +22,10 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Models
         //[MinLength(3, ErrorMessage = "{0} {1} karakterden az olmamalıdır!")]
         public string Subject { get; set; }
         public int MovieId { get; set; }
-        public Movie Movie { get; set; }
+        public int SerieId { get; set; }
+        public int BookId { get; set; }
+
+
+        public int Id { get; set; } //commentınıd si
     }
 }

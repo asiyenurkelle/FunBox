@@ -15,9 +15,7 @@ namespace BitirmeProjesi.Entities.Concrete
         public string Writer { get; set; }
         public string Production { get; set; }
         public Category Category { get; set; }
-        //public int CommentId { get; set; }
-        //public Comment Comment { get; set; }
-        public ICollection<Comment> Comments { get; set; }
+        public ICollection<BookComment> BookComments { get; set; }
 
         public bool Activities { get; set; }
         public DateTime Date { get; set; }

@@ -1,26 +1,26 @@
-﻿@model BitirmeProjesi.Entities.Dtos.CommentAddDto
+﻿@model BitirmeProjesi.Entities.Dtos.CommentAddBookDto
 @{
-    Layout = "~/Areas/Admin/Views/Shared/_UserLoginLayout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-5">
-            <div class="card shadow-lg  rounded-lg mt-5 bg-dark">
-                <div class="card-header text-info"><h3 class="text-center bg-dark my-4"> <span class="fas fa-edit"></span>Yorum Ekle</h3></div>
+            <div class="card shadow-lg   mt-5 bg-dark">
+                <div class="card-header text-info"><h3 class="text-center my-4"> <span class="fas fa-edit"></span>Yorum Ekle</h3></div>
                 <div class="card-body">
-                    <form asp-controller="Book" asp-action="AddComment" method="post">
-                        <div asp-validation-summary="All" class="text-danger" id="validation-summary">
-                        </div>
+                    <form asp-controller="Book" asp-action="AddComment">
+
                         <div class="form-group">
+                            <input type="hidden" asp-for="Id" name=BookId class="card shadow-lg  rounded-lg mt-5 bg-dark text-dark" />
                             <label class="small text-white" asp-for="Title">Yorum Başlığı</label>
-                            <input class="form-control py-4 " asp-for="Title"  placeholder="Lütfen Yorum Başlığını giriniz." />
+                            <input class="form-control py-4 " asp-for="Title" required/>
                             <span asp-validation-for="Title" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label class="small  text-white" asp-for="Subject">Yorum</label>
-                            <input class="form-control py-4 " asp-for="Subject"  placeholder="Lütfen Yorumunuzu giriniz." />
+                            <textarea class="form-control PY-4" asp-for="Subject" rows="3" required> </textarea>
                             <span asp-validation-for="Subject" class="text-danger"></span>
                         </div>
 
@@ -28,6 +28,7 @@
                         <div class="form-group">
                             <button type="submit" class="btn btn-info btn-block" id="btnSave"><span class="fas fa-save"></span> Kaydet </button>
                         </div>
+                       
                     </form>
                 </div>
 

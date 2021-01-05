@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BitirmeProjesi.Services.Abstract;
 using Microsoft.AspNetCore.Mvc;
+using PagedList;
 
 namespace BitirmeProjesi.MVC.Controllers
 {

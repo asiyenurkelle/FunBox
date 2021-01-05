@@ -25,6 +25,7 @@ namespace BitirmeProjesi.Services.Concrete
         }
         public async Task<IDataResult<BookSerieMovieDto>> GetActivities()
         {
+           
             var books = await _unitOfWork.Books.GetAllAsync(b => b.Activities==true, b=>b.Category);
             var movies = await _unitOfWork.Movies.GetAllAsync(m => m.Activities == true, m => m.Category);
             var series = await _unitOfWork.Series.GetAllAsync(s => s.Activities == true, s => s.Category);

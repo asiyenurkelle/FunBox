@@ -11,6 +11,6 @@ namespace BitirmeProjesi.Entities.Dtos
     public class BookCommentDto : DtoGetBase
     {
         public Book Book { get; set; }
-        public Comment Comment { get; set; }
+        public BookComment BookComments { get; set; }
     }
 }

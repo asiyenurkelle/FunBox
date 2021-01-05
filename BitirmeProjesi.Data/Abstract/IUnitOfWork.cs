@@ -12,7 +12,9 @@ namespace BitirmeProjesi.Data.Abstract
         IBookRepository Books { get; }
         ICategoryRepository Categories { get; }
       
-        ICommentRepository Comments { get; }
+        IBookCommentRepository BookComments { get; }
+        IMovieCommentRepository MovieComments { get; }
+        ISerieCommentRepository SerieComments { get; }
 
         IMovieQuestionRepository MovieQuestions { get; }
         ISerieQuestionRepository SerieQuestions { get; }

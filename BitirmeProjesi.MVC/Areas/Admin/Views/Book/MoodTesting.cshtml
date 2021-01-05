@@ -1,4 +1,5 @@
-﻿@model BitirmeProjesi.Entities.Dtos.BookQuestionDto
+﻿
+@model BitirmeProjesi.Entities.Dtos.BookQuestionDto
 @{
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
@@ -13,7 +14,7 @@
         <div class="modal-dialog p-2">
             @foreach (var test in Model.BookQuestions)
             {
-                <div class="modal-content">
+                <div class="modal-content" id="quiz2">
                     <div class="modal-header">
                         <h2 class="text-info"><span class="label label-warning text-info" id="question"></span>@test.QuestionText </h2>
                     </div>
@@ -51,6 +52,7 @@
             $('#SuggestionScreen').hide();
             $("label.btn").on('click', function () {
                 var choice = $(this).find('input:radio').val();
+
                 if (choice == "200 sayfa ve altı")
                     $.ajax({
                         type: "GET",
@@ -65,21 +67,29 @@
                                 $.each(resultBook.Books.$values,
                                     function (index, book) {
                                         answerResult += `
-                                                                                         <div class="card-header bg-info"> ${book.Title}</div>
+                                                                                             <div class="card-header bg-info"> ${book.Title}</div>
 
 
-                                                                                        `;
+                                                                                            `;
                                     }
                                 );
                                 $('#answer1Title').replaceWith(answerResult);
+                                //$('#quiz').fadeOut();
+                                //$('input:radio').prop('checked', false);
+                                //setTimeout(function () {
+                                //    window.location.reload();
+                                //}, 30000);
+
+
+                                //$('#quiz').show();
+
 
                             }
+
                         }
                     });
 
                 else if (choice == "200 sayfadan daha fazla") {
-
-                    $('#SuggestionScreen').hide();
                     $.ajax({
                         type: "GET",
                         contentType: "application/json; charset=utf-8",
@@ -94,9 +104,9 @@
                                 $.each(resultBookLess.Books.$values,
                                     function (index, book) {
                                         answerResultLess += `
-                                                                                    <div class="card-header bg-info"> ${book.Title}</div>
+                                                                                        <div class="card-header bg-info"> ${book.Title}</div>
 
-                                                                                    `;
+                                                                                        `;
                                     }
                                 );
                                 $('#answer1Title').replaceWith(answerResultLess);
@@ -104,7 +114,7 @@
                         }
                     });
                 }
-                
+
                 else if (choice == "Evet") {
 
                     $('#SuggestionScreen').hide();
@@ -122,9 +132,9 @@
                                 $.each(resultBookLess.Books.$values,
                                     function (index, book) {
                                         answerResultLess += `
-                                                                                    <div class="card-header bg-info"> ${book.Title}</div>
+                                                                                        <div class="card-header bg-info"> ${book.Title}</div>
 
-                                                                                    `;
+                                                                                        `;
                                     }
                                 );
                                 $('#answer1Title').replaceWith(answerResultLess);
@@ -132,7 +142,7 @@
                         }
                     });
                 }
-                
+
                 else if (choice == "Hayır") {
 
                     $('#SuggestionScreen').hide();
@@ -150,9 +160,9 @@
                                 $.each(resultBookLess.Books.$values,
                                     function (index, book) {
                                         answerResultLess += `
-                                                                                    <div class="card-header bg-info"> ${book.Title}</div>
+                                                                                        <div class="card-header bg-info"> ${book.Title}</div>
 
-                                                                                    `;
+                                                                                        `;
                                     }
                                 );
                                 $('#answer1Title').replaceWith(answerResultLess);
@@ -160,8 +170,8 @@
                         }
                     });
                 }
-                
-                
+
+
                 else if (choice == "Evet eski tarihli kitaplar öncelikli tercihimdir") {
 
                     $('#SuggestionScreen').hide();
@@ -179,9 +189,9 @@
                                 $.each(resultBookLess.Books.$values,
                                     function (index, book) {
                                         answerResultLess += `
-                                                                                    <div class="card-header bg-info"> ${book.Title}</div>
+                                                                                        <div class="card-header bg-info"> ${book.Title}</div>
 
-                                                                                    `;
+                                                                                        `;
                                     }
                                 );
                                 $('#answer1Title').replaceWith(answerResultLess);
@@ -189,7 +199,7 @@
                         }
                     });
                 }
-               
+
                 else if (choice == "Günümüze daha yakın tarihli kitapları tercih ederim") {
 
                     $('#SuggestionScreen').hide();
@@ -207,9 +217,9 @@
                                 $.each(resultBookLess.Books.$values,
                                     function (index, book) {
                                         answerResultLess += `
-                                                                                    <div class="card-header bg-info"> ${book.Title}</div>
+                                                                                        <div class="card-header bg-info"> ${book.Title}</div>
 
-                                                                                    `;
+                                                                                        `;
                                     }
                                 );
                                 $('#answer1Title').replaceWith(answerResultLess);

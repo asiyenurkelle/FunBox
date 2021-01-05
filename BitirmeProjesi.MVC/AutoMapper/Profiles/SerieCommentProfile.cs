@@ -4,15 +4,15 @@ using System.Text;
 using AutoMapper;
 using BitirmeProjesi.Entities.Concrete;
 using BitirmeProjesi.Entities.Dtos;
-
 namespace BitirmeProjesi.MVC.AutoMapper.Profiles
 {
-    public class CommentProfile:Profile
+    public class SerieCommentProfile:Profile
     {
-        public CommentProfile()
+        public SerieCommentProfile()
         {
-            CreateMap<CommentAddDto, Comment>();
-            
+            CreateMap<CommentAddSerieDto, SerieComment>();
+
         }
     }
+
 }

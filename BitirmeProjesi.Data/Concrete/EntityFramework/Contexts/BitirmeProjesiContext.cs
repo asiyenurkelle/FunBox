@@ -19,8 +19,10 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Contexts
         public DbSet<Serie> Series { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Comment> Comments { get; set; }
-       
+        public DbSet<BookComment> BookComments { get; set; }
+        public DbSet<MovieComment> MovieComments { get; set; }
+        public DbSet<SerieComment> SerieComments { get; set; }
+
         public DbSet<BookQuestion> BookQuestions { get; set; }
         public DbSet<SerieQuestion> SerieQuestions { get; set; }
         public DbSet<MovieQuestion> MovieQuestions { get; set; }
@@ -34,7 +36,9 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Contexts
             modelBuilder.ApplyConfiguration(new CategoryMap());
             modelBuilder.ApplyConfiguration(new UserMap());
             modelBuilder.ApplyConfiguration(new RoleMap());
-            modelBuilder.ApplyConfiguration(new CommentMap());
+            modelBuilder.ApplyConfiguration(new BookCommentMap());
+            modelBuilder.ApplyConfiguration(new SerieCommentMap());
+            modelBuilder.ApplyConfiguration(new MovieCommentMap());
             modelBuilder.ApplyConfiguration(new RoleClaimMap());
             modelBuilder.ApplyConfiguration(new UserClaimMap());
             modelBuilder.ApplyConfiguration(new UserLoginMap());

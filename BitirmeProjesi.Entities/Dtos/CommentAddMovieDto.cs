@@ -8,7 +8,7 @@ using System.Text;
 
 namespace BitirmeProjesi.Entities.Dtos
 {
-    public class CommentAddDto : DtoGetBase
+    public class CommentAddMovieDto : DtoGetBase
     {
 
         [DisplayName("Yorum Başlığı:")]
@@ -22,8 +22,8 @@ namespace BitirmeProjesi.Entities.Dtos
         [MaxLength(500, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır!")]
         //[MinLength(3, ErrorMessage = "{0} {1} karakterden az olmamalıdır!")]
         public string Subject { get; set; }
-        public int  MovieId { get; set; }
-        public Movie Movie { get; set; }
+        public int MovieId { get; set; }
+        public int Id { get; set; } //commentınıd si
 
 
     }

@@ -12,7 +12,7 @@ namespace BitirmeProjesi.Services.Abstract
     {
         Task<IDataResult<MovieDto>> Get(int movieId);
         Task<IDataResult<MovieListDto>> GetAll();
-        Task<IResult> AddComment(CommentAddDto commentAddDto);
+        Task<IResult> AddComment(CommentAddMovieDto commentAddDto);
         Task<IDataResult<MovieUpdateDto>> AddListMovie(int movieId);
         Task<IDataResult<MovieListDto>> GetCategories(int? id);
         Task<IDataResult<MovieListDto>> GetAllLessThanTwoHour();

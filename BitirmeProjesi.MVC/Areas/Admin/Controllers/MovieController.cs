@@ -24,7 +24,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         private readonly IMovieQuestionService _movieQuestionService;
         private readonly IMapper _mapper;
 
-        public MovieController(IMovieService movieService, IMovieQuestionService movieQuestionService, ICommentService commentService, IMapper mapper)
+        public MovieController(IMovieService movieService, IMovieQuestionService movieQuestionService, IMapper mapper)
         {
             _movieService = movieService;
             _movieQuestionService = movieQuestionService;
@@ -74,12 +74,10 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 
         [HttpGet]
         [Authorize]
-        public IActionResult AddComment(/*int Id*/)
+        public IActionResult AddComment(int id)
         {
-            //var movie = _movieService.Get(Id);
-            //CommentAddDto commentAddDto = new CommentAddDto();
-            //commentAddDto.MovieId = Id;
-            return View(/*commentAddDto*/);
+            ViewBag.deger = id;
+            return View();
         }
 
         [HttpPost]
@@ -87,13 +85,13 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                
-                var commentAddDto = _mapper.Map<CommentAddDto>(commentAddViewModel);
+
+                var commentAddDto = _mapper.Map<CommentAddMovieDto>(commentAddViewModel);
                 var result = await _movieService.AddComment(commentAddDto);
                 if (result.ResultStatus == ResultStatus.Success)
                 {
-                  
-                    return RedirectToAction("Index", "Movie" );
+
+                    return RedirectToAction("Details", new { Id = commentAddDto.MovieId });
                 }
                 else
                 {

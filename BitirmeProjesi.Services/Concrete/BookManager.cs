@@ -26,7 +26,7 @@ namespace BitirmeProjesi.Services.Concrete
 
         public async Task<IDataResult<BookDto>> Get(int Id)
         {
-            var book = await _unitOfWork.Books.GetAsync(b => b.Id == Id, b => b.Category, b => b.Comments);
+            var book = await _unitOfWork.Books.GetAsync(b => b.Id == Id, b => b.Category, b=>b.BookComments);
 
             if (book != null)
             {
@@ -41,7 +41,20 @@ namespace BitirmeProjesi.Services.Concrete
             return new DataResult<BookDto>(ResultStatus.Error, Messages.Book.NotFound(isPlural: false), null);
 
         }
+        public async Task<IResult> AddComment(CommentAddBookDto commentAddDto)
+        {
+            var comment = _mapper.Map<BookComment>(commentAddDto);
 
+            var book = await _unitOfWork.Books.GetAsync(m => m.Id == commentAddDto.BookId);
+            comment.Book = book;
+
+            comment.Subject = commentAddDto.Subject;
+            comment.Title = commentAddDto.Title;
+            var addedComment = await _unitOfWork.BookComments.AddAsync(comment);
+            await _unitOfWork.SaveAsync();
+            return new Result(ResultStatus.Success, "başarılı");
+
+        }
         public async Task<IDataResult<BookListDto>> GetAll()
         {
             var books = await _unitOfWork.Books.GetAllAsync(null, b => b.Category);

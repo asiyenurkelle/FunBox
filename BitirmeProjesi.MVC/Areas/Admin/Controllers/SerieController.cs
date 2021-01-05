@@ -20,14 +20,13 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
     {
         private readonly ISerieService _serieService;
         private readonly ISerieQuestionService _serieQuestionService;
-        private readonly ICommentService _commentService;
+       
         private readonly IMapper _mapper;
 
-        public SerieController(ISerieService serieService, ISerieQuestionService serieQuestionService, ICommentService commentService, IMapper mapper)
+        public SerieController(ISerieService serieService, ISerieQuestionService serieQuestionService, IMapper mapper)
         {
             _serieService = serieService;
             _serieQuestionService = serieQuestionService;
-            _commentService = commentService;
             _mapper = mapper;
         }
 
@@ -76,9 +75,10 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 
         [HttpGet]
         [Authorize]
-        public IActionResult AddComment()
+        public IActionResult AddComment(int id)
         {
-            return View(new CommentAddDto());
+            ViewBag.deger = id;
+            return View();
         }
 
         [HttpPost]
@@ -86,11 +86,13 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var commentAddDto = _mapper.Map<CommentAddDto>(commentAddViewModel);
+
+                var commentAddDto = _mapper.Map<CommentAddSerieDto>(commentAddViewModel);
                 var result = await _serieService.AddComment(commentAddDto);
                 if (result.ResultStatus == ResultStatus.Success)
                 {
-                    return RedirectToAction("Index", "Serie");
+
+                    return RedirectToAction("Details", new { Id = commentAddDto.SerieId });
                 }
                 else
                 {

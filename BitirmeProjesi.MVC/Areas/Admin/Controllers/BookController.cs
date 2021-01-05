@@ -12,6 +12,8 @@ using BitirmeProjesi.Entities.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using BitirmeProjesi.MVC.Areas.Admin.Models;
+using AutoMapper;
 
 namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 {
@@ -22,11 +24,13 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
     {
         private readonly IBookService _bookService;
         private readonly IBookQuestionService _bookQuestionService;
+        private readonly IMapper _mapper;
 
-        public BookController(IBookService bookService, IBookQuestionService bookQuestionService)
+        public BookController(IBookService bookService, IBookQuestionService bookQuestionService, IMapper mapper)
         {
             _bookService = bookService;
             _bookQuestionService = bookQuestionService;
+            _mapper = mapper;
            
            
         }
@@ -71,6 +75,36 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             TempData["Active"] = "ÖneriTesti";
             var result = await _bookQuestionService.GetQuestions();
             return View(result.Data);
+        }
+        [HttpGet]
+        [Authorize]
+        public IActionResult AddComment(int id)
+        {
+            ViewBag.deger = id;
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddComment(CommentAddViewModel commentAddViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+
+                var commentAddDto = _mapper.Map<CommentAddBookDto>(commentAddViewModel);
+                var result = await _bookService.AddComment(commentAddDto);
+                if (result.ResultStatus == ResultStatus.Success)
+                {
+
+                    return RedirectToAction("Details", new { Id = commentAddDto.BookId });
+                }
+                else
+                {
+                    ModelState.AddModelError("", result.Message);
+                    return View(commentAddViewModel);
+                }
+
+            }
+            return View(commentAddViewModel);
         }
         public async Task<IActionResult> GetBookLessThanTwoHundredPage()
         {
