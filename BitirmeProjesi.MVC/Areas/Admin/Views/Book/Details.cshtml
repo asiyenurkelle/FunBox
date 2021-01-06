@@ -121,24 +121,42 @@
                 })
             });
         });
-        $(document).on('click', '.btn-delete', function (event) {
+       $(document).on('click', '.btn-delete', function (event) {
                 event.preventDefault(); /*butonun baska islevi varsa durdurduk*/
                 const id = $(this).attr('data-id');
-                $.ajax({
-                    type: 'POST',
-                    dataType: 'json',
-                    data: { commentId: id },
-                    url: '@Url.Action("Delete", "Book")',
-                    success: function (data) {
-                        const result = jQuery.parseJSON(data);
-                        if (result.ResultStatus === 0) {
-                            toastr.success("Yorumunuz başarı ile silinmiştir");
-                            window.location.reload();
-                        }
+                Swal.fire({
+                    title: 'Yorumu silmek istediğinize emin misiniz?',
+                    text: "Yorumunuz silinecektir!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Evet',
+                    cancelButtonText: 'Vazgeç'
+                }).then((result) => {
+                    if (result.isConfirmed)
+                         $.ajax({
+                            type: 'POST',
+                            dataType: 'json',
+                            data: { commentId: id },
+                            url: '@Url.Action("Delete", "Book")',
+                            success: function (data) {
+                                const result = jQuery.parseJSON(data);
+                                if (result.ResultStatus === 0) {
+                                    Swal.fire(
+                                        'Silindi!',
+                                        'Yorum başarıyla silindi',
+                                        'success'
+                                    )
+                                }
+                                window.location.reload();
+                             },
 
-                    },
                     error: function (err) { }
                 });
+                })
+
+
 
             })
     </script>
