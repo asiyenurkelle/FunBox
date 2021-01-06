@@ -3,6 +3,7 @@
 @{
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+<link href="~/css/Comments.css" rel="stylesheet" />
 
 <div class="container">
     <div class="row">
@@ -43,30 +44,34 @@
 
                 </div>
             </div>
-            <!-- /.card -->
+           
 
             <div class="card card-outline-secondary my-4">
-                <div class="card-header  text-center text-info">
-                    Yorumlar
-                </div>
-                @foreach (var serie in Model.Serie.SerieComments)
+                @if (Model.Serie.SerieComments.Count > 0)
                 {
-                    <div class="card-body" id="placeHolderBooks">
-                        <p class="font-weight-bold">@serie.Title</p>
-                        <p>@serie.Subject</p>
-                        <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+                    @foreach (var serie in Model.Serie.SerieComments)
+                    {
+                        <div class="card-header  text-center text-info">
+                            Yorumlar
+                        </div>
+                        <div class="card-body">
+                            <p class="font-weight-bold">@serie.Title</p>
+                            <p>@serie.Subject</p>
+                            <small class="text-muted">Posted by Anonymous on @DateTime.Now.ToShortDateString()</small>
+                            <div class="card-body ">
+                                <a class="btn btn-success btn-circle text-uppercase" asp-area="Admin" asp-controller="Movie" asp-action="EditComment" data-toggle="collapse" data-id="@serie.Id"><span class="glyphicon glyphicon-comment"></span> Düzenle</a>
+                                <a class="btn btn-danger btn-circle text-uppercase" asp-area="Admin" asp-controller="Movie" asp-action="DeleteComment" data-id="@serie.Id" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Sil</a>
 
-                    </div>
+                            </div>
+
+                        </div>
+
+                    }
+
                 }
-              
-                <div class="text-center">
-                    <a href="#" class="btn btn-info text-center" data-toggle="modal" data-target="#exampleModal" data-id="@Model.Serie.Id">Aktivitelere Ekle</a>
+                <div class=" card-header text-center">
+                    <a class="btn btn-info  btn-circle text-uppercase" data-toggle="modal" data-target="#exampleModal" data-id="@Model.Serie.Id">Aktivitelere Ekle</a>
                 </div>
-                <div class="card-header  text-center text-info">
-
-                </div>
-
-                <!-- /.card -->
             </div>
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -81,8 +86,8 @@
                             @Model.Serie.Title isimli kitabı aktivitelere eklemek istediğinize emin misiniz?
                         </div>
                         <div class="modal-footer text-center">
-                            <button type="button" class="btn btn-secondary text-center" data-dismiss="modal">Vazgeç</button>
-                            <button id="btnSave" type="button" class="btn btn-info text-center">Listeye Ekle</button>
+                            <button type="button" class=" btn btn-secondary  btn-circle text-uppercase" data-dismiss="modal">Vazgeç</button>
+                            <button id="btnSave" type="button" class="btn btn-info btn-circle text-uppercase">Listeye Ekle</button>
                         </div>
                     </div>
                 </div>

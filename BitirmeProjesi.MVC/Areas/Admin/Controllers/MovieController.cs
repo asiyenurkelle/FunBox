@@ -161,6 +161,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             return Json(movies);
         }
 
+      
 
 
     }

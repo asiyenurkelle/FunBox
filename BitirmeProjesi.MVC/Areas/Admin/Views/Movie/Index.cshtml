@@ -3,6 +3,8 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
+<link href="~/css/Comments.css" rel="stylesheet" />
+
 @if (Model.ResultStatus == BitirmeProjesi.Shared.Utilities.Results.Complex_Types.ResultStatus.Success)
 {
     <div id="placeHolderMovies" aria-hidden="true"></div>
@@ -46,8 +48,8 @@
                                     </p>
                                 </div>
                                 <div class="card-footer">
-                                    <a type="button" class="btn btn-info" id="DetailsMovies" asp-area="Admin" asp-controller="Movie" asp-action="Details" asp-route-id="@movie.Id">Detaylar</a>
-                                    <a type="button" class="btn btn-info" id="AddCommentMovies" asp-area="Admin" asp-controller="Movie" asp-action="AddComment" asp-route-id="@movie.Id">Yorum Ekle</a>
+                                    <a type="button" class="btn btn-info  btn-circle text-uppercase" id="DetailsMovies" asp-area="Admin" asp-controller="Movie" asp-action="Details" asp-route-id="@movie.Id">Detaylar</a>
+                                    <a type="button" class="btn btn-info  btn-circle text-uppercase" id="AddCommentMovies" asp-area="Admin" asp-controller="Movie" asp-action="AddComment" asp-route-id="@movie.Id">Yorum Ekle</a>
                                 </div>
 
                             </div>

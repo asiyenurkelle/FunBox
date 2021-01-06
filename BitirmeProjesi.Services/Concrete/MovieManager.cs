@@ -19,18 +19,18 @@ namespace BitirmeProjesi.Services.Concrete
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-      
+
         public MovieManager(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
-           
+
         }
 
         public async Task<IDataResult<MovieDto>> Get(int movieId)
         {
-            var movie = await _unitOfWork.Movies.GetAsync(m => m.Id == movieId, m => m.Category, m=>m.MovieComments);
-          
+            var movie = await _unitOfWork.Movies.GetAsync(m => m.Id == movieId, m => m.Category, m => m.MovieComments);
+
             if (movie != null)
             {
                 return new DataResult<MovieDto>(ResultStatus.Success, new MovieDto
@@ -53,7 +53,7 @@ namespace BitirmeProjesi.Services.Concrete
                 return new DataResult<MovieListDto>(ResultStatus.Success, new MovieListDto
                 {
                     Movies = movies,
-                    Categories=categories,
+                    Categories = categories,
                     ResultStatus = ResultStatus.Success,
 
                 });
@@ -61,7 +61,7 @@ namespace BitirmeProjesi.Services.Concrete
             return new DataResult<MovieListDto>(ResultStatus.Error, Messages.Movie.NotFound(isPlural: true), null);
         }
 
-       
+
 
         public async Task<IDataResult<MovieUpdateDto>> AddListMovie(int movieId)
         {
@@ -105,7 +105,7 @@ namespace BitirmeProjesi.Services.Concrete
                     Movies = categoriesMovie,
                     Categories = categories,
                     ResultStatus = ResultStatus.Success
-                   
+
                 });
             }
             return new DataResult<MovieListDto>(ResultStatus.Error, Messages.Movie.NotFound(isPlural: true), new MovieListDto
@@ -121,9 +121,9 @@ namespace BitirmeProjesi.Services.Concrete
             var movie = await _unitOfWork.Movies.GetAllAsync(m => m.Time <= 120);
             if (movie != null)
             {
-                 return new DataResult<MovieListDto>(ResultStatus.Success, new MovieListDto
+                return new DataResult<MovieListDto>(ResultStatus.Success, new MovieListDto
                 {
-                    Movies=movie,
+                    Movies = movie,
                     ResultStatus = ResultStatus.Success
                 });
             }
@@ -232,6 +232,19 @@ namespace BitirmeProjesi.Services.Concrete
             });
         }
 
-        
+        public async Task<IResult> CommentDelete(int commentId)
+        {
+
+            var result = await _unitOfWork.MovieComments.AnyAsync(c => c.Id == commentId);
+            if (result)
+            {
+                var comment = await _unitOfWork.MovieComments.GetAsync(c => c.Id == commentId);
+                await _unitOfWork.MovieComments.DeleteAsync(comment);
+                await _unitOfWork.SaveAsync();
+                return new Result(ResultStatus.Success, Messages.Comment.Delete(comment.Title));
+            }
+            return new Result(ResultStatus.Error, Messages.Comment.NotFound(isPlural: false));
+
+        }
     }
 }

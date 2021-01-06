@@ -2,6 +2,7 @@
 @{
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+<link href="~/css/Comments.css" rel="stylesheet" />
 
 @if (Model.ResultStatus == BitirmeProjesi.Shared.Utilities.Results.Complex_Types.ResultStatus.Success)
 {
@@ -43,8 +44,8 @@
                                     </p>
                                 </div>
                                 <div class="card-footer">
-                                    <a type="button" class="btn btn-info" id="DetailsBooks" asp-area="Admin" asp-controller="Book" asp-action="Details" asp-route-id="@book.Id">Detaylar</a>
-                                    <a type="button" class="btn btn-info" id="AddCommentBooks" asp-area="Admin" asp-controller="Book" asp-action="AddComment" asp-route-id="@book.Id">Yorum Ekle</a>
+                                    <a type="button" class="btn btn-info  btn-circle text-uppercase" id="DetailsBooks" asp-area="Admin" asp-controller="Book" asp-action="Details" asp-route-id="@book.Id">Detaylar</a>
+                                    <a type="button" class="btn btn-info  btn-circle text-uppercase" id="AddCommentBooks" asp-area="Admin" asp-controller="Book" asp-action="AddComment" asp-route-id="@book.Id">Yorum Ekle</a>
                                 </div>
 
                             </div>
