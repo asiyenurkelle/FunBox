@@ -13,7 +13,7 @@ namespace BitirmeProjesi.Entities.Concrete
         public string Subject { get; set; }
         public int SerieId { get; set; }
         public Serie Serie { get; set; }
-        public bool IsDeleted { get; set; } = false;
-        public string Name { get; set; }
+        //public bool IsDeleted { get; set; } = false;
+       // public string Name { get; set; }
     }
 }

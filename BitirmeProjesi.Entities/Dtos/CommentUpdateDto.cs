@@ -15,5 +15,6 @@ namespace BitirmeProjesi.Entities.Dtos
         public string Name { get; set; }
         public Serie Serie { get; set; }
         public Book Book { get; set; }
+        
     }
 }

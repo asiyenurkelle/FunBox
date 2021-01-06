@@ -12,7 +12,7 @@ namespace BitirmeProjesi.Services.Abstract
     {
         Task<IResult> CommentDelete(int commentId);
       
-        Task<IDataResult<CommentDto>> UpdateComment(CommentUpdateDto comme);
+        Task<IDataResult<CommentDto>> UpdateComment(CommentUpdateDto commentUpdateDto);
 
     }
 }

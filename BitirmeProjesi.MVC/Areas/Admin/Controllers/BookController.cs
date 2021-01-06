@@ -24,12 +24,14 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
     {
         private readonly IBookService _bookService;
         private readonly IBookQuestionService _bookQuestionService;
+        private readonly IBookCommentService _bookCommentService;
         private readonly IMapper _mapper;
 
-        public BookController(IBookService bookService, IBookQuestionService bookQuestionService, IMapper mapper)
+        public BookController(IBookService bookService, IBookQuestionService bookQuestionService, IBookCommentService bookCommentService, IMapper mapper)
         {
             _bookService = bookService;
             _bookQuestionService = bookQuestionService;
+            _bookCommentService = bookCommentService;
             _mapper = mapper;
            
            
@@ -167,6 +169,13 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 
         }
 
+        [HttpPost]
+        public async Task<JsonResult> Delete(int commentId)
+        {
+            var result = await _bookCommentService. CommentDelete(commentId);
+            var ajaxResult = JsonSerializer.Serialize(result);
+            return Json(ajaxResult);
+        }
 
 
 

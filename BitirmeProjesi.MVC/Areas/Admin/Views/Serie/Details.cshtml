@@ -60,7 +60,7 @@
                             <small class="text-muted">Posted by Anonymous on @DateTime.Now.ToShortDateString()</small>
                             <div class="card-body ">
                                 <a class="btn btn-success btn-circle text-uppercase" asp-area="Admin" asp-controller="Movie" asp-action="EditComment" data-toggle="collapse" data-id="@serie.Id"><span class="glyphicon glyphicon-comment"></span> Düzenle</a>
-                                <a class="btn btn-danger btn-circle text-uppercase" asp-area="Admin" asp-controller="Movie" asp-action="DeleteComment" data-id="@serie.Id" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Sil</a>
+                                <button class="btn btn-danger btn-circle text-uppercase btn-delete"  data-id="@serie.Id" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Sil</button>
 
                             </div>
 
@@ -124,6 +124,27 @@
                 })
             });
         });
+        $(document).on('click', '.btn-delete', function (event) {
+            event.preventDefault(); /*butonun baska islevi varsa durdurduk*/
+            const id = $(this).attr('data-id');
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                data: { commentId: id },
+                url: '@Url.Action("Delete", "Serie")',
+                success: function (data) {
+                    const result = jQuery.parseJSON(data);
+                    if (result.ResultStatus === 0) {
+                        toastr.success("Yorumunuz başarı ile silinmiştir");
+                        window.location.reload();
+                    }
+
+                },
+                error: function (err) { }
+            });
+
+        });
+
     </script>
 
 }

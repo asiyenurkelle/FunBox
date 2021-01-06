@@ -20,13 +20,15 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
     {
         private readonly ISerieService _serieService;
         private readonly ISerieQuestionService _serieQuestionService;
+        private readonly ISerieCommentService _serieCommentService;
        
         private readonly IMapper _mapper;
 
-        public SerieController(ISerieService serieService, ISerieQuestionService serieQuestionService, IMapper mapper)
+        public SerieController(ISerieService serieService, ISerieQuestionService serieQuestionService, ISerieCommentService serieCommentService,IMapper mapper)
         {
             _serieService = serieService;
             _serieQuestionService = serieQuestionService;
+            _serieCommentService = serieCommentService; 
             _mapper = mapper;
         }
 
@@ -166,6 +168,13 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             });
             return Json(series);
 
+        }
+        [HttpPost]
+        public async Task<JsonResult> Delete(int commentId)
+        {
+            var result = await _serieCommentService.CommentDelete(commentId);
+            var ajaxResult = JsonSerializer.Serialize(result);
+            return Json(ajaxResult);
         }
     }
 }
