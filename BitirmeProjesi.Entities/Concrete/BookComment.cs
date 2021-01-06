@@ -13,5 +13,7 @@ namespace BitirmeProjesi.Entities.Concrete
         public string Subject { get; set; }
         public int BookId { get; set; }
         public Book Book { get; set; }
+        public bool IsDeleted { get; set; } = false;
+        public string Name { get; set; }
     }
 }

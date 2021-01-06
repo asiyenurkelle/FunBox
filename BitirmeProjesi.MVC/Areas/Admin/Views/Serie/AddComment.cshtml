@@ -3,7 +3,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-
+<link href="~/css/Comments.css" rel="stylesheet" />
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-5">
@@ -15,20 +15,20 @@
 
                         <div class="form-group">
                             <input type="hidden" asp-for="Id" name=SerieId class="card shadow-lg  rounded-lg mt-5 bg-dark text-dark" />
-                            <label class="small text-white" asp-for="Title">Yorum Başlığı</label>
-                            <input class="form-control py-4 " asp-for="Title" required/>
+                            <label class="small text-white btn-circle" asp-for="Title">Yorum Başlığı</label>
+                            <input class="form-control py-4 btn-circle " asp-for="Title" required/>
                             <span asp-validation-for="Title" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label class="small  text-white" asp-for="Subject">Yorum</label>
-                            <textarea class="form-control PY-4" asp-for="Subject" rows="3" required> </textarea>
+                            <label class="small  text-white btn-circle" asp-for="Subject">Yorum</label>
+                            <textarea class="form-control py-4 btn-circle" asp-for="Subject" rows="3" required> </textarea>
                             <span asp-validation-for="Subject" class="text-danger"></span>
                         </div>
 
 
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-info btn-block" id="btnSave"><span class="fas fa-save"></span> Kaydet </button>
-
+                        <div class="form-group text-center">
+                            <a class="btn btn-secondary btn-group-toggle btn-circle text-uppercase" asp-area="Admin" asp-controller="Serie" asp-action="Index"><span class="glyphicon glyphicon-share-alt"></span> Vazgeç</a>
+                            <button type="submit" class="btn btn-info btn-circle text-uppercase" id="btnSave"><span class="fas fa-save"></span> Kaydet </button>
                         </div>
                     </form>
 

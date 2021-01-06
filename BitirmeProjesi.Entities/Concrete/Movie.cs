@@ -17,6 +17,7 @@ namespace BitirmeProjesi.Entities.Concrete
         public Category Category { get; set; }
         public ICollection<MovieComment> MovieComments { get; set; }
         public bool Activities { get; set; }
+        
         public DateTime Date { get; set; }
         public double Imdb { get; set; }
 

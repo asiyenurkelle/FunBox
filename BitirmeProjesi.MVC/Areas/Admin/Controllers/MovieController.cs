@@ -22,12 +22,14 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
     {
         private readonly IMovieService _movieService;
         private readonly IMovieQuestionService _movieQuestionService;
+        private readonly IMovieCommentService _movieCommentService;
         private readonly IMapper _mapper;
 
-        public MovieController(IMovieService movieService, IMovieQuestionService movieQuestionService, IMapper mapper)
+        public MovieController(IMovieService movieService, IMovieQuestionService movieQuestionService, IMovieCommentService movieCommentService, IMapper mapper)
         {
             _movieService = movieService;
             _movieQuestionService = movieQuestionService;
+            _movieCommentService = movieCommentService;
             _mapper = mapper;
         }
         public async Task<IActionResult> Index(int? id)
@@ -161,7 +163,13 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             return Json(movies);
         }
 
-      
+        [HttpPost]
+        public async Task<JsonResult> Delete(int commentId)
+        {
+            var result = await _movieCommentService.CommentDelete(commentId);
+            var ajaxResult = JsonSerializer.Serialize(result);
+            return Json(ajaxResult);
+        }
 
 
     }

@@ -232,19 +232,6 @@ namespace BitirmeProjesi.Services.Concrete
             });
         }
 
-        public async Task<IResult> CommentDelete(int commentId)
-        {
-
-            var result = await _unitOfWork.MovieComments.AnyAsync(c => c.Id == commentId);
-            if (result)
-            {
-                var comment = await _unitOfWork.MovieComments.GetAsync(c => c.Id == commentId);
-                await _unitOfWork.MovieComments.DeleteAsync(comment);
-                await _unitOfWork.SaveAsync();
-                return new Result(ResultStatus.Success, Messages.Comment.Delete(comment.Title));
-            }
-            return new Result(ResultStatus.Error, Messages.Comment.NotFound(isPlural: false));
-
-        }
+      
     }
 }

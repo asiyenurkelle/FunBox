@@ -17,6 +17,8 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
             builder.Property(m => m.Id).ValueGeneratedOnAdd();
             builder.Property(m => m.Title).HasMaxLength(100).IsRequired();
             builder.Property(m => m.Subject).HasColumnType("NVARCHAR(MAX)").IsRequired();
+            builder.Property(m => m.Name).HasMaxLength(100).IsRequired();
+
 
 
             builder.HasOne<Serie>(c => c.Serie).WithMany(m => m.SerieComments).HasForeignKey(c => c.SerieId).OnDelete(DeleteBehavior.Restrict);
