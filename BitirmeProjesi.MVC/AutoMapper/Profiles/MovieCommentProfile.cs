@@ -11,6 +11,7 @@ namespace BitirmeProjesi.MVC.AutoMapper.Profiles
         public MovieCommentProfile()
         {
             CreateMap<CommentAddMovieDto, MovieComment>();
+            CreateMap<MovieComment,CommentUpdateDto>();
 
         }
     }

@@ -37,23 +37,19 @@ namespace BitirmeProjesi.Services.Concrete
             return new Result(ResultStatus.Error, Messages.Comment.NotFound(isPlural: false));
 
         }
-
-       
-
-        public async Task<IDataResult<CommentDto>> UpdateComment(CommentUpdateDto commentUpdateDto)
+        public async Task<IDataResult<CommentUpdateDto>> GetCommentUpdateDto(int commentId)
         {
-            var comment = _mapper.Map<MovieComment>(commentUpdateDto);
-            var updatedComment = await _unitOfWork.MovieComments.UpdateAsync(comment);
-            await _unitOfWork.SaveAsync();
-            return new DataResult<CommentDto>(ResultStatus.Success, $"{commentUpdateDto.Title} başlıklı yorum başarıyla güncellenmiştir.",
-                new CommentDto
-                {
-
-                    MovieComment=updatedComment,
-                    ResultStatus=ResultStatus.Success,
-                    Message= $"{commentUpdateDto.Title} başlıklı yorum başarıyla güncellenmiştir."
-                });
-
+            var result = await _unitOfWork.MovieComments.AnyAsync(mc => mc.Id == commentId);
+            if (result)
+            {
+                var comment = await _unitOfWork.MovieComments.GetAsync(mc => mc.Id == commentId);
+                var commentUpdateDto = _mapper.Map<CommentUpdateDto>(comment);
+                return new DataResult<CommentUpdateDto>(ResultStatus.Success, commentUpdateDto);
+            }
+            else
+            {
+                return new DataResult<CommentUpdateDto>(ResultStatus.Error, null);
+            }
         }
     }
 }

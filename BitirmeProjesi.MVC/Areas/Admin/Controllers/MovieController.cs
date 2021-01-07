@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 using BitirmeProjesi.Shared.Utilities.Results.Complex_Types;
 using System.Text.Json;
 using BitirmeProjesi.MVC.Areas.Admin.Models;
-using BitirmeProjesi.Shared.Utilities.Extensions;
 using BitirmeProjesi.Entities.Concrete;
 using System.Text.Json.Serialization;
 using AutoMapper;
@@ -169,6 +168,22 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             var result = await _movieCommentService.CommentDelete(commentId);
             var ajaxResult = JsonSerializer.Serialize(result);
             return Json(ajaxResult);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CommentUpdatePartial(int id)
+        {
+            ViewBag.deger = id;
+            var result = await  _movieCommentService.GetCommentUpdateDto(id);
+            if(result.ResultStatus == ResultStatus.Success)
+            {
+                return View(result.Data);
+            }
+            else
+            {
+                return NotFound();
+            }
+           
         }
 
 
