@@ -147,16 +147,11 @@ namespace BitirmeProjesi.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("AuthorName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("BookId")
                         .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Subject")
                         .IsRequired()
@@ -420,16 +415,11 @@ namespace BitirmeProjesi.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                    b.Property<string>("AuthorName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MovieId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Subject")
                         .IsRequired()
@@ -698,13 +688,8 @@ namespace BitirmeProjesi.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<string>("AuthorName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SerieId")
                         .HasColumnType("int");

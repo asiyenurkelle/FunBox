@@ -86,7 +86,7 @@ namespace BitirmeProjesi.Services.Concrete
 
             var movie = await _unitOfWork.Movies.GetAsync(m => m.Id == commentAddDto.MovieId);
             comment.Movie = movie;
-
+            comment.AuthorName = commentAddDto.AuthorName;
             comment.Subject = commentAddDto.Subject;
             comment.Title = commentAddDto.Title;
             var addedComment = await _unitOfWork.MovieComments.AddAsync(comment);

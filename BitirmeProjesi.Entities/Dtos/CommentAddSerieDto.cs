@@ -27,6 +27,7 @@ namespace BitirmeProjesi.Entities.Dtos
       
         public int Id { get; set; } //commentınıd si
 
+        public string AuthorName { get; set; }
 
     }
 

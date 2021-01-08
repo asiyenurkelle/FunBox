@@ -13,7 +13,7 @@ namespace BitirmeProjesi.Entities.Dtos
         public string Title { get; set; }
         public string Subject { get; set; }
         public Movie Movie { get; set; }
-        public string Name { get; set; }
+        public string AuthorName { get; set; }
         public Serie Serie { get; set; }
         public Book Book { get; set; }
         public MovieComment MovieComment { get; set; }

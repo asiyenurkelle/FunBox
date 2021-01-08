@@ -55,7 +55,7 @@
                         <div class="card-body">
                             <p class="font-weight-bold">@movie.Title</p>
                             <p>@movie.Subject</p>
-                            <small class="text-muted">Posted by Anonymous on @DateTime.Now.ToShortDateString()</small>
+                            <small class="text-muted"> @movie.AuthorName @DateTime.Now.ToShortDateString()</small>
                             <div class="card-body ">
                                 <a class="btn btn-warning btn-circle text-uppercase btnUpdate"  asp-area="Admin" asp-controller="Movie" asp-action="CommentUpdatePartial" asp-route-id="@movie.Id" ><span class="glyphicon glyphicon-comment"></span> Düzenle</a>
                                 <button class="btn btn-danger btn-circle text-uppercase btn-delete" data-id="@movie.Id" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Sil</button>

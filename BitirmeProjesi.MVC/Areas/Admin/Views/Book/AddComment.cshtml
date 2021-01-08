@@ -15,7 +15,7 @@
                         <div class="form-group">
                             <input type="hidden" asp-for="Id" name=BookId class="card shadow-lg  rounded-lg mt-5 bg-dark text-dark" />
                             <label class="small text-white btn-circle " asp-for="Title">Yorum Başlığı</label>
-                            <input class="form-control py-4 btn-circle " asp-for="Title" required/>
+                            <input class="form-control py-4 btn-circle " asp-for="Title" required />
                             <span asp-validation-for="Title" class="text-danger"></span>
                         </div>
                         <div class="form-group">
@@ -23,13 +23,17 @@
                             <textarea class="form-control py-4  btn-circle" asp-for="Subject" rows="3" required> </textarea>
                             <span asp-validation-for="Subject" class="text-danger"></span>
                         </div>
-
+                        <div class="form-group">
+                            <label class="small  text-white btn-circle" asp-for="AuthorName">Gözükmesini istediğiniz İsim</label>
+                            <input class="form-control py-4 btn-circle" asp-for="AuthorName" required />
+                            <span asp-validation-for="AuthorName" class="text-danger"></span>
+                        </div>
 
                         <div class="form-group text-center">
                             <a class="btn btn-secondary btn-group-toggle btn-circle text-uppercase" asp-area="Admin" asp-controller="Book" asp-action="Index"><span class="glyphicon glyphicon-share-alt"></span> Vazgeç</a>
                             <button type="submit" class="btn btn-info btn-circle text-uppercase" id="btnSave"><span class="fas fa-save"></span> Kaydet </button>
                         </div>
-                       
+
                     </form>
                 </div>
 

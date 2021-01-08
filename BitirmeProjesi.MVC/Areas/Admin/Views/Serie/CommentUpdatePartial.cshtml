@@ -10,11 +10,11 @@
             <div class="card shadow-lg  mt-5 bg-dark">
                 <div class="card-header text-info"><h3 class="text-center  my-4"> <span class="fas fa-edit"></span>@Model.Title başlıklı yorum düzenleniyor...</h3></div>
                 <div class="card-body">
-                    <form asp-controller="Serie" asp-action="CommentUpdatePartial" >
+                    <form asp-controller="Serie" asp-action="CommentUpdatePartial">
 
                         <div class="form-group">
                             <input type="hidden" asp-for="SerieComment.Id" name="SerieId" class="card shadow-lg  rounded-lg mt-5 bg-dark text-dark" />
-                            <label class="small text-white btn-circle"  asp-for="Title">Yorum Başlığı</label>
+                            <label class="small text-white btn-circle" asp-for="Title">Yorum Başlığı</label>
                             <input class="form-control py-4 btn-circle " asp-for="Title" required />
                             <span asp-validation-for="Title" class="text-danger"></span>
                         </div>
@@ -22,6 +22,11 @@
                             <label class="small  text-white btn-circle" asp-for="Subject">Yorum</label>
                             <textarea class="form-control py-4 btn-circle" asp-for="Subject" rows="3" required> </textarea>
                             <span asp-validation-for="Subject" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="small  text-white btn-circle" asp-for="AuthorName">Gözükmesini istediğiniz İsim</label>
+                            <input class="form-control py-4 btn-circle" asp-for="AuthorName" required />
+                            <span asp-validation-for="AuthorName" class="text-danger"></span>
                         </div>
 
                         <div class="form-group text-center">

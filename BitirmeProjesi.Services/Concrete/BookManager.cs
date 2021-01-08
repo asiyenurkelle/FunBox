@@ -47,7 +47,7 @@ namespace BitirmeProjesi.Services.Concrete
 
             var book = await _unitOfWork.Books.GetAsync(m => m.Id == commentAddDto.BookId);
             comment.Book = book;
-
+            comment.AuthorName = commentAddDto.AuthorName;
             comment.Subject = commentAddDto.Subject;
             comment.Title = commentAddDto.Title;
             var addedComment = await _unitOfWork.BookComments.AddAsync(comment);

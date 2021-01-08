@@ -29,7 +29,7 @@ namespace BitirmeProjesi.Services.Concrete
 
             var serie = await _unitOfWork.Series.GetAsync(m => m.Id == commentAddDto.SerieId);
             comment.Serie = serie;
-
+            comment.AuthorName = commentAddDto.AuthorName;
             comment.Subject = commentAddDto.Subject;
             comment.Title = commentAddDto.Title;
             var addedComment = await _unitOfWork.SerieComments.AddAsync(comment);

@@ -24,7 +24,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Models
         public int MovieCommentId { get; set; }
         public int SerieCommentId { get; set; }
         public int BookCommentId { get; set; }
-
+        public string AuthorName { get; set; }
 
         public int Id { get; set; } //commentınıd si
     }
