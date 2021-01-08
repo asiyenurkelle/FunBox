@@ -200,7 +200,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             var comments = await _bookCommentService.GetAll();
             if (result.ResultStatus == ResultStatus.Success)
             {
-                return RedirectToAction("Details", new { Id = commentUpdateDto.BookId });
+                return RedirectToAction("Index");
             }
             else
             {

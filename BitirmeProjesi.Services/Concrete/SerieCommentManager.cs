@@ -43,6 +43,7 @@ namespace BitirmeProjesi.Services.Concrete
         {
             var comment = _mapper.Map<SerieComment>(commentUpdateDto);
             var updatedComment = await _unitOfWork.SerieComments.UpdateAsync(comment);
+            updatedComment.SerieId = comment.Id;
             await _unitOfWork.SaveAsync();
             return new DataResult<CommentDto>(ResultStatus.Success, $"{commentUpdateDto.Title} başlıklı yorum başarıyla güncellenmiştir.",
                 new CommentDto
