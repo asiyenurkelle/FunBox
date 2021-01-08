@@ -193,7 +193,8 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             var comments = await _movieCommentService.GetAll();
             if (result.ResultStatus == ResultStatus.Success)
             {
-                return RedirectToAction("Details", new { Id = commentUpdateDto.MovieId });
+                //return RedirectToAction("Details", new { Id = commentUpdateDto.MovieId });
+                return RedirectToAction("Index");
             }
             else
             {

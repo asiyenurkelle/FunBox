@@ -70,6 +70,7 @@ namespace BitirmeProjesi.Services.Concrete
         {
             var comment = _mapper.Map<MovieComment>(commentUpdateDto);
             var updatedComment = await _unitOfWork.MovieComments.UpdateAsync(comment);
+            updatedComment.MovieId= comment.Id;
             await _unitOfWork.SaveAsync();
             return new DataResult<CommentDto>(ResultStatus.Success, $"{commentUpdateDto.Title} başlıklı yorum başarıyla güncellenmiştir.",
                 new CommentDto
