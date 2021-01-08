@@ -51,5 +51,36 @@ namespace BitirmeProjesi.Services.Concrete
                 return new DataResult<CommentUpdateDto>(ResultStatus.Error, null);
             }
         }
+        public async Task<IDataResult<CommentListDto>> GetAll()
+        {
+            var movieComments = await _unitOfWork.MovieComments.GetAllAsync(null, m => m.Movie);
+            if (movieComments.Count > -1)
+            {
+                return new DataResult<CommentListDto>(ResultStatus.Success, new CommentListDto
+                {
+                    MovieComments = movieComments,
+                    ResultStatus = ResultStatus.Success,
+
+                });
+            }
+            return new DataResult<CommentListDto>(ResultStatus.Error, Messages.Comment.NotFound(isPlural: true), null);
+        }
+
+        public async Task<IDataResult<CommentDto>> UpdateComment(CommentUpdateDto commentUpdateDto)
+        {
+            var comment = _mapper.Map<MovieComment>(commentUpdateDto);
+            var updatedComment = await _unitOfWork.MovieComments.UpdateAsync(comment);
+            await _unitOfWork.SaveAsync();
+            return new DataResult<CommentDto>(ResultStatus.Success, $"{commentUpdateDto.Title} başlıklı yorum başarıyla güncellenmiştir.",
+                new CommentDto
+                {
+
+                    MovieComment = updatedComment,
+                    ResultStatus = ResultStatus.Success,
+                    Message = $"{commentUpdateDto.Title} başlıklı yorum başarıyla güncellenmiştir."
+                });
+
+        }
+
     }
 }

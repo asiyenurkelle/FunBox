@@ -55,7 +55,7 @@
                             <p>@book.Subject</p>
                             <small class="text-muted">Posted by Anonymous on @DateTime.Now.ToShortDateString()</small>
                             <div class="card-body ">
-                                <a class="btn btn-success btn-circle text-uppercase" asp-area="Admin" asp-controller="Movie" asp-action="EditComment" data-toggle="collapse" data-id="@book.Id"><span class="glyphicon glyphicon-comment"></span> Düzenle</a>
+                                <a class="btn btn-success btn-circle text-uppercase"  asp-area="Admin" asp-controller="Book" asp-action="CommentUpdatePartial" asp-route-id="@book.Id"><span class="glyphicon glyphicon-comment"></span> Düzenle</a>
                                 <a class="btn btn-danger btn-circle text-uppercase btn-delete"  data-id="@book.Id" ><span class="glyphicon glyphicon-share-alt"></span> Sil</a>
 
                             </div>

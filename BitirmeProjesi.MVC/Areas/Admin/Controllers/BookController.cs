@@ -177,7 +177,38 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             return Json(ajaxResult);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> CommentUpdatePartial(int id)
+        {
+            ViewBag.deger = id;
+            var result = await _bookCommentService.GetCommentUpdateDto(id);
+            if (result.ResultStatus == ResultStatus.Success)
+            {
+                return View(result.Data);
+            }
+            else
+            {
+                return NotFound();
+            }
 
+        }
+        [HttpPost]
+        public async Task<IActionResult> CommentUpdatePartial(CommentUpdateViewModel commentUpdateViewModel)
+        {
+            var commentUpdateDto = _mapper.Map<CommentUpdateDto>(commentUpdateViewModel);
+            var result = await _bookCommentService.UpdateComment(commentUpdateDto);
+            var comments = await _bookCommentService.GetAll();
+            if (result.ResultStatus == ResultStatus.Success)
+            {
+                return RedirectToAction("Details", new { Id = commentUpdateDto.BookId });
+            }
+            else
+            {
+                ModelState.AddModelError("", result.Message);
+                return View(commentUpdateViewModel);
+            }
+
+        }
 
     }
 }

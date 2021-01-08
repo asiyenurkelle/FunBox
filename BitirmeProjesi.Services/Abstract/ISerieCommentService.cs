@@ -13,5 +13,7 @@ namespace BitirmeProjesi.Services.Abstract
         Task<IResult> CommentDelete(int commentId);
 
         Task<IDataResult<CommentDto>> UpdateComment(CommentUpdateDto commentUpdateDto);
+        Task<IDataResult<CommentUpdateDto>> GetCommentUpdateDto(int commentId);
+        Task<IDataResult<CommentListDto>> GetAll();
     }
 }

@@ -29,7 +29,7 @@ namespace BitirmeProjesi.MVC
             });
             services.AddSession();
             
-            services.AddAutoMapper(typeof(BookProfile), typeof(CategoryProfile), typeof(MovieProfile), typeof(SerieProfile), typeof(ViewModelsProfile));
+            services.AddAutoMapper(typeof(BookProfile), typeof(CategoryProfile), typeof(MovieProfile), typeof(SerieProfile), typeof(ViewModelsProfile), typeof(MovieCommentProfile));
             services.LoadMyServices(connectionString: Configuration.GetConnectionString("LocalDB"));
             services.ConfigureApplicationCookie(options =>
             {

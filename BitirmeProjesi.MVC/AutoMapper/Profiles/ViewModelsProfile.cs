@@ -17,6 +17,7 @@ namespace BitirmeProjesi.MVC.AutoMapper.Profiles
             CreateMap<CommentAddViewModel, CommentAddMovieDto>();
             
             CreateMap<CommentAddViewModel, CommentAddBookDto>();
+            CreateMap<CommentUpdateViewModel, CommentUpdateDto>();
         }
     }
 }

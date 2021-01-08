@@ -54,5 +54,34 @@ namespace BitirmeProjesi.Services.Concrete
                 });
 
         }
+        public async Task<IDataResult<CommentUpdateDto>> GetCommentUpdateDto(int commentId)
+        {
+            var result = await _unitOfWork.SerieComments.AnyAsync(mc => mc.Id == commentId);
+            if (result)
+            {
+                var comment = await _unitOfWork.SerieComments.GetAsync(mc => mc.Id == commentId);
+                var commentUpdateDto = _mapper.Map<CommentUpdateDto>(comment);
+                return new DataResult<CommentUpdateDto>(ResultStatus.Success, commentUpdateDto);
+            }
+            else
+            {
+                return new DataResult<CommentUpdateDto>(ResultStatus.Error, null);
+            }
+        }
+
+        public async Task<IDataResult<CommentListDto>> GetAll()
+        {
+            var serieComments = await _unitOfWork.SerieComments.GetAllAsync(null, m => m.Serie);
+            if (serieComments.Count > -1)
+            {
+                return new DataResult<CommentListDto>(ResultStatus.Success, new CommentListDto
+                {
+                    SerieComments = serieComments,
+                    ResultStatus = ResultStatus.Success,
+
+                });
+            }
+            return new DataResult<CommentListDto>(ResultStatus.Error, Messages.Comment.NotFound(isPlural: true), null);
+        }
     }
 }

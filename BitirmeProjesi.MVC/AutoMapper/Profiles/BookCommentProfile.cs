@@ -11,6 +11,8 @@ namespace BitirmeProjesi.MVC.AutoMapper.Profiles
         public BookCommentProfile()
         {
             CreateMap<CommentAddBookDto, BookComment>();
+            CreateMap<BookComment, CommentUpdateDto>();
+            CreateMap<CommentUpdateDto, BookComment>();
 
         }
     }

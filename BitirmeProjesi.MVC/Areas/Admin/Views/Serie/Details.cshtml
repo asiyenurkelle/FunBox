@@ -59,7 +59,7 @@
                             <p>@serie.Subject</p>
                             <small class="text-muted">Posted by Anonymous on @DateTime.Now.ToShortDateString()</small>
                             <div class="card-body ">
-                                <a class="btn btn-success btn-circle text-uppercase" asp-area="Admin" asp-controller="Movie" asp-action="EditComment" data-toggle="collapse" data-id="@serie.Id"><span class="glyphicon glyphicon-comment"></span> Düzenle</a>
+                                <a class="btn btn-success btn-circle text-uppercase" asp-area="Admin" asp-controller="Serie" asp-action="CommentUpdatePartial" asp-route-id="@serie.Id"><span class="glyphicon glyphicon-comment"></span> Düzenle</a>
                                 <button class="btn btn-danger btn-circle text-uppercase btn-delete"  data-id="@serie.Id" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Sil</button>
 
                             </div>

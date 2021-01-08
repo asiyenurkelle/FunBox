@@ -174,8 +174,8 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         public async Task<IActionResult> CommentUpdatePartial(int id)
         {
             ViewBag.deger = id;
-            var result = await  _movieCommentService.GetCommentUpdateDto(id);
-            if(result.ResultStatus == ResultStatus.Success)
+            var result = await _movieCommentService.GetCommentUpdateDto(id);
+            if (result.ResultStatus == ResultStatus.Success)
             {
                 return View(result.Data);
             }
@@ -183,8 +183,27 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-           
+
         }
+        [HttpPost]
+        public async Task<IActionResult> CommentUpdatePartial(CommentUpdateViewModel commentUpdateViewModel)
+        {
+            var commentUpdateDto = _mapper.Map<CommentUpdateDto>(commentUpdateViewModel);
+            var result = await _movieCommentService.UpdateComment(commentUpdateDto);
+            var comments = await _movieCommentService.GetAll();
+            if (result.ResultStatus == ResultStatus.Success)
+            {
+                return RedirectToAction("Details", new { Id = commentUpdateDto.MovieId });
+            }
+            else
+            {
+                ModelState.AddModelError("", result.Message);
+                return View(commentUpdateViewModel);
+            }
+
+        }
+
+
 
 
     }

@@ -17,6 +17,10 @@ namespace BitirmeProjesi.Entities.Dtos
         public Serie Serie { get; set; }
         public Book Book { get; set; }
         public MovieComment MovieComment { get; set; }
+        public SerieComment SerieComment { get; set; }
+        public BookComment BookComment { get; set; }
+        public int SerieId { get; set; }
+        public int BookId { get; set; }
         public int MovieId { get; set; }
         public int Id { get; set; }
 

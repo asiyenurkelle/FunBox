@@ -11,6 +11,8 @@ namespace BitirmeProjesi.MVC.AutoMapper.Profiles
         public SerieCommentProfile()
         {
             CreateMap<CommentAddSerieDto, SerieComment>();
+            CreateMap<SerieComment, CommentUpdateDto>();
+            CreateMap<CommentUpdateDto, SerieComment>();
 
         }
     }
