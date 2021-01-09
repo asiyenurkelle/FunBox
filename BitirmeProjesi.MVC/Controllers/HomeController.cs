@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BitirmeProjesi.Services.Abstract;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using PagedList;
+using BitirmeProjesi.Shared.Utilities.Results.Complex_Types;
 
 namespace BitirmeProjesi.MVC.Controllers
 {
@@ -40,13 +42,28 @@ namespace BitirmeProjesi.MVC.Controllers
             {
                 ViewBag.SearchString = searchString;
                 var result = await _bookSerieMovieService.Search(searchString);
-                return View(result.Data);
+                if (result.ResultStatus == ResultStatus.Success)
+                {
+                    return View(result.Data);
+                }
+                else
+                {
+                    return RedirectToAction("SearchNotFound");
+                }
+               
             }
             else
             {
                 return NotFound();
             }
         }
+
+        public IActionResult SearchNotFound()
+        {
+            return View();
+        }
+       
+
 
     }
 

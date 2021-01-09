@@ -74,6 +74,7 @@
                                     }
                                 );
                                 $('#answer1Title').replaceWith(answerResult);
+                               
                                 //$('#quiz').fadeOut();
                                 //$('input:radio').prop('checked', false);
                                 //setTimeout(function () {
@@ -90,6 +91,7 @@
                     });
 
                 else if (choice == "200 sayfadan daha fazla") {
+                   
                     $.ajax({
                         type: "GET",
                         contentType: "application/json; charset=utf-8",
@@ -111,6 +113,7 @@
                                 );
                                 $('#answer1Title').replaceWith(answerResultLess);
                             }
+                          
                         }
                     });
                 }
