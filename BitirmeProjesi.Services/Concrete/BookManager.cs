@@ -43,6 +43,7 @@ namespace BitirmeProjesi.Services.Concrete
         }
         public async Task<IResult> AddComment(CommentAddBookDto commentAddDto)
         {
+
             var comment = _mapper.Map<BookComment>(commentAddDto);
 
             var book = await _unitOfWork.Books.GetAsync(m => m.Id == commentAddDto.BookId);

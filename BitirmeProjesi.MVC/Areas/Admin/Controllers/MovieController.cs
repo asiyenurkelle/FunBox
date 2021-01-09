@@ -86,22 +86,26 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-
-                var commentAddDto = _mapper.Map<CommentAddMovieDto>(commentAddViewModel);
-                var result = await _movieService.AddComment(commentAddDto);
-                if (result.ResultStatus == ResultStatus.Success)
+                try
                 {
+                    var commentAddDto = _mapper.Map<CommentAddMovieDto>(commentAddViewModel);
+                    var result = await _movieService.AddComment(commentAddDto);
+                    if (result.ResultStatus == ResultStatus.Success)
+                    {
 
-                    return RedirectToAction("Details", new { Id = commentAddDto.MovieId });
+                        return RedirectToAction("Details", new { Id = commentAddDto.MovieId });
+                    }
                 }
-                else
+                catch (Exception exc)
                 {
-                    ModelState.AddModelError("", result.Message);
-                    return View(commentAddViewModel);
+                    return RedirectToAction("PleaseEditComment");
                 }
-
             }
             return View(commentAddViewModel);
+        }
+        public IActionResult PleaseEditComment()
+        {
+            return View();
         }
 
 
@@ -193,7 +197,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             var comments = await _movieCommentService.GetAll();
             if (result.ResultStatus == ResultStatus.Success)
             {
-               return RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
             else
             {

@@ -33,8 +33,8 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             _bookQuestionService = bookQuestionService;
             _bookCommentService = bookCommentService;
             _mapper = mapper;
-           
-           
+
+
         }
         public async Task<IActionResult> Index(int? id)
         {
@@ -53,7 +53,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         }
 
         [HttpGet("Admin/Book/Details/{Id}")]
-        
+
         public async Task<IActionResult> Details(int Id)
         {
             TempData["Active"] = "Kitap";
@@ -63,7 +63,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 
 
         [HttpGet("Book/Details/AddList")]
-        
+
         public async Task<IActionResult> AddList(int Id)
         {
             TempData["Active"] = "Kitap";
@@ -92,21 +92,27 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
 
-                var commentAddDto = _mapper.Map<CommentAddBookDto>(commentAddViewModel);
-                var result = await _bookService.AddComment(commentAddDto);
-                if (result.ResultStatus == ResultStatus.Success)
+                try
                 {
+                    var commentAddDto = _mapper.Map<CommentAddBookDto>(commentAddViewModel);
+                    var result = await _bookService.AddComment(commentAddDto);
+                    if (result.ResultStatus == ResultStatus.Success)
+                    {
 
-                    return RedirectToAction("Details", new { Id = commentAddDto.BookId });
+                        return RedirectToAction("Details", new { Id = commentAddDto.BookId });
+                    }
                 }
-                else
+                catch (Exception exc)
                 {
-                    ModelState.AddModelError("", result.Message);
-                    return View(commentAddViewModel);
+                    return RedirectToAction("PleaseEditComment");
                 }
 
             }
             return View(commentAddViewModel);
+        }
+        public IActionResult PleaseEditComment()
+        {
+            return View();
         }
         public async Task<IActionResult> GetBookLessThanTwoHundredPage()
         {
@@ -172,7 +178,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         [HttpPost]
         public async Task<JsonResult> Delete(int commentId)
         {
-            var result = await _bookCommentService. CommentDelete(commentId);
+            var result = await _bookCommentService.CommentDelete(commentId);
             var ajaxResult = JsonSerializer.Serialize(result);
             return Json(ajaxResult);
         }

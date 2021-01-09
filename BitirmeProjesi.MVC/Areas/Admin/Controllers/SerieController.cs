@@ -21,14 +21,14 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         private readonly ISerieService _serieService;
         private readonly ISerieQuestionService _serieQuestionService;
         private readonly ISerieCommentService _serieCommentService;
-       
+
         private readonly IMapper _mapper;
 
-        public SerieController(ISerieService serieService, ISerieQuestionService serieQuestionService, ISerieCommentService serieCommentService,IMapper mapper)
+        public SerieController(ISerieService serieService, ISerieQuestionService serieQuestionService, ISerieCommentService serieCommentService, IMapper mapper)
         {
             _serieService = serieService;
             _serieQuestionService = serieQuestionService;
-            _serieCommentService = serieCommentService; 
+            _serieCommentService = serieCommentService;
             _mapper = mapper;
         }
 
@@ -88,22 +88,28 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-
-                var commentAddDto = _mapper.Map<CommentAddSerieDto>(commentAddViewModel);
-                var result = await _serieService.AddComment(commentAddDto);
-                if (result.ResultStatus == ResultStatus.Success)
+                try
                 {
+                    var commentAddDto = _mapper.Map<CommentAddSerieDto>(commentAddViewModel);
+                    var result = await _serieService.AddComment(commentAddDto);
+                    if (result.ResultStatus == ResultStatus.Success)
+                    {
 
-                    return RedirectToAction("Details", new { Id = commentAddDto.SerieId });
+                        return RedirectToAction("Details", new { Id = commentAddDto.SerieId });
+                    }
                 }
-                else
+
+                catch (Exception exc)
                 {
-                    ModelState.AddModelError("", result.Message);
-                    return View(commentAddViewModel);
+                    return RedirectToAction("PleaseEditComment");
                 }
 
             }
             return View(commentAddViewModel);
+        }
+        public IActionResult PleaseEditComment()
+        {
+            return View();
         }
 
         public async Task<IActionResult> GetSerieLessThanOneHour()
