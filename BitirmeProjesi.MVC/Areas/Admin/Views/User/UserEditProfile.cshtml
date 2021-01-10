@@ -1,46 +1,47 @@
 ﻿@model BitirmeProjesi.Entities.Dtos.UserDetailDto
 @{
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="~/css/login.css" rel="stylesheet" />
 
-<link href="~/css/Comments.css" rel="stylesheet" />
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-lg-5">
-            <div class="card mt-5">
-                <div class="card-header text-info btn-circle"><h3 class="text-center my-4"> <span></span>Bilgilerim</h3></div>
-                <div class="card-body">
-                    <form asp-controller="User" asp-action="UserEditProfile" method="post">
-                        <div asp-validation-summary="All" class="text-danger" id="validation-summary">
-                        </div>
-                        <div class="form-group">
-                            <label class="small text-white btn-circle" asp-for="UserName">Kullanıcı Adı</label>
-                            <input class="form-control py-4 btn-circle" asp-for="UserName" />
-                            <span asp-validation-for="UserName" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label class="small  text-white btn-circle" asp-for="PhoneNumber">Telefon Numarası</label>
-                            <input class="form-control py-4 btn-circle " asp-for="PhoneNumber" />
-                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="small  text-white btn-circle" asp-for="Email">Email</label>
-                            <input class="form-control py-4 btn-circle" asp-for="Email" />
-                            <span asp-validation-for="Email" class="text-danger"></span>
-                        </div>
+<div class="login-wrap">
+    <div class="login-html bg-dark">
+        <input name="tab" class="sign-in" checked><label for="tab-1" class="tab">Bilgilerim</label>
 
 
-                        <div class="form-group text-center">
-                            <a class="btn btn-secondary text-white btn-circle text-uppercase" asp-area="" asp-controller="Home" asp-action="Index"> <span class="fas fa-user-lock "></span> Vazgeç</a>
-                            <button type="submit" class="btn btn-info  btn-circle text-uppercase" id="btnSave"><span class="fas fa-save"></span> Kaydet </button>
+        <div class="login-form">
+            <form asp-controller="User" asp-action="UserEditProfile" method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
 
-                        </div>
-                        
-                    </form>
+                <div class="group">
+                    <label class="label" asp-for="UserName">Kullanıcı Adı</label>
+                    <input class="input" asp-for="UserName" />
+                </div>
+                <div class="group">
+                    <label class="label" asp-for="PhoneNumber">Telefon Numarası</label>
+                    <input class="input" asp-for="PhoneNumber" />
+                </div>
+                <div class="group">
+                    <label class="label" asp-for="Email">Email</label>
+                    <input class="input" asp-for="Email" type="email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
 
-            </div>
+
+                <div class="group">
+                    <button class="button" type="submit"> <span class="fas fa-sign-in-alt"></span> Kaydet</button>
+                </div>
+                <div class="hr"></div>
+                <div class="foot-lnk">
+                    <a asp-area="" asp-controller="Home" asp-action="Index">Vazgeç</a>
+                   
+
+                </div>
+
+            </form>
         </div>
     </div>
 </div>

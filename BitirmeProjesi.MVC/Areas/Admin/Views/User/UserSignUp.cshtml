@@ -1,55 +1,59 @@
 ﻿@model BitirmeProjesi.Entities.Dtos.UserSignUpDto
-@{ 
-    Layout = "~/Areas/Admin/Views/Shared/_LayoutLoginAndSignUp.cshtml";
-    ViewBag.Title = "Kayıt Ol";
-    }
 
-<link href="~/css/Comments.css" rel="stylesheet" />
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-lg-5">
-            <div class="card   mt-5 bg-dark">
-                <div class="card-header text-info"><h3 class="text-center  my-4"> <span class="fas fa-house-user"></span> Kaydol</h3></div>
-                <div class="card-body">
-                    <form asp-controller="User" asp-action="SignUp" method="post">
-                        <div asp-validation-summary="All" class="text-danger">
-                        </div>
-                        <div class="form-group">
-                            <label class="small text-white btn-circle" asp-for="UserName">Kullanıcı Adı</label>
-                            <input class="form-control py-4 btn-circle" asp-for="UserName" placeholder="Lütfen kullanıcı adınızı giriniz." />
-                            <span asp-validation-for="UserName" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label class="small text-white btn-circle" asp-for="Email">Email</label>
-                            <input class="form-control py-4 btn-circle" asp-for="Email" type="email" placeholder="Lütfen e-posta adresinizi giriniz." />
-                            <span asp-validation-for="Email" class="text-danger"></span>
-                        </div>
+@{ Layout = null;}
 
-                        <div class="form-group">
-                            <label class="small text-white btn-circle" asp-for="PhoneNumber">Telefon Numarası</label>
-                            <input class="form-control py-4 btn-circle" asp-for="PhoneNumber"  placeholder="Lütfen telefon numaranızı giriniz." />
-                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                        </div>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="~/css/login.css" rel="stylesheet" />
 
-                        <div class="form-group">
-                            <label class="small text-white btn-circle" asp-for="Password">Şifre</label>
-                            <input class="form-control py-4 btn-circle" asp-for="Password" type="password" placeholder="Lütfen şifrenizi giriniz." />
-                            <span asp-validation-for="Password" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label class="small text-white btn-circle" asp-for="RepeatPassword">Şifre tekrarı</label>
-                            <input class="form-control py-4 btn-circle" asp-for="RepeatPassword" type="password" placeholder="Lütfen şifrenizi tekrar giriniz." />
-                            <span asp-validation-for="RepeatPassword" class="text-danger"></span>
-                        </div>
 
-                        <div class="form-group text-center">
-                            <a class="btn btn-secondary text-white btn-circle text-uppercase" asp-controller="User" asp-action="Login"> <span class="fas fa-user-lock "></span> Vazgeç</a>
-                            <button class="btn btn-info btn-circle text-uppercase" type="submit"> <span class="fas fa-sign-in-alt"></span> Kaydol</button>
-                        </div>
-                    </form>
+<div class="login-wrap">
+    <div class="login-html bg-dark">
+        <input  name="tab" class="sign-in" checked><label for="tab-1" class="tab">Kayıt Ol</label>
+
+        <div class="login-form">
+            <form asp-controller="User" asp-action="SignUp" method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="group">
+
+                    <label class="label" asp-for="UserName">Kullanıcı Adı</label>
+                    <input class="input" asp-for="UserName" />
+
                 </div>
-                
-            </div>
+                <div class="group">
+                    <label class="label" asp-for="Email">Email</label>
+                    <input class="input" asp-for="Email" type="email" />
+                </div>
+
+                <div class="group">
+                    <label class="label" asp-for="PhoneNumber">Telefon Numarası</label>
+                    <input class="input" asp-for="PhoneNumber" />
+                </div>
+
+                <div class="group">
+
+                    <label class="label" asp-for="Password">Şifre </label>
+                    <input class="input" asp-for="Password" />
+                </div>
+ 
+                <div class="group">
+
+                    <label class="label" asp-for="RepeatPassword">Şifre Tekrar </label>
+                    <input class="input" asp-for="RepeatPassword"  type="password" />
+                </div>
+
+                <div class="group">
+                    <button class="button" type="submit"> <span class="fas fa-sign-in-alt"></span> Kaydol</button>
+                </div>
+                <div class="foot-lnk">
+                    <a  asp-area="" asp-controller="Home" asp-action="Index">Vazgeç</a>
+                    /
+                    <a asp-area="Admin" asp-controller="User" asp-action="Login"> Giriş Yap </a>
+
+                </div>
+
+            </form>
         </div>
     </div>
 </div>
