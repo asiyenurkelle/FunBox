@@ -3,6 +3,14 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 
 }
+
+<style>
+    img {
+        height: 45%;
+        width: 50%;
+    }
+</style>
+
 @if (!string.IsNullOrWhiteSpace(ViewBag.SearchString))
 {
     <div id="modalPlaceHolder" aria-hidden="true"></div>

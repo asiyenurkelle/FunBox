@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using BitirmeProjesi.Data.Abstract;
 using BitirmeProjesi.Entities.Dtos;
 using BitirmeProjesi.Services.Abstract;
 using Microsoft.AspNetCore.Mvc;
 using BitirmeProjesi.Shared.Utilities.Results.Complex_Types;
-using Microsoft.AspNetCore.Identity;
-using BitirmeProjesi.Entities.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using BitirmeProjesi.MVC.Areas.Admin.Models;
 using AutoMapper;
+using PagedList.Core.Mvc;
 
 namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 {
