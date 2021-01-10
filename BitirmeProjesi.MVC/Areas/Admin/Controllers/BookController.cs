@@ -62,15 +62,6 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         }
 
 
-        [HttpGet("Book/Details/AddList")]
-
-        public async Task<IActionResult> AddList(int Id)
-        {
-            TempData["Active"] = "Kitap";
-            var result = await _bookService.AddListBook(Id);
-            return Json(null);
-        }
-
         [HttpGet]
         public async Task<IActionResult> MoodTesting()
         {
@@ -95,7 +86,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
                 try
                 {
                     var commentAddDto = _mapper.Map<CommentAddBookDto>(commentAddViewModel);
-                    var result = await _bookService.AddComment(commentAddDto);
+                    var result = await _bookCommentService.AddComment(commentAddDto);
                     if (result.ResultStatus == ResultStatus.Success)
                     {
 
@@ -203,7 +194,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         {
             var commentUpdateDto = _mapper.Map<CommentUpdateDto>(commentUpdateViewModel);
             var result = await _bookCommentService.UpdateComment(commentUpdateDto);
-            var comments = await _bookCommentService.GetAll();
+            var comments = await _bookCommentService.GetAllComment();
             if (result.ResultStatus == ResultStatus.Success)
             {
                 return RedirectToAction("Index");

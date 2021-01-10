@@ -57,14 +57,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         }
 
 
-        [HttpGet("Serie/Details/AddList")]
-        [Authorize]
-        public async Task<IActionResult> AddList(int Id)
-        {
-            TempData["Active"] = "Dizi";
-            await _serieService.AddListSerie(Id);
-            return Json(null);
-        }
+     
 
         [HttpGet]
         [Authorize]
@@ -91,7 +84,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
                 try
                 {
                     var commentAddDto = _mapper.Map<CommentAddSerieDto>(commentAddViewModel);
-                    var result = await _serieService.AddComment(commentAddDto);
+                    var result = await _serieCommentService.AddComment(commentAddDto);
                     if (result.ResultStatus == ResultStatus.Success)
                     {
 
@@ -203,7 +196,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         {
             var commentUpdateDto = _mapper.Map<CommentUpdateDto>(commentUpdateViewModel);
             var result = await _serieCommentService.UpdateComment(commentUpdateDto);
-            var comments = await _serieCommentService.GetAll();
+            var comments = await _serieCommentService.GetAllComment();
             if (result.ResultStatus == ResultStatus.Success)
             {
                 return RedirectToAction("Index");

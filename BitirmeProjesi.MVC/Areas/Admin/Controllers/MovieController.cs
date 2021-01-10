@@ -55,14 +55,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             return View(result.Data);
         }
 
-        [HttpGet("Movie/Details/AddList")]
-        [Authorize]
-        public async Task<IActionResult> AddList(int Id)
-        {
-            TempData["Active"] = "Film";
-            await _movieService.AddListMovie(Id);
-            return Json(null);
-        }
+     
 
         [HttpGet]
         [Authorize]
@@ -89,7 +82,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
                 try
                 {
                     var commentAddDto = _mapper.Map<CommentAddMovieDto>(commentAddViewModel);
-                    var result = await _movieService.AddComment(commentAddDto);
+                    var result = await _movieCommentService.AddComment(commentAddDto);
                     if (result.ResultStatus == ResultStatus.Success)
                     {
 
@@ -194,7 +187,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         {
             var commentUpdateDto = _mapper.Map<CommentUpdateDto>(commentUpdateViewModel);
             var result = await _movieCommentService.UpdateComment(commentUpdateDto);
-            var comments = await _movieCommentService.GetAll();
+            var comments = await _movieCommentService.GetAllComment();
             if (result.ResultStatus == ResultStatus.Success)
             {
                 return RedirectToAction("Index");

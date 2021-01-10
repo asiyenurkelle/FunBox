@@ -33,31 +33,50 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             return View(result.Data);
         }
 
-        public async Task<IActionResult> RemoveActivity(int Id)
+        [HttpGet("Book/Details/AddList")]
+        [Authorize]
+        public async Task<IActionResult> AddList(int Id)
         {
-            var movie = await _activityService.DeleteActivitiesMovie(Id);
-            var serie = await _activityService.DeleteActivitiesSerie(Id);
-            var book = await _activityService.DeleteActivitiesBook(Id);
+            TempData["Active"] = "Kitap";
+            var result = await _bookService.AddListBook(Id);
+            return Json(null);
+        }
+
+        [HttpGet("Movie/Details/AddList")]
+        [Authorize]
+        public async Task<IActionResult> AddListMovie(int Id)
+        {
+            TempData["Active"] = "Film";
+            await _movieService.AddListMovie(Id);
+            return Json(null);
+        }
+
+        [HttpGet("Serie/Details/AddList")]
+
+        public async Task<IActionResult> AddListSerie(int Id)
+        {
+            TempData["Active"] = "Dizi";
+            await _serieService.AddListSerie(Id);
+            return Json(null);
+        }
+
+        public async Task<IActionResult> RemoveActivityBook(int Id)
+        {
+            var serie = await _activityService.DeleteActivitiesBook(Id);
             return Json(null);
 
         }
-        //public async Task<IActionResult> RemoveActivityBook(int Id)
-        //{
-        //    var serie = await _activityService.DeleteActivitiesBook(Id);
-        //    return Json(null);
+        public async Task<IActionResult> RemoveActivitySerie(int Id)
+        {
+            var serie = await _activityService.DeleteActivitiesSerie(Id);
+            return Json(null);
 
-        //}
-        //public async Task<IActionResult> RemoveActivitySerie(int Id)
-        //{
-        //    var serie = await _activityService.DeleteActivitiesSerie(Id);
-        //    return Json(null);
+        }
+        public async Task<IActionResult> RemoveActivityMovie(int Id)
+        {
+            var serie = await _activityService.DeleteActivitiesMovie(Id);
+            return Json(null);
 
-        //}
-        //public async Task<IActionResult> RemoveActivityMovie(int Id)
-        //{
-        //    var serie = await _activityService.DeleteActivitiesMovie(Id);
-        //    return Json(null);
-
-        //}
+        }
     }
 }

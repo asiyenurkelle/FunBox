@@ -67,7 +67,6 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
                 return View("UserLogin");
             }
 
-
         }
 
         [HttpGet]
@@ -109,8 +108,6 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             }
         }
 
-
-        
         [HttpGet]
         [Authorize]
         public ViewResult PasswordChange()
@@ -119,12 +116,10 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             return View();
         }
 
-        
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> PasswordChange(UserPasswordChangeDto userPasswordChangeDto)
         {
-           
             if (ModelState.IsValid)
             {
                 var user = await _userManager.GetUserAsync(HttpContext.User);
@@ -157,7 +152,6 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 
         }
 
-
         [HttpGet]
         [AllowAnonymous]
         public ViewResult ResetPassword()
@@ -166,9 +160,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             return View();
         }
 
-
         [HttpPost]
-
         public async Task<IActionResult> ResetPassword(UserPasswordResetDto userPasswordResetDto)
         {
             TempData["Active"] = "Kullanıcı";
@@ -219,6 +211,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             TempData["Active"] = "Kullanıcı";
             return View();
         }
+
         [HttpPost("[action]/{userId}/{token}")]
         public async Task<IActionResult> UpdatePassword(UserUpdatePasswordDto userUpdatePasswordDto, string userId, string token)
         {
@@ -235,9 +228,6 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             return View();
         }
 
-
-
-        
         [HttpGet]
         [Authorize]
         public async Task<IActionResult> Logout()
@@ -246,7 +236,6 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home", new { area = "" });
         }
-
 
         [HttpGet]
         [Authorize]
@@ -261,7 +250,6 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
           
             return View(model);
         }
-
 
         [HttpPost]
         public async Task<IActionResult> UserEditProfile(UserDetailDto userDetailDto)

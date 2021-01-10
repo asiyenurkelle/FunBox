@@ -41,21 +41,7 @@ namespace BitirmeProjesi.Services.Concrete
             return new DataResult<BookDto>(ResultStatus.Error, Messages.Book.NotFound(isPlural: false), null);
 
         }
-        public async Task<IResult> AddComment(CommentAddBookDto commentAddDto)
-        {
-
-            var comment = _mapper.Map<BookComment>(commentAddDto);
-
-            var book = await _unitOfWork.Books.GetAsync(m => m.Id == commentAddDto.BookId);
-            comment.Book = book;
-            comment.AuthorName = commentAddDto.AuthorName;
-            comment.Subject = commentAddDto.Subject;
-            comment.Title = commentAddDto.Title;
-            var addedComment = await _unitOfWork.BookComments.AddAsync(comment);
-            await _unitOfWork.SaveAsync();
-            return new Result(ResultStatus.Success, "başarılı");
-
-        }
+      
         public async Task<IDataResult<BookListDto>> GetAll()
         {
             var books = await _unitOfWork.Books.GetAllAsync(null, b => b.Category);

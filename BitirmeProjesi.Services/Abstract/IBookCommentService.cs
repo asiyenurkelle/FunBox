@@ -10,10 +10,10 @@ namespace BitirmeProjesi.Services.Abstract
 {
     public interface IBookCommentService
     {
+        Task<IResult> AddComment(CommentAddBookDto commentAddDto);
         Task<IResult> CommentDelete(int commentId);
-
         Task<IDataResult<CommentDto>> UpdateComment(CommentUpdateDto commentUpdateDto);
         Task<IDataResult<CommentUpdateDto>> GetCommentUpdateDto(int commentId);
-        Task<IDataResult<CommentListDto>> GetAll();
+        Task<IDataResult<CommentListDto>> GetAllComment();
     }
 }

@@ -24,6 +24,21 @@ namespace BitirmeProjesi.Services.Concrete
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
+
+        public async Task<IResult> AddComment(CommentAddSerieDto commentAddDto)
+        {
+            var comment = _mapper.Map<SerieComment>(commentAddDto);
+
+            var serie = await _unitOfWork.Series.GetAsync(m => m.Id == commentAddDto.SerieId);
+            comment.Serie = serie;
+            comment.AuthorName = commentAddDto.AuthorName;
+            comment.Subject = commentAddDto.Subject;
+            comment.Title = commentAddDto.Title;
+            var addedComment = await _unitOfWork.SerieComments.AddAsync(comment);
+            await _unitOfWork.SaveAsync();
+            return new Result(ResultStatus.Success, "başarılı");
+
+        }
         public async Task<IResult> CommentDelete(int commentId)
         {
             var comment = await _unitOfWork.SerieComments.GetAsync(c => c.Id == commentId);
@@ -36,8 +51,6 @@ namespace BitirmeProjesi.Services.Concrete
             return new Result(ResultStatus.Error, Messages.Comment.NotFound(isPlural: false));
 
         }
-
-
 
         public async Task<IDataResult<CommentDto>> UpdateComment(CommentUpdateDto commentUpdateDto)
         {
@@ -70,7 +83,7 @@ namespace BitirmeProjesi.Services.Concrete
             }
         }
 
-        public async Task<IDataResult<CommentListDto>> GetAll()
+        public async Task<IDataResult<CommentListDto>> GetAllComment()
         {
             var serieComments = await _unitOfWork.SerieComments.GetAllAsync(null, m => m.Serie);
             if (serieComments.Count > -1)

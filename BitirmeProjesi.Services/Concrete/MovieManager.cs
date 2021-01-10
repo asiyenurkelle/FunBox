@@ -80,20 +80,6 @@ namespace BitirmeProjesi.Services.Concrete
             }
         }
 
-        public async Task<IResult> AddComment(CommentAddMovieDto commentAddDto)
-        {
-            var comment = _mapper.Map<MovieComment>(commentAddDto);
-
-            var movie = await _unitOfWork.Movies.GetAsync(m => m.Id == commentAddDto.MovieId);
-            comment.Movie = movie;
-            comment.AuthorName = commentAddDto.AuthorName;
-            comment.Subject = commentAddDto.Subject;
-            comment.Title = commentAddDto.Title;
-            var addedComment = await _unitOfWork.MovieComments.AddAsync(comment);
-            await _unitOfWork.SaveAsync();
-            return new Result(ResultStatus.Success, "başarılı");
-
-        }
         public async Task<IDataResult<MovieListDto>> GetCategories(int? id)
         {
             var categoriesMovie = await _unitOfWork.Movies.GetAllAsync(m => m.CategoryId == id, m => m.Category);

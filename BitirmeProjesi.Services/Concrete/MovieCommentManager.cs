@@ -25,6 +25,20 @@ namespace BitirmeProjesi.Services.Concrete
             _mapper = mapper;
         }
 
+        public async Task<IResult> AddComment(CommentAddMovieDto commentAddDto)
+        {
+            var comment = _mapper.Map<MovieComment>(commentAddDto);
+
+            var movie = await _unitOfWork.Movies.GetAsync(m => m.Id == commentAddDto.MovieId);
+            comment.Movie = movie;
+            comment.AuthorName = commentAddDto.AuthorName;
+            comment.Subject = commentAddDto.Subject;
+            comment.Title = commentAddDto.Title;
+            var addedComment = await _unitOfWork.MovieComments.AddAsync(comment);
+            await _unitOfWork.SaveAsync();
+            return new Result(ResultStatus.Success, "başarılı");
+
+        }
         public async Task<IResult> CommentDelete(int commentId)
         {
             var comment = await _unitOfWork.MovieComments.GetAsync(c => c.Id == commentId);
@@ -51,7 +65,7 @@ namespace BitirmeProjesi.Services.Concrete
                 return new DataResult<CommentUpdateDto>(ResultStatus.Error, null);
             }
         }
-        public async Task<IDataResult<CommentListDto>> GetAll()
+        public async Task<IDataResult<CommentListDto>> GetAllComment()
         {
             var movieComments = await _unitOfWork.MovieComments.GetAllAsync(null, m => m.Movie);
             if (movieComments.Count > -1)

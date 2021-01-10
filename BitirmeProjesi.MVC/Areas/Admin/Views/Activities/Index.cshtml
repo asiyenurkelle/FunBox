@@ -32,7 +32,7 @@
                                 <li class="list-group-item">@book.Title</li>
                                 <li class=" btn btn-group-toggle">
                                     <a asp-area="Admin" asp-controller="Book" asp-action="Details" asp-route-id="@book.Id" class="btn btn-sm text-info btn-circle text-uppercase">Detay</a>
-                                    <a asp-area="Admin" asp-controller="Book" asp-action="Details" class="btn btn-sm text-danger btn-circle text-uppercase" data-toggle="modal" data-target="#exampleModal" data-id="@book.Id">Listeden Sil</a>
+                                    <a asp-area="Admin" asp-controller="Book" asp-action="Details" class="btn btn-sm text-danger btn-circle text-uppercase" data-toggle="modal" data-target="#exampleModalBook" data-id="@book.Id">Listeden Sil</a>
                                 </li>
 
                             </ul>
@@ -57,7 +57,7 @@
                                 <li class="list-group-item">@serie.Title</li>
                                 <li class=" btn btn-group-toggle">
                                     <a asp-area="Admin" asp-controller="Serie" asp-action="Details" asp-route-id="@serie.Id" class="btn btn-sm text-info btn-circle text-uppercase">Detay</a>
-                                    <a asp-area="Admin" asp-controller="Serie" asp-action="Details" class="btn btn-sm text-danger btn-circle text-uppercase" data-toggle="modal" data-target="#exampleModal" data-id="@serie.Id">Listeden Sil</a>
+                                    <a asp-area="Admin" asp-controller="Serie" asp-action="Details" class="btn btn-sm text-danger btn-circle text-uppercase" data-toggle="modal" data-target="#exampleModalSerie" data-id="@serie.Id">Listeden Sil</a>
                                 </li>
 
                             </ul>
@@ -82,7 +82,7 @@
                                 <li class="list-group-item">@movie.Title</li>
                                 <li class=" btn btn-group-toggle">
                                     <a asp-area="Admin" asp-controller="Movie" asp-action="Details" asp-route-id="@movie.Id" class="btn btn-sm text-info btn-circle text-uppercase">Detay</a>
-                                    <a asp-area="Admin" asp-controller="Movie" asp-action="Details" class="btn btn-sm text-danger btn-circle text-uppercase" data-toggle="modal" data-target="#exampleModal" data-id="@movie.Id">Listeden Sil</a>
+                                    <a asp-area="Admin" asp-controller="Movie" asp-action="Details" class="btn btn-sm text-danger btn-circle text-uppercase" data-toggle="modal" data-target="#exampleModalMovie" data-id="@movie.Id">Listeden Sil</a>
                                 </li>
 
                             </ul>
@@ -94,7 +94,7 @@
 
 
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="exampleModalBook" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -108,7 +108,45 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary  btn-circle text-uppercase" data-dismiss="modal">Vazgeç</button>
-                                <button id="btnSave" type="button" class="btn btn-danger btn-circle text-uppercase">Listeden Çıkar</button>
+                                <button id="btnSaveBook" type="button" class="btn btn-danger btn-circle text-uppercase">Listeden Çıkar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="exampleModalMovie" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Uyarı</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body text-center lead">
+                                Listeden çıkarmak istediğinize emin misiniz?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary  btn-circle text-uppercase" data-dismiss="modal">Vazgeç</button>
+                                <button id="btnSaveMovie" type="button" class="btn btn-danger btn-circle text-uppercase">Listeden Çıkar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="exampleModalSerie" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Uyarı</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body text-center lead">
+                                Listeden çıkarmak istediğinize emin misiniz?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary  btn-circle text-uppercase" data-dismiss="modal">Vazgeç</button>
+                                <button id="btnSaveSerie" type="button" class="btn btn-danger btn-circle text-uppercase">Listeden Çıkar</button>
                             </div>
                         </div>
                     </div>
@@ -124,15 +162,57 @@
 @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#exampleModal").on("show.bs.modal", function (event) {
+            $("#exampleModalMovie").on("show.bs.modal", function (event) {
                 let tetikleyenElement = $(event.relatedTarget);
                 let data = tetikleyenElement.data("id");
 
-                $("#btnSave").click(function () {
+                $("#btnSaveMovie").click(function () {
                     $.ajax({
                         type: "GET",
                         contentType: "application/json; charset=utf-8",
-                        url: "./Activities/RemoveActivity",
+                        url: "./Activities/RemoveActivityMovie",
+                        data: { Id: data },
+                        success: function () {
+                            window.location.reload();
+                        },
+                        error: function (error) {
+                            alert(error.responseText);
+                        }
+                    })
+                })
+            });
+        });
+        $(document).ready(function () {
+            $("#exampleModalSerie").on("show.bs.modal", function (event) {
+                let tetikleyenElement = $(event.relatedTarget);
+                let data = tetikleyenElement.data("id");
+
+                $("#btnSaveSerie").click(function () {
+                    $.ajax({
+                        type: "GET",
+                        contentType: "application/json; charset=utf-8",
+                        url: "./Activities/RemoveActivitySerie",
+                        data: { Id: data },
+                        success: function () {
+                            window.location.reload();
+                        },
+                        error: function (error) {
+                            alert(error.responseText);
+                        }
+                    })
+                })
+            });
+        });
+        $(document).ready(function () {
+            $("#exampleModalBook").on("show.bs.modal", function (event) {
+                let tetikleyenElement = $(event.relatedTarget);
+                let data = tetikleyenElement.data("id");
+
+                $("#btnSaveBook").click(function () {
+                    $.ajax({
+                        type: "GET",
+                        contentType: "application/json; charset=utf-8",
+                        url: "./Activities/RemoveActivityBook",
                         data: { Id: data },
                         success: function () {
                             window.location.reload();
