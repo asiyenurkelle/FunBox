@@ -12,12 +12,12 @@
     <div class="modal-dialog p-2">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="text-info"><span class="label label-warning text-info" id="question1"></span>Film izlerken sıkılmadan devam edebildiğin ideal süren aşağıdakilerden hangisine daha yakındır? </h2>
+                <h2 class="text-info"><span class="label label-warning text-info" id="question1"></span>Eski tarihli filmleri izlemekten hoşlanır mısın? </h2>
             </div>
             <div class="modal-body">
                 <div class="quiz" id="quiz1" data-toggle="buttons">
-                    <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="2 saat veya daha kısa">2 saat veya daha kısa</label>
-                    <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="2 saatten daha uzun">2 saatten daha uzun</label>
+                    <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="Evet,1990 ve öncesi yapımlar">Evet,1990 ve öncesi yapımlar</label>
+                    <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="Günümüz ve yakın tarihler">Günümüz ve yakın tarihler</label>
                 </div>
             </div>
         </div>
@@ -61,16 +61,15 @@
     </div>
 </div>
 
-    <nav aria-label="Page navigation example">
-        <ul class="pagination  justify-content-center">
-            <li class="page-item active "><a class="page-link" >1</a></li>
-            <li class="page-item"><a class="page-link" asp-controller="Movie" asp-action="MoodTesting2" >2</a></li>
-            <li class="page-item"><a class="page-link" asp-controller="Movie" asp-action="MoodTesting3">3</a></li>
-            <li class="page-item"><a class="page-link" asp-controller="Movie" asp-action="MoodTesting2">İleri</a></li>
-        </ul>
-    </nav>
-
-
+<nav aria-label="Page navigation example">
+    <ul class="pagination  justify-content-center">
+        <li class="page-item"><a class="page-link" asp-controller="Movie" asp-action="MoodTesting2">Geri</a></li>
+        <li class="page-item  "><a class="page-link" asp-controller="Movie" asp-action="MoodTesting">1</a></li>
+        <li class="page-item "><a class="page-link" asp-controller="Movie" asp-action="MoodTesting2">2</a></li>
+        <li class="page-item active"><a class="page-link" asp-controller="Movie" asp-action="MoodTesting3">3</a></li>
+        
+    </ul>
+</nav>
 
 
 @section Scripts{
@@ -81,13 +80,13 @@
 
             $("label.btn").on('click', function () {
                 var choice = $(this).find('input:radio').val();
-               
-                if (choice == "2 saat veya daha kısa")
+
+                if (choice == "Evet,1990 ve öncesi yapımlar")
 
                     $.ajax({
                         type: "GET",
                         contentType: "application/json; charset=utf-8",
-                        url: "./GetSuggestionsLessTwo",
+                        url: "./GetDateLess1990",
                         success: function (result) {
                             $('#SuggestionScreen').show();
                             $('#SuggestionScreen2').hide();
@@ -99,24 +98,24 @@
                                     function (index, movie) {
                                         answerResult += `
 
-                                                                                         <div class="card-header bg-info"> ${movie.Title}</div>
+                                                                                                     <div class="card-header bg-info"> ${movie.Title}</div>
 
-                                                                                        `;
+                                                                                                    `;
                                     }
                                 );
                                 $('#answer1Title').replaceWith(answerResult);
 
                             }
-                           
+
                         }
                     });
-               
-                else if (choice == "2 saatten daha uzun") {
+
+                else if (choice == "Günümüz ve yakın tarihler") {
                     $('#SuggestionScreen').hide();
                     $.ajax({
                         type: "GET",
                         contentType: "application/json; charset=utf-8",
-                        url: "./GetSuggestionsMoreTwo",
+                        url: "./GetMovieDateThan1990",
                         success: function (result) {
                             $('#SuggestionScreen2').show();
                             const resultMovieLess = jQuery.parseJSON(result);
@@ -127,9 +126,9 @@
                                 $.each(resultMovieLess.Movies.$values,
                                     function (index, movie) {
                                         answerResultLess += `
-                                                                                        <div class="card-header bg-info"> ${movie.Title}</div>
+                                                                                                    <div class="card-header bg-info"> ${movie.Title}</div>
 
-                                                                                        `;
+                                                                                                    `;
                                     }
                                 );
                                 $('#answer2Title').replaceWith(answerResultLess);

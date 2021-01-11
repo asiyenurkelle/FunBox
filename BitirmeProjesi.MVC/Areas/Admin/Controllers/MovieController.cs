@@ -65,6 +65,22 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             var result = await _movieQuestionService.GetQuestions();
             return View(result.Data);
         }
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> MoodTesting2()
+        {
+            TempData["Active"] = "ÖneriTesti";
+            var result = await _movieQuestionService.GetQuestions();
+            return View(result.Data);
+        }
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> MoodTesting3()
+        {
+            TempData["Active"] = "ÖneriTesti";
+            var result = await _movieQuestionService.GetQuestions();
+            return View(result.Data);
+        }
 
         [HttpGet]
         [Authorize]
