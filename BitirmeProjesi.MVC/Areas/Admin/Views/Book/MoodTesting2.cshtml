@@ -1,5 +1,4 @@
-﻿
-@model BitirmeProjesi.Entities.Dtos.BookQuestionDto
+﻿@model BitirmeProjesi.Entities.Dtos.BookQuestionDto
 @{
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
@@ -13,12 +12,12 @@
     <div class="modal-dialog p-2">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="text-info"><span class="label label-warning text-info" id="question1"></span>Kitap okurken sıkılmadan devam edebildiğin ideal sayfa sayısı aşağıdakilerden hangisine daha yakındır? </h2>
+                <h2 class="text-info"><span class="label label-warning text-info" id="question1"></span>Dünya klasiklerini okumaktan hoşlanır mısınız? </h2>
             </div>
             <div class="modal-body">
                 <div class="quiz" id="quiz1" data-toggle="buttons">
-                    <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="200 sayfa ve altı">200 sayfa ve altı</label>
-                    <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="200 sayfadan daha fazla">200 sayfadan daha fazla</label>
+                    <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="Evet">Evet</label>
+                    <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="Hayır">Hayır</label>
                 </div>
             </div>
         </div>
@@ -64,10 +63,11 @@
 
 <nav aria-label="Page navigation example">
     <ul class="pagination  justify-content-center">
-        <li class="page-item active "><a class="page-link">1</a></li>
-        <li class="page-item"><a class="page-link" asp-controller="Book" asp-action="MoodTesting2">2</a></li>
+        <li class="page-item"><a class="page-link" asp-controller="Book" asp-action="MoodTesting">Geri</a></li>
+        <li class="page-item  "><a class="page-link" asp-controller="Book" asp-action="MoodTesting">1</a></li>
+        <li class="page-item active"><a class="page-link" asp-controller="Book" asp-action="MoodTesting2">2</a></li>
         <li class="page-item"><a class="page-link" asp-controller="Book" asp-action="MoodTesting3">3</a></li>
-        <li class="page-item"><a class="page-link" asp-controller="Book" asp-action="MoodTesting2">İleri</a></li>
+        <li class="page-item"><a class="page-link" asp-controller="Book" asp-action="MoodTesting3">İleri</a></li>
     </ul>
 </nav>
 
@@ -83,12 +83,12 @@
             $("label.btn").on('click', function () {
                 var choice = $(this).find('input:radio').val();
 
-                if (choice == "200 sayfa ve altı")
+                if (choice == "Evet")
 
                     $.ajax({
                         type: "GET",
                         contentType: "application/json; charset=utf-8",
-                        url: "./GetBookLessThanTwoHundredPage",
+                        url: "./GetBookClassical",
                         success: function (result) {
                             $('#SuggestionScreen').show();
                             $('#SuggestionScreen2').hide();
@@ -112,12 +112,12 @@
                         }
                     });
 
-                else if (choice == "200 sayfadan daha fazla") {
+                else if (choice == "Hayır") {
                     $('#SuggestionScreen').hide();
                     $.ajax({
                         type: "GET",
                         contentType: "application/json; charset=utf-8",
-                        url: "./GetBookMoreThanTwoHundredPage",
+                        url: "./GetBookNonClassical",
                         success: function (result) {
                             $('#SuggestionScreen2').show();
                             const resultBookLess = jQuery.parseJSON(result);
