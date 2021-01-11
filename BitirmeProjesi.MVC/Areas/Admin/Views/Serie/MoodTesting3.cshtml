@@ -13,12 +13,12 @@
     <div class="modal-dialog p-2">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="text-info"><span class="label label-warning text-info" id="question1"></span>Dizi izlerken sıkılmadan devam edebildiğin ideal süren aşağıdakilerden hangisine daha yakındır? </h2>
+                <h2 class="text-info"><span class="label label-warning text-info" id="question1"></span>Kaç sezonluk dizileri izlemeyi tercih edersin?</h2>
             </div>
             <div class="modal-body">
                 <div class="quiz" id="quiz1" data-toggle="buttons">
-                    <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="1 saat veya daha kısa">1 saat veya daha kısa</label>
-                    <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="1 saatten daha uzun">1 saatten daha uzun</label>
+                    <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="5 sezon ve daha az">5 sezon ve daha az</label>
+                    <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="5 sezondan daha fazla">5 sezondan daha fazla</label>
                 </div>
             </div>
         </div>
@@ -64,10 +64,11 @@
 
 <nav aria-label="Page navigation example">
     <ul class="pagination  justify-content-center">
-        <li class="page-item active "><a class="page-link">1</a></li>
+        <li class="page-item"><a class="page-link" asp-controller="Serie" asp-action="MoodTesting2">Geri</a></li>
+        <li class="page-item  "><a class="page-link" asp-controller="Serie" asp-action="MoodTesting">1</a></li>
         <li class="page-item"><a class="page-link" asp-controller="Serie" asp-action="MoodTesting2">2</a></li>
-        <li class="page-item"><a class="page-link" asp-controller="Serie" asp-action="MoodTesting3">3</a></li>
-        <li class="page-item"><a class="page-link" asp-controller="Serie" asp-action="MoodTesting2">İleri</a></li>
+        <li class="page-item active"><a class="page-link" asp-controller="Serie" asp-action="MoodTesting3">3</a></li>
+
     </ul>
 </nav>
 
@@ -83,12 +84,12 @@
             $("label.btn").on('click', function () {
                 var choice = $(this).find('input:radio').val();
 
-                if (choice == "1 saat veya daha kısa")
+                if (choice == "5 sezon ve daha az")
 
                     $.ajax({
                         type: "GET",
                         contentType: "application/json; charset=utf-8",
-                        url: "./GetSerieLessThanOneHour",
+                        url: "./GetSerieLessThanFiveSeason",
                         success: function (result) {
                             $('#SuggestionScreen').show();
                             $('#SuggestionScreen2').hide();
@@ -112,12 +113,12 @@
                         }
                     });
 
-                else if (choice == "1 saatten daha uzun") {
+                else if (choice == "5 sezondan daha fazla") {
                     $('#SuggestionScreen').hide();
                     $.ajax({
                         type: "GET",
                         contentType: "application/json; charset=utf-8",
-                        url: "./GetSerieMoreThanOneHour",
+                        url: "./GetSerieMoreThanFiveSeason",
                         success: function (result) {
                             $('#SuggestionScreen2').show();
                             const resultSerieLess = jQuery.parseJSON(result);
