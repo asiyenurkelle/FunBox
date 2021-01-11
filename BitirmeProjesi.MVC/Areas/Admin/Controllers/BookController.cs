@@ -59,27 +59,27 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> MoodTesting()
+        [Authorize]
+        public IActionResult MoodTesting()
         {
             TempData["Active"] = "ÖneriTesti";
-            var result = await _bookQuestionService.GetQuestions();
-            return View(result.Data);
+            return View();
         }
 
         [HttpGet]
-        public async Task<IActionResult> MoodTesting2()
+        [Authorize]
+        public IActionResult MoodTesting2()
         {
             TempData["Active"] = "ÖneriTesti";
-            var result = await _bookQuestionService.GetQuestions();
-            return View(result.Data);
+            return View();
         }
 
         [HttpGet]
-        public async Task<IActionResult> MoodTesting3()
+        [Authorize]
+        public IActionResult MoodTesting3()
         {
             TempData["Active"] = "ÖneriTesti";
-            var result = await _bookQuestionService.GetQuestions();
-            return View(result.Data);
+            return View();
         }
 
         [HttpGet]
