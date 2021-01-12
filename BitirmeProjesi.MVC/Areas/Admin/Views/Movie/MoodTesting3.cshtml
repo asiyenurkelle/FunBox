@@ -32,9 +32,9 @@
                 <h2 class="text-info text-center"><span class="label label-warning text-info text-center"></span>Senin İçin Önerilerimiz </h2>
             </div>
 
-            <div class="modal-body">
-                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                    <a class="card-header bg-info text-dark" id="answer1Title"> </a>
+            <div class="modal-body text-center">
+                <div class="card text-white  bg-primary mb-3 text-center">
+                    <a class="card-header bg-info text-center text-dark" id="answer1Title"> </a>
                 </div>
             </div>
 
@@ -50,8 +50,8 @@
             </div>
 
             <div class="modal-body">
-                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                    <a class="card-header bg-info text-dark" id="answer2Title"> </a>
+                <div class="card text-white  bg-primary mb-3 text-center">
+                    <a class="card-header bg-info text-dark text-center" id="answer2Title"> </a>
                 </div>
             </div>
 
@@ -60,13 +60,14 @@
     </div>
 </div>
 
+
 <nav aria-label="Page navigation example">
     <ul class="pagination  justify-content-center">
         <li class="page-item"><a class="page-link" asp-controller="Movie" asp-action="MoodTesting2">Geri</a></li>
         <li class="page-item  "><a class="page-link" asp-controller="Movie" asp-action="MoodTesting">1</a></li>
         <li class="page-item "><a class="page-link" asp-controller="Movie" asp-action="MoodTesting2">2</a></li>
         <li class="page-item active"><a class="page-link" asp-controller="Movie" asp-action="MoodTesting3">3</a></li>
-        
+
     </ul>
 </nav>
 
@@ -97,9 +98,9 @@
                                     function (index, movie) {
                                         answerResult += `
 
-                                                                                                     <div class="card-header bg-info"> ${movie.Title}</div>
+                                                                                                         <div class="card-header bg-info"> ${movie.Title}</div>
 
-                                                                                                    `;
+                                                                                                        `;
                                     }
                                 );
                                 $('#answer1Title').replaceWith(answerResult);
@@ -125,9 +126,9 @@
                                 $.each(resultMovieLess.Movies.$values,
                                     function (index, movie) {
                                         answerResultLess += `
-                                                                                                    <div class="card-header bg-info"> ${movie.Title}</div>
+                                                                                                        <div class="card-header bg-info"> ${movie.Title}</div>
 
-                                                                                                    `;
+                                                                                                        `;
                                     }
                                 );
                                 $('#answer2Title').replaceWith(answerResultLess);

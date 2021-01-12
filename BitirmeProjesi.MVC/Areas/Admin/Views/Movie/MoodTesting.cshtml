@@ -1,4 +1,4 @@
-﻿
+﻿@model BitirmeProjesi.Entities.Dtos.MovieListDto
 @{
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
@@ -14,7 +14,7 @@
             <div class="modal-header">
                 <h2 class="text-info"><span class="label label-warning text-info" id="question1"></span>Film izlerken sıkılmadan devam edebildiğin ideal süren aşağıdakilerden hangisine daha yakındır? </h2>
             </div>
-            <div class="modal-body">
+            <div class="modal-body text-center">
                 <div class="quiz" id="quiz1" data-toggle="buttons">
                     <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="2 saat veya daha kısa">2 saat veya daha kısa</label>
                     <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="2 saatten daha uzun">2 saatten daha uzun</label>
@@ -33,9 +33,9 @@
                 <h2 class="text-info text-center"><span class="label label-warning text-info text-center"></span>Senin İçin Önerilerimiz </h2>
             </div>
 
-            <div class="modal-body">
-                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                    <a class="card-header bg-info text-dark" id="answer1Title"> </a>
+            <div class="modal-body text-center">
+                <div class="card text-white  bg-primary mb-3 text-center">
+                    <a class="card-header bg-info text-center text-dark" id="answer1Title"> </a>
                 </div>
             </div>
 
@@ -51,8 +51,8 @@
             </div>
 
             <div class="modal-body">
-                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                    <a class="card-header bg-info text-dark" id="answer2Title"> </a>
+                <div class="card text-white  bg-primary mb-3 text-center">
+                    <a class="card-header bg-info text-dark text-center" id="answer2Title"> </a>
                 </div>
             </div>
 
@@ -61,14 +61,14 @@
     </div>
 </div>
 
-    <nav aria-label="Page navigation example">
-        <ul class="pagination  justify-content-center">
-            <li class="page-item active "><a class="page-link" >1</a></li>
-            <li class="page-item"><a class="page-link" asp-controller="Movie" asp-action="MoodTesting2" >2</a></li>
-            <li class="page-item"><a class="page-link" asp-controller="Movie" asp-action="MoodTesting3">3</a></li>
-            <li class="page-item"><a class="page-link" asp-controller="Movie" asp-action="MoodTesting2">İleri</a></li>
-        </ul>
-    </nav>
+<nav aria-label="Page navigation example">
+    <ul class="pagination  justify-content-center">
+        <li class="page-item active "><a class="page-link">1</a></li>
+        <li class="page-item"><a class="page-link" asp-controller="Movie" asp-action="MoodTesting2">2</a></li>
+        <li class="page-item"><a class="page-link" asp-controller="Movie" asp-action="MoodTesting3">3</a></li>
+        <li class="page-item"><a class="page-link" asp-controller="Movie" asp-action="MoodTesting2">İleri</a></li>
+    </ul>
+</nav>
 
 
 
@@ -81,7 +81,7 @@
 
             $("label.btn").on('click', function () {
                 var choice = $(this).find('input:radio').val();
-               
+
                 if (choice == "2 saat veya daha kısa")
 
                     $.ajax({
@@ -99,18 +99,18 @@
                                     function (index, movie) {
                                         answerResult += `
 
-                                                                                         <div class="card-header bg-info"> ${movie.Title}</div>
+                                                                                             <a class="card-header text-center bg-info"> ${movie.Title}</a>
 
-                                                                                        `;
+                                                                                            `;
                                     }
                                 );
                                 $('#answer1Title').replaceWith(answerResult);
 
                             }
-                           
+
                         }
                     });
-               
+
                 else if (choice == "2 saatten daha uzun") {
                     $('#SuggestionScreen').hide();
                     $.ajax({
@@ -127,9 +127,9 @@
                                 $.each(resultMovieLess.Movies.$values,
                                     function (index, movie) {
                                         answerResultLess += `
-                                                                                        <div class="card-header bg-info"> ${movie.Title}</div>
+                                                                                            <a class="card-header bg-info"> ${movie.Title}</a>
 
-                                                                                        `;
+                                                                                            `;
                                     }
                                 );
                                 $('#answer2Title').replaceWith(answerResultLess);

@@ -78,6 +78,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         [Authorize]
         public IActionResult MoodTesting3()
         {
+            
             TempData["Active"] = "ÖneriTesti";
             return View();
         }
