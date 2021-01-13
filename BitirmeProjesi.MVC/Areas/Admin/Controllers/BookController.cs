@@ -19,14 +19,14 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
     public class BookController : Controller
     {
         private readonly IBookService _bookService;
-        private readonly IBookQuestionService _bookQuestionService;
+      
         private readonly IBookCommentService _bookCommentService;
         private readonly IMapper _mapper;
 
-        public BookController(IBookService bookService, IBookQuestionService bookQuestionService, IBookCommentService bookCommentService, IMapper mapper)
+        public BookController(IBookService bookService,  IBookCommentService bookCommentService, IMapper mapper)
         {
             _bookService = bookService;
-            _bookQuestionService = bookQuestionService;
+          
             _bookCommentService = bookCommentService;
             _mapper = mapper;
 

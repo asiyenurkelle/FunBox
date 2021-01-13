@@ -20,14 +20,14 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
     public class MovieController : Controller
     {
         private readonly IMovieService _movieService;
-        private readonly IMovieQuestionService _movieQuestionService;
+     
         private readonly IMovieCommentService _movieCommentService;
         private readonly IMapper _mapper;
 
-        public MovieController(IMovieService movieService, IMovieQuestionService movieQuestionService, IMovieCommentService movieCommentService, IMapper mapper)
+        public MovieController(IMovieService movieService, IMovieCommentService movieCommentService, IMapper mapper)
         {
             _movieService = movieService;
-            _movieQuestionService = movieQuestionService;
+          
             _movieCommentService = movieCommentService;
             _mapper = mapper;
         }

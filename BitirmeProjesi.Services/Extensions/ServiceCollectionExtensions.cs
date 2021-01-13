@@ -51,9 +51,7 @@ namespace BitirmeProjesi.Services.Extensions
             serviceCollection.AddScoped<IMovieCommentService, MovieCommentManager>();
             serviceCollection.AddScoped<IBookSerieMovieService, BookSerieMovieManager>();
             serviceCollection.AddScoped<IActivityService, ActivityManager>();
-            serviceCollection.AddScoped<IBookQuestionService, BookQuestionManager>();
-            serviceCollection.AddScoped<IMovieQuestionService, MovieQuestionManager>();
-            serviceCollection.AddScoped<ISerieQuestionService, SerieQuestionManager>();
+           
 
             return serviceCollection;
         }

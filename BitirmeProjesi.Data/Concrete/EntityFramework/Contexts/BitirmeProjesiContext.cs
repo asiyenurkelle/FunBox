@@ -23,9 +23,6 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Contexts
         public DbSet<MovieComment> MovieComments { get; set; }
         public DbSet<SerieComment> SerieComments { get; set; }
 
-        public DbSet<BookQuestion> BookQuestions { get; set; }
-        public DbSet<SerieQuestion> SerieQuestions { get; set; }
-        public DbSet<MovieQuestion> MovieQuestions { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -44,10 +41,7 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Contexts
             modelBuilder.ApplyConfiguration(new UserLoginMap());
             modelBuilder.ApplyConfiguration(new UserRoleMap());
             modelBuilder.ApplyConfiguration(new UserTokenMap());
-            modelBuilder.ApplyConfiguration(new BookQuestionMap());
-            modelBuilder.ApplyConfiguration(new MovieQuestionMap());
-            modelBuilder.ApplyConfiguration(new SerieQuestionMap());
-
+           
         }
     }
 }

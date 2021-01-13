@@ -19,15 +19,15 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
     public class SerieController : Controller
     {
         private readonly ISerieService _serieService;
-        private readonly ISerieQuestionService _serieQuestionService;
+      
         private readonly ISerieCommentService _serieCommentService;
 
         private readonly IMapper _mapper;
 
-        public SerieController(ISerieService serieService, ISerieQuestionService serieQuestionService, ISerieCommentService serieCommentService, IMapper mapper)
+        public SerieController(ISerieService serieService,  ISerieCommentService serieCommentService, IMapper mapper)
         {
             _serieService = serieService;
-            _serieQuestionService = serieQuestionService;
+           
             _serieCommentService = serieCommentService;
             _mapper = mapper;
         }
