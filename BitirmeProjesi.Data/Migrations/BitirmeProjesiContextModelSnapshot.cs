@@ -169,53 +169,6 @@ namespace BitirmeProjesi.Data.Migrations
                     b.ToTable("BookComments");
                 });
 
-            modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.BookQuestion", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("OptionsOne")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OptionsTwo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("QuestionText")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("BookQuestions");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            OptionsOne = "200 sayfa ve altı",
-                            OptionsTwo = "200 sayfadan daha fazla",
-                            QuestionText = "Kitap okurken sıkılmadan devam edebildiğin ideal sayfa sayısı aşağıdakilerden hangisine daha yakındır?"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            OptionsOne = "Evet",
-                            OptionsTwo = "Hayır",
-                            QuestionText = "Dünya klasiklerini okumaktan hoşlanır mısınız?"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            OptionsOne = "Evet eski tarihli kitaplar öncelikli tercihimdir",
-                            OptionsTwo = "Günümüze daha yakın tarihli kitapları tercih ederim",
-                            QuestionText = "Eski tarihli kitapları okumaktan hoşlanır mısınız?"
-                        });
-                });
-
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -435,53 +388,6 @@ namespace BitirmeProjesi.Data.Migrations
                     b.HasIndex("MovieId");
 
                     b.ToTable("MovieComments");
-                });
-
-            modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.MovieQuestion", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("OptionsOne")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OptionsTwo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("QuestionText")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MovieQuestions");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            OptionsOne = "2 saat veya daha kısa",
-                            OptionsTwo = "2 saatten daha uzun",
-                            QuestionText = "Film izlerken sıkılmadan devam edebildiğin ideal süren aşağıdakilerden hangisine daha yakındır?"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            OptionsOne = "Evet, 7 ve üzeri olmalı",
-                            OptionsTwo = "Hayır, farketmez",
-                            QuestionText = "Senin için bir filmin IMDb puanı önemli midir?"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            OptionsOne = "Evet,1990 ve öncesi yapımlar",
-                            OptionsTwo = "Günümüz ve yakın tarihler",
-                            QuestionText = "Eski tarihli filmleri izlemekten hoşlanır mısın?"
-                        });
                 });
 
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.Role", b =>
@@ -710,53 +616,6 @@ namespace BitirmeProjesi.Data.Migrations
                     b.ToTable("SerieComments");
                 });
 
-            modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.SerieQuestion", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("OptionsOne")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OptionsTwo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("QuestionText")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SerieQuestions");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            OptionsOne = "1 saat veya daha kısa",
-                            OptionsTwo = "1 saatten daha uzun",
-                            QuestionText = "Dizi izlerken sıkılmadan devam edebildiğin ideal süren aşağıdakilerden hangisine daha yakındır?"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            OptionsOne = "Evet,7 ve üzeri olmalı",
-                            OptionsTwo = "Hayır bu benim için bir kriter değil",
-                            QuestionText = "Senin için bir dizinin IMDb puanı önemli midir?"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            OptionsOne = "5 sezon ve daha az",
-                            OptionsTwo = "5 sezondan daha fazla",
-                            QuestionText = "Kaç sezonluk dizileri izlemeyi tercih edersin?"
-                        });
-                });
-
             modelBuilder.Entity("BitirmeProjesi.Entities.Concrete.User", b =>
                 {
                     b.Property<int>("Id")
@@ -922,7 +781,7 @@ namespace BitirmeProjesi.Data.Migrations
                     b.HasOne("BitirmeProjesi.Entities.Concrete.Book", "Book")
                         .WithMany("BookComments")
                         .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Book");

@@ -49,21 +49,6 @@ namespace BitirmeProjesi.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BookQuestions",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    QuestionText = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OptionsOne = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OptionsTwo = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BookQuestions", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Categories",
                 columns: table => new
                 {
@@ -74,36 +59,6 @@ namespace BitirmeProjesi.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MovieQuestions",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    QuestionText = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OptionsOne = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OptionsTwo = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MovieQuestions", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SerieQuestions",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    QuestionText = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OptionsOne = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OptionsTwo = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SerieQuestions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -316,7 +271,7 @@ namespace BitirmeProjesi.Data.Migrations
                         column: x => x.BookId,
                         principalTable: "Books",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -364,53 +319,23 @@ namespace BitirmeProjesi.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "BookQuestions",
-                columns: new[] { "Id", "OptionsOne", "OptionsTwo", "QuestionText" },
-                values: new object[,]
-                {
-                    { 1, "200 sayfa ve altı", "200 sayfadan daha fazla", "Kitap okurken sıkılmadan devam edebildiğin ideal sayfa sayısı aşağıdakilerden hangisine daha yakındır?" },
-                    { 2, "Evet", "Hayır", "Dünya klasiklerini okumaktan hoşlanır mısınız?" },
-                    { 3, "Evet eski tarihli kitaplar öncelikli tercihimdir", "Günümüze daha yakın tarihli kitapları tercih ederim", "Eski tarihli kitapları okumaktan hoşlanır mısınız?" }
-                });
-
-            migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { 13, "Korku" },
-                    { 12, "Romantik" },
-                    { 11, "Dram" },
-                    { 10, "Komedi" },
-                    { 9, "Tarih" },
+                    { 1, "Polisiye" },
+                    { 2, "Roman" },
+                    { 3, "Hikaye" },
+                    { 4, "Bilim Kurgu" },
+                    { 5, "Aksiyon" },
+                    { 6, "Macera" },
                     { 7, "Psikoloji" },
                     { 8, "Siyaset" },
-                    { 5, "Aksiyon" },
-                    { 4, "Bilim Kurgu" },
-                    { 3, "Hikaye" },
-                    { 2, "Roman" },
-                    { 1, "Polisiye" },
-                    { 6, "Macera" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "MovieQuestions",
-                columns: new[] { "Id", "OptionsOne", "OptionsTwo", "QuestionText" },
-                values: new object[,]
-                {
-                    { 1, "2 saat veya daha kısa", "2 saatten daha uzun", "Film izlerken sıkılmadan devam edebildiğin ideal süren aşağıdakilerden hangisine daha yakındır?" },
-                    { 2, "Evet, 7 ve üzeri olmalı", "Hayır, farketmez", "Senin için bir filmin IMDb puanı önemli midir?" },
-                    { 3, "Evet,1990 ve öncesi yapımlar", "Günümüz ve yakın tarihler", "Eski tarihli filmleri izlemekten hoşlanır mısın?" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "SerieQuestions",
-                columns: new[] { "Id", "OptionsOne", "OptionsTwo", "QuestionText" },
-                values: new object[,]
-                {
-                    { 2, "Evet,7 ve üzeri olmalı", "Hayır bu benim için bir kriter değil", "Senin için bir dizinin IMDb puanı önemli midir?" },
-                    { 1, "1 saat veya daha kısa", "1 saatten daha uzun", "Dizi izlerken sıkılmadan devam edebildiğin ideal süren aşağıdakilerden hangisine daha yakındır?" },
-                    { 3, "5 sezon ve daha az", "5 sezondan daha fazla", "Kaç sezonluk dizileri izlemeyi tercih edersin?" }
+                    { 9, "Tarih" },
+                    { 10, "Komedi" },
+                    { 11, "Dram" },
+                    { 12, "Romantik" },
+                    { 13, "Korku" }
                 });
 
             migrationBuilder.InsertData(
@@ -540,19 +465,10 @@ namespace BitirmeProjesi.Data.Migrations
                 name: "BookComments");
 
             migrationBuilder.DropTable(
-                name: "BookQuestions");
-
-            migrationBuilder.DropTable(
                 name: "MovieComments");
 
             migrationBuilder.DropTable(
-                name: "MovieQuestions");
-
-            migrationBuilder.DropTable(
                 name: "SerieComments");
-
-            migrationBuilder.DropTable(
-                name: "SerieQuestions");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
