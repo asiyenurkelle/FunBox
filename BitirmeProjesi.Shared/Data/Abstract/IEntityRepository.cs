@@ -1,6 +1,7 @@
 ﻿using BitirmeProjesi.Shared.Entities.Abstract;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,5 +17,9 @@ namespace BitirmeProjesi.Shared.Data.Abstract
         Task DeleteAsync(T entity);
         Task<bool> AnyAsync(Expression<Func<T, bool>> predicate);
         Task<int> CountAsync(Expression<Func<T, bool>> predicate);
+        List<T> Listele2<F>(Expression<Func<T, F>> where, params Expression<Func<T, object>>[] includeProperties);
+
+
+
     }
 }

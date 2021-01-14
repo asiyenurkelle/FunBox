@@ -22,7 +22,7 @@ namespace BitirmeProjesi.Services.Concrete
         }
         public async Task<IDataResult<BookSerieMovieDto>> GetAll()
         {
-
+           
             var books = await _unitOfWork.Books.GetAllAsync(null, b => b.Category);
             var series = await _unitOfWork.Series.GetAllAsync(null, s => s.Category);
             var movies = await _unitOfWork.Movies.GetAllAsync(null, m => m.Category);

@@ -48,6 +48,7 @@ namespace BitirmeProjesi.MVC.Controllers
                 }
                 else
                 {
+                    
                     return RedirectToAction("SearchNotFound");
                 }
                

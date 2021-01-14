@@ -14,9 +14,11 @@ namespace BitirmeProjesi.Shared.Data.Concrete.EntityFramework
         where TEntity : class, IEntity, new()
     {
         protected readonly DbContext _context;
+        
         public EfEntityRepositoryBase(DbContext context)
         {
             _context = context;
+            
         }
         public async Task<TEntity> AddAsync(TEntity entity)
         {
@@ -38,6 +40,7 @@ namespace BitirmeProjesi.Shared.Data.Concrete.EntityFramework
         {
             await Task.Run(() => { _context.Set<TEntity>().Remove(entity); });
         }
+
 
         public async Task<IList<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null, params Expression<Func<TEntity, object>>[] includeProperties)
         {
@@ -69,11 +72,18 @@ namespace BitirmeProjesi.Shared.Data.Concrete.EntityFramework
             }
             return await query.SingleOrDefaultAsync();
         }
-
+       
         public async Task<TEntity> UpdateAsync(TEntity entity)
         {
             await Task.Run(() => { _context.Set<TEntity>().Update(entity); });
             return entity;
         }
+
+        public List<TEntity> Listele2<F>(Expression<Func<TEntity, F>> where, params Expression<Func<TEntity, object>>[] includeProperties)
+        {
+            return _context.Set<TEntity>().OrderByDescending(where).ToList();
+        }
+
+
     }
 }
