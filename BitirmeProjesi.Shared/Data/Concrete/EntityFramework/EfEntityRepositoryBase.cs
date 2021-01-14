@@ -79,7 +79,7 @@ namespace BitirmeProjesi.Shared.Data.Concrete.EntityFramework
             return entity;
         }
 
-        public List<TEntity> Listele2<F>(Expression<Func<TEntity, F>> where, params Expression<Func<TEntity, object>>[] includeProperties)
+        public List<TEntity> OrderBy<F>(Expression<Func<TEntity, F>> where, params Expression<Func<TEntity, object>>[] includeProperties)
         {
             return _context.Set<TEntity>().OrderByDescending(where).ToList();
         }

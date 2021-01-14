@@ -213,19 +213,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             }
 
         }
-        public async Task<IActionResult> Deneme()
-        {
-            var result = await _movieService.GetOrderByImdb();
-            if (result.ResultStatus == ResultStatus.Success)
-            {
-                return View(result.Data);
-            }
-            else
-            {
-                return RedirectToAction("Index");
-
-            }
-        }
+       
 
 
 

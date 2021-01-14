@@ -218,19 +218,7 @@ namespace BitirmeProjesi.Services.Concrete
             });
         }
 
-        public async Task<IDataResult<BookSerieMovieDto>> GetOrderByImdb()
-        {
-            var movie = _unitOfWork.Movies.Listele2(m => m.Imdb, m => m.Category);
-            var serie = _unitOfWork.Series.Listele2(m => m.Imdb, m => m.Category);
-
-
-            return new DataResult<BookSerieMovieDto>(ResultStatus.Success, new BookSerieMovieDto
-            {
-                Movies = movie,
-                Series = serie,
-                ResultStatus = ResultStatus.Success
-            });
-        }
+        
 
     }  
 }

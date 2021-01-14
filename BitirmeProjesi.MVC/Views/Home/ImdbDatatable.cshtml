@@ -1,5 +1,8 @@
 ﻿@model BitirmeProjesi.Entities.Dtos.BookSerieMovieDto;
-
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<html>
 <body class="sb-nav-fixed">
 
     <div id="layoutSidenav">
@@ -15,7 +18,7 @@
             <main>
                 <div class="container-fluid">
                     <h3 class="mt-4">KEŞFET</h3>
-                    
+
 
                     <div class="card mb-4">
                         <div class="card-header">
@@ -27,45 +30,41 @@
                                 <table class="table table-bordered" id="ımdbTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            
+
                                             <th>Resim</th>
-                                            <th>İsim</th>
+                                            <th>İsim </th>
                                             <th>Tür</th>
                                             <th>Imdb</th>
                                             <th>Senarist</th>
                                             <th>Çıkış Tarihi</th>
                                         </tr>
                                     </thead>
-                                    
-                                <tbody>
-                                    @foreach (var movie in Model.Movies)
-                                    {
-                                    <tr>
-                                       
-                                        <td><img style="width: 100px; height: 100px;" src="~/img/@movie.ThumbNail"></td>
-                                        <td>@movie.Title</td>
-                                        <td>Film</td>
-                                        <td> <img src="~/img/star.png"> @movie.Imdb </td>
-                                        <td>@movie.Scenarist</td>
-                                        <td>@movie.Date.ToShortDateString()</td>
 
-                                    </tr>
+                                    <tbody>
+                                        @foreach (var movie in Model.Movies)
+                                        {
+                            <tr>
 
-                                    }
-                                    @foreach (var serie in Model.Series)
-                                    {
-                                        <tr>
-                                            <td><img style="width:100px; height:100px;" src="~/img/@serie.ThumbNail"></td>
-                                            <td>@serie.Title</td>
-                                            <td>Dizi</td>
-                                            <td> <img class="18rem" src="~/img/star.png"> @serie.Imdb </td>
-                                            <td>@serie.Scenarist</td>
-                                            <td>@serie.Date.ToShortDateString()</td>
+                                <td><img style="width: 100px; height: 100px;" src="~/img/@movie.ThumbNail"></td>
+                                <td> <a asp-area="Admin" asp-controller="Movie" asp-action="Details" asp-route-id="@movie.Id">@movie.Title</a> </td>
+                                <td>Film</td>
+                                <td class="text-warning"> <img src="~/img/star.png" >  @movie.Imdb</td>
+                                <td>@movie.Scenarist</td>
+                                <td>@movie.Date.ToShortDateString()</td>
 
-                                        </tr>
+                            </tr>}
+                                        @foreach (var serie in Model.Series)
+                                        {
+                            <tr>
+                                <td><img style="width:100px; height:100px;" src="~/img/@serie.ThumbNail"></td>
+                                <td><a asp-area="Admin" asp-controller="Serie" asp-action="Details" asp-route-id="@serie.Id">@serie.Title</a></td>
+                                <td>Dizi</td>
+                                <td class="text-warning"> <img class="18rem" src="~/img/star.png"> @serie.Imdb </td>
+                                <td>@serie.Scenarist</td>
+                                <td>@serie.Date.ToShortDateString()</td>
 
-                                    }
-                                </tbody>
+                            </tr>}
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

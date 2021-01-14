@@ -14,9 +14,11 @@ namespace BitirmeProjesi.MVC.Controllers
     {
 
         private readonly IBookSerieMovieService _bookSerieMovieService;
-        public HomeController(IBookSerieMovieService bookSerieMovieService)
+        private readonly IBookService _bookService;
+        public HomeController(IBookSerieMovieService bookSerieMovieService, IBookService bookService)
         {
             _bookSerieMovieService = bookSerieMovieService;
+            _bookService = bookService;
         }
 
         public async Task<IActionResult> Index(int? id)
@@ -64,6 +66,34 @@ namespace BitirmeProjesi.MVC.Controllers
             return View();
         }
        
+        public async Task<IActionResult> ImdbDatatable()
+        {
+            TempData["Active"] = "Gözat";
+            var result = await _bookSerieMovieService.GetOrderByImdb();
+            if (result.ResultStatus == ResultStatus.Success)
+            {
+                return View(result.Data);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+
+            }
+        }
+        public async Task<IActionResult> DiscoverBookDataTable()
+        {
+            TempData["Active"] = "Gözat";
+            var result = await _bookService.GetAll();
+            if (result.ResultStatus == ResultStatus.Success)
+            {
+                return View(result.Data);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+
+            }
+        }
 
 
     }

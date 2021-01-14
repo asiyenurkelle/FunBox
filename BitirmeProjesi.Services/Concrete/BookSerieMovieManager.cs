@@ -106,7 +106,19 @@ namespace BitirmeProjesi.Services.Concrete
                 ResultStatus = ResultStatus.Error,
                 Message = Messages.BookSerieMovie.NotFound(isPlural: true)
             });
-
+           
+        }
+        public async Task<IDataResult<BookSerieMovieDto>> GetOrderByImdb()
+        {
+            var movie = _unitOfWork.Movies.OrderBy(m => m.Imdb, m => m.Category);
+            var serie = _unitOfWork.Series.OrderBy(m => m.Imdb, m => m.Category);
+           
+            return new DataResult<BookSerieMovieDto>(ResultStatus.Success, new BookSerieMovieDto
+            {
+                Movies = movie,
+                Series = serie,
+                ResultStatus = ResultStatus.Success
+            });
         }
     }
 }

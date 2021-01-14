@@ -17,7 +17,7 @@ namespace BitirmeProjesi.Shared.Data.Abstract
         Task DeleteAsync(T entity);
         Task<bool> AnyAsync(Expression<Func<T, bool>> predicate);
         Task<int> CountAsync(Expression<Func<T, bool>> predicate);
-        List<T> Listele2<F>(Expression<Func<T, F>> where, params Expression<Func<T, object>>[] includeProperties);
+        List<T> OrderBy<F>(Expression<Func<T, F>> where, params Expression<Func<T, object>>[] includeProperties);
 
 
 
