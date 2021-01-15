@@ -159,7 +159,7 @@ label .glyphicon {
 }
 
 .modal-body {
-    min-height: 205px
+    min-height: 100px
 }
 
 #loadbar {

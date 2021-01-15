@@ -6,59 +6,62 @@
 <script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
 <link href="~/css/MoodTest.css" rel="stylesheet" />
 
-
-<div class="container text-center col-md-4 ">
-    <div class="modal-dialog p-2">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="text-info"><span class="label label-warning text-info" id="question1"></span>Kitap okurken sıkılmadan devam edebildiğin ideal sayfa sayısı aşağıdakilerden hangisine daha yakındır? </h2>
-            </div>
-            <div class="modal-body">
-                <div class="quiz" id="quiz1" data-toggle="buttons">
-                    <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="200 sayfa ve altı">200 sayfa ve altı</label>
-                    <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="200 sayfadan daha fazla">200 sayfadan daha fazla</label>
+<div class="row ">
+    <div class="container text-center col-md-6 float-left ">
+        <div class="modal-dialog p-2">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="text-center text-info"><span class="label label-warning text-info" id="question1"></span>Kitap okurken sıkılmadan devam edebildiğin ideal sayfa sayısı aşağıdakilerden hangisine daha yakındır? </h3>
                 </div>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-
-<div class="container text-center col-md-4 " id="SuggestionScreen">
-    <div class="modal-dialog p-2">
-        <div class="modal-content">
-            <div class="modal-header ">
-                <h2 class="text-info text-center"><span class="label label-warning text-info text-center"></span>Senin İçin Önerilerimiz </h2>
-            </div>
-
-            <div class="modal-body text-center">
-                <div class="card text-white  bg-primary mb-3 text-center">
-                    <a class="card-header bg-info text-center text-dark" id="answer1Title"> </a>
+                <div class="modal-body">
+                    <div class="quiz" id="quiz1" data-toggle="buttons">
+                        <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="200 sayfa ve altı">200 sayfa ve altı</label>
+                        <label class=" btn btn-lg btn-primary btn-block"><span class="btn-label"></span> <input type="radio" name="q_answer" value="200 sayfadan daha fazla">200 sayfadan daha fazla</label>
+                    </div>
                 </div>
             </div>
 
-
         </div>
     </div>
-</div>
-<div class="container text-center col-md-4 " id="SuggestionScreen2">
-    <div class="modal-dialog p-2">
-        <div class="modal-content">
-            <div class="modal-header ">
-                <h2 class="text-info"><span class="label label-warning text-info"></span>Senin İçin Önerilerimiz </h2>
-            </div>
 
-            <div class="modal-body">
-                <div class="card text-white  bg-primary mb-3 text-center">
-                    <a class="card-header bg-info text-dark text-center" id="answer2Title"> </a>
+
+
+    <div class="container text-center col-md-6 float-right " id="SuggestionScreen">
+        <div class="modal-dialog p-2">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <h2 class="text-info text-center"><span class="label label-warning text-info text-center"></span>Öneriler</h2>
                 </div>
+
+                <div class="modal-body text-center">
+                    <div class="card text-white  bg-primary mb-3 text-center">
+                        <a class="card-header bg-info text-center text-dark" id="answer1Title"> </a>
+                    </div>
+                </div>
+
+
             </div>
+        </div>
+    </div>
+    <div class="container text-center col-md-6 float-right " id="SuggestionScreen2">
+        <div class="modal-dialog p-2">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <h2 class="text-info text-center"><span class="label label-warning text-info text-center"></span> Öneriler </h2>
+                </div>
+
+                <div class="modal-body text-center">
+                    <div class="card text-white  bg-primary mb-3 text-center">
+                        <div class="card-header bg-info text-dark text-center" id="answer2Title"> </div>
+                    </div>
+                </div>
 
 
+            </div>
         </div>
     </div>
 </div>
+
 
 
 <nav aria-label="Page navigation example">
@@ -99,47 +102,53 @@
                                     function (index, book) {
                                         answerResult += `
 
-                                                                                                 <div class="card-header bg-info"> ${book.Title}</div>
+                                                                                                     <div class="card-header bg-info"> ${book.Title}</div>
 
-                                                                                                `;
-                                    }
-                                );
-                                $('#answer1Title').replaceWith(answerResult);
+                                                                                                    
+                                                                                                         <div class="card-title"> Yazar: ${book.Writer}</div>
+                                                                                                         <div class="card-title">Sayfa: ${book.Page}</div>
+
+
+                                                                                                        `;
+                                        }
+                                    );
+                                    $('#answer1Title').replaceWith(answerResult);
+
+                                }
 
                             }
+                        });
 
-                        }
-                    });
+                    else if (choice == "200 sayfadan daha fazla") {
+                        $('#SuggestionScreen').hide();
+                        $.ajax({
+                            type: "GET",
+                            contentType: "application/json; charset=utf-8",
+                            url: "./GetBookMoreThanTwoHundredPage",
+                            success: function (result) {
+                                $('#SuggestionScreen2').show();
+                                const resultBookLess = jQuery.parseJSON(result);
 
-                else if (choice == "200 sayfadan daha fazla") {
-                    $('#SuggestionScreen').hide();
-                    $.ajax({
-                        type: "GET",
-                        contentType: "application/json; charset=utf-8",
-                        url: "./GetBookMoreThanTwoHundredPage",
-                        success: function (result) {
-                            $('#SuggestionScreen2').show();
-                            const resultBookLess = jQuery.parseJSON(result);
-
-                            if (resultBookLess.ResultStatus === 0) {
-                                let answerResultLess = "";
-                                $('#answer2Title').html(" ");
-                                $.each(resultBookLess.Books.$values,
-                                    function (index, book) {
-                                        answerResultLess += `
-                                                                                                <div class="card-header bg-info"> ${book.Title}</div>
-
-                                                                                                `;
-                                    }
-                                );
-                                $('#answer2Title').replaceWith(answerResultLess);
+                                if (resultBookLess.ResultStatus === 0) {
+                                    let answerResultLess = "";
+                                    $('#answer2Title').html(" ");
+                                    $.each(resultBookLess.Books.$values,
+                                        function (index, book) {
+                                            answerResultLess += `
+                                                                                                        <div class="card-header bg-info"> ${book.Title}</div>
+                                                                                                       
+                                                                                                        <div class="card-title">${book.Subject}</div>
+                                                                                                        `;
+                                        }
+                                    );
+                                    $('#answer2Title').replaceWith(answerResultLess);
+                                }
                             }
-                        }
-                    });
-                }
+                        });
+                    }
 
+                });
             });
-        });
     </script>
 }
 

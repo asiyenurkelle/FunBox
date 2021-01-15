@@ -16,7 +16,7 @@
 
             <div class="card mt-6 ">
 
-                <img class="card-img-top card-img-top " src="~/img/@Model.Book.ThumbNail">
+                <img class="card-img-top  " src="~/img/@Model.Book.ThumbNail">
                 <div class="card-body">
                     <h3 class="card-title"></h3>
                     <h4 class="text-info text-center">@Model.Book.Title</h4>
@@ -54,13 +54,15 @@
                         <div class="card-body">
                             <p class="font-weight-bold">@book.Title</p>
                             <p>@book.Subject</p>
-                            <small class="text-muted">@book.AuthorName @DateTime.Now.ToShortDateString()</small>
-                            <div class="card-body ">
-                                <a class="btn btn-success btn-circle text-uppercase"  asp-area="Admin" asp-controller="Book" asp-action="CommentUpdatePartial" asp-route-id="@book.Id"><span class="glyphicon glyphicon-comment"></span> Düzenle</a>
-                                <a class="btn btn-danger btn-circle text-uppercase btn-delete"  data-id="@book.Id" ><span class="glyphicon glyphicon-share-alt"></span> Sil</a>
+                            <div class="d-flex align-items-baseline">
+                                <small class="text-muted">@book.AuthorName @DateTime.Now.ToShortDateString()</small>
+                                <div class="card-body ">
+                                    <a asp-area="Admin" asp-controller="Book" asp-action="CommentUpdatePartial" asp-route-id="@book.Id"><img src="~/img/editicon.png" style="width:25px; height:25px;" /> </a>
+                                    <a class=" btn-delete" data-id="@book.Id"> <img src="~/img/deleteicon.png" style="width:25px; height:25px;" /></a>
 
+                                </div>
                             </div>
-
+                            
                         </div>
 
                     }

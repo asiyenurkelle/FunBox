@@ -8,7 +8,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-5">
             <div class="card shadow-lg  mt-5 bg-dark">
-                <div class="card-header text-info"><h3 class="text-center  my-4"> <span class="fas fa-edit"></span>@Model.Title başlıklı yorum düzenleniyor...</h3></div>
+                <div class="card-header text-info"><h3 class="text-center  my-4">@Model.Title başlıklı yorum düzenleniyor...</h3></div>
                 <div class="card-body">
                     <form asp-controller="Book" asp-action="CommentUpdatePartial">
 
@@ -31,7 +31,7 @@
 
                         <div class="form-group text-center">
                             <a class="btn btn-secondary btn-group-toggle btn-circle text-uppercase" asp-area="Admin" asp-controller="Book" asp-action="Index"><span class="glyphicon glyphicon-share-alt"></span> Vazgeç</a>
-                            <button @*type="submit"*@ class="btn btn-info btn-circle text-uppercase" id="btnUpdate"><span class="fas fa-save"></span> Kaydet </button>
+                            <button  class="btn btn-info btn-circle text-uppercase" id="btnUpdate"><span class="fas fa-save"></span> Kaydet </button>
                         </div>
                     </form>
                 </div>

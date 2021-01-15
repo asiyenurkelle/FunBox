@@ -59,7 +59,8 @@
                                 <td><img style="width:100px; height:100px;" src="~/img/@serie.ThumbNail"></td>
                                 <td><a asp-area="Admin" asp-controller="Serie" asp-action="Details" asp-route-id="@serie.Id">@serie.Title</a></td>
                                 <td>Dizi</td>
-                                <td class="text-warning"> <img class="18rem" src="~/img/star.png"> @serie.Imdb </td>
+                                <td class="text-warning"
+                                    +3,> <img class="18rem" src="~/img/star.png"> @serie.Imdb </td>
                                 <td>@serie.Scenarist</td>
                                 <td>@serie.Date.ToShortDateString()</td>
 

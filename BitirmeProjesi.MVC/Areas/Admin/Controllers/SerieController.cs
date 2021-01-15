@@ -60,7 +60,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         [Authorize]
         public IActionResult MoodTesting()
         {
-            TempData["Active"] = "ÖneriTesti";    
+            TempData["Active"] = "SizeGöre";    
             return View();
         }
 
@@ -68,7 +68,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         [Authorize]
         public IActionResult MoodTesting2()
         {
-            TempData["Active"] = "ÖneriTesti";
+            TempData["Active"] = "SizeGöre";
             return View();
         }
 
@@ -76,7 +76,7 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
         [Authorize]
         public  IActionResult MoodTesting3()
         {
-            TempData["Active"] = "ÖneriTesti";
+            TempData["Active"] = "SizeGöre";
             return View();
         }
 
