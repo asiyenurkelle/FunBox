@@ -5,30 +5,18 @@
 
 <link href="~/css/Comments.css" rel="stylesheet" />
 
-<div class="container">
 
-    <div class="row" id="HomePage">
+<div class="container ">
 
-        <div class="col-lg-3 ">
+    
 
-            @*<div class="card mt-5" style="width: 18rem;">
-                <img class="img-rounded w-40 h-40 text-center" src="~/img/mental-health.png" />
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>*@
-           
-        </div>
-
-        <div class="col-lg-9 p-5">
+        <div class="col-lg-12 p-5">
 
             <div class="row">
 
                 <div class="col-lg-4 col-md-6 mb-4">
 
-                    <div class="card h-100">
+                    <div class="card" style="width:300px; height:auto;">
 
                         <div class="card-body ">
                             <h5 class="card-title text-center text-info">Okunacak Kitaplar Listesi</h5>
@@ -38,7 +26,8 @@
                         {
 
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">@book.Title</li>
+                                <li class="list-group-item p-2 text-center float-right"> @book.Title<img src="~/img/@book.ThumbNail" class=" float-left" style="width:100px; height:100px;" /> <br /></li>
+                               
                                 <li class=" btn btn-group-toggle">
                                     <a asp-area="Admin" asp-controller="Book" asp-action="Details" asp-route-id="@book.Id" class="btn btn-sm text-info btn-circle text-uppercase">Detay</a>
                                     <a asp-area="Admin" asp-controller="Book" asp-action="Details" class="btn btn-sm text-danger btn-circle text-uppercase" data-toggle="modal" data-target="#exampleModalBook" data-id="@book.Id">Listeden Sil</a>
@@ -53,7 +42,7 @@
 
                 <div class="col-lg-4 col-md-6 mb-4">
 
-                    <div class="card h-100">
+                    <div class="card" style="width:300px; height:auto;">
 
                         <div class="card-body ">
                             <h5 class="card-title text-center text-info">İzlenilecek Diziler Listesi</h5>
@@ -63,7 +52,8 @@
                         {
 
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">@serie.Title</li>
+                                <li class="list-group-item p-2 text-center float-right"> @serie.Title<img src="~/img/@serie.ThumbNail" class=" float-left" style="width:100px; height:100px;" /> <br /></li>
+
                                 <li class=" btn btn-group-toggle">
                                     <a asp-area="Admin" asp-controller="Serie" asp-action="Details" asp-route-id="@serie.Id" class="btn btn-sm text-info btn-circle text-uppercase">Detay</a>
                                     <a asp-area="Admin" asp-controller="Serie" asp-action="Details" class="btn btn-sm text-danger btn-circle text-uppercase" data-toggle="modal" data-target="#exampleModalSerie" data-id="@serie.Id">Listeden Sil</a>
@@ -78,7 +68,7 @@
 
                 <div class="col-lg-4 col-md-6 mb-4">
 
-                    <div class="card h-100">
+                    <div class="card" style="width:300px; height:auto;">
 
                         <div class="card-body ">
                             <h5 class="card-title text-center text-info">İzlenilecek Filmler Listesi</h5>
@@ -88,7 +78,7 @@
                         {
 
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">@movie.Title</li>
+                                <li class="list-group-item p-2 text-center float-right"> @movie.Title<img src="~/img/@movie.ThumbNail" class=" float-left" style="width:100px; height:100px;" /> <br /></li>
                                 <li class=" btn btn-group-toggle">
                                     <a asp-area="Admin" asp-controller="Movie" asp-action="Details" asp-route-id="@movie.Id" class="btn btn-sm text-info btn-circle text-uppercase">Detay</a>
                                     <a asp-area="Admin" asp-controller="Movie" asp-action="Details" class="btn btn-sm text-danger btn-circle text-uppercase" data-toggle="modal" data-target="#exampleModalMovie" data-id="@movie.Id">Listeden Sil</a>
@@ -100,9 +90,6 @@
                     </div>
                 </div>
 
-
-
-                <!-- Modal -->
                 <div class="modal fade" id="exampleModalBook" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
