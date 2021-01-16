@@ -7,7 +7,7 @@
 <link href="~/css/MoodTest.css" rel="stylesheet" />
 
 <div class="row ">
-    <div class="container text-center col-md-6 float-left ">
+    <div class="container text-center ">
         <div class="modal-dialog p-2">
             <div class="modal-content">
                 <div class="modal-header">
@@ -26,7 +26,7 @@
 
 
 
-    <div class="container text-center col-md-6 float-right " id="SuggestionScreen">
+    <div class="container text-center " id="SuggestionScreen">
         <div class="modal-dialog p-2">
             <div class="modal-content">
                 <div class="modal-header ">
@@ -43,7 +43,7 @@
             </div>
         </div>
     </div>
-    <div class="container text-center col-md-6 float-right " id="SuggestionScreen2">
+    <div class="container text-center  " id="SuggestionScreen2">
         <div class="modal-dialog p-2">
             <div class="modal-content">
                 <div class="modal-header ">
@@ -104,9 +104,7 @@
 
                                                                                                      <div class="card-header bg-info"> ${book.Title}</div>
 
-                                                                                                    
-                                                                                                         <div class="card-title"> Yazar: ${book.Writer}</div>
-                                                                                                         <div class="card-title">Sayfa: ${book.Page}</div>
+                                                                                                         <div class="card-title "> ${book.Summary}</div>
 
 
                                                                                                         `;
@@ -136,8 +134,7 @@
                                         function (index, book) {
                                             answerResultLess += `
                                                                                                         <div class="card-header bg-info"> ${book.Title}</div>
-                                                                                                       
-                                                                                                        <div class="card-title">${book.Subject}</div>
+                                                                                                       <div class="card-title "> ${book.Summary}</div>
                                                                                                         `;
                                         }
                                     );

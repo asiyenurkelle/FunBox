@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BitirmeProjesi.Data.Migrations
 {
     [DbContext(typeof(BitirmeProjesiContext))]
-    [Migration("20210113091327_InitialCreate")]
+    [Migration("20210116181027_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,12 +44,14 @@ namespace BitirmeProjesi.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Production")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Subject")
                         .IsRequired()
                         .HasColumnType("NVARCHAR(MAX)");
+
+                    b.Property<string>("Summary")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ThumbNail")
                         .IsRequired()
@@ -275,16 +277,17 @@ namespace BitirmeProjesi.Data.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("Production")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Scenarist")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Subject")
                         .IsRequired()
                         .HasColumnType("NVARCHAR(MAX)");
+
+                    b.Property<string>("Summary")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ThumbNail")
                         .IsRequired()
@@ -464,11 +467,9 @@ namespace BitirmeProjesi.Data.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("Production")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Scenarist")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SeasonNumber")
@@ -477,6 +478,9 @@ namespace BitirmeProjesi.Data.Migrations
                     b.Property<string>("Subject")
                         .IsRequired()
                         .HasColumnType("NVARCHAR(MAX)");
+
+                    b.Property<string>("Summary")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ThumbNail")
                         .IsRequired()

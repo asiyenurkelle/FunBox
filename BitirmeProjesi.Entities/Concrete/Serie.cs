@@ -21,5 +21,6 @@ namespace BitirmeProjesi.Entities.Concrete
         public DateTime Date { get; set; }
         public int SeasonNumber { get; set; }
         public double Imdb { get; set; }
+        public string Summary { get; set; }
     }
 }

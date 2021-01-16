@@ -101,8 +101,8 @@
                                         answerResult += `
 
                                                                                                      <div class="card-header bg-info"> ${serie.Title}</div>
-
-                                                                                                    `;
+                                                                                                         <div class="card-title "> ${serie.Summary}</div>
+                                                                                                    `;  
                                     }
                                 );
                                 $('#answer1Title').replaceWith(answerResult);
@@ -129,7 +129,7 @@
                                     function (index, serie) {
                                         answerResultLess += `
                                                                                                     <div class="card-header bg-info"> ${serie.Title}</div>
-
+                                                                                                     <div class="card-title "> ${serie.Summary}</div>x"
                                                                                                     `;
                                     }
                                 );

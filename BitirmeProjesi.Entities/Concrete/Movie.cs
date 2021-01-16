@@ -20,6 +20,7 @@ namespace BitirmeProjesi.Entities.Concrete
         
         public DateTime Date { get; set; }
         public double Imdb { get; set; }
+        public string Summary { get; set; }
 
 
     }

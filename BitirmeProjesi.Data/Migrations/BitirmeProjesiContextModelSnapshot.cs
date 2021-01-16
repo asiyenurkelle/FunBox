@@ -42,12 +42,14 @@ namespace BitirmeProjesi.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Production")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Subject")
                         .IsRequired()
                         .HasColumnType("NVARCHAR(MAX)");
+
+                    b.Property<string>("Summary")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ThumbNail")
                         .IsRequired()
@@ -273,16 +275,17 @@ namespace BitirmeProjesi.Data.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("Production")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Scenarist")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Subject")
                         .IsRequired()
                         .HasColumnType("NVARCHAR(MAX)");
+
+                    b.Property<string>("Summary")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ThumbNail")
                         .IsRequired()
@@ -462,11 +465,9 @@ namespace BitirmeProjesi.Data.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("Production")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Scenarist")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SeasonNumber")
@@ -475,6 +476,9 @@ namespace BitirmeProjesi.Data.Migrations
                     b.Property<string>("Subject")
                         .IsRequired()
                         .HasColumnType("NVARCHAR(MAX)");
+
+                    b.Property<string>("Summary")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ThumbNail")
                         .IsRequired()

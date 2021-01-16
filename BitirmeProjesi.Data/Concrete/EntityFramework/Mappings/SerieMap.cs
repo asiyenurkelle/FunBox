@@ -14,13 +14,9 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
             builder.Property(s => s.Title).HasMaxLength(100).IsRequired();
             builder.Property(s => s.Subject).HasColumnType("NVARCHAR(MAX)").IsRequired();
             builder.Property(s => s.ThumbNail).IsRequired();
-            builder.Property(s => s.Production).IsRequired();
-            builder.Property(s => s.Time).IsRequired();
-            builder.Property(s => s.Scenarist).IsRequired();
+            
             builder.Property(s => s.Activities).HasColumnType("BİT");
-            //builder.Property(s => s.Date).IsRequired();
-            builder.Property(s => s.Imdb).IsRequired();
-            builder.Property(s => s.SeasonNumber).IsRequired();
+          
 
             builder.HasOne<Category>(s => s.Category).WithMany(c => c.Series).HasForeignKey(s => s.CategoryId).OnDelete(DeleteBehavior.Restrict);
             builder.ToTable("Series");

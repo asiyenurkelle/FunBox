@@ -13,8 +13,8 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
     {
         public void Configure(EntityTypeBuilder<MovieComment> builder)
         {
-            builder.HasKey(m => m.Id);
-            builder.Property(m => m.Id).ValueGeneratedOnAdd();
+            //builder.HasKey(m => m.Id);
+            //builder.Property(m => m.Id).ValueGeneratedOnAdd();
             builder.Property(m => m.Title).HasMaxLength(100).IsRequired();
             builder.Property(m => m.Subject).HasColumnType("NVARCHAR(MAX)").IsRequired();
             //builder.Property(m => m.Name).HasMaxLength(100).IsRequired();

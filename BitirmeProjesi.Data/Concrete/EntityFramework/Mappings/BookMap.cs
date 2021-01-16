@@ -16,15 +16,9 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
             builder.Property(b => b.Title).HasMaxLength(100).IsRequired();
             builder.Property(b => b.Subject).HasColumnType("NVARCHAR(MAX)").IsRequired();
             builder.Property(b => b.ThumbNail).IsRequired();
-            builder.Property(b => b.Page).IsRequired();
+           
             builder.Property(s => s.Activities).HasColumnType("BİT");
-            builder.Property(b => b.Production).IsRequired();
-            builder.Property(b => b.IsClassical).IsRequired();
             builder.Property(b => b.IsClassical).HasColumnType("BIT");
-           // builder.Property(b => b.Date).IsRequired();
-
-
-
             builder.HasOne<Category>(b => b.Category).WithMany(c => c.Books).HasForeignKey(b => b.CategoryId).OnDelete(DeleteBehavior.Restrict);
             
             builder.ToTable("Books");

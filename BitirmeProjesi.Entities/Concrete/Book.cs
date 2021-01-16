@@ -20,6 +20,7 @@ namespace BitirmeProjesi.Entities.Concrete
         public bool Activities { get; set; }
         public DateTime Date { get; set; }
         public bool IsClassical { get; set; }
+        public string Summary { get; set; }
 
     }
 }
