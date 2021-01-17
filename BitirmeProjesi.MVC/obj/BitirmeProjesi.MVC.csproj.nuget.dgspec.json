@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\asus\\source\\repos\\BitirmeProjesi\\BitirmeProjesi.Mvc\\BitirmeProjesi.MVC.csproj": {}
+    "C:\\Users\\asus\\source\\repos\\BitirmeProjesi\\BitirmeProjesi.MVC\\BitirmeProjesi.MVC.csproj": {}
   },
   "projects": {
     "C:\\Users\\asus\\source\\repos\\BitirmeProjesi\\BitirmeProjesi.Data\\BitirmeProjesi.Data.csproj": {
@@ -21,7 +21,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp5.0"
+          "net5.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
@@ -111,7 +111,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp5.0"
+          "net5.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
@@ -163,14 +163,14 @@
         }
       }
     },
-    "C:\\Users\\asus\\source\\repos\\BitirmeProjesi\\BitirmeProjesi.Mvc\\BitirmeProjesi.MVC.csproj": {
+    "C:\\Users\\asus\\source\\repos\\BitirmeProjesi\\BitirmeProjesi.MVC\\BitirmeProjesi.MVC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\asus\\source\\repos\\BitirmeProjesi\\BitirmeProjesi.Mvc\\BitirmeProjesi.MVC.csproj",
+        "projectUniqueName": "C:\\Users\\asus\\source\\repos\\BitirmeProjesi\\BitirmeProjesi.MVC\\BitirmeProjesi.MVC.csproj",
         "projectName": "BitirmeProjesi.MVC",
-        "projectPath": "C:\\Users\\asus\\source\\repos\\BitirmeProjesi\\BitirmeProjesi.Mvc\\BitirmeProjesi.MVC.csproj",
+        "projectPath": "C:\\Users\\asus\\source\\repos\\BitirmeProjesi\\BitirmeProjesi.MVC\\BitirmeProjesi.MVC.csproj",
         "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\asus\\source\\repos\\BitirmeProjesi\\BitirmeProjesi.Mvc\\obj\\",
+        "outputPath": "C:\\Users\\asus\\source\\repos\\BitirmeProjesi\\BitirmeProjesi.MVC\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -180,7 +180,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp5.0"
+          "net5.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
@@ -284,7 +284,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp5.0"
+          "net5.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
@@ -342,6 +342,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
@@ -367,7 +370,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp5.0"
+          "net5.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
