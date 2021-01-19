@@ -48,8 +48,8 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             }
         }
 
-        [HttpGet("Admin/Book/Details/{Id}")]
-
+       
+        [HttpGet]
         public async Task<IActionResult> Details(int Id)
         {
             TempData["Active"] = "Kitap";

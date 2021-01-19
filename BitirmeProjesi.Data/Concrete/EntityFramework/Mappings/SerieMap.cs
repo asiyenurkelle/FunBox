@@ -14,9 +14,9 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
             builder.Property(s => s.Title).HasMaxLength(100).IsRequired();
             builder.Property(s => s.Subject).HasColumnType("NVARCHAR(MAX)").IsRequired();
             builder.Property(s => s.ThumbNail).IsRequired();
-            
+
             builder.Property(s => s.Activities).HasColumnType("BİT");
-          
+
 
             builder.HasOne<Category>(s => s.Category).WithMany(c => c.Series).HasForeignKey(s => s.CategoryId).OnDelete(DeleteBehavior.Restrict);
             builder.ToTable("Series");
@@ -28,12 +28,13 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 Subject = "Peaky Blinders, İngiltere'nin Birmingham şehrinde çetelerin birbiriyle yaşadığı olayları izleyiciye aktarmaktadır. Çete için her şey tıkırında giderken son bir soygunda hata yapılır ve çetenin başına bela olacak bir müfettiş görevlendirilir.",
                 CategoryId = 11,
                 ThumbNail = "peakyblinders.jpg",
-                Time = 58 ,
+                Time = 58,
                 Scenarist = "Steven Knigt",
                 Production = "Yabancı",
-               // Date = new DateTime(2013, 09, 12),
-                Imdb=8.7,
-                SeasonNumber=5
+                Activities = false,
+                Imdb = 8.7,
+                SeasonNumber = 6,
+                Summary = "Birinci Dünya Savaşı sırasında devlete karşı gelen bahis çeteleri, komünistler ve devlet arasındaki husumeti konu alınıyor."
 
 
             },
@@ -47,9 +48,10 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 Time = 60,
                 Scenarist = "Andrew Baldwin",
                 Production = "Yabancı",
-               // Date = new DateTime(2020,01,12),
+                Activities = false,
                 Imdb = 6.3,
-                SeasonNumber = 1
+                SeasonNumber = 1,
+                Summary = "11 yaşındaki bir çocuğun hunharca katledilen cesedi bir parkta bulunur."
 
             },
             new Serie
@@ -62,9 +64,10 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 Time = 60,
                 Scenarist = "Lauren Schmidt Hissrich",
                 Production = "Yabancı",
-               // Date = new DateTime(2019, 10, 26),
+                Activities = false,
                 Imdb = 8.4,
-                SeasonNumber = 1
+                SeasonNumber = 1,
+                Summary = "Yüzyılı aşkın süredir bir arada yaşayan insanlar, cüceler ve elfler arasındaki barış sona erer ve yeni bir ırklar arası savaş patlak verir."
             },
             new Serie
             {
@@ -73,12 +76,13 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 Subject = "kitapçıda çalışan Joe ve o kitapçıya müşteri olarak gelen Beck’in hikayesini izleyiciye aktarmaktadır. Joe, Beck’e gördüğü andan itibaren aşık durumdadır ve onu korumak için ne gerekiyorsa yapmaktadır. Joe’nin Beck’e karşı takıntılı tavırlar göstermesi Beck’in yakın arkadaşı Peach’in dikkatini çekse de Joe’ye engel olmak mümkün değildir. Yaptığı her takıntılı davranışı Beck’e aşık olduğu için yaptığını düşünen Joe, aslında tam bir saplantı yaşamaktadır.",
                 CategoryId = 6,
                 ThumbNail = "you.jpg",
-                Time = 45 ,
+                Time = 45,
                 Scenarist = "Blake Neely",
                 Production = "Yabancı",
-               // Date = new DateTime(2018, 01, 01),
+                Activities = false,
                 Imdb = 7.7,
-                SeasonNumber = 3
+                SeasonNumber = 3,
+                Summary = "Zeki bir New York'lu olan Joe, bir kitapçı işletmektedir. Bir gün kitapçıya gelen Beck,' Joe aşık olmuştur."
             },
             new Serie
             {
@@ -90,9 +94,10 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 Time = 56,
                 Scenarist = "Matt Duffer",
                 Production = "Yabancı",
-               // Date = new DateTime(2016, 07, 15),
+                Activities = false,
                 Imdb = 8.7,
-                SeasonNumber = 4
+                SeasonNumber = 4,
+                Summary = "Kaybolan genç bir çocuğu ve onu bulmaya çalışan annesini anlatıyor."
             },
             new Serie
             {
@@ -104,9 +109,10 @@ namespace BitirmeProjesi.Data.Concrete.EntityFramework.Mappings
                 Time = 42,
                 Scenarist = "Howard Fast",
                 Production = "Yabancı",
-               // Date = new DateTime(2010, 01, 22),
+                Activities = false,
                 Imdb = 8.5,
-                SeasonNumber = 3
+                SeasonNumber = 3,
+                Summary = "Blood and Sand, yurdundan ve sevdiği kadından koparılan bir adamın, kanlı arenalarda küllerinden doğuş öyküsünü anlatıyor. "
 
             }
             );

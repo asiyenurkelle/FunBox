@@ -20,7 +20,9 @@ namespace BitirmeProjesi.Services.Abstract
         Task<IDataResult<MovieListDto>> GetImdbAll();
         Task<IDataResult<MovieListDto>> GetMovieDateLess1990();
         Task<IDataResult<MovieListDto>> GetMovieDateThan1990();
-  
+      
+
+
 
 
 

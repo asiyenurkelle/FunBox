@@ -219,6 +219,26 @@ namespace BitirmeProjesi.Services.Concrete
         }
 
         
+        //public async Task<IDataResult<MovieListDto>> Suggestions (int categoryId)
+        //{
+        //    var movie = await _unitOfWork.Movies.GetAllAsync(m => m.CategoryId == categoryId);
+        //    if (movie != null)
+        //    {
+        //        return new DataResult<MovieListDto>(ResultStatus.Success, new MovieListDto
+        //        {
+        //            Movies= movie,
+        //            ResultStatus = ResultStatus.Success
+        //        });
+        //    }
+        //    return new DataResult<MovieListDto>(ResultStatus.Error, Messages.Movie.NotFound(isPlural: true), new MovieListDto
+        //    {
+        //        Movies = null,
+        //        ResultStatus = ResultStatus.Error,
+        //        Message = Messages.Movie.NotFound(isPlural: true)
+        //    });
+
+        //}
+
 
     }  
 }

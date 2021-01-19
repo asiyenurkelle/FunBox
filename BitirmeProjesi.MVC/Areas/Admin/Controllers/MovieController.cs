@@ -20,14 +20,14 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
     public class MovieController : Controller
     {
         private readonly IMovieService _movieService;
-     
+
         private readonly IMovieCommentService _movieCommentService;
         private readonly IMapper _mapper;
 
         public MovieController(IMovieService movieService, IMovieCommentService movieCommentService, IMapper mapper)
         {
             _movieService = movieService;
-          
+
             _movieCommentService = movieCommentService;
             _mapper = mapper;
         }
@@ -213,10 +213,16 @@ namespace BitirmeProjesi.MVC.Areas.Admin.Controllers
             }
 
         }
-       
-
-
-
+        //[HttpGet]
+        //public async Task<IActionResult> Suggestions(int categoryId)
+        //{
+        //    var result = await _movieService.Suggestions(categoryId);
+        //    var movies = JsonSerializer.Serialize(result.Data, new JsonSerializerOptions
+        //    {
+        //        ReferenceHandler = ReferenceHandler.Preserve
+        //    });
+        //    return Json(movies);
+        //}
 
     }
 }
