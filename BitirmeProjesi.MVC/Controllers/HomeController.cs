@@ -21,13 +21,13 @@ namespace BitirmeProjesi.MVC.Controllers
             _bookService = bookService;
         }
 
-        public async Task<IActionResult> Index(int? id, int currentPage=1,int pageSize=2)
+        public async Task<IActionResult> Index(int? id, int currentPage=1,int pageSize=3)
         {
             TempData["Active"] = "Anasayfa";
             ViewBag.SelectedCategory = RouteData.Values["id"];
             if (id == null)
             {
-                var result = await _bookSerieMovieService.GetAllByPagingAsync(currentPage,pageSize);
+                var result = await _bookSerieMovieService.GetAllByPagingAsync(null,currentPage,pageSize);
 
                 return View(result.Data);
             }

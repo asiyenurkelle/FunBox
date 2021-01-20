@@ -88,13 +88,22 @@
     </div>
 
 </div>
-<ul class="pagination justify-content-center mb-4" >
-    @{ 
+<ul class="pagination justify-content-center mb-4">
+    @{
         @for (var i = 1; i <= Model.TotalPages; i++)
         {
-            <li class="page-item @(i==Model.CurrentPage ? "active": "") ">
-                <a class="page-link" asp-route-currentPage="@i">@i</a>
-            </li>
+    <li class="page-item @(i==Model.CurrentPage ? "active": "") ">
+        @if (Model.id != null)
+        {
+
+            <a class="page-link" asp-route-currentPage="@i" asp-route-id="@Model.id.Value">@i</a>
+
+        }
+        else
+        {
+            <a class="page-link" asp-route-currentPage="@i" >@i</a>
+        }
+    </li>
         }
     }
 </ul>

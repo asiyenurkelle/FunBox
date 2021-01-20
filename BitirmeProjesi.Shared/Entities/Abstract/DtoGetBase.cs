@@ -13,7 +13,7 @@ namespace BitirmeProjesi.Shared.Entities.Abstract
         public virtual string Message { get; set; }
 
         public int CurrentPage { get; set; } = 1;
-        public int PageSize { get; set; } = 2;
+        public int PageSize { get; set; } = 3;
         public int TotalCount { get; set; }
         public int TotalPages => (int)Math.Ceiling(decimal.Divide(TotalCount, PageSize));
         public bool ShowPrevious => CurrentPage > 1;

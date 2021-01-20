@@ -111,7 +111,7 @@ namespace BitirmeProjesi.Services.Concrete
         }
         public async Task<IDataResult<BookSerieMovieDto>> GetOrderByImdb()
         {
-            var movie =  _unitOfWork.Movies.OrderBy(m => m.Imdb, m => m.Category);
+            var movie = _unitOfWork.Movies.OrderBy(m => m.Imdb, m => m.Category);
             var serie = _unitOfWork.Series.OrderBy(m => m.Imdb, m => m.Category);
 
             return new DataResult<BookSerieMovieDto>(ResultStatus.Success, new BookSerieMovieDto
@@ -122,7 +122,7 @@ namespace BitirmeProjesi.Services.Concrete
             });
         }
 
-        public async Task<IDataResult<BookSerieMovieDto>> GetAllByPagingAsync(int? id, int currentPage = 1, int pageSize = 2)
+        public async Task<IDataResult<BookSerieMovieDto>> GetAllByPagingAsync(int? id, int currentPage = 1, int pageSize = 3)
         {
 
             var books = await _unitOfWork.Books.GetAllAsync(null, b => b.Category);
