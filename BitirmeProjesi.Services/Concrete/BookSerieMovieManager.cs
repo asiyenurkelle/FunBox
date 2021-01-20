@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PagedList.Core;
 using BitirmeProjesi.Services.Utilities;
+using System.Linq;
 
 namespace BitirmeProjesi.Services.Concrete
 {
@@ -22,7 +23,7 @@ namespace BitirmeProjesi.Services.Concrete
         }
         public async Task<IDataResult<BookSerieMovieDto>> GetAll()
         {
-           
+
             var books = await _unitOfWork.Books.GetAllAsync(null, b => b.Category);
             var series = await _unitOfWork.Series.GetAllAsync(null, s => s.Category);
             var movies = await _unitOfWork.Movies.GetAllAsync(null, m => m.Category);
@@ -34,7 +35,7 @@ namespace BitirmeProjesi.Services.Concrete
                     Books = books,
                     Series = series,
                     Movies = movies,
-                    Categories=categories,
+                    Categories = categories,
                     ResultStatus = ResultStatus.Success
                 });
             }
@@ -43,7 +44,7 @@ namespace BitirmeProjesi.Services.Concrete
                 Books = null,
                 Series = null,
                 Movies = null,
-                Categories=null,
+                Categories = null,
                 ResultStatus = ResultStatus.Error,
                 Message = Messages.BookSerieMovie.NotFound(isPlural: true)
             });
@@ -65,8 +66,8 @@ namespace BitirmeProjesi.Services.Concrete
                     Books = categoriesBook,
                     Movies = categoriesMovie,
                     Series = categoriesSerie,
-                    Categories=categories,
-                    
+                    Categories = categories,
+
                     ResultStatus = ResultStatus.Success
                 });
             }
@@ -87,14 +88,14 @@ namespace BitirmeProjesi.Services.Concrete
             var resultBook = await _unitOfWork.Books.GetAllAsync(b => b.Title.Contains(searchString), b => b.Category);
             var categories = await _unitOfWork.Categories.GetAllAsync(null, c => c.Books, c => c.Movies, c => c.Series);
 
-            if (resultMovie.Count> 0|| resultSerie.Count>0 || resultBook.Count > 0)
+            if (resultMovie.Count > 0 || resultSerie.Count > 0 || resultBook.Count > 0)
             {
                 return new DataResult<BookSerieMovieDto>(ResultStatus.Success, new BookSerieMovieDto
                 {
                     Books = resultBook,
                     Movies = resultMovie,
                     Series = resultSerie,
-                    Categories= categories,
+                    Categories = categories,
                     ResultStatus = ResultStatus.Success
                 });
             }
@@ -106,19 +107,45 @@ namespace BitirmeProjesi.Services.Concrete
                 ResultStatus = ResultStatus.Error,
                 Message = Messages.BookSerieMovie.NotFound(isPlural: true)
             });
-           
+
         }
         public async Task<IDataResult<BookSerieMovieDto>> GetOrderByImdb()
         {
-            var movie = _unitOfWork.Movies.OrderBy(m => m.Imdb, m => m.Category);
+            var movie =  _unitOfWork.Movies.OrderBy(m => m.Imdb, m => m.Category);
             var serie = _unitOfWork.Series.OrderBy(m => m.Imdb, m => m.Category);
-           
+
             return new DataResult<BookSerieMovieDto>(ResultStatus.Success, new BookSerieMovieDto
             {
                 Movies = movie,
                 Series = serie,
                 ResultStatus = ResultStatus.Success
             });
+        }
+
+        public async Task<IDataResult<BookSerieMovieDto>> GetAllByPagingAsync(int? id, int currentPage = 1, int pageSize = 2)
+        {
+
+            var books = await _unitOfWork.Books.GetAllAsync(null, b => b.Category);
+            var series = await _unitOfWork.Series.GetAllAsync(null, s => s.Category);
+            var movies = await _unitOfWork.Movies.GetAllAsync(null, m => m.Category);
+            var categories = await _unitOfWork.Categories.GetAllAsync(null, c => c.Books, c => c.Movies, c => c.Series);
+            var sortedBook = books.OrderByDescending(a => a.Date).Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
+            var sortedMovie = movies.OrderByDescending(a => a.Date).Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
+            var sortedSerie = series.OrderByDescending(a => a.Date).Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
+
+            return new DataResult<BookSerieMovieDto>(ResultStatus.Success, new BookSerieMovieDto
+            {
+                Books = sortedBook,
+                Series = sortedSerie,
+                Movies = sortedMovie,
+                Categories = categories,
+                CurrentPage = currentPage,
+                PageSize = pageSize,
+                TotalCount = sortedMovie.Count + sortedSerie.Count + sortedBook.Count,
+                ResultStatus = ResultStatus.Success
+            });
+
+
         }
     }
 }

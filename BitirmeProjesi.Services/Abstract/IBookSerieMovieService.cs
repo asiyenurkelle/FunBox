@@ -9,6 +9,7 @@ namespace BitirmeProjesi.Services.Abstract
 {
     public interface IBookSerieMovieService
     {
+        Task<IDataResult<BookSerieMovieDto>> GetAllByPagingAsync(int? id,int currentPage = 1, int pageSize = 5);
         Task<IDataResult<BookSerieMovieDto>> GetAll();
         Task<IDataResult<BookSerieMovieDto>> GetCategories(int? id);
         Task<IDataResult<BookSerieMovieDto>> Search(string searchString);

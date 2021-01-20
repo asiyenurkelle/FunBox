@@ -40,8 +40,6 @@ namespace BitirmeProjesi.Entities.Dtos
 
         [DisplayName("Şifrenizin Tekrarı")]
         [Required(ErrorMessage = "{0} boş geçilmemelidir.")]
-        [MaxLength(30, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır.")]
-        [MinLength(5, ErrorMessage = "{0} {1} karakterden küçük olmamalıdır. ")]
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Girmiş olduğunuz yeni şifreniz ile yeni şifrenizin tekrarı alanları birbiri ile uyuşmalıdır.")]
         public string RepeatPassword { get; set; }
